@@ -17,6 +17,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void btnStart_Click()
     {
+        Debug.Log("Start");
         //playClickSound();
         //start game
         SceneManager.LoadScene("GameScene");
@@ -24,6 +25,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void btnExit_Click()
     {
+        Debug.Log("Exit");
         //playClickSound();
         //open skilltree
         Application.Quit();
@@ -31,16 +33,22 @@ public class ButtonHandler : MonoBehaviour
 
     public void btnPause_Click()
     {
+        Debug.Log("Pause");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void btnTipp_Click()
     {
+        Debug.Log("Tipp");
     }
 
     public void btnTest_Click()
     {
+        Debug.Log("Test");
     }
+
     public void btnAuto_Click()
     {
+        Debug.Log("Auto");
     }
 }
