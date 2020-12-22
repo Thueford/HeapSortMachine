@@ -51,4 +51,9 @@ public class ButtonHandler : MonoBehaviour
     {
         Debug.Log("Auto");
     }
+
+    public void btnReset_Click()
+    {
+        Debug.Log("Reset");
+    }
 }
