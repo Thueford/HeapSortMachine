@@ -56,4 +56,14 @@ public class ButtonHandler : MonoBehaviour
     {
         Debug.Log("Reset");
     }
+    
+    public void btnMoveRight_Click()
+    {
+        Debug.Log("Move Right");
+    }
+    
+    public void btnMoveLeft_Click()
+    {
+        Debug.Log("Move Left");
+    }
 }
