@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class Bowl : MonoBehaviour
 {
+    private static Globals globs;
+
     private Vector3 mouse_position;
     private Collider2D bowlCollider;
     private Collider2D bowlGapCollider;
@@ -12,19 +11,17 @@ public class Bowl : MonoBehaviour
     private bool picked = false;
     private bool collide = false;
 
-    public string displayText;
     public bool enableDragnDrop = true;
 
+    public int value { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
+        globs = Globals.TryGetObjWithTag("Background").GetComponent<Globals>();
         bowlCollider = GetComponent<Collider2D>();
-        startPosition = this.transform.position;
-
-        setText(displayText);
-
-        
+        startPosition = transform.position;
+        setValue(0);
     }
 
     // Update is called once per frame
@@ -48,12 +45,14 @@ public class Bowl : MonoBehaviour
         if (picked == true)
         {
             this.transform.position = mouse_position;
-        } else
+        } 
+        else
         {
             if (collide == true)
             {
                 this.transform.position = bowlGapCollider.transform.position;
-            } else
+            } 
+            else
             {
                 //get back to origin position
                 this.transform.position = startPosition;
@@ -71,6 +70,15 @@ public class Bowl : MonoBehaviour
                 //this.transform.position = startPosition;
             }
         }
+    }
+
+    public void setValue(byte val, bool nums = true)
+    {
+        Sprite[] sprites = nums ? globs.bowlsNumbered : globs.bowlsBlank;
+        value = val % sprites.Length;
+
+        setText(value.ToString());
+        GetComponent<SpriteRenderer>().sprite = sprites[value];
     }
 
     private void setText(string text)
