@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Stage1Tests : MonoBehaviour
 {
@@ -14,5 +12,15 @@ public class Stage1Tests : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Test_1_1()
+    {
+        // TODO
+    }
+
+    public void Test_1_2()
+    {
+        // TODO
     }
 }
