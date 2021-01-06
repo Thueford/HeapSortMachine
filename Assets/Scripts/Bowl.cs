@@ -13,7 +13,8 @@ public class Bowl : MonoBehaviour
 
     public bool enableDragnDrop = true;
 
-    public int value { get; private set; }
+    public int value;
+    public int holeId { get; private set; } = -1;
 
     // Start is called before the first frame update
     void Start()
