@@ -26,8 +26,18 @@ public class ButtonHandler : MonoBehaviour
     {
         Debug.Log("Exit");
         //playClickSound();
-        //open skilltree
         Application.Quit();
+    }
+
+    public void btnSettings_Click()
+    {
+        Debug.Log("Settings");
+        //playClickSound();
+    }
+    public void btnCredits_Click()
+    {
+        Debug.Log("Credits");
+        //playClickSound();
     }
 
     public void btnPause_Click()
