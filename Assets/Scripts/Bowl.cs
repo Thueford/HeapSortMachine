@@ -29,11 +29,11 @@ public class Bowl : MonoBehaviour
         collide = false;
         enableDragnDrop = true;
 
-        Debug.Log(transform.position);
+        //Debug.Log(transform.position);
 
         startPosition = transform.position;
 
-        Debug.Log(startPosition);
+        //Debug.Log(startPosition);
 
         setValue(value);
     }
@@ -59,18 +59,18 @@ public class Bowl : MonoBehaviour
 
                     //changes z of bowl+text -2
                     Vector3 tempvec = this.transform.position;
-                    tempvec.z = -3;
+                    tempvec.z += -3;
 
                     this.transform.position = tempvec;
 
-                    // Debug.Log(transform.position.z);
+                    Debug.Log(transform.position.z);
 
                     if (false)
                     {
                         tempvec = text.transform.position;
                         tempvec.z -= 3;
 
-                        text.transform.position = tempvec;
+                        //text.transform.position = tempvec;
                     }
                 }//*/
 
@@ -114,7 +114,7 @@ public class Bowl : MonoBehaviour
             if (false)
             {
                 tempvec = text.transform.position;
-                tempvec.z = 3;
+                tempvec.z = 0;
 
                 text.transform.position = tempvec;
             }
@@ -124,6 +124,7 @@ public class Bowl : MonoBehaviour
                 //get back to origin position
                 //this.transform.position = startPosition;
             }
+            Debug.Log(transform.position);
         }//*/
     }
 
@@ -144,7 +145,7 @@ public class Bowl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log(collider.tag);
+        //Debug.Log(collider.tag);
         //holeCollider = collider;
 
         if (collider.tag == "Hole")
