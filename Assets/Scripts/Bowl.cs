@@ -114,8 +114,7 @@ public class Bowl : MonoBehaviour
         if (collider.tag == "Hole" && collider.gameObject.GetComponent<Hole>().free)
         {
             collisions.Add(collider);
-            Hole hole = collider.gameObject.GetComponent<Hole>();
-            hole.free = false;
+            collider.gameObject.GetComponent<Hole>().free = false;
         }
     }
 
@@ -124,8 +123,7 @@ public class Bowl : MonoBehaviour
         if (collider.tag == "Hole" && collisions.Contains(collider))
         {
             collisions.Remove(collider);
-            Hole hole = collider.gameObject.GetComponent<Hole>();
-            hole.free = true;
+            collider.gameObject.GetComponent<Hole>().free = true;
         }
     }
 }
