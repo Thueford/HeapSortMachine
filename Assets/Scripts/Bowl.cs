@@ -6,7 +6,7 @@ public class Bowl : MonoBehaviour
 
     private Vector2 mouse_position;
     private Collider2D bowlCollider;
-    private Collider2D bowlGapCollider;
+    private Collider2D holeCollider;
     public Vector3 startPosition;
     private bool picked;
     private bool collide;
@@ -20,13 +20,20 @@ public class Bowl : MonoBehaviour
     void Start()
     {
         globs = Globals.TryGetObjWithTag("Background").GetComponent<Globals>();
-        text = transform.Find("BowlText").gameObject;
+
+        // text = transform.Find("BowlText").gameObject;
+
         bowlCollider = GetComponent<Collider2D>();
 
         picked = false;
         collide = false;
         enableDragnDrop = true;
-        //startPosition = transform.position;
+
+        Debug.Log(transform.position);
+
+        startPosition = transform.position;
+
+        Debug.Log(startPosition);
 
         setValue(value);
     }
@@ -44,7 +51,9 @@ public class Bowl : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (bowlCollider == Physics2D.OverlapPoint(mouse_position))
+                // Debug.Log(Physics2D.OverlapPoint(mouse_position));
+                // if (bowlCollider == Physics2D.OverlapPoint(mouse_position))
+                if (bowlCollider.OverlapPoint(mouse_position))
                 {
                     picked = true;
 
@@ -54,7 +63,7 @@ public class Bowl : MonoBehaviour
 
                     this.transform.position = tempvec;
 
-                    Debug.Log(transform.position.z);
+                    // Debug.Log(transform.position.z);
 
                     if (false)
                     {
@@ -75,13 +84,14 @@ public class Bowl : MonoBehaviour
         if (picked)
         {
             this.transform.position = mouse_position;
-        } 
+        }
         else
         {
             if (collide == true)
             {
-                this.transform.position = bowlGapCollider.transform.position;
-            } 
+                this.transform.position = holeCollider.transform.position;
+                startPosition = startPosition != this.transform.position ? this.transform.position : startPosition;
+            }
             else
             {
                 //get back to origin position
@@ -98,7 +108,8 @@ public class Bowl : MonoBehaviour
             tempvec.z += 3;
 
             this.transform.position = tempvec;
-            Debug.Log(transform.position.z);
+
+            // Debug.Log(transform.position.z);
 
             if (false)
             {
@@ -122,7 +133,7 @@ public class Bowl : MonoBehaviour
         value = val % sprites.Length;
 
         GetComponent<SpriteRenderer>().sprite = sprites[value];
-        setText(value.ToString());
+        // setText(value.ToString());
     }
 
     private void setText(string txt)
@@ -133,34 +144,36 @@ public class Bowl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        //Debug.Log(collider.tag);
-        //bowlGapCollider = collider;
+        Debug.Log(collider.tag);
+        //holeCollider = collider;
 
         if (collider.tag == "Hole")
         {
-            bowlGapCollider = collider;
             Hole hole = collider.gameObject.GetComponent<Hole>();
-            
-            if (hole.free == true)
+
+            if (hole.free)
             {
+                holeCollider = collider;
                 collide = true;
                 hole.free = false;
             }
         }
-        
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         //Debug.Log(collide);
-        if (collision.tag == "Hole" && collision.gameObject.GetComponent<Hole>().free == false)
+        if (collision.tag == "Hole")
         {
+             // && collision.gameObject.GetComponent<Hole>().free == false;
             if (collide == true)
             {
                 collision.gameObject.GetComponent<Hole>().free = true;
+                if (holeCollider == collision) {
+                    collide = false;
+                }
             }
-            
-            collide = false;
         }
     }
 }
