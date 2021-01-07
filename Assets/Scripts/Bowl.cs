@@ -2,16 +2,16 @@
 
 public class Bowl : MonoBehaviour
 {
-    private static Globals globs;
+    private Globals globs;
 
-    private Vector3 mouse_position;
+    private Vector2 mouse_position;
     private Collider2D bowlCollider;
     private Collider2D bowlGapCollider;
-    private Vector3 startPosition;
-    private bool picked = false;
-    private bool collide = false;
-
-    public bool enableDragnDrop = true;
+    public Vector3 startPosition;
+    private bool picked;
+    private bool collide;
+    private GameObject text;
+    public bool enableDragnDrop;
 
     public int value;
     public int holeId { get; private set; } = -1;
@@ -19,18 +19,28 @@ public class Bowl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        globs = Globals.TryGetObjWithTag("Background").GetComponent<Globals>();
+
         bowlCollider = GetComponent<Collider2D>();
-        startPosition = transform.position;
+        picked = false;
+        collide = false;
+        enableDragnDrop = true;
+        //startPosition = transform.position;
+        text = transform.Find("BowlText").gameObject;
+
         setValue(0);
+
+        //WEIL ALEX BISHER UNFÄHIG WAR DIE METHODE ORDENDLICH ZU IMPLEMENTIEREN MUSS DIES HIER AM ENDE STEHEN!!!
+        globs = Globals.TryGetObjWithTag("Background").GetComponent<Globals>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        mouse_position = Input.mousePosition;
-        mouse_position = Camera.main.ScreenToWorldPoint(mouse_position);
-        mouse_position.z = 0;
+        //mouse_position = Input.mousePosition;
+        //mouse_position = Camera.main.ScreenToWorldPoint(mouse_position);
+        //mouse_position.z = 0;
+
+        mouse_position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (enableDragnDrop)
         {
@@ -39,11 +49,32 @@ public class Bowl : MonoBehaviour
                 if (bowlCollider == Physics2D.OverlapPoint(mouse_position))
                 {
                     picked = true;
-                }
+
+                    //changes z of bowl+text -2
+                    Vector3 tempvec = this.transform.position;
+                    tempvec.z = -3;
+
+                    this.transform.position = tempvec;
+
+                    Debug.Log(transform.position.z);
+
+                    if (false)
+                    {
+                        tempvec = text.transform.position;
+                        tempvec.z -= 3;
+
+                        text.transform.position = tempvec;
+                    }
+                }//*/
+
+                /*if (bowlCollider.OverlapPoint(mouse_position))
+                {
+                    picked = true;
+                }//*/
             }
         }
 
-        if (picked == true)
+        if (picked)
         {
             this.transform.position = mouse_position;
         } 
@@ -64,39 +95,74 @@ public class Bowl : MonoBehaviour
         {
             picked = false;
 
-            
+            //changes z of bowl+text +2
+            Vector3 tempvec = this.transform.position;
+            tempvec.z += 3;
+
+            this.transform.position = tempvec;
+            Debug.Log(transform.position.z);
+
+            if (false)
+            {
+                tempvec = text.transform.position;
+                tempvec.z = 3;
+
+                text.transform.position = tempvec;
+            }
+
             if (!collide)
             {
                 //get back to origin position
                 //this.transform.position = startPosition;
             }
-        }
+        }//*/
     }
 
     public void setValue(byte val, bool nums = true)
     {
-        Sprite[] sprites = nums ? globs.bowlsNumbered : globs.bowlsBlank;
-        value = val % sprites.Length;
+        //Sprite[] sprites = nums ? globs.bowlsNumbered : globs.bowlsBlank;
+        //value = val % sprites.Length;
 
         setText(value.ToString());
-        GetComponent<SpriteRenderer>().sprite = sprites[value];
+        //GetComponent<SpriteRenderer>().sprite = sprites[value];
     }
 
-    private void setText(string text)
+    private void setText(string txt)
     {
-        
+        TextMesh t = text.GetComponent<TextMesh>();
+        t.text = txt;
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        //Debug.Log("Enter Collision");
-        bowlGapCollider = collider;
-        collide = true;
+        //Debug.Log(collider.tag);
+        //bowlGapCollider = collider;
+
+        if (collider.tag == "Hole")
+        {
+            bowlGapCollider = collider;
+            Hole hole = collider.gameObject.GetComponent<Hole>();
+            
+            if (hole.free == true)
+            {
+                collide = true;
+                hole.free = false;
+            }
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //Debug.Log("Leave Collision");
-        collide = false;
+        //Debug.Log(collide);
+        if (collision.tag == "Hole" && collision.gameObject.GetComponent<Hole>().free == false)
+        {
+            if (collide == true)
+            {
+                collision.gameObject.GetComponent<Hole>().free = true;
+            }
+            
+            collide = false;
+        }
     }
 }
