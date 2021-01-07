@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 public class Bowl : MonoBehaviour
 {
@@ -9,9 +11,10 @@ public class Bowl : MonoBehaviour
     private Collider2D holeCollider;
     public Vector3 startPosition;
     private bool picked;
-    private bool collide;
+    // private bool collide;
     private GameObject text;
     public bool enableDragnDrop;
+    private List<Hole> collisions = new List<Hole>();
 
     public int value;
     public int holeId { get; private set; } = -1;
@@ -26,7 +29,7 @@ public class Bowl : MonoBehaviour
         bowlCollider = GetComponent<Collider2D>();
 
         picked = false;
-        collide = false;
+        // collide = false;
         enableDragnDrop = true;
 
         Debug.Log(transform.position);
@@ -79,6 +82,34 @@ public class Bowl : MonoBehaviour
                     picked = true;
                 }//*/
             }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                picked = false;
+
+                //changes z of bowl+text +2
+                Vector3 tempvec = this.transform.position;
+                tempvec.z += 3;
+                
+                this.transform.position = tempvec;
+
+                // Debug.Log(transform.position.z);
+
+                if (false)
+                {
+                    tempvec = text.transform.position;
+                    tempvec.z = 3;
+
+                    text.transform.position = tempvec;
+                }
+
+                // if (!collide)
+                // {
+                //     //get back to origin position
+                //     //this.transform.position = startPosition;
+                // }
+
+            }//*/
         }
 
         if (picked)
@@ -87,44 +118,24 @@ public class Bowl : MonoBehaviour
         }
         else
         {
-            if (collide == true)
-            {
-                this.transform.position = holeCollider.transform.position;
-                startPosition = startPosition != this.transform.position ? this.transform.position : startPosition;
+            if (holeCollider != null) {
+                startPosition = holeCollider.transform.position;
             }
-            else
-            {
-                //get back to origin position
-                this.transform.position = startPosition;
-            }
+
+            this.transform.position = startPosition;
+
+            // if (collide == true)
+            // {
+            //     this.transform.position = holeCollider.transform.position;
+            //     startPosition = startPosition != this.transform.position ? this.transform.position : startPosition;
+            // }
+            // else
+            // {
+            //     //get back to origin position
+            //     this.transform.position = startPosition;
+            // }
         }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            picked = false;
-
-            //changes z of bowl+text +2
-            Vector3 tempvec = this.transform.position;
-            tempvec.z += 3;
-
-            this.transform.position = tempvec;
-
-            // Debug.Log(transform.position.z);
-
-            if (false)
-            {
-                tempvec = text.transform.position;
-                tempvec.z = 3;
-
-                text.transform.position = tempvec;
-            }
-
-            if (!collide)
-            {
-                //get back to origin position
-                //this.transform.position = startPosition;
-            }
-        }//*/
     }
 
     public void setValue(int val, bool nums = true)
@@ -153,27 +164,24 @@ public class Bowl : MonoBehaviour
 
             if (hole.free)
             {
+                collisions.Add(hole);
                 holeCollider = collider;
-                collide = true;
+                // collide = true;
                 hole.free = false;
             }
         }
 
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collider)
     {
         //Debug.Log(collide);
-        if (collision.tag == "Hole")
+        if (collider.tag == "Hole" && collisions.Contains(collider.gameObject.GetComponent<Hole>()))
         {
-             // && collision.gameObject.GetComponent<Hole>().free == false;
-            if (collide == true)
-            {
-                collision.gameObject.GetComponent<Hole>().free = true;
-                if (holeCollider == collision) {
-                    collide = false;
-                }
-            }
+            Hole hole = collider.gameObject.GetComponent<Hole>();
+            collisions.Remove(hole);
+            hole.free = true;
+            // collide = false;
         }
     }
 }
