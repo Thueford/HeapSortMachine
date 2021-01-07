@@ -410,8 +410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPosition: {x: 2, y: 2, z: 0}
   enableDragnDrop: 1
-  bowlNum: 0
-  value: 0
+  value: 1
 --- !u!58 &1052855604
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -619,7 +618,7 @@ GameObject:
   - component: {fileID: 1310129355}
   - component: {fileID: 1310129356}
   m_Layer: 0
-  m_Name: DummyBackground
+  m_Name: Background
   m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -651,8 +650,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b16b888630d9ab4d8f05f51bd2bd761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bowlsNumbered: []
-  bowlsBlank: []
+  bowlsBlank:
+  - {fileID: -2730678496903272905, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -8123278727972085277, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -1373377926636000439, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: 7832238407564712419, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: 6218989997370794938, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -4484928113346918902, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -3107182957802377762, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -468831482446918487, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: 6211052133826134020, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -255094818558884612, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -2267618934736973428, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -376550030375315762, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: 7528730056679572514, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -2281716984375806258, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -21694349646772765, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -9121496246046211438, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
 --- !u!1 &1980285004
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,8 +722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPosition: {x: 0, y: 0, z: 0}
   enableDragnDrop: 1
-  bowlNum: 123
-  value: 0
+  value: 2
 --- !u!58 &1980285007
 CircleCollider2D:
   m_ObjectHideFlags: 0

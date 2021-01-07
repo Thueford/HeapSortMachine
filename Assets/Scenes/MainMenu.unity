@@ -146,7 +146,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 376014438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -49}
+  m_LocalPosition: {x: 0, y: 0, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1400984275}
@@ -348,9 +348,10 @@ GameObject:
   - component: {fileID: 1556639222}
   - component: {fileID: 1556639224}
   - component: {fileID: 1556639223}
+  - component: {fileID: 1556639225}
   m_Layer: 0
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -411,6 +412,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556639221}
   m_CullTransparentMesh: 0
+--- !u!114 &1556639225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556639221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b16b888630d9ab4d8f05f51bd2bd761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bowlsBlank:
+  - {fileID: -2730678496903272905, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -8123278727972085277, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -1373377926636000439, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: 7832238407564712419, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: 6218989997370794938, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -4484928113346918902, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -3107182957802377762, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -468831482446918487, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: 6211052133826134020, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -255094818558884612, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -2267618934736973428, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -376550030375315762, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: 7528730056679572514, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -2281716984375806258, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -21694349646772765, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  - {fileID: -9121496246046211438, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
 --- !u!1 &1683621933
 GameObject:
   m_ObjectHideFlags: 0

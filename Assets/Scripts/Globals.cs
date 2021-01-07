@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Globals : MonoBehaviour
 {
-    public Sprite[] bowlsNumbered, bowlsBlank;
-
     public enum Stage
     {
         MENU, INTRO, STAGE_1_1, STAGE_1_2,
@@ -14,6 +12,8 @@ public class Globals : MonoBehaviour
     }
 
     public static Stage stage { get; private set; } = Stage.MENU;
+
+    public Sprite[] bowlsBlank;
 
     // Start is called before the first frame update
     void Start()

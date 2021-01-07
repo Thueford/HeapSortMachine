@@ -19,18 +19,16 @@ public class Bowl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        globs = Globals.TryGetObjWithTag("Background").GetComponent<Globals>();
+        text = transform.Find("BowlText").gameObject;
         bowlCollider = GetComponent<Collider2D>();
+
         picked = false;
         collide = false;
         enableDragnDrop = true;
         //startPosition = transform.position;
-        text = transform.Find("BowlText").gameObject;
 
-        setValue(0);
-
-        //WEIL ALEX BISHER UNFÄHIG WAR DIE METHODE ORDENDLICH ZU IMPLEMENTIEREN MUSS DIES HIER AM ENDE STEHEN!!!
-        globs = Globals.TryGetObjWithTag("Background").GetComponent<Globals>();
+        setValue(value);
     }
 
     // Update is called once per frame
@@ -118,13 +116,13 @@ public class Bowl : MonoBehaviour
         }//*/
     }
 
-    public void setValue(byte val, bool nums = true)
+    public void setValue(int val, bool nums = true)
     {
-        //Sprite[] sprites = nums ? globs.bowlsNumbered : globs.bowlsBlank;
-        //value = val % sprites.Length;
+        Sprite[] sprites = globs.bowlsBlank; // nums ? globs.bowlsNumbered : globs.bowlsBlank;
+        value = val % sprites.Length;
 
+        GetComponent<SpriteRenderer>().sprite = sprites[value];
         setText(value.ToString());
-        //GetComponent<SpriteRenderer>().sprite = sprites[value];
     }
 
     private void setText(string txt)

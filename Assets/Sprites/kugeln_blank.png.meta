@@ -1,7 +1,55 @@
 fileFormatVersion: 2
 guid: 8df065bf9514fce4c8298420ee4ed731
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -2730678496903272905
+    second: kugeln_blank_0
+  - first:
+      213: -8123278727972085277
+    second: kugeln_blank_1
+  - first:
+      213: -1373377926636000439
+    second: kugeln_blank_2
+  - first:
+      213: 7832238407564712419
+    second: kugeln_blank_3
+  - first:
+      213: 6218989997370794938
+    second: kugeln_blank_4
+  - first:
+      213: -4484928113346918902
+    second: kugeln_blank_5
+  - first:
+      213: -3107182957802377762
+    second: kugeln_blank_6
+  - first:
+      213: -468831482446918487
+    second: kugeln_blank_7
+  - first:
+      213: 6211052133826134020
+    second: kugeln_blank_8
+  - first:
+      213: -255094818558884612
+    second: kugeln_blank_9
+  - first:
+      213: -2267618934736973428
+    second: kugeln_blank_10
+  - first:
+      213: -376550030375315762
+    second: kugeln_blank_11
+  - first:
+      213: 7528730056679572514
+    second: kugeln_blank_12
+  - first:
+      213: -2281716984375806258
+    second: kugeln_blank_13
+  - first:
+      213: -21694349646772765
+    second: kugeln_blank_14
+  - first:
+      213: -9121496246046211438
+    second: kugeln_blank_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +88,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -73,7 +121,343 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: kugeln_blank_0
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 1622
+        width: 300
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7366844ff5eaa1ad0800000000000000
+      internalID: -2730678496903272905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_1
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 1622
+        width: 300
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e1acbf2901544f80800000000000000
+      internalID: -8123278727972085277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_2
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 1622
+        width: 300
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94baf7c5d08c0fce0800000000000000
+      internalID: -1373377926636000439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_3
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 1295
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e9d01fa553b1bc60800000000000000
+      internalID: 7832238407564712419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_4
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 1292
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab36ef6f37a4e4650800000000000000
+      internalID: 6218989997370794938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_5
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 1292
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a064bc0a4a552c1c0800000000000000
+      internalID: -4484928113346918902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_6
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 968
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eddaa0cff8111e4d0800000000000000
+      internalID: -3107182957802377762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_7
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 968
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ac4b3d20406e79f0800000000000000
+      internalID: -468831482446918487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_8
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 968
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40083261207123650800000000000000
+      internalID: 6211052133826134020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_9
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 638
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf441c33d98b57cf0800000000000000
+      internalID: -255094818558884612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_10
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 638
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c819d0dd79cc780e0800000000000000
+      internalID: -2267618934736973428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_11
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 638
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec6115f0eb936caf0800000000000000
+      internalID: -376550030375315762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_12
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 311
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 224413ef81c6b7860800000000000000
+      internalID: 7528730056679572514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_13
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 311
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec6fd44ed76b550e0800000000000000
+      internalID: -2281716984375806258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_14
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 311
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e5cbab9a1de2bff0800000000000000
+      internalID: -21694349646772765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kugeln_blank_15
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 0
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2924b52fd7fe96180800000000000000
+      internalID: -9121496246046211438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
