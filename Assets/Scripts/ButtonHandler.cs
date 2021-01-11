@@ -43,7 +43,7 @@ public class ButtonHandler : MonoBehaviour
     public void btnPause_Click()
     {
         Debug.Log("Pause");
-        SceneManager.LoadScene("MainMenu"); // TODO: Pause menu
+        Globals.SetStage(Globals.Stage.MENU, "MainMenu"); // TODO: Pause menu
     }
 
     public void btnTipp_Click()
