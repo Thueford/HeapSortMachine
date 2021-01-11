@@ -1,5 +1,4 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
@@ -89,15 +88,17 @@ public class Globals : MonoBehaviour
         // dunno if this will be needed sometime
         switch (stage = s)
         {
-            case Stage.MENU:
-                bowls.Clear();
-                holes.Clear();
-                break;
+            case Stage.MENU: break;
             case Stage.INTRO: break;
-            case Stage.STAGE_1_1: break;
+            case Stage.STAGE_1_1:
+                if(loadScene != null) {
+                    bowls.Clear();
+                    holes.Clear();
+                }
+                break;
             case Stage.STAGE_1_2: break;
             case Stage.STAGE_2_1: break;
-            case Stage.STAGE_2_2:  break;
+            case Stage.STAGE_2_2: break;
             case Stage.STAGE_2_3: break;
             case Stage.END: break;
         }

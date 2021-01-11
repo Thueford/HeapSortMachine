@@ -6,7 +6,7 @@ public class Hole : MonoBehaviour
     public bool free = true;
     public bool tree = false;
 
-    private void Start()
+    private void Awake()
     {
         Globals.holes.Add(this);
     }
