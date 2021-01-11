@@ -74,7 +74,7 @@ public class Bowl : MonoBehaviour
         }
     }
 
-    public static Bowl spawn(int value, Vector3 pos)
+    public static Bowl spawn(int index, int value, Vector3 pos)
     {
         GameObject bowl = Instantiate(Globals.globals.bowlPrefab, pos, Quaternion.identity);
         bowl.transform.SetParent(Globals.globals.bowlHolder.transform);
@@ -95,6 +95,7 @@ public class Bowl : MonoBehaviour
     {
         Sprite[] sprites = Globals.globals.bowlsBlank; // nums ? globs.bowlsNumbered : globs.bowlsBlank;
         value = val % sprites.Length;
+        this.index = index;
 
         GetComponent<SpriteRenderer>().sprite = sprites[value];
         setText(value.ToString());

@@ -59,9 +59,11 @@ public class Globals : MonoBehaviour
             if (!hole.tree)
             {
                 hole.free = false;
+                hole.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 Vector3 hole_pos = hole.transform.position;
                 hole_pos.z = 5;
-                Bowl bowl = Bowl.spawn(values[cnt++], hole_pos);
+                Bowl bowl = Bowl.spawn(cnt, values[cnt], hole_pos);
+                cnt++;
                 bowls.Add(bowl);
             }
         }
