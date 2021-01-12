@@ -87,8 +87,23 @@ public class Bowl : MonoBehaviour
         Bowl b = bowl.GetComponent<Bowl>();
         b.gameobject = bowl;
         b.value = value;
+        b.index = index;
         b.text = txt;
         return b;
+    }
+    public int getValue()
+    {
+        return this.value;
+    }
+
+    public int getHoleID()
+    {
+        return this.holeId;
+    }
+
+    public int getIndex()
+    {
+        return this.index;
     }
 
     public void setValue(int val, bool nums = true)

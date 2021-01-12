@@ -61,11 +61,15 @@ public class Globals : MonoBehaviour
                 hole.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 Vector3 hole_pos = hole.transform.position;
                 hole_pos.z = 5;
-                Bowl bowl = Bowl.spawn(cnt, values[cnt], hole_pos);
-                cnt++;
+                Bowl bowl = Bowl.spawn(hole.getHoleValue(), values[cnt], hole_pos);
                 bowls.Add(bowl);
+                Debug.Log("HoleValue:"+hole.getHoleValue().ToString()+"at cnt"+cnt.ToString());
+                
+                cnt++;
+                
             }
         }
+        
     }
 
     public static GameObject TryGetObjWithTag(string tag)

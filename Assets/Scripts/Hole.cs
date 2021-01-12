@@ -10,4 +10,8 @@ public class Hole : MonoBehaviour
     {
         Globals.holes.Add(this);
     }
+    public int getHoleValue()
+    {
+        return this.value;
+    }
 }
