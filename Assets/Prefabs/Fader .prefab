@@ -88,11 +88,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3184381afad902c40aab287bc4467b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeOffset: 1000
+  fadeOffset: 100
   fadeDuration: 1000
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
   start: 1
-  fadeOut: 1
+  fadeIn: 0
 --- !u!114 &7442444852311445890
 MonoBehaviour:
   m_ObjectHideFlags: 0
