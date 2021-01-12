@@ -96,7 +96,7 @@ public class Bowl : MonoBehaviour
         return this.value;
     }
 
-    public int getHoleID()
+    public int getHoleIDofBowl()
     {
         return this.holeId;
     }

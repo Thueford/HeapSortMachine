@@ -63,8 +63,6 @@ public class Globals : MonoBehaviour
                 hole_pos.z = 5;
                 Bowl bowl = Bowl.spawn(hole.getHoleValue(), values[cnt], hole_pos);
                 bowls.Add(bowl);
-                Debug.Log("HoleValue:"+hole.getHoleValue().ToString()+"at cnt"+cnt.ToString());
-                
                 cnt++;
                 
             }
