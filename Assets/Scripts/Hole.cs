@@ -3,7 +3,6 @@
 public class Hole : MonoBehaviour
 {
     public int value;
-    public bool free = true;
     public bool tree = false;
     public Bowl content;
 

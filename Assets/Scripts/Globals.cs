@@ -13,6 +13,7 @@ public class Globals : MonoBehaviour
     public static List<Hole> holes = new List<Hole>();
     public static int bowlCount = 15;
     public static Random ran = new Random();
+    public static SoundHandler player;
 
     public Sprite[] bowlsBlank;
     public Sprite[] holeSprites;
@@ -33,6 +34,7 @@ public class Globals : MonoBehaviour
         Debug.Log("Awake");
         stage = startStage;
         if (!globals) globals = this;
+        player = gameObject.GetComponent<SoundHandler>();
     }
 
     // Start is called before the first frame update
@@ -45,7 +47,7 @@ public class Globals : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ballSpawner()
@@ -59,17 +61,16 @@ public class Globals : MonoBehaviour
         {
             if (!hole.tree)
             {
-                hole.free = false;
                 hole.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 Vector3 hole_pos = hole.transform.position;
                 hole_pos.z = 5;
                 Bowl bowl = Bowl.spawn(hole.getHoleValue(), values[cnt], hole_pos);
                 bowls.Add(bowl);
                 cnt++;
-                
+
             }
         }
-        
+
     }
 
     public static GameObject TryGetObjWithTag(string tag)
