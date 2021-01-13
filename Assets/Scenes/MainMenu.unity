@@ -594,6 +594,7 @@ GameObject:
   - component: {fileID: 1556639224}
   - component: {fileID: 1556639223}
   - component: {fileID: 1556639225}
+  - component: {fileID: 1556639226}
   m_Layer: 0
   m_Name: Background
   m_TagString: Background
@@ -686,10 +687,26 @@ MonoBehaviour:
   - {fileID: -2281716984375806258, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   - {fileID: -21694349646772765, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   - {fileID: -9121496246046211438, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
+  holeSprites: []
   startStage: 0
   bowlPrefab: {fileID: 0}
   bowlHolder: {fileID: 0}
   bowlTextPrefab: {fileID: 0}
+--- !u!114 &1556639226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556639221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbbd28eca0596b4395aefe11bcf4909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 0
+  names: []
+  clips: []
 --- !u!1001 &1855763244
 PrefabInstance:
   m_ObjectHideFlags: 0
