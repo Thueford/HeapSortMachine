@@ -15,6 +15,7 @@ public class Globals : MonoBehaviour
     public static Random ran = new Random();
 
     public Sprite[] bowlsBlank;
+    public Sprite[] holeSprites;
 
     public Stage startStage;
     public GameObject bowlPrefab;
