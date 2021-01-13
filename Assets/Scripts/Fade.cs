@@ -26,6 +26,11 @@ public class Fade : MonoBehaviour
         if (start) fadeFrom(gameObject, fadeIn);
     }
 
+    public void temp()
+    {
+        Debug.Log("Helloooo");
+    }
+
     // Update is called once per frame
     void Update()
     {
