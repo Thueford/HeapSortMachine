@@ -9,7 +9,7 @@ public class SoundHandler : MonoBehaviour
     private AudioSource musicPlayer;
     private AudioSource ambiencePlayer;
     private AudioSource oneShotPlayer;
-    public float volume = 1f;
+    public float master = 1f;
     public string[] names;
     public AudioClip[] clips;
     private Dictionary<string, AudioClip> clipDict = new Dictionary<string, AudioClip>();
@@ -55,8 +55,15 @@ public class SoundHandler : MonoBehaviour
     private void setProperties(AudioSource a, bool loop, bool awake, AudioClip clip) {
         a.loop = loop;
         a.playOnAwake = awake;
-        a.volume = volume;
+        a.volume = master;
         a.clip = clip;
+    }
+
+    public void scaleAllVolumes(float v) {
+        v = v>1 ? 1f : v<0 ? 0f : v;
+        musicPlayer.volume = master * v;
+        ambiencePlayer.volume = master * v;
+        oneShotPlayer.volume = master * v;
     }
 
     public void fillClipDict() {
@@ -69,7 +76,7 @@ public class SoundHandler : MonoBehaviour
 
     public void oneShot(string name) {
         clipDict.TryGetValue(name, out AudioClip clip);
-        if (clip != null) oneShotPlayer.PlayOneShot(clipDict[name], volume);
+        if (clip != null) oneShotPlayer.PlayOneShot(clipDict[name]);
     }
 
 }
