@@ -22,7 +22,7 @@ public class Fade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        img = gameObject.GetComponent<Image>();
+        img = GetComponent<Image>();
         if (start) fadeFrom(gameObject, fadeIn);
     }
 
