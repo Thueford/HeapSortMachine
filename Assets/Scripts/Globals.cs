@@ -44,7 +44,7 @@ public class Globals : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ballSpawner()
@@ -58,17 +58,16 @@ public class Globals : MonoBehaviour
         {
             if (!hole.tree)
             {
-                hole.free = false;
                 hole.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 Vector3 hole_pos = hole.transform.position;
                 hole_pos.z = 5;
                 Bowl bowl = Bowl.spawn(hole.getHoleValue(), values[cnt], hole_pos);
                 bowls.Add(bowl);
                 cnt++;
-                
+
             }
         }
-        
+
     }
 
     public static GameObject TryGetObjWithTag(string tag)

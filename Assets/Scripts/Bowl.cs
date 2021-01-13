@@ -74,7 +74,7 @@ public class Bowl : MonoBehaviour
         fixPosition(to);
     }
 
-    public void fixPosition(Collider2D coll) {
+    private void fixPosition(Collider2D coll) {
         startPosition = coll.transform.position;
         transform.position = setVecZ(startPosition, 5);
 
@@ -137,30 +137,14 @@ public class Bowl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (!isSwapping) {
-            Hole hole = collider.gameObject.GetComponent<Hole>();
-            if (collider.tag == "Hole" && hole.tree) {
-                if (hole.getContent() == null) {
-                    swapHole = collider;
-                    hole.free = false;
-                } else if (startHole != null) swapHole = collider;
-            }
-        }
+        if (!isSwapping && collider.tag == "Hole" &&
+                collider.gameObject.GetComponent<Hole>().tree) swapHole = collider;
     }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (!isSwapping && collider.tag == "Hole" ) {
-            Hole hole = collider.gameObject.GetComponent<Hole>();
-            if (hole.tree) {
-                if (hole.getContent() == null) {
-                    if (collider == swapHole) swapHole = startHole;
-                    hole.free = true;
-                } else {
-                    if (hole.getContent() == this) hole.free = true;
-                    else if (swapHole == collider) swapHole = startHole;
-                }
-            }
-        }
+        if (!isSwapping && collider.tag == "Hole" &&
+                collider.gameObject.GetComponent<Hole>().tree &&
+                collider == swapHole) swapHole = startHole;
     }
 }
