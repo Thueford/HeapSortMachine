@@ -69,10 +69,10 @@ public class Fade : MonoBehaviour
 
 
     public void FadeOut(BaseEventData ev) { 
-        fadeFrom(((PointerEventData)ev).pointerCurrentRaycast.gameObject, false); 
+        fadeFrom(((PointerEventData)ev).pointerEnter, false);
     }
     public void FadeIn(BaseEventData ev) { 
-        fadeFrom(((PointerEventData)ev).pointerCurrentRaycast.gameObject, true); 
+        fadeFrom(((PointerEventData)ev).pointerEnter, true);
     }
 
     private static int time() { return (int)(DateTime.Now.Ticks / (int)1e4); }

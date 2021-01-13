@@ -30,6 +30,7 @@ public class Globals : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("Awake");
         stage = startStage;
         if (!globals) globals = this;
     }
