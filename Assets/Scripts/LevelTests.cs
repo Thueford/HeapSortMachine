@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using System;
 public class LevelTests : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -14,9 +14,37 @@ public class LevelTests : MonoBehaviour
         
     }
 
-    public static void Test_1_1()
+    public static bool Test_1_1()
     {
-        // TODO
+        
+        foreach (Hole itterationHole in Globals.holes)//Itterate through every tree Hole
+        {                                               
+            if (itterationHole.tree)                    
+            {   
+
+                try
+                {
+                    if (itterationHole.content.index == itterationHole.value)// index of bowl in Hole is equal to value of Hole
+                    {
+                        continue;
+                    }
+
+                    else
+                    {
+                        
+                        return false;
+                    }
+                }
+                catch (NullReferenceException e)// thrown if no bowl in hole
+                {
+                    return false;
+                }
+            }
+            
+        }
+        // every bowl is in the right hole
+        return true;
+        
     }
 
     public static void Test_1_2()
