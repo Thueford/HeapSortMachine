@@ -19,8 +19,8 @@ public class Button : MonoBehaviour
 
         if(transform.parent.gameObject.name == "ButtonHolder")
         {
-            et.triggers.Add(newEventEntry(EventTriggerType.PointerEnter, OnHolderMouseDown));
-            et.triggers.Add(newEventEntry(EventTriggerType.PointerExit, OnHolderMouseUp));
+            et.triggers.Add(newEventEntry(EventTriggerType.PointerDown, OnHolderMouseDown));
+            et.triggers.Add(newEventEntry(EventTriggerType.PointerUp, OnHolderMouseUp));
         }
     }
 
