@@ -51,12 +51,14 @@ public class Bowl : MonoBehaviour
                 if (swapHole != startHole) { // Ball Movement happens
                     Hole to = swapHole.gameObject.GetComponent<Hole>();
                     if (to.getContent() != null) { // Swap two Balls
-                        isSwapping = true; // To ignore Collision Triggers
+                        if (startHole != null) {
+                            isSwapping = true; // To ignore Collision Triggers
 
-                        to.getContent().moveToHole(startHole);
-                        moveToHole(swapHole);
+                            to.getContent().moveToHole(startHole);
+                            moveToHole(swapHole);
 
-                        isSwapping = false; // To notice Collision Triggers again
+                            isSwapping = false; // To notice Collision Triggers again
+                        } else transform.position = setVecZ(startPosition, 5);
                     } else { // Move a single Ball
                         moveToHole(swapHole);
                     }

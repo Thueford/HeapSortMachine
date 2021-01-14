@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ButtonHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static ButtonHandler self;
+    public Sprite sprHolderUp, sprHolderDown;
 
-    // Update is called once per frame
-    void Update()
+    // Start is called before the first frame update
+    void Awake()
     {
-        
+        self = this;
     }
 
     public void btnStart_Click()
@@ -110,5 +109,15 @@ public class ButtonHandler : MonoBehaviour
     public void btnMoveLeft_Click()
     {
         Debug.Log("Move Left");
+    }
+
+    public void OnMouseEnter(BaseEventData ev)
+    {
+        throw new System.Exception("UR A FAILURE");
+    }
+
+    public void OnMouseExit(BaseEventData ev)
+    {
+        throw new System.Exception("UR A FAILURE");
     }
 }

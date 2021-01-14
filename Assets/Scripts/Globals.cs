@@ -13,6 +13,7 @@ public class Globals : MonoBehaviour
     public static List<Hole> holes = new List<Hole>();
     public static int bowlCount = 15;
     public static Random ran = new Random();
+    public static SoundHandler player;
 
     public Sprite[] bowlsBlank;
     public Sprite[] holeSprites;
@@ -30,8 +31,10 @@ public class Globals : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("Awake");
         stage = startStage;
         if (!globals) globals = this;
+        player = gameObject.GetComponent<SoundHandler>();
     }
 
     // Start is called before the first frame update
