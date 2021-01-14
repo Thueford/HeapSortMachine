@@ -178,7 +178,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f25bd520f0a6ee54486e54ad98b8247a, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -190,7 +190,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Knopf
+  m_Text: 'Wechsel die eingaben
+
+    PER CODE
+
 
 '
 --- !u!222 &24399361
@@ -338,11 +341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d803f2eadede6447ac735be6b881454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Hint
-  sentences:
-  - Du machst da was falsch
-  - Corny Riegel
-  - "F\xFCnf"
 --- !u!114 &160970797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +360,8 @@ MonoBehaviour:
   - x
   button: {fileID: 160970794}
   dlg: {fileID: 160970797}
+  namenew: 
+  dialogueT: {fileID: 0}
 --- !u!114 &160970798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,7 +634,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f25bd520f0a6ee54486e54ad98b8247a, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -646,7 +646,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\xC2btrennen\n\n"
+  m_Text: "Hier Stehen die S\xE4tze (sentences)\n"
 --- !u!222 &685696531
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -705,7 +705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.990566, g: 0.97654855, b: 0.97654855, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -724,7 +724,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 'Continue
+
+'
 --- !u!222 &700136994
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -762,11 +764,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d803f2eadede6447ac735be6b881454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: sad
-  sentences:
-  - '2
-
-'
 --- !u!4 &788787468
 Transform:
   m_ObjectHideFlags: 0
@@ -794,7 +791,7 @@ GameObject:
   - component: {fileID: 1036983553}
   - component: {fileID: 1036983552}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Continue Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1001,8 +998,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343729332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.13040084, y: -0.2761766, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.4, y: 0.3, z: 0}
+  m_LocalScale: {x: 2.4343455, y: 1.635971, z: 1}
   m_Children:
   - {fileID: 1846077392}
   m_Father: {fileID: 0}
@@ -1021,6 +1018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bowlsBlank: []
+  holeSprites: []
   startStage: 2
   bowlPrefab: {fileID: 0}
   bowlHolder: {fileID: 0}
@@ -1160,7 +1158,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f25bd520f0a6ee54486e54ad98b8247a, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -1172,7 +1170,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Kinderk\xF6pfe"
+  m_Text: 'Hier steht der Name
+
+'
 --- !u!222 &1705327347
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1193,11 +1193,12 @@ GameObject:
   - component: {fileID: 1798733537}
   - component: {fileID: 1798733536}
   - component: {fileID: 1798733535}
+  - component: {fileID: 1798733540}
   - component: {fileID: 1798733539}
   - component: {fileID: 1798733534}
   - component: {fileID: 1798733538}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button(changeable)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1279,8 +1280,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1798733534}
-        m_MethodName: TriggerDialogue
+      - m_Target: {fileID: 1798733540}
+        m_MethodName: btnTipp_Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1339,13 +1340,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d803f2eadede6447ac735be6b881454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Sad
-  sentences:
-  - Kind TOd
-  - Tod x3
-  - 'Tod x9
-
-'
 --- !u!114 &1798733539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1364,7 +1358,25 @@ MonoBehaviour:
   - 2
   - 3
   button: {fileID: 1798733532}
-  dlg: {fileID: 0}
+  dlg: {fileID: 1798733539}
+  namenew: 
+  dialogueT: {fileID: 1798733534}
+--- !u!114 &1798733540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798733532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a21fc00b69c462449f62ea5d8064731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 1798733539}
+  dialogueT: {fileID: 1798733534}
+  sprHolderUp: {fileID: 0}
+  sprHolderDown: {fileID: 0}
 --- !u!1 &1846077391
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1497,7 @@ GameObject:
   - component: {fileID: 1969875853}
   - component: {fileID: 1969875852}
   m_Layer: 5
-  m_Name: Kinderknopf
+  m_Name: Test Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1627,11 +1639,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d803f2eadede6447ac735be6b881454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Hint
-  sentences:
-  - Du machst da was falsch
-  - Corny Riegel
-  - "F\xFCnf"
 --- !u!114 &1969875853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1644,10 +1651,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e6af973a6838c4e9ac1c2919892c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
-  sentences: []
+  name: Testknopf
+  sentences:
+  - 14124 (1)
+  - 125(2)
+  - 13461346 (3)
+  - 13461346 (4)
+  - 14361436 (5)
   button: {fileID: 1969875846}
-  dlg: {fileID: 0}
+  dlg: {fileID: 1969875853}
+  namenew: 
+  dialogueT: {fileID: 0}
 --- !u!1 &2014047193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,7 +1712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.8867924, g: 0.054378804, b: 0.8125113, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1717,7 +1731,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "L\xE4sst sich nicht\n\xE4ndern :(\n"
 --- !u!222 &2014047196
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1726,3 +1740,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014047193}
   m_CullTransparentMesh: 0
+--- !u!1 &2085823525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2085823527}
+  - component: {fileID: 2085823526}
+  m_Layer: 0
+  m_Name: Buttonhandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2085823526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085823525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a21fc00b69c462449f62ea5d8064731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 0}
+  dialogueT: {fileID: 0}
+  sprHolderUp: {fileID: 0}
+  sprHolderDown: {fileID: 0}
+--- !u!4 &2085823527
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085823525}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 265.78534, y: 175.48102, z: -354.26987}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
