@@ -71,7 +71,6 @@ public class LevelTests : MonoBehaviour
     }
 
 
-
     private static IEnumerator waitASecondThenResetHoleColor()
     {
         yield return new WaitForSeconds(1);
