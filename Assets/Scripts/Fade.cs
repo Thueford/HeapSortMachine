@@ -22,8 +22,13 @@ public class Fade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        img = gameObject.GetComponent<Image>();
+        img = GetComponent<Image>();
         if (start) fadeFrom(gameObject, fadeIn);
+    }
+
+    public void temp()
+    {
+        Debug.Log("Helloooo");
     }
 
     // Update is called once per frame
@@ -45,6 +50,7 @@ public class Fade : MonoBehaviour
             fadeColor.a = Mathf.Pow(alpha, 3);
             img.color = fadeColor;
         }
+        Globals.player.scaleAllVolumes(alpha);
     }
 
     private void doFade(bool fadeIn)
@@ -68,11 +74,11 @@ public class Fade : MonoBehaviour
     }
 
 
-    public void FadeOut(BaseEventData ev) { 
-        fadeFrom(((PointerEventData)ev).pointerCurrentRaycast.gameObject, false); 
+    public void FadeOut(BaseEventData ev) {
+        fadeFrom(((PointerEventData)ev).pointerEnter, false);
     }
-    public void FadeIn(BaseEventData ev) { 
-        fadeFrom(((PointerEventData)ev).pointerCurrentRaycast.gameObject, true); 
+    public void FadeIn(BaseEventData ev) {
+        fadeFrom(((PointerEventData)ev).pointerEnter, true);
     }
 
     private static int time() { return (int)(DateTime.Now.Ticks / (int)1e4); }

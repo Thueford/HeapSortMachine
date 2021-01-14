@@ -3,8 +3,8 @@
 public class Hole : MonoBehaviour
 {
     public int value;
-    public bool free = true;
     public bool tree = false;
+    public Bowl content;
 
     private void Awake()
     {
@@ -13,5 +13,13 @@ public class Hole : MonoBehaviour
     public int getHoleValue()
     {
         return this.value;
+    }
+
+    public void setContent(Bowl ball) {
+        this.content = ball;
+    }
+
+    public Bowl getContent() {
+        return this.content;
     }
 }

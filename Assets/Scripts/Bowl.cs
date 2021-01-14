@@ -3,13 +3,12 @@ using System.Collections.Generic;
 
 public class Bowl : MonoBehaviour
 {
-    private List<Collider2D> collisions = new List<Collider2D>();
-
     private Vector2 mouse_position;
     private Vector3 startPosition;
-    private Collider2D bowlCollider;
-    private GameObject text, gameobject;
+    private Collider2D bowlCollider, startHole, swapHole;
+    private GameObject text;
     private bool picked = false;
+    private static bool isSwapping = false;
 
     public bool enableDragnDrop;
     public int value, index;
@@ -36,17 +35,12 @@ public class Bowl : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                // Debug.Log(Physics2D.OverlapPoint(mouse_position));
-                // if (bowlCollider == Physics2D.OverlapPoint(mouse_position))
                 if (bowlCollider.OverlapPoint(mouse_position))
                 {
                     picked = true;
 
-                    //changes z of bowl+text -2
-                    Vector3 tempvec = this.transform.position;
-                    tempvec.z = 3;
-
-                    transform.position = tempvec;
+                    //changes z of bowl+text to 3
+                    transform.position = setVecZ(startPosition, 3);
                 }
             }
 
@@ -54,24 +48,46 @@ public class Bowl : MonoBehaviour
             {
                 picked = false;
 
-                //changes z of bowl+text +2
-                Vector3 tempvec = transform.position;
-                tempvec.z = 5;
+                if (swapHole != startHole) { // Ball Movement happens
+                    Hole to = swapHole.gameObject.GetComponent<Hole>();
+                    if (to.getContent() != null) { // Swap two Balls
+                        if (startHole != null) {
+                            isSwapping = true; // To ignore Collision Triggers
 
-                transform.position = tempvec;
+                            to.getContent().moveToHole(startHole);
+                            moveToHole(swapHole);
+
+                            isSwapping = false; // To notice Collision Triggers again
+                        } else transform.position = setVecZ(startPosition, 5);
+                    } else { // Move a single Ball
+                        moveToHole(swapHole);
+                    }
+                } else transform.position = setVecZ(startPosition, 5); //changes z of bowl+text to 5
             }
         }
 
         if (picked) transform.position = mouse_position;
-        else
-        {
-            if (collisions.Count != 0) startPosition = collisions[collisions.Count-1].transform.position;
+    }
 
-            //uses the z coord from the hole so have to change back to 5
-            Vector3 tempvec = startPosition;
-            tempvec.z = 5;
-            transform.position = tempvec;
-        }
+    public void moveToHole(Collider2D to) {
+        if (startHole != null && !isSwapping) startHole.gameObject.GetComponent<Hole>().setContent(null);
+        to.gameObject.GetComponent<Hole>().setContent(this);
+        holeId = swapHole.gameObject.GetComponent<Hole>().value;
+        fixPosition(to);
+    }
+
+    private void fixPosition(Collider2D coll) {
+        startPosition = coll.transform.position;
+        transform.position = setVecZ(startPosition, 5);
+
+        startHole = coll;
+        swapHole = coll;
+    }
+
+    public static Vector3 setVecZ(Vector3 vec, int z) {
+        Vector3 tempvec = vec;
+        tempvec.z = z;
+        return tempvec;
     }
 
     public static Bowl spawn(int index, int value, Vector3 pos)
@@ -83,9 +99,8 @@ public class Bowl : MonoBehaviour
         bowl_pos.z -= 1;
         GameObject txt = Instantiate(Globals.globals.bowlTextPrefab, bowl_pos, Quaternion.identity);
         txt.transform.SetParent(bowl.transform);
-        
+
         Bowl b = bowl.GetComponent<Bowl>();
-        b.gameobject = bowl;
         b.value = value;
         b.index = index;
         b.text = txt;
@@ -133,7 +148,6 @@ public class Bowl : MonoBehaviour
     {
         Sprite[] sprites = Globals.globals.bowlsBlank; // nums ? globs.bowlsNumbered : globs.bowlsBlank;
         value = val % sprites.Length;
-        this.index = index;
 
         GetComponent<SpriteRenderer>().sprite = sprites[value];
         setText(value.ToString());
@@ -147,20 +161,14 @@ public class Bowl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Hole hole = collider.gameObject.GetComponent<Hole>();
-        if (collider.tag == "Hole" && hole.free)
-        {
-            collisions.Add(collider);
-            hole.free = false;
-        }
+        if (!isSwapping && collider.tag == "Hole" &&
+                collider.gameObject.GetComponent<Hole>().tree) swapHole = collider;
     }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.tag == "Hole" && collisions.Contains(collider))
-        {
-            collisions.Remove(collider);
-            collider.gameObject.GetComponent<Hole>().free = true;
-        }
+        if (!isSwapping && collider.tag == "Hole" &&
+                collider.gameObject.GetComponent<Hole>().tree &&
+                collider == swapHole) swapHole = startHole;
     }
 }
