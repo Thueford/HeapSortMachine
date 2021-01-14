@@ -66,8 +66,7 @@ public class Globals : MonoBehaviour
                 cnt++;
                 
             }
-        }
-        
+        }  
     }
 
     public static GameObject TryGetObjWithTag(string tag)
