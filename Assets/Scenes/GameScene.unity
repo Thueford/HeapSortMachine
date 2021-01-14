@@ -2303,8 +2303,8 @@ MonoBehaviour:
   - {fileID: -9121496246046211438, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   holeSprites:
   - {fileID: 21300000, guid: 79da61b4365c02c4b80905984d5de76a, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: efae339ff50b2b2baaac4ab6e0aaa07f, type: 3}
+  - {fileID: 21300000, guid: b0ac8019d30af16be8bd5abfea44d595, type: 3}
   startStage: 2
   bowlPrefab: {fileID: 7053024290954293156, guid: 1894bdf830d9f7243966c5d37b506a9f,
     type: 3}
