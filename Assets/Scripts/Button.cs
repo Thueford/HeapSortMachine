@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Button : MonoBehaviour
 {
+    private static GameObject lastBtn;
+
     private void Start()
     {
         Debug.Log("Mecha Start");
@@ -39,37 +41,34 @@ public class Button : MonoBehaviour
 
     public static void OnMouseDown(BaseEventData ev)
     {
-        GameObject o = ((PointerEventData)ev).pointerEnter;
-        if (o) o.GetComponent<Image>().rectTransform.localScale = new Vector3(0.9f, 0.9f, 0);
+        //lastBtn = ((PointerEventData)ev).pointerEnter;
+        if (lastBtn) lastBtn.GetComponent<Image>().rectTransform.localScale = new Vector3(0.9f, 0.9f, 0);
     }
 
     public static void OnMouseUp(BaseEventData ev)
     {
-        GameObject o = ((PointerEventData)ev).pointerEnter;
-        if (o) o.GetComponent<Image>().rectTransform.localScale = new Vector3(1, 1, 0);
+        if (lastBtn) lastBtn.GetComponent<Image>().rectTransform.localScale = new Vector3(1, 1, 0);
     }
 
     public static void OnMouseEnter(BaseEventData ev)
     {
-        GameObject o = ((PointerEventData)ev).pointerEnter;
-        if (o) o.GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f);
+        lastBtn = ((PointerEventData)ev).pointerEnter;
+        if (lastBtn) lastBtn.GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f);
     }
 
     public static void OnMouseExit(BaseEventData ev)
     {
-        GameObject o = ((PointerEventData)ev).pointerEnter;
-        if (o) o.GetComponent<Image>().color = Color.white;
+        if (lastBtn) lastBtn.GetComponent<Image>().color = Color.white;
     }
 
     public void OnHolderMouseDown(BaseEventData ev)
     {
-        GameObject o = ((PointerEventData)ev).pointerEnter;
-        if (o) o.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderDown;
+        //lastBtn = ((PointerEventData)ev).pointerEnter;
+        if (lastBtn) lastBtn.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderDown;
     }
 
     public void OnHolderMouseUp(BaseEventData ev)
     {
-        GameObject o = ((PointerEventData)ev).pointerEnter;
-        if (o) o.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderUp;
+        if (lastBtn) lastBtn.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderUp;
     }
 }
