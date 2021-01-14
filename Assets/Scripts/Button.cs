@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Button : MonoBehaviour
 {
-    private static GameObject lastBtn;
+    private static GameObject lastBtnDown, lastBtnOver, lastBtnHolder;
 
     private void Start()
     {
@@ -41,34 +41,40 @@ public class Button : MonoBehaviour
 
     public static void OnMouseDown(BaseEventData ev)
     {
-        //lastBtn = ((PointerEventData)ev).pointerEnter;
-        if (lastBtn) lastBtn.GetComponent<Image>().rectTransform.localScale = new Vector3(0.9f, 0.9f, 0);
+        lastBtnDown = ((PointerEventData)ev).pointerEnter;
+        if (lastBtnDown) lastBtnDown.GetComponent<Image>().rectTransform.localScale = new Vector3(0.9f, 0.9f, 0);
     }
 
     public static void OnMouseUp(BaseEventData ev)
     {
-        if (lastBtn) lastBtn.GetComponent<Image>().rectTransform.localScale = new Vector3(1, 1, 0);
+        if (!lastBtnDown) return;
+        lastBtnDown.GetComponent<Image>().rectTransform.localScale = new Vector3(1, 1, 0);
+        lastBtnDown = null;
     }
 
     public static void OnMouseEnter(BaseEventData ev)
     {
-        lastBtn = ((PointerEventData)ev).pointerEnter;
-        if (lastBtn) lastBtn.GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f);
+        lastBtnOver = ((PointerEventData)ev).pointerEnter;
+        if (lastBtnOver) lastBtnOver.GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f);
     }
 
     public static void OnMouseExit(BaseEventData ev)
     {
-        if (lastBtn) lastBtn.GetComponent<Image>().color = Color.white;
+        if (!lastBtnOver) return;
+        if (lastBtnOver) lastBtnOver.GetComponent<Image>().color = Color.white;
+        lastBtnOver = null;
     }
 
     public void OnHolderMouseDown(BaseEventData ev)
     {
-        //lastBtn = ((PointerEventData)ev).pointerEnter;
-        if (lastBtn) lastBtn.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderDown;
+        lastBtnHolder = ((PointerEventData)ev).pointerEnter;
+        if (lastBtnHolder) lastBtnHolder.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderDown;
     }
 
     public void OnHolderMouseUp(BaseEventData ev)
     {
-        if (lastBtn) lastBtn.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderUp;
+        if (!lastBtnHolder) return;
+        if (lastBtnHolder) lastBtnHolder.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderUp;
+        lastBtnHolder = null;
     }
 }
