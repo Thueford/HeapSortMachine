@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Button : MonoBehaviour
 {
     private static GameObject lastBtnDown, lastBtnOver, lastBtnHolder;
+    public Dialogue dialogue;
 
     private void Start()
     {
@@ -76,5 +77,56 @@ public class Button : MonoBehaviour
         if (!lastBtnHolder) return;
         if (lastBtnHolder) lastBtnHolder.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderUp;
         lastBtnHolder = null;
+    }
+
+    public void dialogueButton(int N)
+    {
+        dialogue.Hilfe1_1();
+        if (N == 1) 
+        {
+            dialogue.Hilfe1_1();
+        }
+        if (N == 2)
+        { 
+            dialogue.Hilfe1_2();
+        }
+        if (N == 3)
+        {
+            
+           dialogue.Hilfe2_1(); 
+        }
+        if (N == 4)
+        { 
+         dialogue.Hilfe2_2(); 
+        }
+        if (N == 5)
+        { 
+         dialogue.Hilfe2_3(); 
+        }
+        if (N == 6)
+        {
+            dialogue.Test_1_1();
+        }
+        if (N == 7)
+        {
+            dialogue.Test_1_2();
+        }
+        if (N == 8)
+        {
+            dialogue.Test_2_1();
+        }
+        if (N == 9)
+        {
+            dialogue.Test_2_2();
+        }
+        if (N == 10)
+        {
+            dialogue.Test_2_3();
+        }
+        else
+        {
+            Debug.Log("whats the stage");
+        }
+       
     }
 }

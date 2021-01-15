@@ -4,10 +4,11 @@ using UnityEngine.UI;
 
 public class ButtonHandler : MonoBehaviour
 {
-    public Dialogue dialogue;
+   
     public static ButtonHandler self;
     public Sprite sprHolderUp, sprHolderDown;
-   // public GameObject contiButton;
+    public Button button;
+  
    
 
     // Start is called before the first frame update
@@ -50,34 +51,29 @@ public class ButtonHandler : MonoBehaviour
     public void btnTipp_Click()
     {
         Debug.Log("Tipp");
-        //dialogue = new Dialogue();
-        /*dialogue.nameSetter("Jamoin");
-        string[] sentence = { "a","b","c","d" };
-        dialogue.sentenceSetter(sentence);
-        dialogueT.TriggerDialogue();*/
        
         
         switch (Globals.stage)
         {
-            case Globals.Stage.STAGE_1_1: dialogue.Hilfe1_1(); break;
-            case Globals.Stage.STAGE_1_2: dialogue.Hilfe1_2(); break;
-            case Globals.Stage.STAGE_2_1: dialogue.Hilfe2_1(); break;
-            case Globals.Stage.STAGE_2_2: dialogue.Hilfe2_2(); break;
-            case Globals.Stage.STAGE_2_3: dialogue.Hilfe2_3(); break;
+            case Globals.Stage.STAGE_1_1: button.dialogueButton(1); break;
+            case Globals.Stage.STAGE_1_2: button.dialogueButton(2); break;
+            case Globals.Stage.STAGE_2_1: button.dialogueButton(3); break;
+            case Globals.Stage.STAGE_2_2: button.dialogueButton(4); break;
+            case Globals.Stage.STAGE_2_3: button.dialogueButton(5); break;
         }
     }
 
     public void btnTest_Click()
     {
         Debug.Log("Test");
-        dialogue.Test_1_1();
+        //dialogue.Test_1_1();
         switch (Globals.stage)
         {
-            case Globals.Stage.STAGE_1_1: LevelTests.Test_1_1(); break;
-            case Globals.Stage.STAGE_1_2: LevelTests.Test_1_2(); break;
-            case Globals.Stage.STAGE_2_1: LevelTests.Test_2_1(); break;
-            case Globals.Stage.STAGE_2_2: LevelTests.Test_2_2(); break;
-            case Globals.Stage.STAGE_2_3: LevelTests.Test_2_3(); break;
+            case Globals.Stage.STAGE_1_1: LevelTests.Test_1_1(); button.dialogueButton(6); break;
+            case Globals.Stage.STAGE_1_2: LevelTests.Test_1_2(); button.dialogueButton(7); break;
+            case Globals.Stage.STAGE_2_1: LevelTests.Test_2_1(); button.dialogueButton(8); break;
+            case Globals.Stage.STAGE_2_2: LevelTests.Test_2_2(); button.dialogueButton(9); break;
+            case Globals.Stage.STAGE_2_3: LevelTests.Test_2_3(); button.dialogueButton(10); break;
         }
     }
 
