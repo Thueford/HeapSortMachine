@@ -79,6 +79,19 @@ public class Globals : MonoBehaviour
         return o;
     }
 
+    public static List<Hole> getTreeHoles()
+    {
+        List<Hole> TreeHoleList = new List<Hole>();
+        foreach (Hole h in Globals.holes)
+        {   
+            if(h.tree)
+            {
+                TreeHoleList.Add(h);
+            }            
+        }
+        return TreeHoleList;
+    }
+
     public static void SetStage(Stage s, string loadScene = null)
     {
         if(s < Stage.MENU || s > Stage.END)
