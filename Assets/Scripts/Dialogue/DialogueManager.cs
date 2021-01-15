@@ -9,26 +9,30 @@ public class DialogueManager : MonoBehaviour
 	public Text nameText;
 	public Text dialogueText;
 	public GameObject contiButton;
+	public static DialogueManager self;
 
 
 
 	private Queue<string> sentences;
 
-	// Use this for initialization
+	void Awake()
+    {
+		self = this;
+    }
 	void Start()
 	{
 		sentences = new Queue<string>();
 	}
 
-	public void StartDialogue(Dialogue dialogue)
+	public void StartDialogue()
 	{
 		Debug.Log("Start Dialogue");
 
-		nameText.text = dialogue.name;
+		nameText.text = Dialogue.name;
 
-		sentences.Clear();
+		//sentences.Clear();
 
-		foreach (string sentence in dialogue.sentences)
+		foreach (string sentence in Dialogue.sentences)
 		{
 			sentences.Enqueue(sentence);
 		}

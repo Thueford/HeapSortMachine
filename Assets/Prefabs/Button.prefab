@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 2741985673542744123}
   - component: {fileID: 7897487192518752494}
   - component: {fileID: 776839404906536073}
-  - component: {fileID: 1545190591040119564}
-  - component: {fileID: 1646799214960968946}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -122,36 +120,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e969caea3950f499dc7d54a5bb7146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 1646799214960968946}
---- !u!114 &1545190591040119564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3697722995090939981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f886c47e30362a447b70f7fcb3dcfde4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 1646799214960968946}
---- !u!114 &1646799214960968946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3697722995090939981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e6af973a6838c4e9ac1c2919892c7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: 
-  sentences: []
-  button: {fileID: 3697722995090939981}
-  dlg: {fileID: 1646799214960968946}
-  namenew: 
-  dialogueT: {fileID: 1545190591040119564}
-  contiButton: {fileID: 0}
+  dialogue: {fileID: 0}
