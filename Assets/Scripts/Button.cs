@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Button : MonoBehaviour
 {
+    private static GameObject lastBtnDown, lastBtnOver, lastBtnHolder;
+    public Dialogue dialogue;
+
     private void Start()
     {
         Debug.Log("Mecha Start");
@@ -19,8 +22,8 @@ public class Button : MonoBehaviour
 
         if(transform.parent.gameObject.name == "ButtonHolder")
         {
-            et.triggers.Add(newEventEntry(EventTriggerType.PointerEnter, OnHolderMouseDown));
-            et.triggers.Add(newEventEntry(EventTriggerType.PointerExit, OnHolderMouseUp));
+            et.triggers.Add(newEventEntry(EventTriggerType.PointerDown, OnHolderMouseDown));
+            et.triggers.Add(newEventEntry(EventTriggerType.PointerUp, OnHolderMouseUp));
         }
     }
 
@@ -39,37 +42,42 @@ public class Button : MonoBehaviour
 
     public static void OnMouseDown(BaseEventData ev)
     {
-        GameObject o = ((PointerEventData)ev).pointerEnter;
-        if (o) o.GetComponent<Image>().rectTransform.localScale = new Vector3(0.9f, 0.9f, 0);
+        lastBtnDown = ((PointerEventData)ev).pointerEnter;
+        if (lastBtnDown) lastBtnDown.GetComponent<Image>().rectTransform.localScale = new Vector3(0.9f, 0.9f, 0);
     }
 
     public static void OnMouseUp(BaseEventData ev)
     {
-        GameObject o = ((PointerEventData)ev).pointerEnter;
-        if (o) o.GetComponent<Image>().rectTransform.localScale = new Vector3(1, 1, 0);
+        if (!lastBtnDown) return;
+        lastBtnDown.GetComponent<Image>().rectTransform.localScale = new Vector3(1, 1, 0);
+        lastBtnDown = null;
     }
 
     public static void OnMouseEnter(BaseEventData ev)
     {
-        GameObject o = ((PointerEventData)ev).pointerEnter;
-        if (o) o.GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f);
+        lastBtnOver = ((PointerEventData)ev).pointerEnter;
+        if (lastBtnOver) lastBtnOver.GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f);
     }
 
     public static void OnMouseExit(BaseEventData ev)
     {
-        GameObject o = ((PointerEventData)ev).pointerEnter;
-        if (o) o.GetComponent<Image>().color = Color.white;
+        if (!lastBtnOver) return;
+        if (lastBtnOver) lastBtnOver.GetComponent<Image>().color = Color.white;
+        lastBtnOver = null;
     }
 
     public void OnHolderMouseDown(BaseEventData ev)
     {
-        GameObject o = ((PointerEventData)ev).pointerEnter;
-        if (o) o.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderDown;
+        lastBtnHolder = ((PointerEventData)ev).pointerEnter;
+        if (lastBtnHolder) lastBtnHolder.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderDown;
     }
 
     public void OnHolderMouseUp(BaseEventData ev)
     {
-        GameObject o = ((PointerEventData)ev).pointerEnter;
-        if (o) o.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderUp;
+        if (!lastBtnHolder) return;
+        if (lastBtnHolder) lastBtnHolder.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderUp;
+        lastBtnHolder = null;
     }
+
+    
 }

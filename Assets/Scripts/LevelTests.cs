@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 public class LevelTests : MonoBehaviour
 {
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -16,35 +18,32 @@ public class LevelTests : MonoBehaviour
 
     public static bool Test_1_1()
     {
-        
-        foreach (Hole itterationHole in Globals.holes)//Itterate through every tree Hole
-        {                                               
-            if (itterationHole.tree)                    
+        bool allClear = true;
+        foreach (Hole h in Globals.getTreeHoles())//Itterate through every tree Hole
+        {    
+                                                   
+              
+            if (!h.content)// no boll in hole
             {   
+                allClear = false;
+                h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[2];
+            }    
+                
+            else if (h.content.index == h.value)// index of ball in Hole is equal to value of Hole
+            {
+                h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[1];
+            }
 
-                try
-                {
-                    if (itterationHole.content.index == itterationHole.value)// index of bowl in Hole is equal to value of Hole
-                    {
-                        continue;
-                    }
-
-                    else
-                    {
-                        
-                        return false;
-                    }
-                }
-                catch (NullReferenceException e)// thrown if no bowl in hole
-                {
-                    return false;
-                }
+            else
+            {
+                h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[2];
+                allClear = false;
             }
             
         }
-        // every bowl is in the right hole
-        return true;
-        
+        // every ball is in the right hole
+        Globals.globals.StartCoroutine(waitASecondThenResetHoleColor());
+        return allClear;
     }
 
     public static void Test_1_2()
@@ -65,5 +64,16 @@ public class LevelTests : MonoBehaviour
     public static void Test_2_3()
     {
         // TODO
+    }
+
+
+    private static IEnumerator waitASecondThenResetHoleColor()
+    {
+        yield return new WaitForSeconds(1);
+        foreach (Hole h in Globals.getTreeHoles())
+        {
+
+            h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[0];
+        }
     }
 }

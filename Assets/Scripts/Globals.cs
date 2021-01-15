@@ -70,7 +70,6 @@ public class Globals : MonoBehaviour
 
             }
         }
-
     }
 
     public static GameObject TryGetObjWithTag(string tag)
@@ -78,6 +77,19 @@ public class Globals : MonoBehaviour
         GameObject o = GameObject.FindGameObjectWithTag(tag);
         if (o == null) throw new AssertionException("o == null", "Object with tag '" + tag + "' not found.");
         return o;
+    }
+
+    public static List<Hole> getTreeHoles()
+    {
+        List<Hole> TreeHoleList = new List<Hole>();
+        foreach (Hole h in Globals.holes)
+        {   
+            if(h.tree)
+            {
+                TreeHoleList.Add(h);
+            }            
+        }
+        return TreeHoleList;
     }
 
     public static void SetStage(Stage s, string loadScene = null)

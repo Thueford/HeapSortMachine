@@ -107,6 +107,28 @@ public class Bowl : MonoBehaviour
         return b;
     }
 
+    public void move(Vector3 newPos)
+    {
+        enableDragnDrop = false;
+
+        while (transform.position != newPos) {
+            //automatic moving to pos
+        }
+
+        enableDragnDrop = true;
+    }
+
+    public void visible(bool v)
+    {
+        if (v)
+        {
+            bowlCollider.gameObject.SetActive(true);
+        } else
+        {
+            bowlCollider.gameObject.SetActive(false);
+        }
+    }
+
     public int getValue()
     {
         return this.value;
