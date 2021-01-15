@@ -35,12 +35,19 @@ public class ButtonHandler : MonoBehaviour
     public void btnCredits_Click()
     {
         Debug.Log("Credits");
+        Globals.SetStage(Globals.Stage.MENU, "CreditScene");
         //playClickSound();
     }
 
     public void btnPause_Click()
     {
         Debug.Log("Pause");
+        Globals.SetStage(Globals.Stage.MENU, "MainMenu"); // TODO: Pause menu
+    }
+
+    public void btnMain_Click()
+    {
+        Debug.Log("Main");
         Globals.SetStage(Globals.Stage.MENU, "MainMenu"); // TODO: Pause menu
     }
 
