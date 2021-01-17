@@ -73,7 +73,6 @@ public class ButtonHandler : MonoBehaviour
     {
         Debug.Log("Test");
         bool b;
-        Dialogue.Test_1_1(true);
         switch (Globals.stage)
         {
             case Globals.Stage.STAGE_1_1:

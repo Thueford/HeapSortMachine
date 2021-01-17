@@ -69,6 +69,7 @@ public class DialogueManager : MonoBehaviour
 	{
 		Debug.Log("Der Dialogue ist Offiziel Leer");
 		dialogueText.text = "Ich bin immer für dich da Drück nur die Knöpfe";
+		nameText.text = "Mechaniker";
 		contiButton.gameObject.SetActive(false);
 	}
 	
