@@ -40,7 +40,6 @@ public  class Dialogue : MonoBehaviour
     }
 
     // Hilfe Zone/////////////////////////////////////////////////////////
-
     public static void Hilfe1_1()
     {
         sentences.Clear();
@@ -51,17 +50,17 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
-   
-
+ 
     public static void Hilfe1_2()
     {
         sentences.Clear();
         nameSetter("Hilfe1_2");
-        string[] sentence = { "" };
+        string[] sentence = { "Hier gibt es leider keine Tipps" };
         sentences.AddRange(sentence);
        DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
+
     public static void Hilfe2_1()
     {
         sentences.Clear();
@@ -71,6 +70,7 @@ public  class Dialogue : MonoBehaviour
         ////DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
+
     public static void Hilfe2_2()
     {
         sentences.Clear();
@@ -80,6 +80,7 @@ public  class Dialogue : MonoBehaviour
        DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
+
     public static void Hilfe2_3()
     {
         sentences.Clear();
@@ -90,25 +91,24 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
-    //Test Zone     /////////////////////////////////////////////////////////
-   /* public void Test_1_1(bool b)
-    {
+   //Test Zone     /////////////////////////////////////////////////////////
+   public static void Test_1_1(bool b)
+   {
+        string[] sentence;
         sentences.Clear();
         if (b)
         {            
             nameSetter("Richtig!");
             string[] sentence_random = { "Super das ist ja fast wie meine eigen Arbeit.", "Wenn du so weiter machst kann ich dich meinen Schüler nennen." };
-          
-            int sIndex = rnd.Next(sentence_random.Length);
+            
+            int sIndex = Random.Range(0, sentence_random.Length-1);
             string sent_rand = sentence_random[sIndex];
-            string[] sentence = { sent_rand, "Als nächstes behandeln wir Stage 1.2" };
-
-
+            sentence = new string[] {sent_rand, "Als nächstes behandeln wir Stage 1.2" };
         }
         else
         {
             nameSetter("Falsch");
-            string[] sentence = { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
+            sentence = new string[] { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
 
         }
 
@@ -116,24 +116,26 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
-    public void Test_1_2(bool b)
+
+    public static void Test_1_2(bool b)
     {
+        string[] sentence;
         sentences.Clear();
         if (b)
         {
             nameSetter("Richtig!");
             string[] sentence_random = { "Super das ist ja fast wie meine eigen Arbeit.", "Wenn du so weiter machst kann ich dich meinen Schüler nennen." };
-            
+
             // Random importieren
-            int sIndex = rnd.Next(sentence_random.Length);
+            int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            string[] sentence = { sent_rand, "Da hast du aber einen schönenen Baum erstellt.", "Als nächstes behandeln wir Stage 2.1" };
+            sentence = new string[] { sent_rand, "Da hast du aber einen schönenen Baum erstellt.", "Als nächstes behandeln wir Stage 2.1" };
             sentences.AddRange(sentence);
         }
         else
         {
             nameSetter("Falsch");
-            string[] sentence = { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
+            sentence = new string[] { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
             sentences.AddRange(sentence);
         }
 
@@ -141,72 +143,71 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
-    public void Test_2_1(bool b)
+
+    public static void Test_2_1(bool b)
     {
+        string[] sentence;
         sentences.Clear();
         if (b)
         {
             nameSetter("Richtig!");
             string[] sentence_random = { "Super das ist ja fast wie meine eigen Arbeit.", "Wenn du so weiter machst kann ich dich meinen Schüler nennen." };
-            
+
             // Random importieren
-            int sIndex = rnd.Next(sentence_random.Length);
+            int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            string[] sentence = { sent_rand, "Dein Baum erfüllt jetzt die Heap-Bedingung", "Als nächstes behandeln wir Stage 2.2" };
-
+            sentence = new string[] { sent_rand, "Dein Baum erfüllt jetzt die Heap-Bedingung", "Als nächstes behandeln wir Stage 2.2" };
         }
         else
         {
             nameSetter("Falsch");
-            string[] sentence = { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
+            sentence = new string[] { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
         }
 
         sentences.AddRange(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
-    public void Test_2_2(bool b)
+
+    public static void Test_2_2(bool b)
     {
+        string[] sentence;
         sentences.Clear();
         if (b)
         {
             nameSetter("Richtig!");
             string[] sentence_random = { "Super das ist ja fast wie meine eigen Arbeit.", "Wenn du so weiter machst kann ich dich meinen Schüler nennen." };
-            
-            // Random importieren
-            int sIndex = rnd.Next(sentence_random.Length);
+            int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            string[] sentence = { sent_rand, "Als nächstes behandeln wir Stage 2.3" };
-
+            sentence = new string[] { sent_rand, "Als nächstes behandeln wir Stage 2.3" };
         }
         else
         {
             nameSetter("Falsch");
-            string[] sentence = { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
+            sentence = new string[] { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
         }
 
         sentences.AddRange(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
-    public void Test_2_3(bool b)
+    public static void Test_2_3(bool b)
     {
+        string[] sentence;
         sentences.Clear();
         if (b)
         {
             nameSetter("Richtig!");
             string[] sentence_random = { "Super das ist ja fast wie meine eigen Arbeit.", "Wenn du so weiter machst kann ich dich meinen Schüler nennen." };
-           
-           
-            int sIndex = rnd.Next(sentence_random.Length);
+            int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            string[] sentence = { sent_rand, "Wir sind fertig du hast eigenständig die Heap-Sort-Maschine repariert.", "Jetzt musst du den Heap-Sort-Algorithmus verstanden haben. Falls nicht starte das Spiel einfach neu" };
+            sentence = new string[] { sent_rand, "Wir sind fertig du hast eigenständig die Heap-Sort-Maschine repariert.", "Jetzt musst du den Heap-Sort-Algorithmus verstanden haben. Falls nicht starte das Spiel einfach neu" };
 
         }
         else
         {
             nameSetter("Falsch");
-            string[] sentence = { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
+            sentence = new string[] { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
         }
 
         sentences.AddRange(sentence);
@@ -214,13 +215,13 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
-    */
+    
     // AutoZone vroom vroom/////////////////////////////////////////////////////////
 
-    public void Auto_1_1()
+    public static void Auto_1_1()
     {
         sentences.Clear();
-        string[] input = { "Stage 1.1 läuft nun automatisch ab" };
+        string[] input = {"Stage 1.1 läuft nun automatisch ab" };
 
         name = "Auto";
         sentences.Clear();
@@ -228,7 +229,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
-    public void Auto_1_2()
+    public static void Auto_1_2()
     {
         sentences.Clear();
         string[] input = { "Stage 1.2 läuft nun automatisch ab" };
@@ -239,7 +240,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
-    public void Auto_2_1()
+    public static void Auto_2_1()
     {
         sentences.Clear();
         string[] input = { "Stage 2.1 läuft jetzt automatisch ab" };
@@ -250,7 +251,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
-    public void Auto_2_2()
+    public static void Auto_2_2()
     {
         sentences.Clear();
         string[] input = { "Stage 2.2 läuft jetzt automatisch ab" };
@@ -261,7 +262,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
-    public void Auto_2_3()
+    public static void Auto_2_3()
     {
         sentences.Clear();
         string[] input = { "Stage 2.3 läuft jetzt automatisch ab" };
