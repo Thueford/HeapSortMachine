@@ -69,19 +69,23 @@ public class ButtonHandler : MonoBehaviour
             case Globals.Stage.STAGE_2_3: Dialogue.Hilfe2_3(); break;
         }
     }
-
     public void btnTest_Click()
     {
         Debug.Log("Test");
-        //Dialogue.Test_1_1();
-        Dialogue.Hilfe1_1();
+        bool b;
+        dialogue.Test_1_1();
         switch (Globals.stage)
         {
-            case Globals.Stage.STAGE_1_1: LevelTests.Test_1_1(); Dialogue.Test_1_1(); break;
-            case Globals.Stage.STAGE_1_2: LevelTests.Test_1_2(); Dialogue.Test_1_2(); break;
-            case Globals.Stage.STAGE_2_1: LevelTests.Test_2_1(); Dialogue.Test_2_1(); break;
-            case Globals.Stage.STAGE_2_2: LevelTests.Test_2_2(); Dialogue.Test_2_2(); break;
-            case Globals.Stage.STAGE_2_3: LevelTests.Test_2_3(); Dialogue.Test_2_3(); break;
+            case Globals.Stage.STAGE_1_1:
+                b = LevelTests.Test_1_1(); dialogue.Test_1_1(b); break;
+            case Globals.Stage.STAGE_1_2:
+                b = LevelTests.Test_1_2(); dialogue.Test_1_2(b); break;
+            case Globals.Stage.STAGE_2_1:
+                b = LevelTests.Test_2_1(); dialogue.Test_2_1(b); break;
+            case Globals.Stage.STAGE_2_2:
+                b = LevelTests.Test_2_2(); dialogue.Test_2_2(b); break;
+            case Globals.Stage.STAGE_2_3:
+                b = LevelTests.Test_2_3(); dialogue.Test_2_3(b); break;
         }
     }
 
@@ -91,11 +95,11 @@ public class ButtonHandler : MonoBehaviour
 
         switch (Globals.stage)
         {
-            case Globals.Stage.STAGE_1_1: break;
-            case Globals.Stage.STAGE_1_2: break;
-            case Globals.Stage.STAGE_2_1: break;
-            case Globals.Stage.STAGE_2_2: break;
-            case Globals.Stage.STAGE_2_3: break;
+            case Globals.Stage.STAGE_1_1: dialogue.Auto_1_1(); break;
+            case Globals.Stage.STAGE_1_2: dialogue.Auto_1_2(); break;
+            case Globals.Stage.STAGE_2_1: dialogue.Auto_2_1(); break;
+            case Globals.Stage.STAGE_2_2: dialogue.Auto_2_2(); break;
+            case Globals.Stage.STAGE_2_3: dialogue.Auto_2_3(); break;
         }
     }
 

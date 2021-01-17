@@ -46,24 +46,28 @@ public class LevelTests : MonoBehaviour
         return allClear;
     }
 
-    public static void Test_1_2()
+    public static bool Test_1_2()
     {
         // TODO
+        return false;
     }
 
-    public static void Test_2_1()
+    public static bool Test_2_1()
     {
         // TODO
+        return false;
     }
 
-    public static void Test_2_2()
+    public static bool Test_2_2()
     {
         // TODO
+        return false;
     }
 
-    public static void Test_2_3()
+    public static bool Test_2_3()
     {
         // TODO
+        return false;
     }
 
 
