@@ -10,6 +10,9 @@ public class Bowl : MonoBehaviour
     private bool picked = false;
     private static bool isSwapping = false;
 
+    //test
+    private Vector3 newPos;
+
     public bool enableDragnDrop;
     public int value, index;
     public int holeId { get; private set; } = -1;
@@ -20,6 +23,7 @@ public class Bowl : MonoBehaviour
         bowlCollider = GetComponent<Collider2D>();
         startPosition = transform.position;
         setValue(value);
+
     }
 
     // Update is called once per frame
@@ -63,6 +67,14 @@ public class Bowl : MonoBehaviour
                         moveToHole(swapHole);
                     }
                 } else transform.position = setVecZ(startPosition, 5); //changes z of bowl+text to 5
+            }
+        } else
+        {
+            //for the case picked = true
+            transform.position = Vector3.MoveTowards(transform.position, newPos, 2 * Time.deltaTime);
+            if (newPos == transform.position)
+            {
+                enableDragnDrop = true;
             }
         }
 
@@ -111,11 +123,11 @@ public class Bowl : MonoBehaviour
     {
         enableDragnDrop = false;
 
-        while (transform.position != newPos) {
-            //automatic moving to pos
-        }
+        Debug.Log("testMove");
 
-        enableDragnDrop = true;
+        this.newPos = newPos;
+
+        //enableDragnDrop = true;
     }
 
     public void visible(bool v)
@@ -161,13 +173,17 @@ public class Bowl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (!isSwapping && collider.tag == "Hole" &&
+        if (!isSwapping && enableDragnDrop && collider.tag == "Hole" &&
                 collider.gameObject.GetComponent<Hole>().tree) swapHole = collider;
+        if (collider.tag == "Checkpoint" && collider.gameObject.GetComponent<Checkpoint>().checkpoint == Checkpoint.CheckpointType.TELEPORT)
+        {
+            //teleport to idk
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (!isSwapping && collider.tag == "Hole" &&
+        if (!isSwapping && enableDragnDrop && collider.tag == "Hole" &&
                 collider.gameObject.GetComponent<Hole>().tree &&
                 collider == swapHole) swapHole = startHole;
     }

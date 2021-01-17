@@ -42,6 +42,9 @@ public class Globals : MonoBehaviour
     {
         //spawns bowls
         if (stage == Stage.STAGE_1_1) ballSpawner();
+
+        //testing
+        bowls[1].move(Checkpoint.checkpoints[0].transform.position);
     }
 
     // Update is called once per frame
