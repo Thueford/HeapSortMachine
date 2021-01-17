@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Button : MonoBehaviour
 {
     private static GameObject lastBtnDown, lastBtnOver, lastBtnHolder;
+    public Dialogue dialogue;
 
     private void Start()
     {
@@ -77,4 +78,6 @@ public class Button : MonoBehaviour
         if (lastBtnHolder) lastBtnHolder.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderUp;
         lastBtnHolder = null;
     }
+
+    
 }

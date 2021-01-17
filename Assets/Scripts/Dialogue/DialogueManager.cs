@@ -8,26 +8,31 @@ public class DialogueManager : MonoBehaviour
 
 	public Text nameText;
 	public Text dialogueText;
+	public GameObject contiButton;
+	public static DialogueManager self;
 
-	
+
 
 	private Queue<string> sentences;
 
-	// Use this for initialization
+	void Awake()
+    {
+		self = this;
+    }
 	void Start()
 	{
 		sentences = new Queue<string>();
 	}
 
-	public void StartDialogue(Dialogue dialogue)
+	public void StartDialogue()
 	{
-		Debug.Log("kind gezeugt");
+		Debug.Log("Start Dialogue");
 
-		nameText.text = dialogue.name;
+		nameText.text = Dialogue.name;
 
-		sentences.Clear();
+		//sentences.Clear();
 
-		foreach (string sentence in dialogue.sentences)
+		foreach (string sentence in Dialogue.sentences)
 		{
 			sentences.Enqueue(sentence);
 		}
@@ -40,11 +45,11 @@ public class DialogueManager : MonoBehaviour
 		if (sentences.Count == 0)
 		{
 			EndDialogue();
-			Debug.Log("Kinder leer");
+			Debug.Log("EndDialogue");
 			return;
 		}
 
-		Debug.Log("funzt");
+		Debug.Log("Funktioniert Eventuell");
 		string sentence = sentences.Dequeue();
 		StopAllCoroutines();
 		StartCoroutine(TypeSentence(sentence));
@@ -62,8 +67,10 @@ public class DialogueManager : MonoBehaviour
 	
 	void EndDialogue()
 	{
-		Debug.Log("das kind ist geboren");
-		dialogueText.text = "Das sind alle Tipps für diese Seite";
+		Debug.Log("Der Dialogue ist Offiziel Leer");
+		dialogueText.text = "Ich bin immer für dich da Drück nur die Knöpfe";
+		nameText.text = "Mechaniker";
+		contiButton.gameObject.SetActive(false);
 	}
 	
 }
