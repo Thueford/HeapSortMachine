@@ -464,7 +464,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Title Line
+  m_Text: Mechaniker
 --- !u!222 &37700372
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4273,7 +4273,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Message Box
+  m_Text: "Dr\xFCcke Tipp um Hilfe zu bekommen"
 --- !u!222 &1507330800
 CanvasRenderer:
   m_ObjectHideFlags: 0
