@@ -30,7 +30,7 @@ public class DialogueManager : MonoBehaviour
 
 		nameText.text = Dialogue.name;
 
-		//sentences.Clear();
+		sentences.Clear();
 
 		foreach (string sentence in Dialogue.sentences)
 		{

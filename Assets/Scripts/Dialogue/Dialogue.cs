@@ -35,7 +35,7 @@ public  class Dialogue : MonoBehaviour
     {
         sentences.Clear();
         sentences.AddRange(s);
-        Debug.Log(s);
+        Debug.Log("Ich hab die Texte eingefügt");
 
     }
 
@@ -97,10 +97,9 @@ public  class Dialogue : MonoBehaviour
         string[] sentence;
         sentences.Clear();
         if (b)
-        {            
+        {   
             nameSetter("Richtig!");
             string[] sentence_random = { "Super das ist ja fast wie meine eigen Arbeit.", "Wenn du so weiter machst kann ich dich meinen Schüler nennen." };
-            
             int sIndex = Random.Range(0, sentence_random.Length-1);
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] {sent_rand, "Als nächstes behandeln wir Stage 1.2" };
@@ -109,10 +108,9 @@ public  class Dialogue : MonoBehaviour
         {
             nameSetter("Falsch");
             sentence = new string[] { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
-
         }
 
-        sentences.AddRange(sentence);
+        sentenceSetter(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
@@ -179,7 +177,7 @@ public  class Dialogue : MonoBehaviour
             string[] sentence_random = { "Super das ist ja fast wie meine eigen Arbeit.", "Wenn du so weiter machst kann ich dich meinen Schüler nennen." };
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            sentence = new string[] { sent_rand, "Als nächstes behandeln wir Stage 2.3" };
+            sentence = new string[] { sent_rand, "Als nächstes behandeln wir Stage 2.3"};
         }
         else
         {
