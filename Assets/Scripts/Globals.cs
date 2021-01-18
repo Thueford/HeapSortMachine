@@ -22,6 +22,7 @@ public class Globals : MonoBehaviour
     public GameObject bowlPrefab;
     public GameObject bowlHolder;
     public GameObject bowlTextPrefab;
+    public GameObject checkpointHolder;
 
     public enum Stage
     {
@@ -44,7 +45,7 @@ public class Globals : MonoBehaviour
         if (stage == Stage.STAGE_1_1) ballSpawner();
 
         //testing
-        bowls[1].move(Checkpoint.checkpoints[0].transform.position);
+        //bowls[1].move(Checkpoint.checkpoints[0].transform.position);
     }
 
     // Update is called once per frame

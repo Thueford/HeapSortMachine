@@ -5,12 +5,15 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static List<Checkpoint> checkpoints = new List<Checkpoint>();
+    //public static List<Checkpoint> checkpoints = new List<Checkpoint>();
+    public static Checkpoint[] checkpoints = new Checkpoint[31];
+    public static int checkpointcount = 0;
     public enum CheckpointType
     {
         MOVE, TELEPORT
     }
     public int id;
+    public int holeID = 0;
 
     public CheckpointType checkpoint;
 
@@ -19,8 +22,10 @@ public class Checkpoint : MonoBehaviour
 
     void Start()
     {
-        checkpoints.Add(this);
-
+        id = checkpointcount;
+        checkpoints[id] = this;
+        checkpointcount++;
+        //checkpoints.Add(this)
     }
 
     void setCheckpoint (GameObject gameObject)

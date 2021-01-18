@@ -100,6 +100,9 @@ public class ButtonHandler : MonoBehaviour
             case Globals.Stage.STAGE_2_2: Dialogue.Auto_2_2(); break;
             case Globals.Stage.STAGE_2_3: Dialogue.Auto_2_3(); break;
         }
+
+        //activate autobowlmovement
+        BowlMover.autoMoveStart();
     }
 
     public void btnReset_Click()

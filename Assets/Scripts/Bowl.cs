@@ -8,14 +8,18 @@ public class Bowl : MonoBehaviour
     private Collider2D bowlCollider, startHole, swapHole;
     private GameObject text;
     private bool picked = false;
+    private bool automove;
+    private bool nextCheckpointTeleport = false; //if next checkpoint is teleport... cuz it gets deleted
+    private float moveSpeed;
     private static bool isSwapping = false;
+    private Vector3 movePosition;
 
-    //test
-    private Vector3 newPos;
-
-    public bool enableDragnDrop;
+    public bool enableDragnDrop = true;
     public int value, index;
     public int holeId { get; private set; } = -1;
+
+    //list of checkpoints to move
+    public List<Checkpoint> checkpoints = new List<Checkpoint>();
 
     // Start is called before the first frame update
     void Start()
@@ -71,14 +75,86 @@ public class Bowl : MonoBehaviour
         } else
         {
             //for the case picked = true
-            transform.position = Vector3.MoveTowards(transform.position, newPos, 2 * Time.deltaTime);
-            if (newPos == transform.position)
+            if (automove)
             {
-                enableDragnDrop = true;
+                if (checkpoints.Count == 0 && movePosition == new Vector3()) return;
+                if (movePosition == new Vector3())
+                {
+                    //checks for teleport checkpoint
+                    if (checkpoints[0].checkpoint == Checkpoint.CheckpointType.TELEPORT)
+                    {
+                        nextCheckpointTeleport = true;
+                    }
+
+                    //pops first element
+                    movePosition = checkpoints[0].transform.position;
+
+                    checkpoints.RemoveAt(0);
+
+                    //creates speed
+                    moveSpeed = getScaledSpeed(transform.position, movePosition, 10);
+                }
+
+                if (movePosition == transform.position)
+                {
+                    if (checkpoints.Count != 0)
+                    {
+                        if (nextCheckpointTeleport)
+                        {
+                            transform.position = checkpoints[0].transform.position;
+                            checkpoints.RemoveAt(0);
+
+                            if (checkpoints.Count != 0)
+                            {
+                                movePosition = checkpoints[0].transform.position;
+                                checkpoints.RemoveAt(0);
+                            }
+
+                            nextCheckpointTeleport = false;
+                            return;
+                        }
+
+                        //checks for teleport checkpoint
+                        if (checkpoints[0].checkpoint == Checkpoint.CheckpointType.TELEPORT)
+                        {
+                            nextCheckpointTeleport = true;
+                        }
+
+                        movePosition = checkpoints[0].transform.position;
+                        checkpoints.RemoveAt(0);
+
+                        //creates speed
+                        moveSpeed = getScaledSpeed(transform.position, movePosition, 10);
+
+                    } else
+                    {
+                        enableDragnDrop = true;
+                        automove = false;
+                        transform.position = setVecZ(transform.position, 5);
+
+                        //muss swapping gefixt werden
+                        startPosition = transform.position;
+                        return;
+                    }
+                }
+
+                transform.position = Vector3.MoveTowards(transform.position, movePosition, moveSpeed * Time.deltaTime);
             }
         }
 
         if (picked) transform.position = mouse_position;
+    }
+
+    private float getScaledSpeed(Vector3 pos, Vector3 npos, int speed)
+    {
+        //for testing 
+        speed = 2;
+
+        float d = Vector3.Distance(pos, npos);
+
+        return speed / d*5;
+
+        //return 0;
     }
 
     public void moveToHole(Collider2D to) {
@@ -122,12 +198,15 @@ public class Bowl : MonoBehaviour
     public void move(Vector3 newPos)
     {
         enableDragnDrop = false;
+        
+    }
 
-        Debug.Log("testMove");
+    public void startAutomaticMove()
+    {
+        enableDragnDrop = false;
+        automove = true;
 
-        this.newPos = newPos;
-
-        //enableDragnDrop = true;
+        transform.position = setVecZ(transform.position, 3);
     }
 
     public void visible(bool v)
