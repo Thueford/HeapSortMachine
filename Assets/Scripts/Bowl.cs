@@ -130,7 +130,7 @@ public class Bowl : MonoBehaviour
                     {
                         enableDragnDrop = true;
                         automove = false;
-                        transform.position = setVecZ(transform.position, 5);
+                        //transform.position = setVecZ(transform.position, 5);
 
                         //muss swapping gefixt werden
                         //startPosition = transform.position;
@@ -253,17 +253,13 @@ public class Bowl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (!isSwapping && enableDragnDrop && collider.tag == "Hole" &&
+        if (!isSwapping && collider.tag == "Hole" &&
                 collider.gameObject.GetComponent<Hole>().tree) swapHole = collider;
-        if (collider.tag == "Checkpoint" && collider.gameObject.GetComponent<Checkpoint>().checkpoint == Checkpoint.CheckpointType.TELEPORT)
-        {
-            //teleport to idk
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (!isSwapping && enableDragnDrop && collider.tag == "Hole" &&
+        if (!isSwapping && collider.tag == "Hole" &&
                 collider.gameObject.GetComponent<Hole>().tree &&
                 collider == swapHole) swapHole = startHole;
     }
