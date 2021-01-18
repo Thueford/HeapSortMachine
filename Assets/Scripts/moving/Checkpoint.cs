@@ -8,6 +8,8 @@ public class Checkpoint : MonoBehaviour
     //public static List<Checkpoint> checkpoints = new List<Checkpoint>();
     public static Checkpoint[] checkpoints = new Checkpoint[31];
     public static int checkpointcount = 0;
+    //if true checkpoitns already creared
+    public static bool used = false;
     public enum CheckpointType
     {
         MOVE, TELEPORT

@@ -38,16 +38,20 @@ public class BowlMover : MonoBehaviour
             staticcheckpointlist.Add(cp);
         }
 
-        foreach (Hole hole in Globals.getTreeHoles())
+        //create checkpoint on the holes position here
+        if (!Checkpoint.used)
         {
-            //create checkpoint on the holes position here
-            GameObject chp = Instantiate(bowlMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
-            Checkpoint cp = chp.GetComponent<Checkpoint>();
-            cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
-            cp.holeID = hole.value;
-            checkpointlist.Add(cp);
-        }
+            foreach (Hole hole in Globals.getTreeHoles())
+            {
+                GameObject chp = Instantiate(bowlMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
+                Checkpoint cp = chp.GetComponent<Checkpoint>();
+                cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
+                cp.holeID = hole.value;
+                checkpointlist.Add(cp);
+                Checkpoint.used = true;
 
+            }
+        }
         //sort checkpoint list
         checkpointlist.Sort((a, b) => a.holeID < b.holeID ? -1 : 1);
 
@@ -65,14 +69,15 @@ public class BowlMover : MonoBehaviour
 
             foreach (Checkpoint c in checkpointlist)
             {
-                if (bowlMover.isParent(bowl.value, c.holeID))
+                //für das perfekte sortieren bowl.value nehmen
+                if (bowlMover.isParent(bowl.index, c.holeID))
                 {
                     bowl.checkpoints.Add(c);
                 }
             }
 
             bowl.checkpoints.Sort((a, b) => a.holeID < b.holeID ? -1 : 1);
-            if (bowl.value == 0)
+            if (bowl.index == 0)
             {
                 bowl.checkpoints.Reverse();
             }

@@ -8,6 +8,7 @@ public class ButtonHandler : MonoBehaviour
     public static ButtonHandler self;
     public Sprite sprHolderUp, sprHolderDown;
     public Dialogue dialogue;
+    public static bool autoButtonUsed = false;
   
    
 
@@ -102,7 +103,11 @@ public class ButtonHandler : MonoBehaviour
         }
 
         //activate autobowlmovement
-        BowlMover.autoMoveStart();
+        if (!autoButtonUsed)
+        {
+            BowlMover.autoMoveStart();
+            autoButtonUsed = true;
+        }
     }
 
     public void btnReset_Click()
@@ -117,6 +122,9 @@ public class ButtonHandler : MonoBehaviour
             case Globals.Stage.STAGE_2_2: break;
             case Globals.Stage.STAGE_2_3: break;
         }
+
+        //activate auto button again
+        autoButtonUsed = false;
     }
     
     // not sure what tha purpose is
