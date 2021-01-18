@@ -133,7 +133,8 @@ public class Bowl : MonoBehaviour
                         transform.position = setVecZ(transform.position, 5);
 
                         //muss swapping gefixt werden
-                        startPosition = transform.position;
+                        //startPosition = transform.position;
+                        moveToHole(swapHole);
                         return;
                     }
                 }
