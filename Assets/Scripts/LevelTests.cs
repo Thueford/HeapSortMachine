@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 public class LevelTests : MonoBehaviour
@@ -18,6 +19,7 @@ public class LevelTests : MonoBehaviour
 
     public static bool Test_1_1()
     {
+        bool test;
         bool allClear = true;
         foreach (Hole h in Globals.getTreeHoles())//Itterate through every tree Hole
         {    
@@ -47,9 +49,12 @@ public class LevelTests : MonoBehaviour
     }
 
     public static bool Test_1_2()
+    //if textfield left = 2n+1 and textfield Right = 2n+2 return true
     {
-        // TODO
-        return false;
+        if (GameObject.Find("edtRuleLeft").GetComponent<InputField>().text == "2n+1" && GameObject.Find("edtRuleRight").GetComponent<InputField>().text == "2n+2")
+            return true;
+        else
+            return false;
     }
 
     public static bool Test_2_1()
