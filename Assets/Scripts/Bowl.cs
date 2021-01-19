@@ -45,7 +45,7 @@ public class Bowl : MonoBehaviour
                 if (bowlCollider.OverlapPoint(mouse_position))
                 {
                     picked = true;
-
+                    Globals.player.oneShot("pick");
                     //changes z of bowl+text to 3
                     transform.position = setVecZ(startPosition, 3);
                 }
@@ -53,8 +53,10 @@ public class Bowl : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0))
             {
+                if (picked) {
+                Globals.player.oneShot("drop");
                 picked = false;
-
+                }
                 if (swapHole != startHole) { // Ball Movement happens
                     Hole to = swapHole.gameObject.GetComponent<Hole>();
                     if (to.content != null) { // Swap two Balls
@@ -147,7 +149,7 @@ public class Bowl : MonoBehaviour
 
     private float getScaledSpeed(Vector3 pos, Vector3 npos, int speed)
     {
-        //for testing 
+        //for testing
         speed = 2;
 
         float d = Vector3.Distance(pos, npos);
@@ -198,7 +200,7 @@ public class Bowl : MonoBehaviour
     public void move(Vector3 newPos)
     {
         enableDragnDrop = false;
-        
+
     }
 
     public void startAutomaticMove()

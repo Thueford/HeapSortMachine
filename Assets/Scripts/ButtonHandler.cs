@@ -4,13 +4,13 @@ using UnityEngine.UI;
 
 public class ButtonHandler : MonoBehaviour
 {
-   
+
     public static ButtonHandler self;
     public Sprite sprHolderUp, sprHolderDown;
     public Dialogue dialogue;
     public static bool autoButtonUsed = false;
-  
-   
+
+
 
     // Start is called before the first frame update
     void Awake()
@@ -28,6 +28,7 @@ public class ButtonHandler : MonoBehaviour
     public void btnExit_Click()
     {
         Debug.Log("Exit");
+        // Globals.player.oneShot("click");
         //playClickSound();
         Application.Quit();
     }
@@ -59,8 +60,9 @@ public class ButtonHandler : MonoBehaviour
     public void btnTipp_Click()
     {
         Debug.Log("Tipp");
-       
-        
+
+        Globals.player.oneShot("click");
+
         switch (Globals.stage)
         {
             case Globals.Stage.STAGE_1: Dialogue.Hilfe_1(); break;
@@ -73,6 +75,9 @@ public class ButtonHandler : MonoBehaviour
     {
         Debug.Log("Test");
         bool b;
+
+        Globals.player.oneShot("click");
+
         switch (Globals.stage)
         {
             case Globals.Stage.STAGE_1: b = LevelTests.Test_1(); Dialogue.Test_1(b); break;
@@ -85,6 +90,8 @@ public class ButtonHandler : MonoBehaviour
     public void btnAuto_Click()
     {
         Debug.Log("Auto");
+
+        Globals.player.oneShot("click");
 
         switch (Globals.stage)
         {
@@ -106,6 +113,8 @@ public class ButtonHandler : MonoBehaviour
     {
         Debug.Log("Reset");
 
+        Globals.player.oneShot("click");
+
         switch (Globals.stage)
         {
             case Globals.Stage.STAGE_1: break;
@@ -117,13 +126,15 @@ public class ButtonHandler : MonoBehaviour
         //activate auto button again
         autoButtonUsed = false;
     }
-    
+
+
+
     // not sure what tha purpose is
     public void btnMoveRight_Click()
     {
         Debug.Log("Move Right");
     }
-    
+
     public void btnMoveLeft_Click()
     {
         Debug.Log("Move Left");

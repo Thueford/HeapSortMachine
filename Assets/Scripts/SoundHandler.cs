@@ -60,7 +60,8 @@ public class SoundHandler : MonoBehaviour
     }
 
     public void scaleAllVolumes(float v) {
-        v = v>1 ? 1f : v<0 ? 0f : v;
+        v = v>0.99 ? 1f : v<0.01 ? 0f : v;
+        if (Math.Abs(musicPlayer.volume-v) > 0.5) return;
         musicPlayer.volume = master * v;
         ambiencePlayer.volume = master * v;
         oneShotPlayer.volume = master * v;
