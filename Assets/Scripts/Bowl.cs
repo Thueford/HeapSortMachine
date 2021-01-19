@@ -13,6 +13,10 @@ public class Bowl : MonoBehaviour
     private float moveSpeed;
     private static bool isSwapping = false;
     private Vector3 movePosition;
+    private Checkpoint tempCheckpoint;
+
+    //to know how much bowls are still moving
+    public static List<Bowl> moving = new List<Bowl>();
 
     public bool enableDragnDrop = true;
     public int value, index;
@@ -74,8 +78,10 @@ public class Bowl : MonoBehaviour
         } else
         {
             //for the case picked = true
+            //Debug.Log(checkpoints);
             if (automove)
             {
+                
                 if (checkpoints.Count == 0 && movePosition == new Vector3()) return;
                 if (movePosition == new Vector3())
                 {
@@ -133,12 +139,54 @@ public class Bowl : MonoBehaviour
 
                         //muss swapping gefixt werden
                         //startPosition = transform.position;
+
+                        //not moving anymore
+                        moving.Remove(this);
+                        //checks of this bowl was last that was moving
+                        if (moving.Count == 0)
+                        {
+                            //set everything to normal again
+                            foreach (GameObject g in Globals.globals.toMoveZ)
+                            {
+                                Vector3 tempvec = g.transform.position;
+                                tempvec.z += 10;
+
+                                g.transform.position = tempvec;
+                            }
+                        } 
+
                         moveToHole(swapHole);
                         return;
                     }
                 }
+                //*/Neue implementierung (kurzer aber nicht fertig also nicht ändern @jakob)
 
+                /*if (checkpoints.Count == 0 && movePosition == new Vector3()) return;
+
+                if (movePosition != transform.position && movePosition != new Vector3())
+                {
+                    //do stuff idk
+                } else
+                {
+                    if (checkpoints.Count == 0) return;
+
+                    tempCheckpoint = checkpoints[0];
+                    checkpoints.RemoveAt(0);
+
+                    if (tempCheckpoint.checkpoint == Checkpoint.CheckpointType.TELEPORT) nextCheckpointTeleport = true;
+                    movePosition = tempCheckpoint.transform.position;
+                }
+
+                if (nextCheckpointTeleport)
+                {
+                    transform.position = movePosition;
+                    nextCheckpointTeleport = false;
+                }//*/
+
+                //movespeed wieder scalled setzten
+                if (!moving.Contains(this)) moving.Add(this); 
                 transform.position = Vector3.MoveTowards(transform.position, movePosition, moveSpeed * Time.deltaTime);
+                return;
             }
         }
 
