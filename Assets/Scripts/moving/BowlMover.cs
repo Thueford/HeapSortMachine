@@ -41,7 +41,7 @@ public class BowlMover : MonoBehaviour
         //create checkpoint on the holes position here
         if (!Checkpoint.used)
         {
-            foreach (Hole hole in Globals.getTreeHoles())
+            foreach (Hole hole in Globals.getHoles(Hole.TREEHOLE))
             {
                 GameObject chp = Instantiate(bowlMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
                 Checkpoint cp = chp.GetComponent<Checkpoint>();
@@ -49,7 +49,6 @@ public class BowlMover : MonoBehaviour
                 cp.holeID = hole.value;
                 checkpointlist.Add(cp);
                 Checkpoint.used = true;
-
             }
         }
         //sort checkpoint list

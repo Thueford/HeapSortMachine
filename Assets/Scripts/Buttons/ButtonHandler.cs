@@ -21,7 +21,7 @@ public class ButtonHandler : MonoBehaviour
     public void btnStart_Click()
     {
         Debug.Log("Start");
-        Globals.SetStage(Globals.Stage.STAGE_1_1, "GameScene"); // TODO: will be intro
+        Globals.SetStage(Globals.Stage.STAGE_1, "GameScene"); // TODO: will be intro
         //playClickSound();
     }
 
@@ -63,11 +63,10 @@ public class ButtonHandler : MonoBehaviour
         
         switch (Globals.stage)
         {
-            case Globals.Stage.STAGE_1_1: Dialogue.Hilfe1_1(); break;
-            case Globals.Stage.STAGE_1_2: Dialogue.Hilfe1_2(); break;
-            case Globals.Stage.STAGE_2_1: Dialogue.Hilfe2_1(); break;
-            case Globals.Stage.STAGE_2_2: Dialogue.Hilfe2_2(); break;
-            case Globals.Stage.STAGE_2_3: Dialogue.Hilfe2_3(); break;
+            case Globals.Stage.STAGE_1: Dialogue.Hilfe_1(); break;
+            case Globals.Stage.STAGE_2: Dialogue.Hilfe_2(); break;
+            case Globals.Stage.STAGE_3: Dialogue.Hilfe_3(); break;
+            case Globals.Stage.STAGE_4: Dialogue.Hilfe_4(); break;
         }
     }
     public void btnTest_Click()
@@ -76,16 +75,10 @@ public class ButtonHandler : MonoBehaviour
         bool b;
         switch (Globals.stage)
         {
-            case Globals.Stage.STAGE_1_1:
-                b = LevelTests.Test_1_1(); Dialogue.Test_1_1(b); break;
-            case Globals.Stage.STAGE_1_2:
-                b = LevelTests.Test_1_2(); Dialogue.Test_1_2(b); break;
-            case Globals.Stage.STAGE_2_1:
-                b = LevelTests.Test_2_1(); Dialogue.Test_2_1(b); break;
-            case Globals.Stage.STAGE_2_2:
-                b = LevelTests.Test_2_2(); Dialogue.Test_2_2(b); break;
-            case Globals.Stage.STAGE_2_3:
-                b = LevelTests.Test_2_3(); Dialogue.Test_2_3(b); break;
+            case Globals.Stage.STAGE_1: b = LevelTests.Test_1(); Dialogue.Test_1(b); break;
+            case Globals.Stage.STAGE_2: b = LevelTests.Test_2(); Dialogue.Test_2(b); break;
+            case Globals.Stage.STAGE_3: b = LevelTests.Test_3(); Dialogue.Test_3(b); break;
+            case Globals.Stage.STAGE_4: b = LevelTests.Test_4(); Dialogue.Test_4(b); break;
         }
     }
 
@@ -95,11 +88,10 @@ public class ButtonHandler : MonoBehaviour
 
         switch (Globals.stage)
         {
-            case Globals.Stage.STAGE_1_1: Dialogue.Auto_1_1(); break;
-            case Globals.Stage.STAGE_1_2: Dialogue.Auto_1_2(); break;
-            case Globals.Stage.STAGE_2_1: Dialogue.Auto_2_1(); break;
-            case Globals.Stage.STAGE_2_2: Dialogue.Auto_2_2(); break;
-            case Globals.Stage.STAGE_2_3: Dialogue.Auto_2_3(); break;
+            case Globals.Stage.STAGE_1: Dialogue.Auto_1(); break;
+            case Globals.Stage.STAGE_2: Dialogue.Auto_2(); break;
+            case Globals.Stage.STAGE_3: Dialogue.Auto_3(); break;
+            case Globals.Stage.STAGE_4: Dialogue.Auto_4(); break;
         }
 
         //activate autobowlmovement
@@ -116,11 +108,10 @@ public class ButtonHandler : MonoBehaviour
 
         switch (Globals.stage)
         {
-            case Globals.Stage.STAGE_1_1: break;
-            case Globals.Stage.STAGE_1_2: break;
-            case Globals.Stage.STAGE_2_1: break;
-            case Globals.Stage.STAGE_2_2: break;
-            case Globals.Stage.STAGE_2_3: break;
+            case Globals.Stage.STAGE_1: break;
+            case Globals.Stage.STAGE_2: break;
+            case Globals.Stage.STAGE_3: break;
+            case Globals.Stage.STAGE_4: break;
         }
 
         //activate auto button again
