@@ -3010,6 +3010,7 @@ GameObject:
   - component: {fileID: 595838499}
   - component: {fileID: 595838501}
   - component: {fileID: 595838500}
+  - component: {fileID: 595838502}
   m_Layer: 5
   m_Name: Speechbubble
   m_TagString: Untagged
@@ -3076,6 +3077,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 595838498}
   m_CullTransparentMesh: 0
+--- !u!114 &595838502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595838498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8911eda7a837d6409b5e0e301f8a3e3, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  nameText: {fileID: 458637789}
+  dialogueText: {fileID: 255900837}
+  contiButton: {fileID: 1124710312}
 --- !u!1 &679118633
 GameObject:
   m_ObjectHideFlags: 0
@@ -4535,7 +4551,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1272656813}
+      - m_Target: {fileID: 0}
         m_MethodName: DisplayNextSentence
         m_Mode: 1
         m_Arguments:
@@ -4805,7 +4821,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value:
-      objectReference: {fileID: 1272656813}
+      objectReference: {fileID: 0}
     - target: {fileID: 7897487192518752494, guid: 65699f7b270a09d4e97d56b2c846ddde,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -5425,7 +5441,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 66dece31ecffb5942b8b31fb94026ba3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f497e1fc1cac53443bdf2a8013b02cb7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
