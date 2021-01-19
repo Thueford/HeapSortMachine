@@ -149,13 +149,12 @@ public class Bowl : MonoBehaviour
     private float getScaledSpeed(Vector3 pos, Vector3 npos, int speed)
     {
         //for testing 
-        speed = 2;
+        speed = 12;
 
         float d = Vector3.Distance(pos, npos);
+        Debug.Log(d);
 
-        return speed / d*5;
-
-        //return 0;
+        return speed / d;
     }
 
     public void moveToHole(Collider2D to) {
