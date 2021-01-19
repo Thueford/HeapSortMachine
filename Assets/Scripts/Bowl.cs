@@ -27,7 +27,6 @@ public class Bowl : MonoBehaviour
         bowlCollider = GetComponent<Collider2D>();
         startPosition = transform.position;
         setValue(value);
-
     }
 
     // Update is called once per frame
@@ -58,11 +57,11 @@ public class Bowl : MonoBehaviour
 
                 if (swapHole != startHole) { // Ball Movement happens
                     Hole to = swapHole.gameObject.GetComponent<Hole>();
-                    if (to.getContent() != null) { // Swap two Balls
+                    if (to.content != null) { // Swap two Balls
                         if (startHole != null) {
                             isSwapping = true; // To ignore Collision Triggers
 
-                            to.getContent().moveToHole(startHole);
+                            to.content.moveToHole(startHole);
                             moveToHole(swapHole);
 
                             isSwapping = false; // To notice Collision Triggers again
@@ -212,28 +211,22 @@ public class Bowl : MonoBehaviour
 
     public void visible(bool v)
     {
-        if (v)
-        {
-            bowlCollider.gameObject.SetActive(true);
-        } else
-        {
-            bowlCollider.gameObject.SetActive(false);
-        }
+        bowlCollider.gameObject.SetActive(v);
     }
 
     public int getValue()
     {
-        return this.value;
+        return value;
     }
 
     public int getHoleIDofBowl()
     {
-        return this.holeId;
+        return holeId;
     }
 
     public int getIndex()
     {
-        return this.index;
+        return index;
     }
 
     public void setValue(int val, bool nums = true)

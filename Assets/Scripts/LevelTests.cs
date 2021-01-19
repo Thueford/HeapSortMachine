@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using System.Text.RegularExpressions;
+
 public class LevelTests : MonoBehaviour
 {
     
@@ -17,15 +19,15 @@ public class LevelTests : MonoBehaviour
         
     }
 
-    public static bool Test_1_1()
+    public static bool Test_1()
     {
         bool test;
         bool allClear = true;
-        foreach (Hole h in Globals.getTreeHoles())//Itterate through every tree Hole
+        foreach (Hole h in Globals.getHoles(Hole.TREEHOLE)) //Iterate through every tree Hole
         {    
                                                    
               
-            if (!h.content)// no boll in hole
+            if (!h.content) // no boll in hole
             {   
                 allClear = false;
                 h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[2];
@@ -48,16 +50,37 @@ public class LevelTests : MonoBehaviour
         return allClear;
     }
 
-    public static bool Test_1_2()
-    //if textfield left = 2n+1 and textfield Right = 2n+2 return true
+    // throws Exceptions
+    static double Eval(string expression)
     {
-        if (GameObject.Find("edtRuleLeft").GetComponent<InputField>().text == "2n+1" && GameObject.Find("edtRuleRight").GetComponent<InputField>().text == "2n+2")
-            return true;
-        else
-            return false;
+        return Convert.ToDouble(new System.Data.DataTable().Compute(expression, ""));
     }
 
-    public static bool Test_2_1()
+    public static bool Test_2()
+    //if textfield left = 2n+1 and textfield Right = 2n+2 return true
+    {
+        InputField ifl = GameObject.Find("edtRuleLeft").GetComponent<InputField>();
+        InputField ifr = GameObject.Find("edtRuleLeft").GetComponent<InputField>();
+        bool result = true;
+        // Regex.Match(ifl.text, "^\\s*2\\s*[*]?\\s*n\\s*[+]\\s*1\\s*$").Success &&
+        // Regex.Match(ifr.text, "^\\s*2\\s*[*]?\\s*n\\s*[+]\\s*2\\s*$").Success;
+
+        try { 
+            for (int n = 0; n < Globals.bowlCount; n++) { 
+                if (Math.Round(Eval(ifl.text.Replace("n", n.ToString()))) != 2 * n + 1) result = false;
+                if (Math.Round(Eval(ifr.text.Replace("n", n.ToString()))) != 2 * n + 2) result = false;
+                if (!result) break;
+            }
+        } catch(Exception e) {
+            Debug.Log("left input Field has errors");
+            result = false;
+            // TODO: color input fields red
+        }
+
+        return result;
+    }
+
+    public static bool Test_3()
     {
         // TODO
         return false;
@@ -69,7 +92,7 @@ public class LevelTests : MonoBehaviour
         return false;
     }
 
-    public static bool Test_2_3()
+    public static bool Test_4()
     {
         // TODO
         return false;
@@ -79,10 +102,7 @@ public class LevelTests : MonoBehaviour
     private static IEnumerator waitASecondThenResetHoleColor()
     {
         yield return new WaitForSeconds(1);
-        foreach (Hole h in Globals.getTreeHoles())
-        {
-
+        foreach (Hole h in Globals.getHoles(Hole.TREEHOLE))
             h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[0];
-        }
     }
 }
