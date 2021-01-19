@@ -50,7 +50,7 @@ public class Fade : MonoBehaviour
             fadeColor.a = Mathf.Pow(alpha, 3);
             img.color = fadeColor;
         }
-        Globals.player.scaleAllVolumes(alpha);
+        Globals.player.scaleAllVolumes(1-alpha);
     }
 
     private void doFade(bool fadeIn)
