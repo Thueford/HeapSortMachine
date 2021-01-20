@@ -14,15 +14,12 @@ public  class Dialogue : MonoBehaviour
         public static string namenew;
         private static Dialogue self;
     public DialogueManager dialogueManager;
-
+    public Json_Test js = new Json_Test();
+    
     void Awake()
     {
-        
         self = this;
-       
     }
-
-  
 
     public static void nameSetter(string k)
     {
@@ -44,8 +41,8 @@ public  class Dialogue : MonoBehaviour
     {
         sentences.Clear();
         nameSetter("Hilfe1_1");
-        string[] sentence = { "Fülle den Baum von oben nach unten!", "Orientiere dich an der vorgegebenen Liste.","Das sind alle Tipps für diese Stage."};
-        //  sentences.AddRange(sentence);
+        //string[] sentence = { "Fülle den Baum von oben nach unten!", "Orientiere dich an der vorgegebenen Liste.","Das sind alle Tipps für diese Stage."};
+        string[] sentence = 
         sentences.AddRange(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
@@ -57,7 +54,7 @@ public  class Dialogue : MonoBehaviour
         nameSetter("Hilfe1_2");
         string[] sentence = { "Hier gibt es leider keine Tipps" };
         sentences.AddRange(sentence);
-       DialogueManager.self.StartDialogue();
+        DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
@@ -66,7 +63,7 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         nameSetter("Hilfe2_1");
         string[] sentence = { "Achte darauf, dass die größte Zahl im Dreierkomplex oben steht.", "Das sind alle Tipps für diese Stage." };
-         sentences.AddRange(sentence);
+        sentences.AddRange(sentence);
         ////DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
@@ -77,8 +74,8 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         nameSetter("Hilfe2_2");
         string[] sentence = { "Am Ende muss das größte Element die Wurzel sein", "Prüfe ob das vorherige Heapify ein anderes zerstört hat", "Das sind alle Tipps für diese Stage." };
-         sentences.AddRange(sentence);
-       DialogueManager.self.StartDialogue();
+        sentences.AddRange(sentence);
+        DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
     */
@@ -88,7 +85,7 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         nameSetter("Hilfe2_3");
         string[] sentence = { "Das unterste Blatt ist am weitesten von der Wurzel entfernt.", "Tausche doch die Wurzel mit dem untersten Blatt.", "Das sind alle Tipps für diese Stage." };
-         sentences.AddRange(sentence);
+        sentences.AddRange(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
@@ -125,8 +122,6 @@ public  class Dialogue : MonoBehaviour
         {
             nameSetter("Richtig!");
             string[] sentence_random = { "Super das ist ja fast wie meine eigen Arbeit.", "Wenn du so weiter machst kann ich dich meinen Schüler nennen." };
-
-            // Random importieren
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { sent_rand, "Da hast du aber einen schönenen Baum erstellt.", "Als nächstes behandeln wir Stage 2.1" };

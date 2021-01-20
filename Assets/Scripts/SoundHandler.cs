@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class SoundHandler : MonoBehaviour
 {
@@ -9,10 +10,11 @@ public class SoundHandler : MonoBehaviour
     private AudioSource musicPlayer;
     private AudioSource ambiencePlayer;
     private AudioSource oneShotPlayer;
-    public float master = 1f;
+    private static float master = 0.6f;
     public string[] names;
     public AudioClip[] clips;
     private Dictionary<string, AudioClip> clipDict = new Dictionary<string, AudioClip>();
+    private static bool rolling = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,19 +25,22 @@ public class SoundHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Bowl.moving.Count > 0 && !oneShotPlayer.isPlaying) {
+            oneShotPlayer.PlayOneShot(clipDict["roll"]);
+            rolling = true;}
+        if (rolling && Bowl.moving.Count == 0) {oneShotPlayer.Stop(); rolling = false;}
     }
 
     void Awake() {
         fillClipDict();
         setSources();
         setProperties(musicPlayer, true, false, null);
-        // setProperties(musicPlayer, true, false, clipDoct["music"]);
-        setProperties(ambiencePlayer, true, false, null);
-        // setProperties(ambiencePlayer, true, false, clipDoct["ambience"]);
+        // setProperties(musicPlayer, true, false, clipDict["music"]);
+        // setProperties(ambiencePlayer, true, false, null);
+        setProperties(ambiencePlayer, true, false, clipDict["ambience"]);
         setProperties(oneShotPlayer, false, false, null);
         // musicPlayer.Play();
-        // ambiencePlayer.Play();
+        if (SceneManager.GetActiveScene().name == "GameScene") ambiencePlayer.Play();
     }
 
     private void setSources() {
@@ -79,5 +84,4 @@ public class SoundHandler : MonoBehaviour
         clipDict.TryGetValue(name, out AudioClip clip);
         if (clip != null) oneShotPlayer.PlayOneShot(clipDict[name]);
     }
-
 }

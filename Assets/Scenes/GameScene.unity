@@ -3238,15 +3238,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cbbd28eca0596b4395aefe11bcf4909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  master: 1
   names:
   - click
   - pick
   - drop
+  - ambience
+  - roll
+  - wrong
+  - right
   clips:
   - {fileID: 8300000, guid: d5fbf17f729bb8f4a96cffdf3065469b, type: 3}
   - {fileID: 8300000, guid: e21764b96f1a4aa49b5907f40f5442d7, type: 3}
   - {fileID: 8300000, guid: 7f1719229d1be824f83ae86b3b7f166b, type: 3}
+  - {fileID: 8300000, guid: 042274a6a42e5894b886db6e592c8d11, type: 3}
+  - {fileID: 8300000, guid: 7ffb59f307f444c418df849561ffa2a4, type: 3}
+  - {fileID: 8300000, guid: b0330c4cf3fcfa5469f285d8cc084304, type: 3}
+  - {fileID: 8300000, guid: 43a0896822e02784c8750a5e1c948da3, type: 3}
 --- !u!114 &502101372
 MonoBehaviour:
   m_ObjectHideFlags: 0
