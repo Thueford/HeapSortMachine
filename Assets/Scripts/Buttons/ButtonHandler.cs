@@ -62,6 +62,7 @@ public class ButtonHandler : MonoBehaviour
 
         Globals.player.oneShot("click");
 
+        DialogueManager.setMecha(DialogueManager.self.sprExplain);
         switch (Globals.stage)
         {
             case Globals.Stage.STAGE_1: Dialogue.Hilfe_1(); break;

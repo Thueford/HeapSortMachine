@@ -32,11 +32,11 @@ public  class Dialogue : MonoBehaviour
 
     public static void setUnvisible()
     {
-        DialogueManager.self.neutral.gameObject.SetActive(false);
+        /*DialogueManager.self.neutral.gameObject.SetActive(false);
         DialogueManager.self.happy.gameObject.SetActive(false);
         DialogueManager.self.erklaerend.gameObject.SetActive(false);
         DialogueManager.self.skeptisch.gameObject.SetActive(false);
-        DialogueManager.self.zornig.gameObject.SetActive(false);
+        DialogueManager.self.zornig.gameObject.SetActive(false);*/
     }
 
     // Hilfe Zone/////////////////////////////////////////////////////////
@@ -50,7 +50,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
         setUnvisible();
-        DialogueManager.self.erklaerend.gameObject.SetActive(true);
+        // DialogueManager.self.sprExplain.gameObject.SetActive(true);
     }
  
     public static void Hilfe_2()
@@ -62,7 +62,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
         setUnvisible();
-        DialogueManager.self.erklaerend.gameObject.SetActive(true);
+        // DialogueManager.self.sprExplain.gameObject.SetActive(true);
     }
 
     public static void Hilfe_3()
@@ -74,7 +74,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
         setUnvisible();
-        DialogueManager.self.erklaerend.gameObject.SetActive(true);
+        // DialogueManager.self.sprExplain.gameObject.SetActive(true);
     }
 
     public static void Hilfe_4()
@@ -86,7 +86,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
         setUnvisible();
-        DialogueManager.self.erklaerend.gameObject.SetActive(true);
+        // DialogueManager.self.sprExplain.gameObject.SetActive(true);
     }
 
     //Test Zone     /////////////////////////////////////////////////////////
@@ -102,7 +102,7 @@ public  class Dialogue : MonoBehaviour
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] {json.level_complete.stage_1.text[0], sent_rand, "Als nächstes behandeln wir Stage 2" };
             setUnvisible();
-            DialogueManager.self.happy.gameObject.SetActive(true);
+            // DialogueManager.self.sprHappy.gameObject.SetActive(true);
         }
         else
         {
@@ -112,7 +112,7 @@ public  class Dialogue : MonoBehaviour
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
             setUnvisible();
-            DialogueManager.self.zornig.gameObject.SetActive(true);
+            // DialogueManager.self.sprAngry.gameObject.SetActive(true);
         }
         sentenceSetter(sentence);
         DialogueManager.self.StartDialogue();
@@ -131,7 +131,7 @@ public  class Dialogue : MonoBehaviour
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { json.level_complete.stage_2.text[0], sent_rand, "Als nächstes behandeln wir Stage 3" };
             setUnvisible();
-            DialogueManager.self.happy.gameObject.SetActive(true);
+            // DialogueManager.self.sprHappy.gameObject.SetActive(true);
         }
         else
         {
@@ -141,7 +141,7 @@ public  class Dialogue : MonoBehaviour
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
             setUnvisible();
-            DialogueManager.self.zornig.gameObject.SetActive(true);
+            // DialogueManager.self.sprAngry.gameObject.SetActive(true);
         }
         sentenceSetter(sentence);
         DialogueManager.self.StartDialogue();
@@ -160,7 +160,7 @@ public  class Dialogue : MonoBehaviour
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { json.level_complete.stage_3.text[0], sent_rand, "Als nächstes behandeln wir Stage 4" };
             setUnvisible();
-            DialogueManager.self.happy.gameObject.SetActive(true);
+            // DialogueManager.self.sprHappy.gameObject.SetActive(true);
         }
         else
         {
@@ -170,7 +170,7 @@ public  class Dialogue : MonoBehaviour
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
             setUnvisible(); ;
-            DialogueManager.self.zornig.gameObject.SetActive(true);
+            // DialogueManager.self.sprAngry.gameObject.SetActive(true);
         }
         sentenceSetter(sentence);
         DialogueManager.self.StartDialogue();
@@ -189,7 +189,7 @@ public  class Dialogue : MonoBehaviour
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { json.level_complete.stage_4.text[0], sent_rand, "Super du hast alle Stages gemeistert." };
             setUnvisible();
-            DialogueManager.self.happy.gameObject.SetActive(true);
+            // DialogueManager.self.sprHappy.gameObject.SetActive(true);
         }
         else
         {
@@ -199,7 +199,7 @@ public  class Dialogue : MonoBehaviour
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
             setUnvisible();
-            DialogueManager.self.zornig.gameObject.SetActive(true);
+            // DialogueManager.self.sprAngry.gameObject.SetActive(true);
         }
         sentenceSetter(sentence);
         DialogueManager.self.StartDialogue();
@@ -220,7 +220,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
         setUnvisible();
-        DialogueManager.self.skeptisch.gameObject.SetActive(true);
+        // DialogueManager.self.sprSceptic.gameObject.SetActive(true);
     }
     public static void Auto_2()
     {
@@ -233,7 +233,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
         setUnvisible();
-        DialogueManager.self.skeptisch.gameObject.SetActive(true);
+        // DialogueManager.self.sprSceptic.gameObject.SetActive(true);
     }
     public static void Auto_3()
     {
@@ -246,7 +246,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
         setUnvisible();
-        DialogueManager.self.skeptisch.gameObject.SetActive(true);
+        // DialogueManager.self.sprSceptic.gameObject.SetActive(true);
     }
     public static void Auto_4()
     {
@@ -259,7 +259,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
         setUnvisible();
-        DialogueManager.self.skeptisch.gameObject.SetActive(true);
+        // DialogueManager.self.sprSceptic.gameObject.SetActive(true);
     }
     
 

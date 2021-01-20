@@ -20,6 +20,7 @@ public class Globals : MonoBehaviour
     public Sprite[] holeSprites;
 
     public Stage startStage;
+    public Stage rdonlyStage;
     public GameObject bowlPrefab;
     public GameObject bowlHolder;
     public GameObject bowlTextPrefab;
@@ -85,16 +86,17 @@ public class Globals : MonoBehaviour
             loadScene = "MainMenu";
             s = Stage.MENU;
         }
-        
+
+        Debug.Log("SetStage: " + s);
         if (loadScene != null)
         {
             bowls.Clear();
             holes.Clear();
             SceneManager.LoadScene(loadScene);
+            Debug.Log("SetStage " + s + " Afterload");
         }
 
-        // dunno if this will be needed sometime
-        switch (stage = s)
+        switch (globals.rdonlyStage = stage = s)
         {
             case Stage.MENU: break;
             case Stage.INTRO: break;
