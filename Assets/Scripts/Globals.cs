@@ -16,9 +16,11 @@ public class Globals : MonoBehaviour
     public static Random ran = new Random();
     public static SoundHandler player;
 
+    public Button[] heapChkBtns;
     public GameObject[] toMoveZ;
     public Sprite[] bowlsBlank;
     public Sprite[] holeSprites;
+    public Sprite[] jointSprites;
 
     public Stage startStage;
     public GameObject bowlPrefab;

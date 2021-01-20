@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Joint : MonoBehaviour
 {
@@ -33,5 +34,17 @@ public class Joint : MonoBehaviour
             return;
         }
         Bowl.swapTwo(hole1.content, hole2.content);
+
+        Globals.globals.heapChkBtns[hole1.value].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;
+        if (hole2.value < 7) Globals.globals.heapChkBtns[hole2.value].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;
+    }
+
+    public static Joint[] getJoints(int n) {
+        if (n > 6) return null;
+        Joint[] tmp = new Joint[2];
+        foreach (Joint j in Globals.joints) {
+            if (j.hole1.value == n) tmp[tmp[0] == null ? 0 : 1] = j;
+        }
+        return tmp;
     }
 }

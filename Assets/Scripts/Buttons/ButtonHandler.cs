@@ -153,11 +153,12 @@ public class ButtonHandler : MonoBehaviour
         if (Globals.stage != Globals.Stage.STAGE_3 && Globals.stage != Globals.Stage.STAGE_4) return;
 
         GameObject btn = ((PointerEventData)ev).pointerEnter;
-        btn.GetComponent<Image>().sprite = sprHeapChk;
 
         Match m = Regex.Match(btn.name, "\\((\\d+)\\)$");
         int n = int.Parse(m.Groups[1].Value);
-        LevelTests.Test_3_Heapified(n);
+        bool res = LevelTests.Test_3_Heapified(n);
+
+        btn.GetComponent<Image>().sprite = res ? sprHeapChk : sprHeapUnchk;
     }
 
     // not sure what tha purpose is

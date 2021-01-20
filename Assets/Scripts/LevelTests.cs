@@ -6,17 +6,17 @@ using System.Text.RegularExpressions;
 
 public class LevelTests : MonoBehaviour
 {
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public static bool Test_1()
@@ -24,15 +24,15 @@ public class LevelTests : MonoBehaviour
 
         bool allClear = true;
         foreach (Hole h in Globals.getHoles(Hole.TREEHOLE)) //Iterate through every tree Hole
-        {    
-                                                   
-              
+        {
+
+
             if (!h.content) // no boll in hole
-            {   
+            {
                 allClear = false;
                 h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[2];
-            }    
-                
+            }
+
             else if (h.content.index == h.value)// index of ball in Hole is equal to value of Hole
             {
                 h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[1];
@@ -43,11 +43,11 @@ public class LevelTests : MonoBehaviour
                 h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[2];
                 allClear = false;
             }
-            
+
         }
         // every ball is in the right hole
 
-        Globals.globals.StartCoroutine(waitASecondThenResetHoleColor());
+        Globals.globals.StartCoroutine(waitASecondThenResetColor());
         return allClear;
     }
 
@@ -67,7 +67,7 @@ public class LevelTests : MonoBehaviour
         // Regex.Match(ifl.text, "^\\s*2\\s*[*]?\\s*n\\s*[+]\\s*1\\s*$").Success &&
         // Regex.Match(ifr.text, "^\\s*2\\s*[*]?\\s*n\\s*[+]\\s*2\\s*$").Success;
 
-        try { 
+        try {
                 if (Math.Round(Eval(ifl.text.Replace("n", "42"))) != 1 + 84) result = false;
                 if (Math.Round(Eval(ifr.text.Replace("n", "42"))) != 2 + 84) result = false;
         } catch(Exception e) {
@@ -87,7 +87,23 @@ public class LevelTests : MonoBehaviour
 
     public static bool Test_3_Heapified(int n)
     {
-        return false;
+        Joint[] tmp = Joint.getJoints(n);
+        bool b = true;
+
+        //TODO
+        //implement comparison rule
+        for (int i = 0; i < 2; i++) {
+            if (tmp[i].hole1.content.value > tmp[i].hole2.content.value) {
+                tmp[i].GetComponent<SpriteRenderer>().sprite = Globals.globals.jointSprites[n>0 ? n>2 ? 4 : 2 : 0];
+                } else {
+                    b = false;
+                    tmp[i].GetComponent<SpriteRenderer>().sprite = Globals.globals.jointSprites[n>0 ? n>2 ? 5 : 3 : 1];
+                }
+            tmp[i].GetComponent<SpriteRenderer>().enabled = true;
+        }
+
+        Globals.globals.StartCoroutine(waitASecondThenResetColor());
+        return b;
     }
 
     public static bool Test_4()
@@ -97,10 +113,12 @@ public class LevelTests : MonoBehaviour
     }
 
 
-    private static IEnumerator waitASecondThenResetHoleColor()
+    private static IEnumerator waitASecondThenResetColor()
     {
         yield return new WaitForSeconds(1);
         foreach (Hole h in Globals.getHoles(Hole.TREEHOLE))
             h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[0];
+        foreach (Joint j in Globals.joints)
+            j.GetComponent<SpriteRenderer>().enabled = false;
     }
 }
