@@ -66,9 +66,7 @@ public class Globals : MonoBehaviour
         foreach (Hole h in getHoles(Hole.LISTHOLE))
         {
             //h.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            Vector3 hole_pos = h.transform.position;
-            hole_pos.z = 5;
-            bowls.Add(Bowl.spawn(h.value, values[cnt], hole_pos));
+            bowls.Add(Bowl.spawn(h.value, values[cnt], Bowl.setVecZ(h.transform.position, 5)));
             cnt++;
         }
     }
@@ -98,10 +96,10 @@ public class Globals : MonoBehaviour
         {
             case Stage.MENU: break;
             case Stage.INTRO: break;
-            case Stage.STAGE_1: Reset.Reset_1(); break;
-            case Stage.STAGE_2: Reset.Reset_2(); break;
-            case Stage.STAGE_3: Reset.Reset_3(); break;
-            case Stage.STAGE_4: Reset.Reset_4(); break;
+            case Stage.STAGE_1: break;
+            case Stage.STAGE_2: break;
+            case Stage.STAGE_3: break;
+            case Stage.STAGE_4:break;
             case Stage.END: break;
         }
     }

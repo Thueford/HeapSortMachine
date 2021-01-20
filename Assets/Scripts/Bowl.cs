@@ -25,6 +25,9 @@ public class Bowl : MonoBehaviour
     //list of checkpoints to move
     public List<Checkpoint> checkpoints = new List<Checkpoint>();
 
+    private const int ZDRAGGED = -3;
+    private const int ZDROPPED = -1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +54,7 @@ public class Bowl : MonoBehaviour
                     picked = true;
                     Globals.player.oneShot("pick");
                     //changes z of bowl+text to 3
-                    transform.position = setVecZ(startPosition, 3);
+                    transform.position = setVecZ(startPosition, ZDRAGGED);
                 }
             }
 
@@ -71,11 +74,11 @@ public class Bowl : MonoBehaviour
                             moveToHole(swapHole);
 
                             isSwapping = false; // To notice Collision Triggers again
-                        } else transform.position = setVecZ(startPosition, 5);
+                        } else transform.position = setVecZ(startPosition, ZDROPPED);
                     } else { // Move a single Ball
                         moveToHole(swapHole);
                     }
-                } else transform.position = setVecZ(startPosition, 5); //changes z of bowl+text to 5
+                } else transform.position = setVecZ(startPosition, ZDROPPED); //changes z of bowl+text to 5
             }
         } else
         {
@@ -137,7 +140,7 @@ public class Bowl : MonoBehaviour
                     {
                         enableDragnDrop = true;
                         automove = false;
-                        //transform.position = setVecZ(transform.position, 5);
+                        //transform.position = setVecZ(transform.position, ZDROPPED);
 
                         //muss swapping gefixt werden
                         //startPosition = transform.position;
@@ -150,10 +153,7 @@ public class Bowl : MonoBehaviour
                             //set everything to normal again
                             foreach (GameObject g in Globals.globals.toMoveZ)
                             {
-                                Vector3 tempvec = g.transform.position;
-                                tempvec.z += 10;
-
-                                g.transform.position = tempvec;
+                                g.transform.position = addVecZ(g.transform.position, 10);
                             }
                         }
 
@@ -215,16 +215,20 @@ public class Bowl : MonoBehaviour
 
     private void fixPosition(Collider2D coll) {
         startPosition = coll.transform.position;
-        transform.position = setVecZ(startPosition, 5);
+        transform.position = setVecZ(startPosition, ZDROPPED);
 
         startHole = coll;
         swapHole = coll;
     }
 
     public static Vector3 setVecZ(Vector3 vec, int z) {
-        Vector3 tempvec = vec;
-        tempvec.z = z;
-        return tempvec;
+        vec.z = z;
+        return vec;
+    }
+    public static Vector3 addVecZ(Vector3 vec, int z)
+    {
+        vec.z = z;
+        return vec;
     }
 
     public static Bowl spawn(int index, int value, Vector3 pos)
@@ -232,8 +236,7 @@ public class Bowl : MonoBehaviour
         GameObject bowl = Instantiate(Globals.globals.bowlPrefab, pos, Quaternion.identity);
         bowl.transform.SetParent(Globals.globals.bowlHolder.transform);
 
-        Vector3 bowl_pos = bowl.transform.position;
-        bowl_pos.z -= 1;
+        Vector3 bowl_pos = addVecZ(bowl.transform.position, -1);
         GameObject txt = Instantiate(Globals.globals.bowlTextPrefab, bowl_pos, Quaternion.identity);
         txt.transform.SetParent(bowl.transform);
 
@@ -255,7 +258,7 @@ public class Bowl : MonoBehaviour
         enableDragnDrop = false;
         automove = true;
 
-        transform.position = setVecZ(transform.position, 3);
+        transform.position = setVecZ(transform.position, ZDRAGGED);
     }
 
     public void visible(bool v)

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Button : MonoBehaviour
 {
     private static GameObject lastBtnDown, lastBtnOver, lastBtnHolder;
-    public Dialogue dialogue;
 
     private void Start()
     {
