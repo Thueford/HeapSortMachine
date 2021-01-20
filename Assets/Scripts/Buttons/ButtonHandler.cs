@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -83,12 +84,11 @@ public class ButtonHandler : MonoBehaviour
                 //activate autobowlmovement
                 if (!autoButtonUsed)
                 {
+                    autoButtonUsed = true;
                     BowlMover.autoMoveStart(() => {
                         b = LevelTests.Test_2();
-                        if (b) Globals.SetStage(Globals.Stage.STAGE_3);
-                        Dialogue.Test_2(b);
+                        StartCoroutine(Reset_Anim_Stage3(b));
                     });
-                    autoButtonUsed = true;
                 }
 
                 break;
@@ -96,6 +96,15 @@ public class ButtonHandler : MonoBehaviour
             case Globals.Stage.STAGE_4: b = LevelTests.Test_4(); Dialogue.Test_4(b); break;
         }
         Globals.player.oneShot(b ? "right" : "wrong");
+    }
+
+    private static IEnumerator Reset_Anim_Stage3(bool b)
+    {
+        yield return new WaitForSeconds(0.5f);
+        Dialogue.Test_2(b);
+        yield return new WaitForSeconds(1.5f);
+        Reset.ResetBallsTo(Hole.LISTHOLE);
+        if (b) Globals.SetStage(Globals.Stage.STAGE_3);
     }
 
     public void btnAuto_Click()
@@ -110,6 +119,12 @@ public class ButtonHandler : MonoBehaviour
             case Globals.Stage.STAGE_2: Dialogue.Auto_2(); break;
             case Globals.Stage.STAGE_3: Dialogue.Auto_3(); break;
             case Globals.Stage.STAGE_4: Dialogue.Auto_4(); break;
+        }
+
+        if (!autoButtonUsed)
+        {
+            autoButtonUsed = true;
+            BowlMover.autoMoveStart(null);
         }
     }
 
@@ -135,12 +150,15 @@ public class ButtonHandler : MonoBehaviour
 
     public void btnHeapCheck_Click(BaseEventData ev)
     {
+        if (Globals.stage != Globals.Stage.STAGE_3 && Globals.stage != Globals.Stage.STAGE_4) return;
+        
         GameObject btn = ((PointerEventData)ev).pointerEnter;
-        int n = int.Parse(Regex.Replace(btn.name, "\\((\\d+)\\)$", "\\1"));
+        btn.GetComponent<Image>().sprite = sprHeapChk;
+
+        Match m = Regex.Match(btn.name, "\\((\\d+)\\)$");
+        int n = int.Parse(m.Groups[1].Value);
         LevelTests.Test_3_Heapified(n);
     }
-
-
 
     // not sure what tha purpose is
     public void btnMoveRight_Click()
