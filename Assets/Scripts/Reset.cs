@@ -13,21 +13,31 @@ public class Reset : MonoBehaviour
            {
                if (b.index == h.value)
                 {
-                    Debug.Log("index of bowl "+b.index+"value of hole "+h.value);
                     b.moveToHole(h.GetComponent<Collider2D>());
                 }
            }
        }
+    
     }
 
     public static void Reset_2()
     {
-        // TODO
+        GameObject.Find("edtRuleLeft").GetComponent<InputField>().text = "";
+        GameObject.Find("edtRuleRight").GetComponent<InputField>().text = "";
     }
 
     public static void Reset_3()
     {
-        // TODO
+        foreach (Bowl b in Globals.bowls)
+       {
+           foreach (Hole h in Globals.getHoles(Hole.TREEHOLE))
+           {
+               if (b.index == h.value)
+                {
+                    b.moveToHole(h.GetComponent<Collider2D>());
+                }
+           }
+       }
     }
 
     public static void Reset_4()

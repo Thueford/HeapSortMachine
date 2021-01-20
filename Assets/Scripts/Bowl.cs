@@ -25,14 +25,16 @@ public class Bowl : MonoBehaviour
     //list of checkpoints to move
     public List<Checkpoint> checkpoints = new List<Checkpoint>();
 
-    private const int ZDRAGGED = -3;
-    private const int ZDROPPED = -1;
+    private const int ZDRAGGED = 6 -  3;
+    private const int ZDROPPED = 6 -  1;
+    private const int ZANIMATE = 6 + 21;
 
     // Start is called before the first frame update
     void Start()
     {
         bowlCollider = GetComponent<Collider2D>();
         startPosition = transform.position;
+        Debug.Log("StartZ: " + startPosition.z);
         setValue(value);
     }
 
@@ -153,8 +155,10 @@ public class Bowl : MonoBehaviour
                             //set everything to normal again
                             foreach (GameObject g in Globals.globals.toMoveZ)
                             {
-                                g.transform.position = addVecZ(g.transform.position, 10);
+                                g.transform.position = setVecZ(g.transform.position, ZDROPPED);
                             }
+
+                            BowlMover.AnimationComplete();
                         }
 
                         moveToHole(swapHole);
@@ -225,13 +229,17 @@ public class Bowl : MonoBehaviour
     }
 
     public static Vector3 setVecZ(Vector3 vec, int z) {
-        vec.z = z;
-        return vec;
+        Debug.Log("oldz " + vec.z + " set " + z);
+        Vector3 tv = vec;
+        tv.z = z;
+        return tv;
     }
     public static Vector3 addVecZ(Vector3 vec, int z)
     {
-        vec.z = z;
-        return vec;
+        Debug.Log("oldz " + vec.z + " add " + z);
+        Vector3 tv = vec;
+        tv.z += z;
+        return tv;
     }
 
     public static Bowl spawn(int index, int value, Vector3 pos)
