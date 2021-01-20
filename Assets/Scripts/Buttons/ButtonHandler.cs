@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Text.RegularExpressions;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -6,7 +7,7 @@ public class ButtonHandler : MonoBehaviour
 {
 
     public static ButtonHandler self;
-    public Sprite sprHolderUp, sprHolderDown;
+    public Sprite sprHolderUp, sprHolderDown, sprHeapChk, sprHeapUnchk;
     public static bool autoButtonUsed = false;
 
     // Start is called before the first frame update
@@ -77,9 +78,21 @@ public class ButtonHandler : MonoBehaviour
 
         switch (Globals.stage)
         {
-            case Globals.Stage.STAGE_1: b = LevelTests.Test_1(); Dialogue.Test_1(b); break;
-            case Globals.Stage.STAGE_2: b = LevelTests.Test_2(); Dialogue.Test_2(b); break;
-            case Globals.Stage.STAGE_3: b = LevelTests.Test_3(); Dialogue.Test_3(b); break;
+            case Globals.Stage.STAGE_1: b = LevelTests.Test_1(); if (b) Globals.SetStage(Globals.Stage.STAGE_2); Dialogue.Test_1(b); break;
+            case Globals.Stage.STAGE_2:
+                //activate autobowlmovement
+                if (!autoButtonUsed)
+                {
+                    BowlMover.autoMoveStart(() => {
+                        b = LevelTests.Test_2();
+                        if (b) Globals.SetStage(Globals.Stage.STAGE_3);
+                        Dialogue.Test_2(b);
+                    });
+                    autoButtonUsed = true;
+                }
+
+                break;
+            case Globals.Stage.STAGE_3: b = LevelTests.Test_3(); if (b) Globals.SetStage(Globals.Stage.STAGE_4); Dialogue.Test_3(b); break;
             case Globals.Stage.STAGE_4: b = LevelTests.Test_4(); Dialogue.Test_4(b); break;
         }
         Globals.player.oneShot(b ? "right" : "wrong");
@@ -98,13 +111,6 @@ public class ButtonHandler : MonoBehaviour
             case Globals.Stage.STAGE_3: Dialogue.Auto_3(); break;
             case Globals.Stage.STAGE_4: Dialogue.Auto_4(); break;
         }
-
-        //activate autobowlmovement
-        if (!autoButtonUsed)
-        {
-            BowlMover.autoMoveStart(null);
-            autoButtonUsed = true;
-        }
     }
 
     public void btnReset_Click()
@@ -112,6 +118,8 @@ public class ButtonHandler : MonoBehaviour
         Debug.Log("Reset");
 
         Globals.player.oneShot("click");
+
+        if (Bowl.moving.Count != 0) return;
 
         switch (Globals.stage)
         {
@@ -123,6 +131,13 @@ public class ButtonHandler : MonoBehaviour
 
         //activate auto button again
         autoButtonUsed = false;
+    }
+
+    public void btnHeapCheck_Click(BaseEventData ev)
+    {
+        GameObject btn = ((PointerEventData)ev).pointerEnter;
+        int n = int.Parse(Regex.Replace(btn.name, "\\((\\d+)\\)$", "\\1"));
+        LevelTests.Test_3_Heapified(n);
     }
 
 

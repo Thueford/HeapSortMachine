@@ -34,6 +34,7 @@ public  class Dialogue : MonoBehaviour
     public static void Hilfe_1()
     {
         sentences.Clear();
+
         nameSetter("Hilfe 1:");
         string[] sentence = { "Fülle den Baum von oben nach unten!", "Orientiere dich an der vorgegebenen Liste.","Das sind alle Tipps für diese Stage."};
         Debug.Log("Test-------JSON");

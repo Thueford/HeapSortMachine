@@ -12,6 +12,11 @@ public class BowlMover : MonoBehaviour
     public static List<Checkpoint> staticcheckpointlist = new List<Checkpoint>();
     public static BowlMover bowlMover;
     private static AnimationCallback cb = null;
+
+    //je nachdem welche stage
+    //bei stage 2 gibts noch nen fehler die erste kugel macht checkpoints in falscher reihnfolge
+    private static int stage = 1;
+
     private static int moving = 0;
 
     public GameObject checkpointPrefab;
@@ -35,7 +40,8 @@ public class BowlMover : MonoBehaviour
 
     public static void AnimationComplete()
     {
-        cb();
+        //manchmal null idk wer das hier geadded hat
+        if (cb != null) cb();
         cb = null;
     }
 
@@ -47,9 +53,12 @@ public class BowlMover : MonoBehaviour
         //add existing checkpoint 
         foreach (Checkpoint cp in Checkpoint.checkpoints)
         {
-            if (cp)
+            if (cp) //lucas meint null?
             {
-                staticcheckpointlist.Add(cp);
+                if (cp.stage == stage)
+                {
+                    staticcheckpointlist.Add(cp);
+                }
             }
         }
         //existing checkpoints have to get sorted by id first
@@ -111,7 +120,24 @@ public class BowlMover : MonoBehaviour
                 //bowl.checkpoints.Reverse();
             }
 
+            //bowl.startAutomaticMove();
+            //StartCoroutine(bowlMover.bowlStarter);
+            //Globals.globals.StartCoroutine(bowlMover.bowlStarter(bowl));
+            
+        }
+        //maybe somewhere else but here needed
+        Globals.bowls.Sort((a, b) => a.index < b.index ? -1 : 1);
+
+        Globals.globals.StartCoroutine(bowlMover.bowlStarter());
+    }
+
+    private IEnumerator bowlStarter()
+    {
+
+        foreach(Bowl bowl in Globals.bowls)
+        {
             bowl.startAutomaticMove();
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
