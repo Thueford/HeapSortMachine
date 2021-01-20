@@ -114,10 +114,10 @@ public class ButtonHandler : MonoBehaviour
 
         switch (Globals.stage)
         {
-            case Globals.Stage.STAGE_1: break;
-            case Globals.Stage.STAGE_2: break;
-            case Globals.Stage.STAGE_3: break;
-            case Globals.Stage.STAGE_4: break;
+            case Globals.Stage.STAGE_1: Reset.Reset_1(); break;
+            case Globals.Stage.STAGE_2: Reset.Reset_2(); break;
+            case Globals.Stage.STAGE_3: Reset.Reset_3(); break;
+            case Globals.Stage.STAGE_4: Reset.Reset_4(); break;
         }
 
         //activate auto button again

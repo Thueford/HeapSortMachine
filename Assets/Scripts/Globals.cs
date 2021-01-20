@@ -96,10 +96,10 @@ public class Globals : MonoBehaviour
         {
             case Stage.MENU: break;
             case Stage.INTRO: break;
-            case Stage.STAGE_1: Reset.Reset_1(); break;
-            case Stage.STAGE_2: Reset.Reset_2(); break;
-            case Stage.STAGE_3: Reset.Reset_3(); break;
-            case Stage.STAGE_4: Reset.Reset_4(); break;
+            case Stage.STAGE_1: break;
+            case Stage.STAGE_2: break;
+            case Stage.STAGE_3: break;
+            case Stage.STAGE_4:break;
             case Stage.END: break;
         }
     }
