@@ -3081,10 +3081,14 @@ MonoBehaviour:
   - click
   - pick
   - drop
+  - ambience
+  - roll
   clips:
   - {fileID: 8300000, guid: d5fbf17f729bb8f4a96cffdf3065469b, type: 3}
   - {fileID: 8300000, guid: e21764b96f1a4aa49b5907f40f5442d7, type: 3}
   - {fileID: 8300000, guid: 7f1719229d1be824f83ae86b3b7f166b, type: 3}
+  - {fileID: 8300000, guid: 042274a6a42e5894b886db6e592c8d11, type: 3}
+  - {fileID: 8300000, guid: 7ffb59f307f444c418df849561ffa2a4, type: 3}
 --- !u!114 &502101372
 MonoBehaviour:
   m_ObjectHideFlags: 0

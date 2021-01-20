@@ -206,7 +206,7 @@ public class Bowl : MonoBehaviour
         return speed / d;
     }
 
-    //Collider to must be the collider of a *HOLE*
+    //Collider 'to' must be the collider of a *HOLE*
     public void moveToHole(Collider2D to) {
         if (swapHole.gameObject.GetComponent<Hole>() == null) return;
         if (startHole != null && !isSwapping) startHole.gameObject.GetComponent<Hole>().setContent(null);
