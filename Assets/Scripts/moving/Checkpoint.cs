@@ -6,7 +6,7 @@ public class Checkpoint : MonoBehaviour
 {
     // Start is called before the first frame update
     //public static List<Checkpoint> checkpoints = new List<Checkpoint>();
-    public static Checkpoint[] checkpoints = new Checkpoint[31];
+    public static Checkpoint[,] checkpoints = new Checkpoint[4, 31];
     public static int checkpointcount = 0;
     //if true checkpoitns already creared
     public static bool used = false;
@@ -18,6 +18,7 @@ public class Checkpoint : MonoBehaviour
     public int holeID = 0;
 
     public CheckpointType checkpoint;
+    public int stage;
 
     //checkpoint to teleport to
     public GameObject checkpointTeleport;
@@ -25,7 +26,8 @@ public class Checkpoint : MonoBehaviour
     void Start()
     {
         //Id = checkpointcount;
-        if (!checkpoints[Id]) checkpoints[Id] = this;
+        if (stage == null) stage = -1;
+        if (!checkpoints[stage, Id]) checkpoints[stage, Id] = this;
         checkpointcount++;
         //checkpoints.Add(this)
     }

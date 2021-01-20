@@ -12,6 +12,11 @@ public class BowlMover : MonoBehaviour
     public static List<Checkpoint> staticcheckpointlist = new List<Checkpoint>();
     public static BowlMover bowlMover;
     private static AnimationCallback cb = null;
+
+    //je nachdem welche stage
+    //bei stage 2 gibts noch nen fehler die erste kugel macht checkpoints in falscher reihnfolge
+    private static int stage = 1;
+
     private static int moving = 0;
 
     public GameObject checkpointPrefab;
@@ -50,7 +55,10 @@ public class BowlMover : MonoBehaviour
         {
             if (cp) //lucas meint null?
             {
-                staticcheckpointlist.Add(cp);
+                if (cp.stage == stage)
+                {
+                    staticcheckpointlist.Add(cp);
+                }
             }
         }
         //existing checkpoints have to get sorted by id first
