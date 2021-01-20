@@ -30,78 +30,93 @@ public  class Dialogue : MonoBehaviour
 
     }
 
+    public static void setUnvisible()
+    {
+        DialogueManager.self.neutral.gameObject.SetActive(false);
+        DialogueManager.self.happy.gameObject.SetActive(false);
+        DialogueManager.self.erklaerend.gameObject.SetActive(false);
+        DialogueManager.self.skeptisch.gameObject.SetActive(false);
+        DialogueManager.self.zornig.gameObject.SetActive(false);
+    }
+
     // Hilfe Zone/////////////////////////////////////////////////////////
     public static void Hilfe_1()
     {
         sentences.Clear();
 
         nameSetter("Hilfe 1:");
-        string[] sentence = { "Fülle den Baum von oben nach unten!", "Orientiere dich an der vorgegebenen Liste.","Das sind alle Tipps für diese Stage."};
-        Debug.Log("Test-------JSON");
-        Debug.Log(json.level_hints.stage_1.text[1]);
-        //string[] sentence = json.level_hints.stage_1.text;
+        string[] sentence = json.level_hints.stage_1.text;
         sentences.AddRange(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // Mechaniker erklärend einfügen
+        setUnvisible();
+        DialogueManager.self.erklaerend.gameObject.SetActive(true);
     }
  
     public static void Hilfe_2()
     {
         sentences.Clear();
         nameSetter("Hilfe 2:");
-        string[] sentence = { "Hier gibt es leider keine Tipps" };
+        string[] sentence = json.level_hints.stage_2.text;
         sentences.AddRange(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // Mechaniker erklärend einfügen
+        setUnvisible();
+        DialogueManager.self.erklaerend.gameObject.SetActive(true);
     }
 
     public static void Hilfe_3()
     {
         sentences.Clear();
         nameSetter("Hilfe 3:");
-        string[] sentence = { "Achte darauf, dass die größte Zahl im Dreierkomplex oben steht.", "Das sind alle Tipps für diese Stage." };
+        string[] sentence = json.level_hints.stage_3.text;
         sentences.AddRange(sentence);
-        ////DialogueManager.self.StartDialogue();
+        DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // Mechaniker erklärend einfügen
+        setUnvisible();
+        DialogueManager.self.erklaerend.gameObject.SetActive(true);
     }
 
     public static void Hilfe_4()
     {
         sentences.Clear();
         nameSetter("Hilfe 4:");
-        string[] sentence = { "Am Ende muss das größte Element die Wurzel sein", "Prüfe ob das vorherige Heapify ein anderes zerstört hat", "Das sind alle Tipps für diese Stage." };
+        string[] sentence = json.level_hints.stage_4.text;
         sentences.AddRange(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // Mechaniker explain einfügen
+        setUnvisible();
+        DialogueManager.self.erklaerend.gameObject.SetActive(true);
     }
 
     //Test Zone     /////////////////////////////////////////////////////////
     public static void Test_1(bool b)
-   {
+    {
         string[] sentence;
         sentences.Clear();
         if (b)
         {   
             nameSetter("Richtig!");
-            string[] sentence_random = { "Super das ist ja fast wie meine eigen Arbeit.", "Wenn du so weiter machst kann ich dich meinen Schüler nennen."};
+            string[] sentence_random = json.random_success.text;
             int sIndex = Random.Range(0, sentence_random.Length-1);
             string sent_rand = sentence_random[sIndex];
-            sentence = new string[] {sent_rand, "Als nächstes behandeln wir Stage 1.2" };
+            sentence = new string[] {json.level_complete.stage_1.text[0], sent_rand, "Als nächstes behandeln wir Stage 2" };
+            setUnvisible();
+            DialogueManager.self.happy.gameObject.SetActive(true);
         }
         else
         {
-            nameSetter("Falsch");
-            sentence = new string[] { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
+            nameSetter("Falsch!");
+            string[] sentence_random = json.random_mistake.text;
+            int sIndex = Random.Range(0, sentence_random.Length - 1);
+            string sent_rand = sentence_random[sIndex];
+            sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
+            setUnvisible();
+            DialogueManager.self.zornig.gameObject.SetActive(true);
         }
-
         sentenceSetter(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // Mechaniker angry setzen
     }
 
     public static void Test_2(bool b)
@@ -111,23 +126,26 @@ public  class Dialogue : MonoBehaviour
         if (b)
         {
             nameSetter("Richtig!");
-            string[] sentence_random = { "Super das ist ja fast wie meine eigen Arbeit.", "Wenn du so weiter machst kann ich dich meinen Schüler nennen." };
+            string[] sentence_random = json.random_success.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            sentence = new string[] { sent_rand, "Da hast du aber einen schönenen Baum erstellt.", "Als nächstes behandeln wir Stage 2.1" };
-            sentences.AddRange(sentence);
+            sentence = new string[] { json.level_complete.stage_2.text[0], sent_rand, "Als nächstes behandeln wir Stage 3" };
+            setUnvisible();
+            DialogueManager.self.happy.gameObject.SetActive(true);
         }
         else
         {
-            nameSetter("Falsch");
-            sentence = new string[] { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
-            sentences.AddRange(sentence);
+            nameSetter("Falsch!");
+            string[] sentence_random = json.random_mistake.text;
+            int sIndex = Random.Range(0, sentence_random.Length - 1);
+            string sent_rand = sentence_random[sIndex];
+            sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
+            setUnvisible();
+            DialogueManager.self.zornig.gameObject.SetActive(true);
         }
-
-       
+        sentenceSetter(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // Mechaniker angry setzen
     }
 
     public static void Test_3(bool b)
@@ -137,23 +155,26 @@ public  class Dialogue : MonoBehaviour
         if (b)
         {
             nameSetter("Richtig!");
-            string[] sentence_random = { "Super das ist ja fast wie meine eigen Arbeit.", "Wenn du so weiter machst kann ich dich meinen Schüler nennen." };
-
-            // Random importieren
+            string[] sentence_random = json.random_success.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            sentence = new string[] { sent_rand, "Dein Baum erfüllt jetzt die Heap-Bedingung", "Als nächstes behandeln wir Stage 2.2" };
+            sentence = new string[] { json.level_complete.stage_3.text[0], sent_rand, "Als nächstes behandeln wir Stage 4" };
+            setUnvisible();
+            DialogueManager.self.happy.gameObject.SetActive(true);
         }
         else
         {
-            nameSetter("Falsch");
-            sentence = new string[] { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
+            nameSetter("Falsch!");
+            string[] sentence_random = json.random_mistake.text;
+            int sIndex = Random.Range(0, sentence_random.Length - 1);
+            string sent_rand = sentence_random[sIndex];
+            sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
+            setUnvisible(); ;
+            DialogueManager.self.zornig.gameObject.SetActive(true);
         }
-
-        sentences.AddRange(sentence);
+        sentenceSetter(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // Mechaniker angry setzen
     }
 
     public static void Test_4(bool b)
@@ -163,21 +184,26 @@ public  class Dialogue : MonoBehaviour
         if (b)
         {
             nameSetter("Richtig!");
-            string[] sentence_random = { "Super das ist ja fast wie meine eigen Arbeit.", "Wenn du so weiter machst kann ich dich meinen Schüler nennen." };
+            string[] sentence_random = json.random_success.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            sentence = new string[] { sent_rand, "Als nächstes behandeln wir Stage 2.3"};
+            sentence = new string[] { json.level_complete.stage_4.text[0], sent_rand, "Super du hast alle Stages gemeistert." };
+            setUnvisible();
+            DialogueManager.self.happy.gameObject.SetActive(true);
         }
         else
         {
-            nameSetter("Falsch");
-            sentence = new string[] { "Wenn du so weiter machst werden wir beide noch gefeuert!", "Versuche es einfach nocheinmal!", "Benutze doch einfach auch mal den Tipp Button" };
+            nameSetter("Falsch!");
+            string[] sentence_random = json.random_mistake.text;
+            int sIndex = Random.Range(0, sentence_random.Length - 1);
+            string sent_rand = sentence_random[sIndex];
+            sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
+            setUnvisible();
+            DialogueManager.self.zornig.gameObject.SetActive(true);
         }
-
-        sentences.AddRange(sentence);
+        sentenceSetter(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // Mechaniker angry setzen
     }
 
 
@@ -186,46 +212,54 @@ public  class Dialogue : MonoBehaviour
     public static void Auto_1()
     {
         sentences.Clear();
-        string[] input = {"Stage 1.1 läuft nun automatisch ab" };
+        string[] input = {"Stage 1 läuft nun automatisch ab" };
 
         name = "Auto";
         sentences.Clear();
         sentences.AddRange(input);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
+        setUnvisible();
+        DialogueManager.self.skeptisch.gameObject.SetActive(true);
     }
     public static void Auto_2()
     {
         sentences.Clear();
-        string[] input = { "Stage 1.2 läuft nun automatisch ab" };
+        string[] input = { "Stage 2 läuft nun automatisch ab" };
 
         name = "Auto";
         sentences.Clear();
         sentences.AddRange(input);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
+        setUnvisible();
+        DialogueManager.self.skeptisch.gameObject.SetActive(true);
     }
     public static void Auto_3()
     {
         sentences.Clear();
-        string[] input = { "Stage 2.1 läuft jetzt automatisch ab" };
+        string[] input = { "Stage 3 läuft jetzt automatisch ab" };
 
         name = "Auto";
         sentences.Clear();
         sentences.AddRange(input);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
+        setUnvisible();
+        DialogueManager.self.skeptisch.gameObject.SetActive(true);
     }
     public static void Auto_4()
     {
         sentences.Clear();
-        string[] input = { "Stage 2.2 läuft jetzt automatisch ab" };
+        string[] input = { "Stage 4 läuft jetzt automatisch ab" };
 
         name = "Auto";
         sentences.Clear();
         sentences.AddRange(input);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
+        setUnvisible();
+        DialogueManager.self.skeptisch.gameObject.SetActive(true);
     }
     
 
