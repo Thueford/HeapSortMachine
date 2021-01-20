@@ -113,6 +113,8 @@ public class ButtonHandler : MonoBehaviour
 
         Globals.player.oneShot("click");
 
+        if (Bowl.moving.Count != 0) return;
+
         switch (Globals.stage)
         {
             case Globals.Stage.STAGE_1: Reset.Reset_1(); break;

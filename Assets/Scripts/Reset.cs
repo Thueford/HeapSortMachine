@@ -18,7 +18,6 @@ public class Reset : MonoBehaviour
            }
        }
        Bowl.clearMovePosition();
-
     }
 
     public static void Reset_2()
