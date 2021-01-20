@@ -7,10 +7,7 @@ public class ButtonHandler : MonoBehaviour
 
     public static ButtonHandler self;
     public Sprite sprHolderUp, sprHolderDown;
-    public Dialogue dialogue;
     public static bool autoButtonUsed = false;
-
-
 
     // Start is called before the first frame update
     void Awake()
