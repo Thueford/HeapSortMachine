@@ -5,15 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class Json_Test 
 {
-    public static Dialogwrapper json_test;
-    // Start is called before the first frame update 
-
-    public static void Start()
+    public static Dialogwrapper Load()
     {
         TextAsset json = Resources.Load<TextAsset>("mechaniker");
-        json_test = JsonUtility.FromJson<Dialogwrapper>(json.text);
-        Debug.Log(json.text);
-        Debug.Log(json_test);
+        return JsonUtility.FromJson<Dialogwrapper>(json.text);
     }
 
     [System.Serializable]

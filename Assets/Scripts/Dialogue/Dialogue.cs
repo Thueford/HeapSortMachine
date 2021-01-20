@@ -7,13 +7,13 @@ using UnityEngine;
 public  class Dialogue : MonoBehaviour
 {
     public static Random rnd = new UnityEngine.Random();
-        public static string name ;
-        [TextArea(3, 10)]
-        public static List<string> sentences = new List<string>();
+    public static string name;
+    [TextArea(3, 10)]
+    public static List<string> sentences = new List<string>();
      
-        public static string namenew;
+    public static string namenew;
 
-    public static Json_Test.Dialogwrapper json = new Json_Test.Dialogwrapper();
+    public static Json_Test.Dialogwrapper json = Json_Test.Load();
 
     public static void nameSetter(string k)
     {
@@ -38,7 +38,7 @@ public  class Dialogue : MonoBehaviour
         nameSetter("Hilfe 1:");
         string[] sentence = { "Fülle den Baum von oben nach unten!", "Orientiere dich an der vorgegebenen Liste.","Das sind alle Tipps für diese Stage."};
         Debug.Log("Test-------JSON");
-        Debug.Log(json.level_hints.stage_1.text);
+        Debug.Log(json.level_hints.stage_1.text[1]);
         //string[] sentence = json.level_hints.stage_1.text;
         sentences.AddRange(sentence);
         DialogueManager.self.StartDialogue();

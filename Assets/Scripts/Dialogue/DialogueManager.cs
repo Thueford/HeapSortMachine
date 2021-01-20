@@ -11,14 +11,11 @@ public class DialogueManager : MonoBehaviour
 	public GameObject contiButton;
 	public static DialogueManager self;
 
-
-
 	private Queue<string> sentences;
 
 	void Awake()
     {
 		self = this;
-		Json_Test.Start();
     }
 	void Start()
 	{
