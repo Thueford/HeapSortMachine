@@ -184,6 +184,7 @@ public class Bowl : MonoBehaviour
                             {
                                 g.transform.position = addVecZ(g.transform.position, 10);
                             }
+                            BowlMover.AnimationComplete();
                         }
 
                         moveToHole(swapHole);
@@ -203,7 +204,7 @@ public class Bowl : MonoBehaviour
 
                     if (tempCheckpoint.checkpoint == Checkpoint.CheckpointType.TELEPORT) nextCheckpointTeleport = true;
                     movePosition = tempCheckpoint.transform.position;
-                    moveSpeed = getScaledSpeed(transform.position, movePosition, 10);
+                    //moveSpeed = getScaledSpeed(transform.position, movePosition, 10);
                 }
 
                 //wird true gesetzt wenn noch zum näcshten checkpoint gemovt wird deswegen erst wenn der nicht teleport ist (es wird keine 2 teleport hintereinander geben da die sonst zusammengefasst werden können)
@@ -228,7 +229,11 @@ public class Bowl : MonoBehaviour
         foreach (Bowl b in Globals.bowls)
         {
             b.movePosition = new Vector3();
+            b.tempCheckpoint = null;
+            b.checkpoints.Clear();
         }
+        Checkpoint.used = false;
+        BowlMover.checkpointlist.Clear();
     }
 
     private float getScaledSpeed(Vector3 pos, Vector3 npos, int speed)

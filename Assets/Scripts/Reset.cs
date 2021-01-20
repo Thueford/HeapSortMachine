@@ -12,12 +12,13 @@ public class Reset : MonoBehaviour
            foreach (Hole h in Globals.getHoles(Hole.LISTHOLE))
            {
                if (b.index == h.value)
-                {
+               {
                     b.moveToHole(h.GetComponent<Collider2D>());
-                }
+               }
            }
        }
-    
+       Bowl.clearMovePosition();
+
     }
 
     public static void Reset_2()
@@ -29,21 +30,17 @@ public class Reset : MonoBehaviour
     public static void Reset_3()
     {
         foreach (Bowl b in Globals.bowls)
-       {
+        {
            foreach (Hole h in Globals.getHoles(Hole.TREEHOLE))
            {
                if (b.index == h.value)
-                {
+               {
                     b.moveToHole(h.GetComponent<Collider2D>());
-
-                    //clear checkpoints
-                    b.checkpoints.Clear();
-                    Checkpoint.used = false;
-                    BowlMover.checkpointlist.Clear();
-                    Bowl.clearMovePosition();
-                }
+               }
            }
-       }
+        }
+        //clear after moving
+        Bowl.clearMovePosition();
     }
 
     public static void Reset_4()

@@ -41,14 +41,7 @@ public  class Dialogue : MonoBehaviour
     public static void Hilfe_1()
     {
         sentences.Clear();
-<<<<<<< HEAD
-        nameSetter("Hilfe1_1");
-        //string[] sentence = { "Fülle den Baum von oben nach unten!", "Orientiere dich an der vorgegebenen Liste.","Das sind alle Tipps für diese Stage."};
-        //string[] sentence = 
-        //sentences.AddRange(sentence);
-        //DialogueManager.self.StartDialogue();
-        //DialogueManager.self.contiButton.gameObject.SetActive(true);
-=======
+
         nameSetter("Hilfe 1:");
         string[] sentence = { "Fülle den Baum von oben nach unten!", "Orientiere dich an der vorgegebenen Liste.","Das sind alle Tipps für diese Stage."};
         //string[] sentence = json.getJson().level_hint.stage_1.text;
@@ -56,7 +49,6 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
         // Mechaniker erklärend einfügen
->>>>>>> 31f1d26609cb1978ef292ed527c5b3df2fdf28e5
     }
  
     public static void Hilfe_2()

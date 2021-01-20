@@ -35,7 +35,8 @@ public class BowlMover : MonoBehaviour
 
     public static void AnimationComplete()
     {
-        cb();
+        //manchmal null idk wer das hier geadded hat
+        if (cb != null) cb();
         cb = null;
     }
 
