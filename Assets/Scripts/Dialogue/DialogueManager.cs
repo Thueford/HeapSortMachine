@@ -18,6 +18,7 @@ public class DialogueManager : MonoBehaviour
 	void Awake()
     {
 		self = this;
+		Json_Test.Start();
     }
 	void Start()
 	{

@@ -6,21 +6,14 @@ using UnityEngine;
 [System.Serializable]
 public  class Dialogue : MonoBehaviour
 {
-    public Random rnd = new UnityEngine.Random();
+    public static Random rnd = new UnityEngine.Random();
         public static string name ;
         [TextArea(3, 10)]
         public static List<string> sentences = new List<string>();
      
         public static string namenew;
-        private static Dialogue self;
-    public DialogueManager dialogueManager;
 
-    public static Json_Test json_t = new Json_Test();
-
-    void Awake()
-    {
-        self = this;
-    }
+    public static Json_Test.Dialogwrapper json = new Json_Test.Dialogwrapper();
 
     public static void nameSetter(string k)
     {
@@ -44,7 +37,9 @@ public  class Dialogue : MonoBehaviour
 
         nameSetter("Hilfe 1:");
         string[] sentence = { "Fülle den Baum von oben nach unten!", "Orientiere dich an der vorgegebenen Liste.","Das sind alle Tipps für diese Stage."};
-        //string[] sentence = json.getJson().level_hint.stage_1.text;
+        Debug.Log("Test-------JSON");
+        Debug.Log(json.level_hints.stage_1.text);
+        //string[] sentence = json.level_hints.stage_1.text;
         sentences.AddRange(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
@@ -81,7 +76,7 @@ public  class Dialogue : MonoBehaviour
         sentences.AddRange(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // Mechaniker erklärend einfügen
+        // Mechaniker explain einfügen
     }
 
     //Test Zone     /////////////////////////////////////////////////////////
@@ -92,7 +87,7 @@ public  class Dialogue : MonoBehaviour
         if (b)
         {   
             nameSetter("Richtig!");
-            string[] sentence_random = { "Super das ist ja fast wie meine eigen Arbeit.", "Wenn du so weiter machst kann ich dich meinen Schüler nennen." };
+            string[] sentence_random = { "Super das ist ja fast wie meine eigen Arbeit.", "Wenn du so weiter machst kann ich dich meinen Schüler nennen."};
             int sIndex = Random.Range(0, sentence_random.Length-1);
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] {sent_rand, "Als nächstes behandeln wir Stage 1.2" };
@@ -106,6 +101,7 @@ public  class Dialogue : MonoBehaviour
         sentenceSetter(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
+        // Mechaniker angry setzen
     }
 
     public static void Test_2(bool b)
@@ -131,6 +127,7 @@ public  class Dialogue : MonoBehaviour
        
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
+        // Mechaniker angry setzen
     }
 
     public static void Test_3(bool b)
@@ -156,6 +153,7 @@ public  class Dialogue : MonoBehaviour
         sentences.AddRange(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
+        // Mechaniker angry setzen
     }
 
     public static void Test_4(bool b)
@@ -179,9 +177,10 @@ public  class Dialogue : MonoBehaviour
         sentences.AddRange(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
+        // Mechaniker angry setzen
     }
 
-    
+
     // AutoZone vroom vroom/////////////////////////////////////////////////////////
 
     public static void Auto_1()
