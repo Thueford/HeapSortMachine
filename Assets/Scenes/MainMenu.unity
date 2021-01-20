@@ -175,7 +175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprHolderUp: {fileID: 0}
   sprHolderDown: {fileID: 0}
-  dialogue: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,10 +937,12 @@ MonoBehaviour:
   - click
   - pick
   - drop
+  - ambience
   clips:
   - {fileID: 8300000, guid: d5fbf17f729bb8f4a96cffdf3065469b, type: 3}
   - {fileID: 8300000, guid: e21764b96f1a4aa49b5907f40f5442d7, type: 3}
   - {fileID: 8300000, guid: 7f1719229d1be824f83ae86b3b7f166b, type: 3}
+  - {fileID: 8300000, guid: 042274a6a42e5894b886db6e592c8d11, type: 3}
 --- !u!224 &1787110445 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6322071511018033418, guid: 65699f7b270a09d4e97d56b2c846ddde,

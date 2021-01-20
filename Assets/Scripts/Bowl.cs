@@ -214,13 +214,16 @@ public class Bowl : MonoBehaviour
         return speed / d;
     }
 
+    //Collider 'to' must be the collider of a *HOLE*
     public void moveToHole(Collider2D to) {
+        if (swapHole.gameObject.GetComponent<Hole>() == null) return;
         if (startHole != null && !isSwapping) startHole.gameObject.GetComponent<Hole>().setContent(null);
         to.gameObject.GetComponent<Hole>().setContent(this);
         holeId = swapHole.gameObject.GetComponent<Hole>().value;
         fixPosition(to);
     }
 
+    //Should only be used in conjunction with moveToHole(), never in isolation
     private void fixPosition(Collider2D coll) {
         startPosition = coll.transform.position;
         transform.position = setVecZ(startPosition, ZDROPPED);
