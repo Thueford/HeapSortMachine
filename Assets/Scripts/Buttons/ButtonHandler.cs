@@ -101,7 +101,7 @@ public class ButtonHandler : MonoBehaviour
         //activate autobowlmovement
         if (!autoButtonUsed)
         {
-            BowlMover.autoMoveStart();
+            BowlMover.autoMoveStart(null);
             autoButtonUsed = true;
         }
     }

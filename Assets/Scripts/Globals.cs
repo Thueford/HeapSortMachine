@@ -66,7 +66,7 @@ public class Globals : MonoBehaviour
         foreach (Hole h in getHoles(Hole.LISTHOLE))
         {
             //h.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            bowls.Add(Bowl.spawn(h.value, values[cnt], Bowl.setVecZ(h.transform.position, 5)));
+            bowls.Add(Bowl.spawn(h.value, values[cnt], h.transform.position));
             cnt++;
         }
     }
