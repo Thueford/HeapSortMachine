@@ -4,20 +4,19 @@ using System;
 using System.Collections;
 public class Reset : MonoBehaviour
 {
+    public static void ResetBallsTo(string holeType)
+    {
+        foreach (Bowl b in Globals.bowls)
+        {
+            Hole h = Globals.getHoles(holeType).Find(fh => b.index == fh.value);
+            if (h) b.moveToHole(h.GetComponent<Collider2D>());
+        }
+        Bowl.clearMovePosition();
+    }
 
     public static void Reset_1()
     {
-       foreach (Bowl b in Globals.bowls)
-       {
-           foreach (Hole h in Globals.getHoles(Hole.LISTHOLE))
-           {
-               if (b.index == h.value)
-               {
-                    b.moveToHole(h.GetComponent<Collider2D>());
-               }
-           }
-       }
-       Bowl.clearMovePosition();
+        ResetBallsTo(Hole.LISTHOLE);
     }
 
     public static void Reset_2()
@@ -28,18 +27,7 @@ public class Reset : MonoBehaviour
 
     public static void Reset_3()
     {
-        foreach (Bowl b in Globals.bowls)
-        {
-           foreach (Hole h in Globals.getHoles(Hole.TREEHOLE))
-           {
-               if (b.index == h.value)
-               {
-                    b.moveToHole(h.GetComponent<Collider2D>());
-               }
-           }
-        }
-        //clear after moving
-        Bowl.clearMovePosition();
+         ResetBallsTo(Hole.TREEHOLE);
     }
 
     public static void Reset_4()
