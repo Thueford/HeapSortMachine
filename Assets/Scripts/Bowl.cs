@@ -19,6 +19,7 @@ public class Bowl : MonoBehaviour
     public static List<Bowl> moving = new List<Bowl>();
 
     public bool enableDragnDrop = true;
+    public static bool staticDnDEnable = true;
     public int value, index;
     public int holeId { get; private set; } = -1;
 
@@ -47,7 +48,7 @@ public class Bowl : MonoBehaviour
 
         mouse_position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (enableDragnDrop)
+        if (enableDragnDrop && staticDnDEnable)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -69,14 +70,8 @@ public class Bowl : MonoBehaviour
                 if (swapHole != startHole) { // Ball Movement happens
                     Hole to = swapHole.gameObject.GetComponent<Hole>();
                     if (to.content != null) { // Swap two Balls
-                        if (startHole != null) {
-                            isSwapping = true; // To ignore Collision Triggers
-
-                            to.content.moveToHole(startHole);
-                            moveToHole(swapHole);
-
-                            isSwapping = false; // To notice Collision Triggers again
-                        } else transform.position = setVecZ(startPosition, ZDROPPED);
+                        swapTwo(this, to.content);
+                        transform.position = setVecZ(startPosition, ZDROPPED);
                     } else { // Move a single Ball
                         moveToHole(swapHole);
                     }
@@ -249,12 +244,23 @@ public class Bowl : MonoBehaviour
         return speed / d;
     }
 
+    public static void swapTwo(Bowl b1, Bowl b2) {
+        isSwapping = true;
+        Collider2D tmp = b1.startHole;
+        if (b1.startHole == null || b2.startHole == null ||
+                !b1.startHole.gameObject.GetComponent<Hole>().tree ||
+                !b2.startHole.gameObject.GetComponent<Hole>().tree) return;
+        b1.moveToHole(b2.startHole);
+        b2.moveToHole(tmp);
+        isSwapping = false;
+    }
+
     //Collider 'to' must be the collider of a *HOLE*
     public void moveToHole(Collider2D to) {
-        if (swapHole.gameObject.GetComponent<Hole>() == null) return;
+        if (to.gameObject.GetComponent<Hole>() == null) return;
         if (startHole != null && !isSwapping) startHole.gameObject.GetComponent<Hole>().setContent(null);
         to.gameObject.GetComponent<Hole>().setContent(this);
-        holeId = swapHole.gameObject.GetComponent<Hole>().value;
+        holeId = to.gameObject.GetComponent<Hole>().value;
         fixPosition(to);
     }
 
