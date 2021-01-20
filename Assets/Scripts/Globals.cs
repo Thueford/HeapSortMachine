@@ -15,6 +15,7 @@ public class Globals : MonoBehaviour
     public static Random ran = new Random();
     public static SoundHandler player;
 
+    public GameObject[] toMoveZ;
     public Sprite[] bowlsBlank;
     public Sprite[] holeSprites;
 
@@ -26,8 +27,8 @@ public class Globals : MonoBehaviour
 
     public enum Stage
     {
-        MENU, INTRO, STAGE_1_1, STAGE_1_2,
-        STAGE_2_1, STAGE_2_2, STAGE_2_3, END
+        MENU, INTRO, STAGE_1, STAGE_2,
+        STAGE_3, STAGE_4, END
     }
 
     private void Awake()
@@ -42,7 +43,8 @@ public class Globals : MonoBehaviour
     void Start()
     {
         //spawns bowls
-        if (stage == Stage.STAGE_1_1) ballSpawner();
+        ballSpawner();
+        SetStage(Stage.STAGE_1);
 
         //testing
         //bowls[1].move(Checkpoint.checkpoints[0].transform.position);
@@ -61,39 +63,17 @@ public class Globals : MonoBehaviour
         values.Sort((a, b) => Random.Range(-1, 1));
         cnt = 0;
 
-        foreach (Hole hole in holes)
+        foreach (Hole h in getHoles(Hole.LISTHOLE))
         {
-            if (!hole.tree)
-            {
-                hole.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                Vector3 hole_pos = hole.transform.position;
-                hole_pos.z = 5;
-                Bowl bowl = Bowl.spawn(hole.getHoleValue(), values[cnt], hole_pos);
-                bowls.Add(bowl);
-                cnt++;
-
-            }
+            //h.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            bowls.Add(Bowl.spawn(h.value, values[cnt], Bowl.setVecZ(h.transform.position, 5)));
+            cnt++;
         }
     }
 
-    public static GameObject TryGetObjWithTag(string tag)
+    public static List<Hole> getHoles(string parentName)
     {
-        GameObject o = GameObject.FindGameObjectWithTag(tag);
-        if (o == null) throw new AssertionException("o == null", "Object with tag '" + tag + "' not found.");
-        return o;
-    }
-
-    public static List<Hole> getTreeHoles()
-    {
-        List<Hole> TreeHoleList = new List<Hole>();
-        foreach (Hole h in Globals.holes)
-        {   
-            if(h.tree)
-            {
-                TreeHoleList.Add(h);
-            }            
-        }
-        return TreeHoleList;
+        return holes.FindAll(h => h.transform.parent.name == parentName);
     }
 
     public static void SetStage(Stage s, string loadScene = null)
@@ -103,24 +83,23 @@ public class Globals : MonoBehaviour
             loadScene = "MainMenu";
             s = Stage.MENU;
         }
-
-        if (loadScene != null) SceneManager.LoadScene(loadScene);
+        
+        if (loadScene != null)
+        {
+            bowls.Clear();
+            holes.Clear();
+            SceneManager.LoadScene(loadScene);
+        }
 
         // dunno if this will be needed sometime
         switch (stage = s)
         {
             case Stage.MENU: break;
             case Stage.INTRO: break;
-            case Stage.STAGE_1_1:
-                if(loadScene != null) {
-                    bowls.Clear();
-                    holes.Clear();
-                }
-                break;
-            case Stage.STAGE_1_2: break;
-            case Stage.STAGE_2_1: break;
-            case Stage.STAGE_2_2: break;
-            case Stage.STAGE_2_3: break;
+            case Stage.STAGE_1: break;
+            case Stage.STAGE_2: break;
+            case Stage.STAGE_3: break;
+            case Stage.STAGE_4:break;
             case Stage.END: break;
         }
     }

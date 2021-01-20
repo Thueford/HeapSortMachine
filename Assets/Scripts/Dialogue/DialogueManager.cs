@@ -28,7 +28,8 @@ public class DialogueManager : MonoBehaviour
 	{
 		Debug.Log("Start Dialogue");
 
-		nameText.text = Dialogue.name;
+		//falls hier fehler kommt prüfen ob im dialog manager script die einzelnen objekte zugewiesen sind (reingezogen) zb nameText
+		 nameText.text = Dialogue.name;
 
 		sentences.Clear();
 

@@ -13,6 +13,10 @@ public class Bowl : MonoBehaviour
     private float moveSpeed;
     private static bool isSwapping = false;
     private Vector3 movePosition;
+    private Checkpoint tempCheckpoint;
+
+    //to know how much bowls are still moving
+    public static List<Bowl> moving = new List<Bowl>();
 
     public bool enableDragnDrop = true;
     public int value, index;
@@ -21,13 +25,15 @@ public class Bowl : MonoBehaviour
     //list of checkpoints to move
     public List<Checkpoint> checkpoints = new List<Checkpoint>();
 
+    private const int ZDRAGGED = -3;
+    private const int ZDROPPED = -1;
+
     // Start is called before the first frame update
     void Start()
     {
         bowlCollider = GetComponent<Collider2D>();
         startPosition = transform.position;
         setValue(value);
-
     }
 
     // Update is called once per frame
@@ -46,37 +52,41 @@ public class Bowl : MonoBehaviour
                 if (bowlCollider.OverlapPoint(mouse_position))
                 {
                     picked = true;
-
+                    Globals.player.oneShot("pick");
                     //changes z of bowl+text to 3
-                    transform.position = setVecZ(startPosition, 3);
+                    transform.position = setVecZ(startPosition, ZDRAGGED);
                 }
             }
 
             if (Input.GetMouseButtonUp(0))
             {
+                if (picked) {
+                Globals.player.oneShot("drop");
                 picked = false;
-
+                }
                 if (swapHole != startHole) { // Ball Movement happens
                     Hole to = swapHole.gameObject.GetComponent<Hole>();
-                    if (to.getContent() != null) { // Swap two Balls
+                    if (to.content != null) { // Swap two Balls
                         if (startHole != null) {
                             isSwapping = true; // To ignore Collision Triggers
 
-                            to.getContent().moveToHole(startHole);
+                            to.content.moveToHole(startHole);
                             moveToHole(swapHole);
 
                             isSwapping = false; // To notice Collision Triggers again
-                        } else transform.position = setVecZ(startPosition, 5);
+                        } else transform.position = setVecZ(startPosition, ZDROPPED);
                     } else { // Move a single Ball
                         moveToHole(swapHole);
                     }
-                } else transform.position = setVecZ(startPosition, 5); //changes z of bowl+text to 5
+                } else transform.position = setVecZ(startPosition, ZDROPPED); //changes z of bowl+text to 5
             }
         } else
         {
             //for the case picked = true
+            //Debug.Log(checkpoints);
             if (automove)
             {
+
                 if (checkpoints.Count == 0 && movePosition == new Vector3()) return;
                 if (movePosition == new Vector3())
                 {
@@ -130,16 +140,55 @@ public class Bowl : MonoBehaviour
                     {
                         enableDragnDrop = true;
                         automove = false;
-                        //transform.position = setVecZ(transform.position, 5);
+                        //transform.position = setVecZ(transform.position, ZDROPPED);
 
                         //muss swapping gefixt werden
                         //startPosition = transform.position;
+
+                        //not moving anymore
+                        moving.Remove(this);
+                        //checks of this bowl was last that was moving
+                        if (moving.Count == 0)
+                        {
+                            //set everything to normal again
+                            foreach (GameObject g in Globals.globals.toMoveZ)
+                            {
+                                g.transform.position = addVecZ(g.transform.position, 10);
+                            }
+                        }
+
                         moveToHole(swapHole);
                         return;
                     }
                 }
+                //*/Neue implementierung (kurzer aber nicht fertig also nicht ändern @jakob)
 
+                /*if (checkpoints.Count == 0 && movePosition == new Vector3()) return;
+
+                if (movePosition != transform.position && movePosition != new Vector3())
+                {
+                    //do stuff idk
+                } else
+                {
+                    if (checkpoints.Count == 0) return;
+
+                    tempCheckpoint = checkpoints[0];
+                    checkpoints.RemoveAt(0);
+
+                    if (tempCheckpoint.checkpoint == Checkpoint.CheckpointType.TELEPORT) nextCheckpointTeleport = true;
+                    movePosition = tempCheckpoint.transform.position;
+                }
+
+                if (nextCheckpointTeleport)
+                {
+                    transform.position = movePosition;
+                    nextCheckpointTeleport = false;
+                }//*/
+
+                //movespeed wieder scalled setzten
+                if (!moving.Contains(this)) moving.Add(this);
                 transform.position = Vector3.MoveTowards(transform.position, movePosition, moveSpeed * Time.deltaTime);
+                return;
             }
         }
 
@@ -148,35 +197,41 @@ public class Bowl : MonoBehaviour
 
     private float getScaledSpeed(Vector3 pos, Vector3 npos, int speed)
     {
-        //for testing 
-        speed = 2;
+        //for testing
+        speed = 12;
 
         float d = Vector3.Distance(pos, npos);
+        Debug.Log(d);
 
-        return speed / d*5;
-
-        //return 0;
+        return speed / d;
     }
 
+    //Collider 'to' must be the collider of a *HOLE*
     public void moveToHole(Collider2D to) {
+        if (swapHole.gameObject.GetComponent<Hole>() == null) return;
         if (startHole != null && !isSwapping) startHole.gameObject.GetComponent<Hole>().setContent(null);
         to.gameObject.GetComponent<Hole>().setContent(this);
         holeId = swapHole.gameObject.GetComponent<Hole>().value;
         fixPosition(to);
     }
 
+    //Should only be used in conjunction with moveToHole(), never in isolation
     private void fixPosition(Collider2D coll) {
         startPosition = coll.transform.position;
-        transform.position = setVecZ(startPosition, 5);
+        transform.position = setVecZ(startPosition, ZDROPPED);
 
         startHole = coll;
         swapHole = coll;
     }
 
     public static Vector3 setVecZ(Vector3 vec, int z) {
-        Vector3 tempvec = vec;
-        tempvec.z = z;
-        return tempvec;
+        vec.z = z;
+        return vec;
+    }
+    public static Vector3 addVecZ(Vector3 vec, int z)
+    {
+        vec.z = z;
+        return vec;
     }
 
     public static Bowl spawn(int index, int value, Vector3 pos)
@@ -184,8 +239,7 @@ public class Bowl : MonoBehaviour
         GameObject bowl = Instantiate(Globals.globals.bowlPrefab, pos, Quaternion.identity);
         bowl.transform.SetParent(Globals.globals.bowlHolder.transform);
 
-        Vector3 bowl_pos = bowl.transform.position;
-        bowl_pos.z -= 1;
+        Vector3 bowl_pos = addVecZ(bowl.transform.position, -1);
         GameObject txt = Instantiate(Globals.globals.bowlTextPrefab, bowl_pos, Quaternion.identity);
         txt.transform.SetParent(bowl.transform);
 
@@ -199,7 +253,7 @@ public class Bowl : MonoBehaviour
     public void move(Vector3 newPos)
     {
         enableDragnDrop = false;
-        
+
     }
 
     public void startAutomaticMove()
@@ -207,33 +261,27 @@ public class Bowl : MonoBehaviour
         enableDragnDrop = false;
         automove = true;
 
-        transform.position = setVecZ(transform.position, 3);
+        transform.position = setVecZ(transform.position, ZDRAGGED);
     }
 
     public void visible(bool v)
     {
-        if (v)
-        {
-            bowlCollider.gameObject.SetActive(true);
-        } else
-        {
-            bowlCollider.gameObject.SetActive(false);
-        }
+        bowlCollider.gameObject.SetActive(v);
     }
 
     public int getValue()
     {
-        return this.value;
+        return value;
     }
 
     public int getHoleIDofBowl()
     {
-        return this.holeId;
+        return holeId;
     }
 
     public int getIndex()
     {
-        return this.index;
+        return index;
     }
 
     public void setValue(int val, bool nums = true)

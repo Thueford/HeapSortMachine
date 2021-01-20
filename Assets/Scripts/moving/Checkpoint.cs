@@ -14,7 +14,7 @@ public class Checkpoint : MonoBehaviour
     {
         MOVE, TELEPORT
     }
-    public int id;
+    public int Id;
     public int holeID = 0;
 
     public CheckpointType checkpoint;
@@ -24,8 +24,8 @@ public class Checkpoint : MonoBehaviour
 
     void Start()
     {
-        id = checkpointcount;
-        checkpoints[id] = this;
+        //Id = checkpointcount;
+        if (!checkpoints[Id]) checkpoints[Id] = this;
         checkpointcount++;
         //checkpoints.Add(this)
     }

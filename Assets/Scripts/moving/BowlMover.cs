@@ -35,13 +35,18 @@ public class BowlMover : MonoBehaviour
         //add existing checkpoint 
         foreach (Checkpoint cp in Checkpoint.checkpoints)
         {
-            staticcheckpointlist.Add(cp);
+            if (cp)
+            {
+                staticcheckpointlist.Add(cp);
+            }
         }
+        //existing checkpoints have to get sorted by id first
+        staticcheckpointlist.Sort((a, b) => a.Id < b.Id ? -1 : 1);
 
         //create checkpoint on the holes position here
         if (!Checkpoint.used)
         {
-            foreach (Hole hole in Globals.getTreeHoles())
+            foreach (Hole hole in Globals.getHoles(Hole.TREEHOLE))
             {
                 GameObject chp = Instantiate(bowlMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
                 Checkpoint cp = chp.GetComponent<Checkpoint>();
@@ -49,11 +54,20 @@ public class BowlMover : MonoBehaviour
                 cp.holeID = hole.value;
                 checkpointlist.Add(cp);
                 Checkpoint.used = true;
-
             }
         }
         //sort checkpoint list
         checkpointlist.Sort((a, b) => a.holeID < b.holeID ? -1 : 1);
+
+        //have to move some objects in forground for putting them back to default z look at bowl.cs
+        foreach (GameObject g in Globals.globals.toMoveZ)
+        {
+            
+            Vector3 tempvec = g.transform.position;
+            tempvec.z -= 21;
+
+            g.transform.position = tempvec;
+        }
 
         //put checkpoints to bowllist
         foreach (Bowl bowl in Globals.bowls)
@@ -77,10 +91,14 @@ public class BowlMover : MonoBehaviour
             }
 
             bowl.checkpoints.Sort((a, b) => a.holeID < b.holeID ? -1 : 1);
+
+            //Debug.Log(bowl.checkpoints);
+
             if (bowl.index == 0)
             {
-                bowl.checkpoints.Reverse();
+                //bowl.checkpoints.Reverse();
             }
+
             bowl.startAutomaticMove();
         }
     }

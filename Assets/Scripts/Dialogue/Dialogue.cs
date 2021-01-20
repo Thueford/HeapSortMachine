@@ -37,7 +37,7 @@ public  class Dialogue : MonoBehaviour
     }
 
     // Hilfe Zone/////////////////////////////////////////////////////////
-    public static void Hilfe1_1()
+    public static void Hilfe_1()
     {
         sentences.Clear();
         nameSetter("Hilfe1_1");
@@ -48,7 +48,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
  
-    public static void Hilfe1_2()
+    public static void Hilfe_2()
     {
         sentences.Clear();
         nameSetter("Hilfe1_2");
@@ -58,7 +58,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
-    public static void Hilfe2_1()
+    public static void Hilfe_3()
     {
         sentences.Clear();
         nameSetter("Hilfe2_1");
@@ -68,6 +68,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
+    /*
     public static void Hilfe2_2()
     {
         sentences.Clear();
@@ -77,8 +78,9 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
+    */
 
-    public static void Hilfe2_3()
+    public static void Hilfe_4()
     {
         sentences.Clear();
         nameSetter("Hilfe2_3");
@@ -89,7 +91,7 @@ public  class Dialogue : MonoBehaviour
     }
 
    //Test Zone     /////////////////////////////////////////////////////////
-   public static void Test_1_1(bool b)
+   public static void Test_1(bool b)
    {
         string[] sentence;
         sentences.Clear();
@@ -112,7 +114,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
-    public static void Test_1_2(bool b)
+    public static void Test_2(bool b)
     {
         string[] sentence;
         sentences.Clear();
@@ -137,7 +139,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
-    public static void Test_2_1(bool b)
+    public static void Test_3(bool b)
     {
         string[] sentence;
         sentences.Clear();
@@ -162,6 +164,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
+    /*
     public static void Test_2_2(bool b)
     {
         string[] sentence;
@@ -184,7 +187,8 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
-    public static void Test_2_3(bool b)
+    */
+    public static void Test_4(bool b)
     {
         string[] sentence;
         sentences.Clear();
@@ -211,7 +215,7 @@ public  class Dialogue : MonoBehaviour
     
     // AutoZone vroom vroom/////////////////////////////////////////////////////////
 
-    public static void Auto_1_1()
+    public static void Auto_1()
     {
         sentences.Clear();
         string[] input = {"Stage 1.1 läuft nun automatisch ab" };
@@ -222,7 +226,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
-    public static void Auto_1_2()
+    public static void Auto_2()
     {
         sentences.Clear();
         string[] input = { "Stage 1.2 läuft nun automatisch ab" };
@@ -233,7 +237,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
-    public static void Auto_2_1()
+    public static void Auto_3()
     {
         sentences.Clear();
         string[] input = { "Stage 2.1 läuft jetzt automatisch ab" };
@@ -244,6 +248,7 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
+    /*
     public static void Auto_2_2()
     {
         sentences.Clear();
@@ -255,7 +260,8 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
-    public static void Auto_2_3()
+    */
+    public static void Auto_4()
     {
         sentences.Clear();
         string[] input = { "Stage 2.3 läuft jetzt automatisch ab" };
