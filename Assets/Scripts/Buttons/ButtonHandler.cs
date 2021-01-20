@@ -71,9 +71,9 @@ public class ButtonHandler : MonoBehaviour
     public void btnTest_Click()
     {
         Debug.Log("Test");
-        bool b;
+        bool b = false;
 
-        Globals.player.oneShot("click");
+        // Globals.player.oneShot("click");
 
         switch (Globals.stage)
         {
@@ -82,6 +82,7 @@ public class ButtonHandler : MonoBehaviour
             case Globals.Stage.STAGE_3: b = LevelTests.Test_3(); Dialogue.Test_3(b); break;
             case Globals.Stage.STAGE_4: b = LevelTests.Test_4(); Dialogue.Test_4(b); break;
         }
+        Globals.player.oneShot(b ? "right" : "wrong");
     }
 
     public void btnAuto_Click()
