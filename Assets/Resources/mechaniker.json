@@ -19,15 +19,15 @@
   },
   "level_complete": {
     "stage_1": {
-      "text": "Da hast du aber einen schönen Baum gepflanzt.",
+      "text": [ "Da hast du aber einen schönen Baum gepflanzt." ],
       "emotion": "positiv"
     },
     "stage_2": {
-      "text": "Da hast du aber einen schönen Baum gepflanzt.",
+      "text": [ "Da hast du aber einen schönen Baum gepflanzt." ],
       "emotion": "positiv"
     },
     "stage_3": {
-      "text": "Diese Pyramide steht stabil.",
+      "text": [ "Diese Pyramide steht stabil." ],
       "emotion": "positiv"
     },
     "stage_4": {
@@ -79,7 +79,8 @@
     "stage_4": {
       "text": [
         "Tausche doch die Wurzel mit dem untersten Blatt.",
-        "Das unterste Blatt ist am weitesten von der Wurzel entfernt."
+        "Das unterste Blatt ist am weitesten von der Wurzel entfernt.",
+        "Wenn du dir sicher bist das alles richtig ist, dann überprüfe es doch einfach mit dem Button."
       ],
       "emotion": "explain"
     }
