@@ -11,13 +11,16 @@ public class Globals : MonoBehaviour
     public static Stage stage { get; private set; } = Stage.MENU;
     public static List<Bowl> bowls = new List<Bowl>();
     public static List<Hole> holes = new List<Hole>();
+    public static List<Joint> joints = new List<Joint>();
     public static int bowlCount = 15;
     public static Random ran = new Random();
     public static SoundHandler player;
 
+    public Button[] heapChkBtns;
     public GameObject[] toMoveZ;
     public Sprite[] bowlsBlank;
     public Sprite[] holeSprites;
+    public Sprite[] jointSprites;
 
     public Stage startStage;
     public Stage rdonlyStage;
