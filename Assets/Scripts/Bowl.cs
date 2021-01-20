@@ -12,7 +12,7 @@ public class Bowl : MonoBehaviour
     private bool nextCheckpointTeleport = false; //if next checkpoint is teleport... cuz it gets deleted
     private float moveSpeed;
     private static bool isSwapping = false;
-    private Vector3 movePosition;
+    private Vector3 movePosition = new Vector3();
     private Checkpoint tempCheckpoint;
 
     //to know how much bowls are still moving
@@ -86,7 +86,7 @@ public class Bowl : MonoBehaviour
             //Debug.Log(checkpoints);
             if (automove)
             {
-                
+                /*
                 if (checkpoints.Count == 0 && movePosition == new Vector3()) return;
                 if (movePosition == new Vector3())
                 {
@@ -163,7 +163,29 @@ public class Bowl : MonoBehaviour
                 }
                 //*/ //Neue implementierung (kurzer aber nicht fertig also nicht ändern @jakob)
 
-                if (checkpoints.Count == 0 && movePosition == new Vector3()) return;
+                if (checkpoints.Count == 0)
+                {
+                    if (movePosition == new Vector3()) return;
+                    if (movePosition == transform.position)
+                    {
+                        //ende
+                        enableDragnDrop = true;
+                        automove = false;
+                        moving.Remove(this);
+
+                        if (moving.Count == 0)
+                        {
+                            //set everything to normal again
+                            foreach (GameObject g in Globals.globals.toMoveZ)
+                            {
+                                g.transform.position = addVecZ(g.transform.position, 10);
+                            }
+                        }
+
+                        moveToHole(swapHole);
+                        return;
+                    }
+                }
 
                 if (movePosition != transform.position && movePosition != new Vector3())
                 {
@@ -177,9 +199,11 @@ public class Bowl : MonoBehaviour
 
                     if (tempCheckpoint.checkpoint == Checkpoint.CheckpointType.TELEPORT) nextCheckpointTeleport = true;
                     movePosition = tempCheckpoint.transform.position;
+                    moveSpeed = getScaledSpeed(transform.position, movePosition, 10);
                 }
 
-                if (nextCheckpointTeleport)
+                //wird true gesetzt wenn noch zum näcshten checkpoint gemovt wird deswegen erst wenn der nicht teleport ist (es wird keine 2 teleport hintereinander geben da die sonst zusammengefasst werden können)
+                if (nextCheckpointTeleport && tempCheckpoint && tempCheckpoint.checkpoint != Checkpoint.CheckpointType.TELEPORT)
                 {
                     transform.position = movePosition;
                     nextCheckpointTeleport = false;
@@ -187,7 +211,7 @@ public class Bowl : MonoBehaviour
 
                 //movespeed wieder scalled setzten
                 if (!moving.Contains(this)) moving.Add(this);
-                transform.position = Vector3.MoveTowards(transform.position, movePosition, moveSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, movePosition, 4.5f * Time.deltaTime);
                 return;
             }
         }
@@ -205,11 +229,13 @@ public class Bowl : MonoBehaviour
 
     private float getScaledSpeed(Vector3 pos, Vector3 npos, int speed)
     {
+        //not rlly needed anymore
+
         //for testing
         speed = 12;
 
         float d = Vector3.Distance(pos, npos);
-        Debug.Log(d);
+        //Debug.Log(d);
 
         return speed / d;
     }
