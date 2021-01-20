@@ -77,9 +77,9 @@ public class ButtonHandler : MonoBehaviour
 
         switch (Globals.stage)
         {
-            case Globals.Stage.STAGE_1: b = LevelTests.Test_1(); Dialogue.Test_1(b); break;
-            case Globals.Stage.STAGE_2: b = LevelTests.Test_2(); Dialogue.Test_2(b); break;
-            case Globals.Stage.STAGE_3: b = LevelTests.Test_3(); Dialogue.Test_3(b); break;
+            case Globals.Stage.STAGE_1: b = LevelTests.Test_1(); if (b) Globals.SetStage(Globals.Stage.STAGE_2); Dialogue.Test_1(b); break;
+            case Globals.Stage.STAGE_2: b = LevelTests.Test_2(); if (b) Globals.SetStage(Globals.Stage.STAGE_3); Dialogue.Test_2(b); break;
+            case Globals.Stage.STAGE_3: b = LevelTests.Test_3(); if (b) Globals.SetStage(Globals.Stage.STAGE_4); Dialogue.Test_3(b); break;
             case Globals.Stage.STAGE_4: b = LevelTests.Test_4(); Dialogue.Test_4(b); break;
         }
         Globals.player.oneShot(b ? "right" : "wrong");
