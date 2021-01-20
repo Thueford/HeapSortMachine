@@ -10,7 +10,7 @@ public class SoundHandler : MonoBehaviour
     private AudioSource musicPlayer;
     private AudioSource ambiencePlayer;
     private AudioSource oneShotPlayer;
-    public float master = 1f;
+    private static float master = 0.6f;
     public string[] names;
     public AudioClip[] clips;
     private Dictionary<string, AudioClip> clipDict = new Dictionary<string, AudioClip>();

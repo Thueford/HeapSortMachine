@@ -6,9 +6,13 @@ using UnityEngine;
 public class BowlMover : MonoBehaviour
 {
     //list all checkpoints are in
+    public delegate void AnimationCallback();
+
     public static List<Checkpoint> checkpointlist = new List<Checkpoint>();
     public static List<Checkpoint> staticcheckpointlist = new List<Checkpoint>();
     public static BowlMover bowlMover;
+    private static AnimationCallback cb = null;
+    private static int moving = 0;
 
     public GameObject checkpointPrefab;
 
@@ -26,11 +30,19 @@ public class BowlMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public static void autoMoveStart()
+    public static void AnimationComplete()
     {
+        cb();
+        cb = null;
+    }
+
+    public static void autoMoveStart(AnimationCallback acb)
+    {
+        cb = acb;
+
         //create checkpoints
         //add existing checkpoint 
         foreach (Checkpoint cp in Checkpoint.checkpoints)

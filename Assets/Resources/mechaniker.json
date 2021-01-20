@@ -1,0 +1,87 @@
+{
+  "level_description": {
+    "stage_1": {
+      "text": [ "noch füllen" ],
+      "emotion": "positiv"
+    },
+    "stage_2": {
+      "text": [ "noch füllen" ],
+      "emotion": "positiv"
+    },
+    "stage_3": {
+      "text": [ "noch füllen" ],
+      "emotion": "positiv"
+    },
+    "stage_4": {
+      "text": [ "noch füllen" ],
+      "emotion": "positiv"
+    }
+  },
+  "level_complete": {
+    "stage_1": {
+      "text": "Da hast du aber einen schönen Baum gepflanzt.",
+      "emotion": "positiv"
+    },
+    "stage_2": {
+      "text": "Da hast du aber einen schönen Baum gepflanzt.",
+      "emotion": "positiv"
+    },
+    "stage_3": {
+      "text": "Diese Pyramide steht stabil.",
+      "emotion": "positiv"
+    },
+    "stage_4": {
+      "text": [ "So langsam hast du den Sortieralgorithmus verstanden, oder?" ],
+      "emotion": "positiv"
+    }
+  },
+  "random_mistake": {
+    "text": [
+      "Wenn du weiter so machst werden wir beide noch gefeuert.",
+      "Wenn du so weiter machst wirst du es nie verstehen!",
+      "Versuche es einfach noch einmal!",
+      "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!"
+    ],
+    "emotion": "angry"
+  },
+  "random_success": {
+    "text": [
+      "Super das ist ja fast wie meine eigen Arbeit.",
+      "Das hätte ich nicht besser machen können.",
+      "Wenn du so weiter machst kannst du bald an meiner Stelle stehen.",
+      "Du hast das ausgezeichnet gemacht."
+    ],
+    "emotion": "positiv"
+  },
+  "level_hints": {
+    "stage_1": {
+      "text": [
+        "Fülle den Baum von oben nach unten mit den Kugeln!",
+        "Orientiere dich an der vorgegebenen Liste."
+      ],
+      "emotion": "explain"
+    },
+    "stage_2": {
+      "text": [
+        "Jede Ebene hat doppelt so viele Knote wie die vorherige.",
+        "Die Indizes werden von der Wurzele bis zu den untersten Blättern, zeilenweise und aufsteigend vergeben."
+      ],
+      "emotion": "explain"
+    },
+    "stage_3": {
+      "text": [
+        "Achte darauf, dass die Kindknoten nicht größer als der Elternknoten sind.",
+        "Am Ende muss das größte Element die Wurzel sein.",
+        "Prüfe ob die Herstellung eines Heaps zwischen zwei Elementen einen anderen zerstört hat."
+      ],
+      "emotion": "explain"
+    },
+    "stage_4": {
+      "text": [
+        "Tausche doch die Wurzel mit dem untersten Blatt.",
+        "Das unterste Blatt ist am weitesten von der Wurzel entfernt."
+      ],
+      "emotion": "explain"
+    }
+  }
+}
