@@ -85,9 +85,8 @@ public class LevelTests : MonoBehaviour
         return false;
     }
 
-    public static bool Test_2_2()
+    public static bool Test_3_Heapified(int n)
     {
-        // TODO
         return false;
     }
 
