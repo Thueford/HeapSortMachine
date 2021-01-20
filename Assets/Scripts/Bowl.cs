@@ -86,7 +86,7 @@ public class Bowl : MonoBehaviour
             //Debug.Log(checkpoints);
             if (automove)
             {
-
+                
                 if (checkpoints.Count == 0 && movePosition == new Vector3()) return;
                 if (movePosition == new Vector3())
                 {
@@ -161,9 +161,9 @@ public class Bowl : MonoBehaviour
                         return;
                     }
                 }
-                //*/Neue implementierung (kurzer aber nicht fertig also nicht ändern @jakob)
+                //*/ //Neue implementierung (kurzer aber nicht fertig also nicht ändern @jakob)
 
-                /*if (checkpoints.Count == 0 && movePosition == new Vector3()) return;
+                if (checkpoints.Count == 0 && movePosition == new Vector3()) return;
 
                 if (movePosition != transform.position && movePosition != new Vector3())
                 {
@@ -193,6 +193,14 @@ public class Bowl : MonoBehaviour
         }
 
         if (picked) transform.position = mouse_position;
+    }
+
+    public static void clearMovePosition()
+    {
+        foreach (Bowl b in Globals.bowls)
+        {
+            b.movePosition = new Vector3();
+        }
     }
 
     private float getScaledSpeed(Vector3 pos, Vector3 npos, int speed)

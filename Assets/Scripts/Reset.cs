@@ -15,6 +15,12 @@ public class Reset : MonoBehaviour
                 {
                     Debug.Log("index of bowl "+b.index+"value of hole "+h.value);
                     b.moveToHole(h.GetComponent<Collider2D>());
+
+                    //clear checkpoints
+                    b.checkpoints.Clear();
+                    Checkpoint.used = false;
+                    BowlMover.checkpointlist.Clear();
+                    Bowl.clearMovePosition();
                 }
            }
        }
