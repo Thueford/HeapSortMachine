@@ -180,9 +180,7 @@ public class Bowl : MonoBehaviour
                         {
                             //set everything to normal again
                             foreach (GameObject g in Globals.globals.toMoveZ)
-                            {
-                                g.transform.position = addVecZ(g.transform.position, 10);
-                            }
+                                g.transform.position = setVecZ(g.transform.position, ZDROPPED);
                             BowlMover.AnimationComplete();
                         }
 
@@ -266,16 +264,15 @@ public class Bowl : MonoBehaviour
         swapHole = coll;
     }
 
-    public static Vector3 setVecZ(Vector3 vec, int z) {
-        Vector3 tv = vec;
-        tv.z = z;
-        return tv;
-    }
-    public static Vector3 addVecZ(Vector3 vec, int z)
+    public static Vector3 setVecZ(Vector3 vec, float z)
     {
-        Vector3 tv = vec;
-        tv.z += z;
-        return tv;
+        vec.z = z;
+        return vec;
+    }
+    public static Vector3 addVecZ(Vector3 vec, float z)
+    {
+        vec.z += z;
+        return vec;
     }
 
     public static Bowl spawn(int index, int value, Vector3 pos)
@@ -283,7 +280,7 @@ public class Bowl : MonoBehaviour
         GameObject bowl = Instantiate(Globals.globals.bowlPrefab, pos, Quaternion.identity);
         bowl.transform.SetParent(Globals.globals.bowlHolder.transform);
 
-        Vector3 bowl_pos = addVecZ(bowl.transform.position, -1);
+        Vector3 bowl_pos = addVecZ(bowl.transform.position, -0.01f);
         GameObject txt = Instantiate(Globals.globals.bowlTextPrefab, bowl_pos, Quaternion.identity);
         txt.transform.SetParent(bowl.transform);
 
@@ -297,7 +294,6 @@ public class Bowl : MonoBehaviour
     public void move(Vector3 newPos)
     {
         enableDragnDrop = false;
-
     }
 
     public void startAutomaticMove()
@@ -305,7 +301,7 @@ public class Bowl : MonoBehaviour
         enableDragnDrop = false;
         automove = true;
 
-        transform.position = setVecZ(transform.position, ZDRAGGED);
+        transform.position = setVecZ(transform.position, ZANIMATE - 0.03f * index);
     }
 
     public void visible(bool v)

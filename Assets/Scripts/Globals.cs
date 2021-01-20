@@ -44,6 +44,8 @@ public class Globals : MonoBehaviour
     {
         //spawns bowls
         ballSpawner();
+        bowls.Sort((a, b) => a.index < b.index ? -1 : 1);
+        holes.Sort((a, b) => a.value < b.value ? -1 : 1);
         SetStage(Stage.STAGE_1);
 
         //testing
