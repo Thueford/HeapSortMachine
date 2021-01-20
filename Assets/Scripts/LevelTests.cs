@@ -21,7 +21,7 @@ public class LevelTests : MonoBehaviour
 
     public static bool Test_1()
     {
-        bool test;
+
         bool allClear = true;
         foreach (Hole h in Globals.getHoles(Hole.TREEHOLE)) //Iterate through every tree Hole
         {    
@@ -46,6 +46,7 @@ public class LevelTests : MonoBehaviour
             
         }
         // every ball is in the right hole
+
         Globals.globals.StartCoroutine(waitASecondThenResetHoleColor());
         return allClear;
     }
@@ -60,23 +61,21 @@ public class LevelTests : MonoBehaviour
     //if textfield left = 2n+1 and textfield Right = 2n+2 return true
     {
         InputField ifl = GameObject.Find("edtRuleLeft").GetComponent<InputField>();
-        InputField ifr = GameObject.Find("edtRuleLeft").GetComponent<InputField>();
+        InputField ifr = GameObject.Find("edtRuleRight").GetComponent<InputField>();
         bool result = true;
+
         // Regex.Match(ifl.text, "^\\s*2\\s*[*]?\\s*n\\s*[+]\\s*1\\s*$").Success &&
         // Regex.Match(ifr.text, "^\\s*2\\s*[*]?\\s*n\\s*[+]\\s*2\\s*$").Success;
 
         try { 
-            for (int n = 0; n < Globals.bowlCount; n++) { 
-                if (Math.Round(Eval(ifl.text.Replace("n", n.ToString()))) != 2 * n + 1) result = false;
-                if (Math.Round(Eval(ifr.text.Replace("n", n.ToString()))) != 2 * n + 2) result = false;
-                if (!result) break;
-            }
+                if (Math.Round(Eval(ifl.text.Replace("n", "42"))) != 1 + 84) result = false;
+                if (Math.Round(Eval(ifr.text.Replace("n", "42"))) != 2 + 84) result = false;
         } catch(Exception e) {
-            Debug.Log("left input Field has errors");
+            Debug.Log("input Field has errors");
+            Debug.Log(e);
             result = false;
             // TODO: color input fields red
         }
-
         return result;
     }
 
