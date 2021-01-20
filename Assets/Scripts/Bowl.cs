@@ -34,7 +34,6 @@ public class Bowl : MonoBehaviour
     {
         bowlCollider = GetComponent<Collider2D>();
         startPosition = transform.position;
-        Debug.Log("StartZ: " + startPosition.z);
         setValue(value);
     }
 
@@ -268,14 +267,12 @@ public class Bowl : MonoBehaviour
     }
 
     public static Vector3 setVecZ(Vector3 vec, int z) {
-        //Debug.Log("oldz " + vec.z + " set " + z);
         Vector3 tv = vec;
         tv.z = z;
         return tv;
     }
     public static Vector3 addVecZ(Vector3 vec, int z)
     {
-        //Debug.Log("oldz " + vec.z + " add " + z);
         Vector3 tv = vec;
         tv.z += z;
         return tv;
