@@ -66,9 +66,7 @@ public class Globals : MonoBehaviour
         foreach (Hole h in getHoles(Hole.LISTHOLE))
         {
             //h.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            Vector3 hole_pos = h.transform.position;
-            hole_pos.z = 5;
-            bowls.Add(Bowl.spawn(h.value, values[cnt], hole_pos));
+            bowls.Add(Bowl.spawn(h.value, values[cnt], Bowl.setVecZ(h.transform.position, 5)));
             cnt++;
         }
     }
