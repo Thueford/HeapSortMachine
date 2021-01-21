@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b16b888630d9ab4d8f05f51bd2bd761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bowlsBlank:
+  ballsBlank:
   - {fileID: -2730678496903272905, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   - {fileID: -8123278727972085277, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   - {fileID: -1373377926636000439, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
@@ -479,8 +479,8 @@ MonoBehaviour:
   - {fileID: -2281716984375806258, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   - {fileID: -21694349646772765, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   - {fileID: -9121496246046211438, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
-  bowlCount: 15
-  bowlPrefab: {fileID: 0}
+  ballCount: 15
+  ballPrefab: {fileID: 0}
   ballHolder: {fileID: 0}
 --- !u!1 &1980285004
 GameObject:
@@ -683,7 +683,7 @@ PrefabInstance:
     - target: {fileID: 2255811248715788851, guid: eb0cdbebb1935104db73af6dcd26c8a6,
         type: 3}
       propertyPath: m_Name
-      value: bowlText
+      value: ballText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb0cdbebb1935104db73af6dcd26c8a6, type: 3}

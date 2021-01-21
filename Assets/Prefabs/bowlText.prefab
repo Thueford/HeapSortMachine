@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6872891495225983699}
   - component: {fileID: 5891843725473401560}
   m_Layer: 0
-  m_Name: bowlText
+  m_Name: ballText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -18,15 +18,15 @@ public class Globals : MonoBehaviour
 
     public Button[] heapChkBtns;
     public GameObject[] toMoveZ;
-    public Sprite[] bowlsBlank;
+    public Sprite[] ballsBlank;
     public Sprite[] holeSprites;
     public Sprite[] jointSprites;
 
     public Stage startStage;
     public Stage rdonlyStage;
-    public GameObject bowlPrefab;
-    public GameObject bowlHolder;
-    public GameObject bowlTextPrefab;
+    public GameObject ballPrefab;
+    public GameObject ballHolder;
+    public GameObject ballTextPrefab;
     public GameObject checkpointHolder;
 
     public enum Stage
@@ -46,7 +46,7 @@ public class Globals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //spawns bowls
+        //spawns balls
         ballSpawner();
         balls.Sort((a, b) => a.index < b.index ? -1 : 1);
         holes.Sort((a, b) => a.value < b.value ? -1 : 1);
@@ -54,7 +54,7 @@ public class Globals : MonoBehaviour
         SetStage(stage);
 
         //testing
-        //bowls[1].move(Checkpoint.checkpoints[0].transform.position);
+        //balls[1].move(Checkpoint.checkpoints[0].transform.position);
     }
 
     // Update is called once per frame

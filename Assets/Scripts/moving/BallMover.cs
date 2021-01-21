@@ -80,7 +80,7 @@ public class BallMover : MonoBehaviour
         //sort checkpoint list
         checkpointlist.Sort((a, b) => a.holeID < b.holeID ? -1 : 1);
 
-        //have to move some objects in forground for putting them back to default z look at bowl.cs
+        //have to move some objects in forground for putting them back to default z look at ball.cs
         foreach (GameObject g in Globals.globals.toMoveZ)
         {
             

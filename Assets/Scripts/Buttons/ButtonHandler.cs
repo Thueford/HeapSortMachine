@@ -103,7 +103,7 @@ public class ButtonHandler : MonoBehaviour
         {
             case Globals.Stage.STAGE_1: b = LevelTests.Test_1(); Dialogue.Test_1(b); break;
             case Globals.Stage.STAGE_2:
-                //activate autobowlmovement
+                //activate autoballmovement
                 if (!autoButtonUsed)
                 {
                     b = LevelTests.Test_2();

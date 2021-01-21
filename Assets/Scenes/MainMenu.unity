@@ -900,7 +900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heapChkBtns: []
   toMoveZ: []
-  bowlsBlank:
+  ballsBlank:
   - {fileID: -2730678496903272905, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   - {fileID: -8123278727972085277, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   - {fileID: -1373377926636000439, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
@@ -921,9 +921,9 @@ MonoBehaviour:
   jointSprites: []
   startStage: 1
   rdonlyStage: 0
-  bowlPrefab: {fileID: 0}
-  bowlHolder: {fileID: 0}
-  bowlTextPrefab: {fileID: 0}
+  ballPrefab: {fileID: 0}
+  ballHolder: {fileID: 0}
+  ballTextPrefab: {fileID: 0}
   checkpointHolder: {fileID: 0}
 --- !u!114 &1556639226
 MonoBehaviour:

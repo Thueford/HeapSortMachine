@@ -205,11 +205,11 @@ public class Ball : MonoBehaviour
 
     public static Ball spawn(int index, int value, Vector3 pos)
     {
-        GameObject ball = Instantiate(Globals.globals.bowlPrefab, pos, Quaternion.identity);
-        ball.transform.SetParent(Globals.globals.bowlHolder.transform);
+        GameObject ball = Instantiate(Globals.globals.ballPrefab, pos, Quaternion.identity);
+        ball.transform.SetParent(Globals.globals.ballHolder.transform);
 
         Vector3 ball_pos = addVecZ(ball.transform.position, -0.01f);
-        GameObject txt = Instantiate(Globals.globals.bowlTextPrefab, ball_pos, Quaternion.identity);
+        GameObject txt = Instantiate(Globals.globals.ballTextPrefab, ball_pos, Quaternion.identity);
         txt.transform.SetParent(ball.transform);
 
         Ball b = ball.GetComponent<Ball>();
@@ -254,7 +254,7 @@ public class Ball : MonoBehaviour
 
     public void setValue(int val, bool nums = true)
     {
-        Sprite[] sprites = Globals.globals.bowlsBlank; // nums ? globs.bowlsNumbered : globs.bowlsBlank;
+        Sprite[] sprites = Globals.globals.ballsBlank; // nums ? globs.ballsNumbered : globs.ballsBlank;
         value = val % sprites.Length;
 
         GetComponent<SpriteRenderer>().sprite = sprites[value];

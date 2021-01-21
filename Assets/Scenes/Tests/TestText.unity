@@ -1017,12 +1017,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b16b888630d9ab4d8f05f51bd2bd761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bowlsBlank: []
+  ballsBlank: []
   holeSprites: []
   startStage: 2
-  bowlPrefab: {fileID: 0}
-  bowlHolder: {fileID: 0}
-  bowlTextPrefab: {fileID: 0}
+  ballPrefab: {fileID: 0}
+  ballHolder: {fileID: 0}
+  ballTextPrefab: {fileID: 0}
 --- !u!1 &1511980539
 GameObject:
   m_ObjectHideFlags: 0
