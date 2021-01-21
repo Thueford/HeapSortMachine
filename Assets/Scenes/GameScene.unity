@@ -2206,9 +2206,9 @@ RectTransform:
   m_Children:
   - {fileID: 658540902}
   - {fileID: 712862266}
+  - {fileID: 1237913033}
   - {fileID: 595838499}
   - {fileID: 597165960}
-  - {fileID: 1237913033}
   - {fileID: 69080727}
   - {fileID: 1714434655}
   - {fileID: 1217014294}
@@ -4468,6 +4468,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 45f3d55e6dcd4934bb7bdf5678c32009, type: 3}
   - {fileID: 21300000, guid: 2ad49de7086e15d4cae4675732158486, type: 3}
   startStage: 2
+  rdonlyStage: 0
   bowlPrefab: {fileID: 7053024290954293156, guid: 1894bdf830d9f7243966c5d37b506a9f,
     type: 3}
   bowlHolder: {fileID: 1293688634}
@@ -4844,7 +4845,6 @@ GameObject:
   - component: {fileID: 595838499}
   - component: {fileID: 595838501}
   - component: {fileID: 595838500}
-  - component: {fileID: 595838502}
   m_Layer: 5
   m_Name: Speechbubble
   m_TagString: Untagged
@@ -4867,7 +4867,7 @@ RectTransform:
   - {fileID: 458637788}
   - {fileID: 1124710313}
   m_Father: {fileID: 230283991}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4911,26 +4911,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 595838498}
   m_CullTransparentMesh: 0
---- !u!114 &595838502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595838498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8911eda7a837d6409b5e0e301f8a3e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameText: {fileID: 458637789}
-  dialogueText: {fileID: 255900837}
-  contiButton: {fileID: 1124710312}
-  happy: {fileID: 0}
-  erklaerend: {fileID: 0}
-  neutral: {fileID: 0}
-  skeptisch: {fileID: 0}
-  zornig: {fileID: 0}
 --- !u!1 &597165959
 GameObject:
   m_ObjectHideFlags: 0
@@ -4974,7 +4954,7 @@ Transform:
   - {fileID: 1705147782}
   - {fileID: 1004002144}
   m_Father: {fileID: 230283991}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &602317641
 GameObject:
@@ -7659,7 +7639,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 595838502}
+      - m_Target: {fileID: 1237913036}
         m_MethodName: DisplayNextSentence
         m_Mode: 1
         m_Arguments:
@@ -8045,6 +8025,7 @@ GameObject:
   - component: {fileID: 1237913033}
   - component: {fileID: 1237913035}
   - component: {fileID: 1237913034}
+  - component: {fileID: 1237913036}
   m_Layer: 5
   m_Name: Mechaniker
   m_TagString: Untagged
@@ -8064,7 +8045,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 230283991}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -8090,7 +8071,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4eee29fd1f5cb12458e23f8ab091471d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea9ebd645b282c0428dc782074ef192a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8108,6 +8089,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237913032}
   m_CullTransparentMesh: 0
+--- !u!114 &1237913036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237913032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8911eda7a837d6409b5e0e301f8a3e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 458637789}
+  dialogueText: {fileID: 255900837}
+  contiButton: {fileID: 1124710312}
+  sprHappy: {fileID: 21300000, guid: 9671eeb1db599024c9425076ef5c88f3, type: 3}
+  sprExplain: {fileID: 21300000, guid: a2694920b3733f745a8bdf730f9fae22, type: 3}
+  sprNeutral: {fileID: 21300000, guid: ea9ebd645b282c0428dc782074ef192a, type: 3}
+  sprSceptic: {fileID: 21300000, guid: 58ef22559e865234194480f79381202c, type: 3}
+  sprAngry: {fileID: 21300000, guid: a0862b1851339d04a86e7622a2bd8939, type: 3}
 --- !u!1001 &1239326341
 PrefabInstance:
   m_ObjectHideFlags: 0
