@@ -50,7 +50,8 @@ public class Globals : MonoBehaviour
         ballSpawner();
         bowls.Sort((a, b) => a.index < b.index ? -1 : 1);
         holes.Sort((a, b) => a.value < b.value ? -1 : 1);
-        SetStage(Stage.STAGE_1);
+        // SetStage(Stage.STAGE_1);
+        SetStage(stage);
 
         //testing
         //bowls[1].move(Checkpoint.checkpoints[0].transform.position);
