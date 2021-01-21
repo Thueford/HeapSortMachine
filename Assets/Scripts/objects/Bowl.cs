@@ -3,31 +3,33 @@ using System.Collections.Generic;
 
 public class Bowl : MonoBehaviour
 {
-    private Vector2 mouse_position;
-    private Vector3 startPosition;
-    private Collider2D bowlCollider, startHole, swapHole;
-    private GameObject text;
-    private bool picked = false;
-    private bool automove;
-    private bool nextCheckpointTeleport = false; //if next checkpoint is teleport... cuz it gets deleted
-    private float moveSpeed;
-    private static bool isSwapping = false;
-    private Vector3 movePosition = new Vector3();
-    private Checkpoint tempCheckpoint;
-
     //to know how much bowls are still moving
     public static List<Bowl> moving = new List<Bowl>();
-
-    public bool enableDragnDrop = true;
-    public int value, index;
-    public int holeId { get; private set; } = -1;
+    public static bool staticDnDEnable = true;
+    public static bool isSwapping = false;
 
     //list of checkpoints to move
     public List<Checkpoint> checkpoints = new List<Checkpoint>();
+    private Vector2 mouse_position, startPosition;
+    private Vector3 movePosition = Vector3.zero;
+    private Collider2D bowlCollider, startHole, swapHole;
+    private GameObject text;
+    private Checkpoint tempCheckpoint;
 
-    private const int ZDRAGGED = 6 -  3;
-    private const int ZDROPPED = 6 -  1;
-    private const int ZANIMATE = 6 + 21;
+    private bool automove;
+    private bool picked = false;
+    private bool nextCheckpointTeleport = false; //if next checkpoint is teleport... cuz it gets deleted
+    public bool enableDragnDrop = true;
+
+    public int value { get; private set; } = -1;
+    public int index { get; private set; } = -1;
+    public int holeId { get; private set; } = -1;
+
+
+    private const int
+        ZDRAGGED = 6 -  3,
+        ZDROPPED = 6 -  1,
+        ZANIMATE = 6 + 21;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +48,7 @@ public class Bowl : MonoBehaviour
 
         mouse_position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (enableDragnDrop)
+        if (enableDragnDrop && staticDnDEnable)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -68,14 +70,8 @@ public class Bowl : MonoBehaviour
                 if (swapHole != startHole) { // Ball Movement happens
                     Hole to = swapHole.gameObject.GetComponent<Hole>();
                     if (to.content != null) { // Swap two Balls
-                        if (startHole != null) {
-                            isSwapping = true; // To ignore Collision Triggers
-
-                            to.content.moveToHole(startHole);
-                            moveToHole(swapHole);
-
-                            isSwapping = false; // To notice Collision Triggers again
-                        } else transform.position = setVecZ(startPosition, ZDROPPED);
+                        swapTwo(this, to.content);
+                        transform.position = setVecZ(startPosition, ZDROPPED);
                     } else { // Move a single Ball
                         moveToHole(swapHole);
                     }
@@ -87,88 +83,9 @@ public class Bowl : MonoBehaviour
             //Debug.Log(checkpoints);
             if (automove)
             {
-                /*
-                if (checkpoints.Count == 0 && movePosition == new Vector3()) return;
-                if (movePosition == new Vector3())
-                {
-                    //checks for teleport checkpoint
-                    if (checkpoints[0].checkpoint == Checkpoint.CheckpointType.TELEPORT)
-                    {
-                        nextCheckpointTeleport = true;
-                    }
-
-                    //pops first element
-                    movePosition = checkpoints[0].transform.position;
-
-                    checkpoints.RemoveAt(0);
-
-                    //creates speed
-                    moveSpeed = getScaledSpeed(transform.position, movePosition, 10);
-                }
-
-                if (movePosition == transform.position)
-                {
-                    if (checkpoints.Count != 0)
-                    {
-                        if (nextCheckpointTeleport)
-                        {
-                            transform.position = checkpoints[0].transform.position;
-                            checkpoints.RemoveAt(0);
-
-                            if (checkpoints.Count != 0)
-                            {
-                                movePosition = checkpoints[0].transform.position;
-                                checkpoints.RemoveAt(0);
-                            }
-
-                            nextCheckpointTeleport = false;
-                            return;
-                        }
-
-                        //checks for teleport checkpoint
-                        if (checkpoints[0].checkpoint == Checkpoint.CheckpointType.TELEPORT)
-                        {
-                            nextCheckpointTeleport = true;
-                        }
-
-                        movePosition = checkpoints[0].transform.position;
-                        checkpoints.RemoveAt(0);
-
-                        //creates speed
-                        moveSpeed = getScaledSpeed(transform.position, movePosition, 10);
-
-                    } else
-                    {
-                        enableDragnDrop = true;
-                        automove = false;
-                        //transform.position = setVecZ(transform.position, ZDROPPED);
-
-                        //muss swapping gefixt werden
-                        //startPosition = transform.position;
-
-                        //not moving anymore
-                        moving.Remove(this);
-                        //checks of this bowl was last that was moving
-                        if (moving.Count == 0)
-                        {
-                            //set everything to normal again
-                            foreach (GameObject g in Globals.globals.toMoveZ)
-                            {
-                                g.transform.position = setVecZ(g.transform.position, ZDROPPED);
-                            }
-
-                            BowlMover.AnimationComplete();
-                        }
-
-                        moveToHole(swapHole);
-                        return;
-                    }
-                }
-                //*/ //Neue implementierung (kurzer aber nicht fertig also nicht ändern @jakob)
-
                 if (checkpoints.Count == 0)
                 {
-                    if (movePosition == new Vector3()) return;
+                    if (movePosition == Vector3.zero) return;
                     if (movePosition == transform.position)
                     {
                         //ende
@@ -180,9 +97,7 @@ public class Bowl : MonoBehaviour
                         {
                             //set everything to normal again
                             foreach (GameObject g in Globals.globals.toMoveZ)
-                            {
-                                g.transform.position = addVecZ(g.transform.position, 10);
-                            }
+                                g.transform.position = setVecZ(g.transform.position, ZDROPPED);
                             BowlMover.AnimationComplete();
                         }
 
@@ -248,12 +163,23 @@ public class Bowl : MonoBehaviour
         return speed / d;
     }
 
+    public static void swapTwo(Bowl b1, Bowl b2) {
+        isSwapping = true;
+        Collider2D tmp = b1.startHole;
+        if (b1.startHole == null || b2.startHole == null ||
+                !b1.startHole.gameObject.GetComponent<Hole>().tree ||
+                !b2.startHole.gameObject.GetComponent<Hole>().tree) return;
+        b1.moveToHole(b2.startHole);
+        b2.moveToHole(tmp);
+        isSwapping = false;
+    }
+
     //Collider 'to' must be the collider of a *HOLE*
     public void moveToHole(Collider2D to) {
-        if (swapHole.gameObject.GetComponent<Hole>() == null) return;
+        if (to.gameObject.GetComponent<Hole>() == null) return;
         if (startHole != null && !isSwapping) startHole.gameObject.GetComponent<Hole>().setContent(null);
         to.gameObject.GetComponent<Hole>().setContent(this);
-        holeId = swapHole.gameObject.GetComponent<Hole>().value;
+        holeId = to.gameObject.GetComponent<Hole>().value;
         fixPosition(to);
     }
 
@@ -266,16 +192,15 @@ public class Bowl : MonoBehaviour
         swapHole = coll;
     }
 
-    public static Vector3 setVecZ(Vector3 vec, int z) {
-        Vector3 tv = vec;
-        tv.z = z;
-        return tv;
-    }
-    public static Vector3 addVecZ(Vector3 vec, int z)
+    public static Vector3 setVecZ(Vector3 vec, float z)
     {
-        Vector3 tv = vec;
-        tv.z += z;
-        return tv;
+        vec.z = z;
+        return vec;
+    }
+    public static Vector3 addVecZ(Vector3 vec, float z)
+    {
+        vec.z += z;
+        return vec;
     }
 
     public static Bowl spawn(int index, int value, Vector3 pos)
@@ -283,7 +208,7 @@ public class Bowl : MonoBehaviour
         GameObject bowl = Instantiate(Globals.globals.bowlPrefab, pos, Quaternion.identity);
         bowl.transform.SetParent(Globals.globals.bowlHolder.transform);
 
-        Vector3 bowl_pos = addVecZ(bowl.transform.position, -1);
+        Vector3 bowl_pos = addVecZ(bowl.transform.position, -0.01f);
         GameObject txt = Instantiate(Globals.globals.bowlTextPrefab, bowl_pos, Quaternion.identity);
         txt.transform.SetParent(bowl.transform);
 
@@ -297,7 +222,6 @@ public class Bowl : MonoBehaviour
     public void move(Vector3 newPos)
     {
         enableDragnDrop = false;
-
     }
 
     public void startAutomaticMove()
@@ -305,7 +229,7 @@ public class Bowl : MonoBehaviour
         enableDragnDrop = false;
         automove = true;
 
-        transform.position = setVecZ(transform.position, ZDRAGGED);
+        // transform.position = setVecZ(transform.position, ZANIMATE - 0.03f * index);
     }
 
     public void visible(bool v)

@@ -175,6 +175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprHolderUp: {fileID: 0}
   sprHolderDown: {fileID: 0}
+  sprHeapChk: {fileID: 0}
+  sprHeapUnchk: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,6 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b16b888630d9ab4d8f05f51bd2bd761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heapChkBtns: []
   toMoveZ: []
   bowlsBlank:
   - {fileID: -2730678496903272905, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
@@ -915,7 +918,9 @@ MonoBehaviour:
   - {fileID: -21694349646772765, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   - {fileID: -9121496246046211438, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   holeSprites: []
-  startStage: 0
+  jointSprites: []
+  startStage: 1
+  rdonlyStage: 0
   bowlPrefab: {fileID: 0}
   bowlHolder: {fileID: 0}
   bowlTextPrefab: {fileID: 0}

@@ -9,12 +9,10 @@ public class DialogueManager : MonoBehaviour
 	public Text nameText;
 	public Text dialogueText;
 	public GameObject contiButton;
-	public Image happy;
-	public Image erklaerend;
-	public Image neutral;
-	public Image skeptisch;
-	public Image zornig;
+	public Sprite sprHappy, sprExplain, sprNeutral, sprSceptic, sprAngry;
 	public static DialogueManager self;
+	private static Image mecha;
+	public static Globals.Stage nextStage = Globals.Stage.NONE;
 
 	private Queue<string> sentences;
 
@@ -22,17 +20,24 @@ public class DialogueManager : MonoBehaviour
     {
 		self = this;
     }
+
 	void Start()
 	{
+		mecha = GetComponent<Image>();
 		sentences = new Queue<string>();
 	}
+
+	public static void setMecha(Sprite img)
+    {
+		mecha.sprite = img;
+    }
 
 	public void StartDialogue()
 	{
 		Debug.Log("Start Dialogue");
 
 		//falls hier fehler kommt prüfen ob im dialog manager script die einzelnen objekte zugewiesen sind (reingezogen) zb nameText
-		 nameText.text = Dialogue.name;
+		nameText.text = Dialogue.name;
 
 		sentences.Clear();
 
@@ -65,7 +70,7 @@ public class DialogueManager : MonoBehaviour
 		foreach (char letter in sentence.ToCharArray())
 		{
 			dialogueText.text += letter;
-			yield return null;
+			yield return new WaitForSeconds(0.01f);
 		}
 	}
 	
@@ -75,11 +80,11 @@ public class DialogueManager : MonoBehaviour
 		dialogueText.text = "Ich bin immer für dich da Drück nur die Knöpfe";
 		nameText.text = "Mechaniker";
 		contiButton.gameObject.SetActive(false);
-		neutral.gameObject.SetActive(true);
-		erklaerend.gameObject.SetActive(false);
-		happy.gameObject.SetActive(false);
-		skeptisch.gameObject.SetActive(false);
-		zornig.gameObject.SetActive(false);
+		mecha.sprite = sprNeutral;
+
+		// load next Stage
+		if (nextStage != Globals.Stage.NONE) Globals.SetStage(nextStage);
+		nextStage = Globals.Stage.NONE;
 	}
 	
 }

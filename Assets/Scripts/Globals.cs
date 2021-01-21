@@ -11,15 +11,19 @@ public class Globals : MonoBehaviour
     public static Stage stage { get; private set; } = Stage.MENU;
     public static List<Bowl> bowls = new List<Bowl>();
     public static List<Hole> holes = new List<Hole>();
+    public static List<Joint> joints = new List<Joint>();
     public static int bowlCount = 15;
     public static Random ran = new Random();
     public static SoundHandler player;
 
+    public Button[] heapChkBtns;
     public GameObject[] toMoveZ;
     public Sprite[] bowlsBlank;
     public Sprite[] holeSprites;
+    public Sprite[] jointSprites;
 
     public Stage startStage;
+    public Stage rdonlyStage;
     public GameObject bowlPrefab;
     public GameObject bowlHolder;
     public GameObject bowlTextPrefab;
@@ -27,7 +31,7 @@ public class Globals : MonoBehaviour
 
     public enum Stage
     {
-        MENU, INTRO, STAGE_1, STAGE_2,
+        NONE, MENU, INTRO, STAGE_1, STAGE_2,
         STAGE_3, STAGE_4, END
     }
 
@@ -44,7 +48,10 @@ public class Globals : MonoBehaviour
     {
         //spawns bowls
         ballSpawner();
-        SetStage(Stage.STAGE_1);
+        bowls.Sort((a, b) => a.index < b.index ? -1 : 1);
+        holes.Sort((a, b) => a.value < b.value ? -1 : 1);
+        // SetStage(Stage.STAGE_1);
+        SetStage(stage);
 
         //testing
         //bowls[1].move(Checkpoint.checkpoints[0].transform.position);
@@ -83,23 +90,24 @@ public class Globals : MonoBehaviour
             loadScene = "MainMenu";
             s = Stage.MENU;
         }
-        
+
+        Debug.Log("SetStage: " + s);
         if (loadScene != null)
         {
             bowls.Clear();
             holes.Clear();
             SceneManager.LoadScene(loadScene);
+            Debug.Log("SetStage " + s + " Afterload");
         }
 
-        // dunno if this will be needed sometime
-        switch (stage = s)
+        switch (globals.rdonlyStage = stage = s)
         {
             case Stage.MENU: break;
             case Stage.INTRO: break;
-            case Stage.STAGE_1: break;
-            case Stage.STAGE_2: break;
-            case Stage.STAGE_3: break;
-            case Stage.STAGE_4:break;
+            case Stage.STAGE_1: Reset.ResetBallsTo(Hole.LISTHOLE); break;
+            case Stage.STAGE_2: Reset.ResetBallsTo(Hole.LISTHOLE); break;
+            case Stage.STAGE_3: Reset.ResetBallsTo(Hole.TREEHOLE); Bowl.staticDnDEnable = false; break;
+            case Stage.STAGE_4: Reset.ResetBallsHeapifiedTo(Hole.TREEHOLE); break;
             case Stage.END: break;
         }
     }

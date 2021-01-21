@@ -91,25 +91,17 @@ public class BowlMover : MonoBehaviour
         }
 
         //put checkpoints to bowllist
+        int n = 0;
         foreach (Bowl bowl in Globals.bowls)
         {
             //Debug.Log(checkpointlist);
             foreach (Checkpoint c in staticcheckpointlist)
-            {
-                if (c)
-                {
-                    bowl.checkpoints.Add(c);
-                }
-            }
+                if (c) bowl.checkpoints.Add(c);
 
+            //für das perfekte sortieren bowl.value nehmen
             foreach (Checkpoint c in checkpointlist)
-            {
-                //für das perfekte sortieren bowl.value nehmen
                 if (bowlMover.isParent(bowl.index, c.holeID))
-                {
                     bowl.checkpoints.Add(c);
-                }
-            }
 
             bowl.checkpoints.Sort((a, b) => a.holeID < b.holeID ? -1 : 1);
 
@@ -123,21 +115,17 @@ public class BowlMover : MonoBehaviour
             //bowl.startAutomaticMove();
             //StartCoroutine(bowlMover.bowlStarter);
             //Globals.globals.StartCoroutine(bowlMover.bowlStarter(bowl));
-            
         }
-        //maybe somewhere else but here needed
-        Globals.bowls.Sort((a, b) => a.index < b.index ? -1 : 1);
 
         Globals.globals.StartCoroutine(bowlMover.bowlStarter());
     }
 
     private IEnumerator bowlStarter()
     {
-
         foreach(Bowl bowl in Globals.bowls)
         {
             bowl.startAutomaticMove();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.4f);
         }
     }
 
