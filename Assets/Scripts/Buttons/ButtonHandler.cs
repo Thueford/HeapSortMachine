@@ -80,32 +80,32 @@ public class ButtonHandler : MonoBehaviour
 
         switch (Globals.stage)
         {
-            case Globals.Stage.STAGE_1: b = LevelTests.Test_1(); if (b) Globals.SetStage(Globals.Stage.STAGE_2); Dialogue.Test_1(b); break;
+            case Globals.Stage.STAGE_1: b = LevelTests.Test_1(); Dialogue.Test_1(b); break;
             case Globals.Stage.STAGE_2:
                 //activate autobowlmovement
                 if (!autoButtonUsed)
                 {
-                    autoButtonUsed = true;
-                    BowlMover.autoMoveStart(() => {
-                        b = LevelTests.Test_2();
-                        StartCoroutine(Reset_Anim_Stage3(b));
-                    });
+                    b = LevelTests.Test_2();
+                    Dialogue.Test_2(b);
+                    if (b) {
+                        autoButtonUsed = true;
+                        BowlMover.autoMoveStart(() => {
+                            StartCoroutine(Reset_Anim_Stage3());
+                            autoButtonUsed = false;
+                        });
+                    }
                 }
-
                 break;
-            case Globals.Stage.STAGE_3: b = LevelTests.Test_3(); if (b) Globals.SetStage(Globals.Stage.STAGE_4); Dialogue.Test_3(b); break;
+            case Globals.Stage.STAGE_3: b = LevelTests.Test_3(); Dialogue.Test_3(b); break;
             case Globals.Stage.STAGE_4: b = LevelTests.Test_4(); Dialogue.Test_4(b); break;
         }
         Globals.player.oneShot(b ? "right" : "wrong");
     }
 
-    private static IEnumerator Reset_Anim_Stage3(bool b)
+    private static IEnumerator Reset_Anim_Stage3()
     {
-        yield return new WaitForSeconds(0.5f);
-        Dialogue.Test_2(b);
         yield return new WaitForSeconds(1.5f);
         Reset.ResetBallsTo(Hole.LISTHOLE);
-        if (b) Globals.SetStage(Globals.Stage.STAGE_3);
     }
 
     public void btnAuto_Click()
