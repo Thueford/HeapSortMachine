@@ -123,8 +123,8 @@ public class ButtonHandler : MonoBehaviour
     public void btnAuto_Click()
     {
         Debug.Log("Auto");
-
         Globals.player.oneShot("click");
+        DialogueManager.setMecha(DialogueManager.self.sprSceptic);
 
         switch (Globals.stage)
         {

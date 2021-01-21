@@ -84,6 +84,7 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         if (b)
         {
+            DialogueManager.setMecha(DialogueManager.self.sprHappy);
             nameSetter("Richtig!");
             DialogueManager.nextStage = Globals.Stage.STAGE_2;
             string[] sentence_random = json.random_success.text;
@@ -94,6 +95,7 @@ public  class Dialogue : MonoBehaviour
         }
         else
         {
+            DialogueManager.setMecha(DialogueManager.self.sprAngry);
             nameSetter("Falsch!");
             string[] sentence_random = json.random_mistake.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
@@ -112,6 +114,7 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         if (b)
         {
+            DialogueManager.setMecha(DialogueManager.self.sprHappy);
             nameSetter("Richtig!");
             DialogueManager.nextStage = Globals.Stage.STAGE_3;
             string[] sentence_random = json.random_success.text;
@@ -122,6 +125,7 @@ public  class Dialogue : MonoBehaviour
         }
         else
         {
+            DialogueManager.setMecha(DialogueManager.self.sprAngry);
             nameSetter("Falsch!");
             string[] sentence_random = json.random_mistake.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
@@ -140,6 +144,7 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         if (b)
         {
+            DialogueManager.setMecha(DialogueManager.self.sprHappy);
             nameSetter("Richtig!");
             DialogueManager.nextStage = Globals.Stage.STAGE_4;
             string[] sentence_random = json.random_success.text;
@@ -150,6 +155,7 @@ public  class Dialogue : MonoBehaviour
         }
         else
         {
+            DialogueManager.setMecha(DialogueManager.self.sprAngry);
             nameSetter("Falsch!");
             string[] sentence_random = json.random_mistake.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
@@ -168,6 +174,7 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         if (b)
         {
+            DialogueManager.setMecha(DialogueManager.self.sprHappy);
             nameSetter("Richtig!");
             DialogueManager.nextStage = Globals.Stage.END;
             string[] sentence_random = json.random_success.text;
@@ -178,6 +185,7 @@ public  class Dialogue : MonoBehaviour
         }
         else
         {
+            DialogueManager.setMecha(DialogueManager.self.sprAngry);
             nameSetter("Falsch!");
             string[] sentence_random = json.random_mistake.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
