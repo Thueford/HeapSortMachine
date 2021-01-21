@@ -5627,6 +5627,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 712862265}
   m_CullTransparentMesh: 0
+--- !u!114 &718540038 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7284293400971602711, guid: aba028810427b674ab30ac724a35c9a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 61630499}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f1711fc5bf48a4394c44b2edf262c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &744962616
 GameObject:
   m_ObjectHideFlags: 0
@@ -7238,16 +7250,16 @@ PrefabInstance:
         type: 3}
       propertyPath: hole1
       value: 
-      objectReference: {fileID: 1856346636}
+      objectReference: {fileID: 369504805}
     - target: {fileID: 5648099972636989531, guid: 0c62749a085ef784da3a1ef8d000827f,
         type: 3}
       propertyPath: hole2
       value: 
-      objectReference: {fileID: 1345676634}
+      objectReference: {fileID: 718540038}
     - target: {fileID: 5648099972636989531, guid: 0c62749a085ef784da3a1ef8d000827f,
         type: 3}
       propertyPath: id
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6322071511018033418, guid: 0c62749a085ef784da3a1ef8d000827f,
         type: 3}

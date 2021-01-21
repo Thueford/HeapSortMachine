@@ -81,13 +81,19 @@ public class LevelTests : MonoBehaviour
 
     public static bool Test_3()
     {
-        // TODO
-        return false;
+        bool b = true;
+        for (int n = 0; n <= 6; n++) {
+            bool t = Test_3_Heapified(n);
+            b = t && b;
+            Globals.globals.heapChkBtns[n].GetComponent<Image>().sprite = t ? ButtonHandler.self.sprHeapChk : ButtonHandler.self.sprHeapUnchk;
+        }
+        return b;
     }
 
     public static bool Test_3_Heapified(int n)
     {
         Joint[] tmp = Joint.getJoints(n);
+        Debug.Log(tmp);
         bool b = true;
 
         //TODO
@@ -108,8 +114,13 @@ public class LevelTests : MonoBehaviour
 
     public static bool Test_4()
     {
-        // TODO
-        return false;
+        bool b = true;
+        for (int n = 0; n <= 6; n++) {
+            bool t = Test_3_Heapified(n);
+            b = t && b;
+            Globals.globals.heapChkBtns[n].GetComponent<Image>().sprite = t ? ButtonHandler.self.sprHeapChk : ButtonHandler.self.sprHeapUnchk;
+        }
+        return b;
     }
 
 

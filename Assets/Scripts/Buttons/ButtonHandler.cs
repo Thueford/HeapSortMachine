@@ -157,6 +157,7 @@ public class ButtonHandler : MonoBehaviour
         bool res = LevelTests.Test_3_Heapified(n);
 
         btn.GetComponent<Image>().sprite = res ? sprHeapChk : sprHeapUnchk;
+        Globals.player.oneShot(res ? "right" : "wrong");
     }
 
     // not sure what tha purpose is
