@@ -4,7 +4,7 @@ public class Hole : MonoBehaviour
 {
     public int value;
     public bool tree = false;
-    public Bowl content;
+    public Ball content;
     public const string LISTHOLE = "ListHolder";
     public const string TREEHOLE = "TreeHolder";
     public const string SORTHOLE = "SortedHolder";
@@ -18,7 +18,7 @@ public class Hole : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[0];
     }
-    public void setContent(Bowl ball)
+    public void setContent(Ball ball)
     {
         content = ball;
     }

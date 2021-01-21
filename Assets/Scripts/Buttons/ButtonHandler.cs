@@ -110,7 +110,7 @@ public class ButtonHandler : MonoBehaviour
                     Dialogue.Test_2(b);
                     if (b) {
                         autoButtonUsed = true;
-                        BowlMover.autoMoveStart( () => autoButtonUsed = false );
+                        BallMover.autoMoveStart( () => autoButtonUsed = false );
                     }
                 }
                 break;
@@ -137,7 +137,7 @@ public class ButtonHandler : MonoBehaviour
         if (!autoButtonUsed)
         {
             autoButtonUsed = true;
-            BowlMover.autoMoveStart(() => autoButtonUsed = false);
+            BallMover.autoMoveStart(() => autoButtonUsed = false);
         }
     }
 
@@ -145,7 +145,7 @@ public class ButtonHandler : MonoBehaviour
     {
         Debug.Log("Reset");
         Globals.player.oneShot("click");
-        if (Bowl.moving.Count != 0) return;
+        if (Ball.moving.Count != 0) return;
 
         switch (Globals.stage)
         {

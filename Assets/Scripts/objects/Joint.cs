@@ -33,7 +33,7 @@ public class Joint : MonoBehaviour
             Debug.Log("One hole empty, swap canceled");
             return;
         }
-        Bowl.swapTwo(hole1.content, hole2.content);
+        Ball.swapTwo(hole1.content, hole2.content);
 
         Globals.globals.heapChkBtns[hole1.value].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;
         if (hole2.value < 7) Globals.globals.heapChkBtns[hole2.value].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;

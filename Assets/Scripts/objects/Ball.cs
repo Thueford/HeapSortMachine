@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Bowl : MonoBehaviour
+public class Ball : MonoBehaviour
 {
-    //to know how much bowls are still moving
-    public static List<Bowl> moving = new List<Bowl>();
+    //to know how much balls are still moving
+    public static List<Ball> moving = new List<Ball>();
     public static bool staticDnDEnable = true;
     public static bool isSwapping = false;
 
@@ -12,7 +12,7 @@ public class Bowl : MonoBehaviour
     public List<Checkpoint> checkpoints = new List<Checkpoint>();
     private Vector2 mouse_position, startPosition;
     private Vector3 movePosition = Vector3.zero;
-    private Collider2D bowlCollider, startHole, swapHole;
+    private Collider2D ballCollider, startHole, swapHole;
     private GameObject text;
     private Checkpoint tempCheckpoint;
 
@@ -34,7 +34,7 @@ public class Bowl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bowlCollider = GetComponent<Collider2D>();
+        ballCollider = GetComponent<Collider2D>();
         startPosition = transform.position;
         setValue(value);
     }
@@ -52,11 +52,11 @@ public class Bowl : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (bowlCollider.OverlapPoint(mouse_position))
+                if (ballCollider.OverlapPoint(mouse_position))
                 {
                     picked = true;
                     Globals.player.oneShot("pick");
-                    //changes z of bowl+text to 3
+                    //changes z of ball+text to 3
                     transform.position = setVecZ(startPosition, ZDRAGGED);
                 }
             }
@@ -75,7 +75,7 @@ public class Bowl : MonoBehaviour
                     } else { // Move a single Ball
                         moveToHole(swapHole);
                     }
-                } else transform.position = setVecZ(startPosition, ZDROPPED); //changes z of bowl+text to 5
+                } else transform.position = setVecZ(startPosition, ZDROPPED); //changes z of ball+text to 5
             }
         } else
         {
@@ -98,7 +98,7 @@ public class Bowl : MonoBehaviour
                             //set everything to normal again
                             foreach (GameObject g in Globals.globals.toMoveZ)
                                 g.transform.position = setVecZ(g.transform.position, ZDROPPED);
-                            BowlMover.AnimationComplete();
+                            BallMover.AnimationComplete();
                         }
 
                         moveToHole(swapHole);
@@ -140,14 +140,14 @@ public class Bowl : MonoBehaviour
 
     public static void clearMovePosition()
     {
-        foreach (Bowl b in Globals.bowls)
+        foreach (Ball b in Globals.balls)
         {
             b.movePosition = new Vector3();
             b.tempCheckpoint = null;
             b.checkpoints.Clear();
         }
         Checkpoint.used = false;
-        BowlMover.checkpointlist.Clear();
+        BallMover.checkpointlist.Clear();
     }
 
     private float getScaledSpeed(Vector3 pos, Vector3 npos, int speed)
@@ -163,7 +163,7 @@ public class Bowl : MonoBehaviour
         return speed / d;
     }
 
-    public static void swapTwo(Bowl b1, Bowl b2) {
+    public static void swapTwo(Ball b1, Ball b2) {
         isSwapping = true;
         Collider2D tmp = b1.startHole;
         if (b1.startHole == null || b2.startHole == null ||
@@ -203,16 +203,16 @@ public class Bowl : MonoBehaviour
         return vec;
     }
 
-    public static Bowl spawn(int index, int value, Vector3 pos)
+    public static Ball spawn(int index, int value, Vector3 pos)
     {
-        GameObject bowl = Instantiate(Globals.globals.bowlPrefab, pos, Quaternion.identity);
-        bowl.transform.SetParent(Globals.globals.bowlHolder.transform);
+        GameObject ball = Instantiate(Globals.globals.bowlPrefab, pos, Quaternion.identity);
+        ball.transform.SetParent(Globals.globals.bowlHolder.transform);
 
-        Vector3 bowl_pos = addVecZ(bowl.transform.position, -0.01f);
-        GameObject txt = Instantiate(Globals.globals.bowlTextPrefab, bowl_pos, Quaternion.identity);
-        txt.transform.SetParent(bowl.transform);
+        Vector3 ball_pos = addVecZ(ball.transform.position, -0.01f);
+        GameObject txt = Instantiate(Globals.globals.bowlTextPrefab, ball_pos, Quaternion.identity);
+        txt.transform.SetParent(ball.transform);
 
-        Bowl b = bowl.GetComponent<Bowl>();
+        Ball b = ball.GetComponent<Ball>();
         b.value = value;
         b.index = index;
         b.text = txt;
@@ -234,7 +234,7 @@ public class Bowl : MonoBehaviour
 
     public void visible(bool v)
     {
-        bowlCollider.gameObject.SetActive(v);
+        ballCollider.gameObject.SetActive(v);
     }
 
     public int getValue()
@@ -242,7 +242,7 @@ public class Bowl : MonoBehaviour
         return value;
     }
 
-    public int getHoleIDofBowl()
+    public int getHoleIDofBall()
     {
         return holeId;
     }

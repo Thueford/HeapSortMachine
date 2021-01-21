@@ -125,7 +125,7 @@ public class LevelTests : MonoBehaviour
             Globals.globals.heapChkBtns[n].GetComponent<Image>().sprite = t ? ButtonHandler.self.sprHeapChk : ButtonHandler.self.sprHeapUnchk;
             b = t && b;
         }
-        Bowl.swapTwo(Globals.holes[0].content, Globals.holes[Globals.holes.Count-1].content);
+        Ball.swapTwo(Globals.holes[0].content, Globals.holes[Globals.holes.Count-1].content);
 
         return b;
     }

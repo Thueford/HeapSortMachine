@@ -6,31 +6,31 @@ public class Reset : MonoBehaviour
 {
     public static void ResetBallsTo(string holeType)
     {
-        foreach (Bowl b in Globals.bowls)
+        foreach (Ball b in Globals.balls)
         {
             Hole h = Globals.getHoles(holeType).Find(fh => b.index == fh.value);
             if (h) {
-                Bowl.isSwapping = true;
+                Ball.isSwapping = true;
                 b.moveToHole(h.GetComponent<Collider2D>());
-                Bowl.isSwapping = false;
+                Ball.isSwapping = false;
             }
         }
-        Bowl.clearMovePosition();
+        Ball.clearMovePosition();
     }
 
     public static void ResetBallsHeapifiedTo(string holeType)
     {
         // TODO: heapified
-        foreach (Bowl b in Globals.bowls)
+        foreach (Ball b in Globals.balls)
         {
             Hole h = Globals.getHoles(holeType).Find(fh => b.index == fh.value);
             if (h) {
-                Bowl.isSwapping = true;
+                Ball.isSwapping = true;
                 b.moveToHole(h.GetComponent<Collider2D>());
-                Bowl.isSwapping = false;
+                Ball.isSwapping = false;
             }
         }
-        Bowl.clearMovePosition();
+        Ball.clearMovePosition();
     }
 
     public static void Reset_1()

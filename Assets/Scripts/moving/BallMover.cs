@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BowlMover : MonoBehaviour
+public class BallMover : MonoBehaviour
 {
     //list all checkpoints are in
     public delegate void AnimationCallback();
 
     public static List<Checkpoint> checkpointlist = new List<Checkpoint>();
     public static List<Checkpoint> staticcheckpointlist = new List<Checkpoint>();
-    public static BowlMover bowlMover;
+    public static BallMover ballMover;
     private static AnimationCallback cb = null;
 
     //je nachdem welche stage
@@ -23,7 +23,7 @@ public class BowlMover : MonoBehaviour
 
     private void Awake()
     {
-        if (!bowlMover) bowlMover = this;
+        if (!ballMover) ballMover = this;
     }
 
     // Start is called before the first frame update
@@ -69,7 +69,7 @@ public class BowlMover : MonoBehaviour
         {
             foreach (Hole hole in Globals.getHoles(Hole.TREEHOLE))
             {
-                GameObject chp = Instantiate(bowlMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
+                GameObject chp = Instantiate(ballMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
                 Checkpoint cp = chp.GetComponent<Checkpoint>();
                 cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
                 cp.holeID = hole.value;
@@ -90,41 +90,41 @@ public class BowlMover : MonoBehaviour
             g.transform.position = tempvec;
         }
 
-        //put checkpoints to bowllist
+        //put checkpoints to balllist
         int n = 0;
-        foreach (Bowl bowl in Globals.bowls)
+        foreach (Ball ball in Globals.balls)
         {
             //Debug.Log(checkpointlist);
             foreach (Checkpoint c in staticcheckpointlist)
-                if (c) bowl.checkpoints.Add(c);
+                if (c) ball.checkpoints.Add(c);
 
-            //für das perfekte sortieren bowl.value nehmen
+            //für das perfekte sortieren ball.value nehmen
             foreach (Checkpoint c in checkpointlist)
-                if (bowlMover.isParent(bowl.index, c.holeID))
-                    bowl.checkpoints.Add(c);
+                if (ballMover.isParent(ball.index, c.holeID))
+                    ball.checkpoints.Add(c);
 
-            bowl.checkpoints.Sort((a, b) => a.holeID < b.holeID ? -1 : 1);
+            ball.checkpoints.Sort((a, b) => a.holeID < b.holeID ? -1 : 1);
 
-            //Debug.Log(bowl.checkpoints);
+            //Debug.Log(ball.checkpoints);
 
-            if (bowl.index == 0)
+            if (ball.index == 0)
             {
-                //bowl.checkpoints.Reverse();
+                //ball.checkpoints.Reverse();
             }
 
-            //bowl.startAutomaticMove();
-            //StartCoroutine(bowlMover.bowlStarter);
-            //Globals.globals.StartCoroutine(bowlMover.bowlStarter(bowl));
+            //ball.startAutomaticMove();
+            //StartCoroutine(ballMover.ballStarter);
+            //Globals.globals.StartCoroutine(ballMover.ballStarter(ball));
         }
 
-        Globals.globals.StartCoroutine(bowlMover.bowlStarter());
+        Globals.globals.StartCoroutine(ballMover.ballStarter());
     }
 
-    private IEnumerator bowlStarter()
+    private IEnumerator ballStarter()
     {
-        foreach(Bowl bowl in Globals.bowls)
+        foreach(Ball ball in Globals.balls)
         {
-            bowl.startAutomaticMove();
+            ball.startAutomaticMove();
             yield return new WaitForSeconds(0.4f);
         }
     }

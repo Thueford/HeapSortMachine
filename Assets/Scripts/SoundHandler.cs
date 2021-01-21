@@ -25,10 +25,10 @@ public class SoundHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Bowl.moving.Count > 0 && !oneShotPlayer.isPlaying) {
+        if (Ball.moving.Count > 0 && !oneShotPlayer.isPlaying) {
             oneShotPlayer.PlayOneShot(clipDict["roll"]);
             rolling = true;}
-        if (rolling && Bowl.moving.Count == 0) {oneShotPlayer.Stop(); rolling = false;}
+        if (rolling && Ball.moving.Count == 0) {oneShotPlayer.Stop(); rolling = false;}
     }
 
     void Awake() {
