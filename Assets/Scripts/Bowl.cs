@@ -6,7 +6,7 @@ public class Bowl : MonoBehaviour
     //to know how much bowls are still moving
     public static List<Bowl> moving = new List<Bowl>();
     public static bool staticDnDEnable = true;
-    private static bool isSwapping = false;
+    public static bool isSwapping = false;
 
     //list of checkpoints to move
     public List<Checkpoint> checkpoints = new List<Checkpoint>();
@@ -26,7 +26,7 @@ public class Bowl : MonoBehaviour
     public int holeId { get; private set; } = -1;
 
 
-    private const int 
+    private const int
         ZDRAGGED = 6 -  3,
         ZDROPPED = 6 -  1,
         ZANIMATE = 6 + 21;
