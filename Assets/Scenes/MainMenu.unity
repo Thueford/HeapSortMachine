@@ -920,7 +920,7 @@ MonoBehaviour:
   holeSprites: []
   jointSprites: []
   startStage: 1
-  rdonlyStage: 1
+  rdonlyStage: 0
   bowlPrefab: {fileID: 0}
   bowlHolder: {fileID: 0}
   bowlTextPrefab: {fileID: 0}

@@ -1653,7 +1653,7 @@ MonoBehaviour:
   - {fileID: -9121496246046211438, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   holeSprites: []
   jointSprites: []
-  startStage: 0
+  startStage: 1
   rdonlyStage: 0
   bowlPrefab: {fileID: 0}
   bowlHolder: {fileID: 0}
