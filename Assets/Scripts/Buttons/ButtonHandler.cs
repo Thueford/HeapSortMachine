@@ -89,7 +89,7 @@ public class ButtonHandler : MonoBehaviour
                     Dialogue.Test_2(b);
                     if (b) {
                         autoButtonUsed = true;
-                        BowlMover.autoMoveStart(() => { autoButtonUsed = false; });
+                        BowlMover.autoMoveStart( () => autoButtonUsed = false );
                     }
                 }
                 break;
@@ -118,6 +118,12 @@ public class ButtonHandler : MonoBehaviour
             autoButtonUsed = true;
             BowlMover.autoMoveStart(() => { autoButtonUsed = false; });
         }
+    }
+
+    private static IEnumerator Reset_Anim_Stage3()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Reset.ResetBallsTo(Hole.LISTHOLE);
     }
 
     public void btnReset_Click()
