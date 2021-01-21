@@ -307,7 +307,7 @@ public class Bowl : MonoBehaviour
         enableDragnDrop = false;
         automove = true;
 
-        transform.position = setVecZ(transform.position, ZANIMATE - 0.03f * index);
+        // transform.position = setVecZ(transform.position, ZANIMATE - 0.03f * index);
     }
 
     public void visible(bool v)

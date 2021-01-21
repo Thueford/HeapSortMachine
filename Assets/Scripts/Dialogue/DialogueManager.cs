@@ -12,6 +12,7 @@ public class DialogueManager : MonoBehaviour
 	public Sprite sprHappy, sprExplain, sprNeutral, sprSceptic, sprAngry;
 	public static DialogueManager self;
 	private static Image mecha;
+	public static Globals.Stage nextStage = Globals.Stage.NONE;
 
 	private Queue<string> sentences;
 
@@ -69,7 +70,7 @@ public class DialogueManager : MonoBehaviour
 		foreach (char letter in sentence.ToCharArray())
 		{
 			dialogueText.text += letter;
-			yield return null;
+			yield return new WaitForSeconds(0.01f);
 		}
 	}
 	
@@ -80,6 +81,10 @@ public class DialogueManager : MonoBehaviour
 		nameText.text = "Mechaniker";
 		contiButton.gameObject.SetActive(false);
 		mecha.sprite = sprNeutral;
+
+		// load next Stage
+		if (nextStage != Globals.Stage.NONE) Globals.SetStage(nextStage);
+		nextStage = Globals.Stage.NONE;
 	}
 	
 }
