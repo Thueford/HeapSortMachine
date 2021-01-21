@@ -62,21 +62,26 @@ public class LevelTests : MonoBehaviour
     {
         InputField ifl = GameObject.Find("edtRuleLeft").GetComponent<InputField>();
         InputField ifr = GameObject.Find("edtRuleRight").GetComponent<InputField>();
-        bool result = true;
 
         // Regex.Match(ifl.text, "^\\s*2\\s*[*]?\\s*n\\s*[+]\\s*1\\s*$").Success &&
         // Regex.Match(ifr.text, "^\\s*2\\s*[*]?\\s*n\\s*[+]\\s*2\\s*$").Success;
 
-        try {
-                if (Math.Round(Eval(ifl.text.Replace("n", "42"))) != 1 + 84) result = false;
-                if (Math.Round(Eval(ifr.text.Replace("n", "42"))) != 2 + 84) result = false;
+        try
+        {
+            string sl = Regex.Replace(ifl.text, "(\\d+)(\\w+)", "$1*$2");
+            string sr = Regex.Replace(ifr.text, "(\\d+)(\\w+)", "$1*$2");
+            Debug.Log("Formulae: '" + sl + "' '" + sr + "'");
+            for (int n = 0; n < 15; n++) {
+                if (Math.Round(Eval(sl.Replace("n", n.ToString()))) != 2 * n + 1) return false;
+                if (Math.Round(Eval(sr.Replace("n", n.ToString()))) != 2 * n + 2) return false;
+            }
         } catch(Exception e) {
             Debug.Log("input Field has errors");
             Debug.Log(e);
-            result = false;
+            return false;
             // TODO: color input fields red
         }
-        return result;
+        return true;
     }
 
     public static bool Test_3()

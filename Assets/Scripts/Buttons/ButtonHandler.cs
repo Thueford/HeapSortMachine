@@ -116,22 +116,14 @@ public class ButtonHandler : MonoBehaviour
         if (!autoButtonUsed)
         {
             autoButtonUsed = true;
-            BowlMover.autoMoveStart(() => { autoButtonUsed = false; });
+            BowlMover.autoMoveStart(() => autoButtonUsed = false);
         }
-    }
-
-    private static IEnumerator Reset_Anim_Stage3()
-    {
-        yield return new WaitForSeconds(1.5f);
-        Reset.ResetBallsTo(Hole.LISTHOLE);
     }
 
     public void btnReset_Click()
     {
         Debug.Log("Reset");
-
         Globals.player.oneShot("click");
-
         if (Bowl.moving.Count != 0) return;
 
         switch (Globals.stage)
