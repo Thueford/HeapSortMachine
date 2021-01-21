@@ -110,10 +110,7 @@ public class ButtonHandler : MonoBehaviour
                     Dialogue.Test_2(b);
                     if (b) {
                         autoButtonUsed = true;
-                        BowlMover.autoMoveStart(() => {
-                            StartCoroutine(Reset_Anim_Stage3());
-                            autoButtonUsed = false;
-                        });
+                        BowlMover.autoMoveStart( () => autoButtonUsed = false );
                     }
                 }
                 break;
@@ -121,12 +118,6 @@ public class ButtonHandler : MonoBehaviour
             case Globals.Stage.STAGE_4: b = LevelTests.Test_4(); Dialogue.Test_4(b); break;
         }
         Globals.player.oneShot(b ? "right" : "wrong");
-    }
-
-    private static IEnumerator Reset_Anim_Stage3()
-    {
-        yield return new WaitForSeconds(1.5f);
-        Reset.ResetBallsTo(Hole.LISTHOLE);
     }
 
     public void btnAuto_Click()
@@ -146,16 +137,14 @@ public class ButtonHandler : MonoBehaviour
         if (!autoButtonUsed)
         {
             autoButtonUsed = true;
-            BowlMover.autoMoveStart(null);
+            BowlMover.autoMoveStart(() => autoButtonUsed = false);
         }
     }
 
     public void btnReset_Click()
     {
         Debug.Log("Reset");
-
         Globals.player.oneShot("click");
-
         if (Bowl.moving.Count != 0) return;
 
         switch (Globals.stage)
@@ -181,6 +170,7 @@ public class ButtonHandler : MonoBehaviour
         bool res = LevelTests.Test_3_Heapified(n);
 
         btn.GetComponent<Image>().sprite = res ? sprHeapChk : sprHeapUnchk;
+        Globals.player.oneShot(res ? "right" : "wrong");
     }
 
     // not sure what tha purpose is

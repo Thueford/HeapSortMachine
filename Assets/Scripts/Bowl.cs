@@ -3,32 +3,33 @@ using System.Collections.Generic;
 
 public class Bowl : MonoBehaviour
 {
-    private Vector2 mouse_position;
-    private Vector3 startPosition;
-    private Collider2D bowlCollider, startHole, swapHole;
-    private GameObject text;
-    private bool picked = false;
-    private bool automove;
-    private bool nextCheckpointTeleport = false; //if next checkpoint is teleport... cuz it gets deleted
-    private float moveSpeed;
-    private static bool isSwapping = false;
-    private Vector3 movePosition = new Vector3();
-    private Checkpoint tempCheckpoint;
-
     //to know how much bowls are still moving
     public static List<Bowl> moving = new List<Bowl>();
-
-    public bool enableDragnDrop = true;
     public static bool staticDnDEnable = true;
-    public int value, index;
-    public int holeId { get; private set; } = -1;
+    public static bool isSwapping = false;
 
     //list of checkpoints to move
     public List<Checkpoint> checkpoints = new List<Checkpoint>();
+    private Vector2 mouse_position, startPosition;
+    private Vector3 movePosition = Vector3.zero;
+    private Collider2D bowlCollider, startHole, swapHole;
+    private GameObject text;
+    private Checkpoint tempCheckpoint;
 
-    private const int ZDRAGGED = 6 -  3;
-    private const int ZDROPPED = 6 -  1;
-    private const int ZANIMATE = 6 + 21;
+    private bool automove;
+    private bool picked = false;
+    private bool nextCheckpointTeleport = false; //if next checkpoint is teleport... cuz it gets deleted
+    public bool enableDragnDrop = true;
+
+    public int value { get; private set; } = -1;
+    public int index { get; private set; } = -1;
+    public int holeId { get; private set; } = -1;
+
+
+    private const int
+        ZDRAGGED = 6 -  3,
+        ZDROPPED = 6 -  1,
+        ZANIMATE = 6 + 21;
 
     // Start is called before the first frame update
     void Start()
@@ -82,88 +83,9 @@ public class Bowl : MonoBehaviour
             //Debug.Log(checkpoints);
             if (automove)
             {
-                /*
-                if (checkpoints.Count == 0 && movePosition == new Vector3()) return;
-                if (movePosition == new Vector3())
-                {
-                    //checks for teleport checkpoint
-                    if (checkpoints[0].checkpoint == Checkpoint.CheckpointType.TELEPORT)
-                    {
-                        nextCheckpointTeleport = true;
-                    }
-
-                    //pops first element
-                    movePosition = checkpoints[0].transform.position;
-
-                    checkpoints.RemoveAt(0);
-
-                    //creates speed
-                    moveSpeed = getScaledSpeed(transform.position, movePosition, 10);
-                }
-
-                if (movePosition == transform.position)
-                {
-                    if (checkpoints.Count != 0)
-                    {
-                        if (nextCheckpointTeleport)
-                        {
-                            transform.position = checkpoints[0].transform.position;
-                            checkpoints.RemoveAt(0);
-
-                            if (checkpoints.Count != 0)
-                            {
-                                movePosition = checkpoints[0].transform.position;
-                                checkpoints.RemoveAt(0);
-                            }
-
-                            nextCheckpointTeleport = false;
-                            return;
-                        }
-
-                        //checks for teleport checkpoint
-                        if (checkpoints[0].checkpoint == Checkpoint.CheckpointType.TELEPORT)
-                        {
-                            nextCheckpointTeleport = true;
-                        }
-
-                        movePosition = checkpoints[0].transform.position;
-                        checkpoints.RemoveAt(0);
-
-                        //creates speed
-                        moveSpeed = getScaledSpeed(transform.position, movePosition, 10);
-
-                    } else
-                    {
-                        enableDragnDrop = true;
-                        automove = false;
-                        //transform.position = setVecZ(transform.position, ZDROPPED);
-
-                        //muss swapping gefixt werden
-                        //startPosition = transform.position;
-
-                        //not moving anymore
-                        moving.Remove(this);
-                        //checks of this bowl was last that was moving
-                        if (moving.Count == 0)
-                        {
-                            //set everything to normal again
-                            foreach (GameObject g in Globals.globals.toMoveZ)
-                            {
-                                g.transform.position = setVecZ(g.transform.position, ZDROPPED);
-                            }
-
-                            BowlMover.AnimationComplete();
-                        }
-
-                        moveToHole(swapHole);
-                        return;
-                    }
-                }
-                //*/ //Neue implementierung (kurzer aber nicht fertig also nicht ändern @jakob)
-
                 if (checkpoints.Count == 0)
                 {
-                    if (movePosition == new Vector3()) return;
+                    if (movePosition == Vector3.zero) return;
                     if (movePosition == transform.position)
                     {
                         //ende

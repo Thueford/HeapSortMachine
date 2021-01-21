@@ -50,7 +50,8 @@ public class Globals : MonoBehaviour
         ballSpawner();
         bowls.Sort((a, b) => a.index < b.index ? -1 : 1);
         holes.Sort((a, b) => a.value < b.value ? -1 : 1);
-        SetStage(Stage.STAGE_1);
+        // SetStage(Stage.STAGE_1);
+        SetStage(stage);
 
         //testing
         //bowls[1].move(Checkpoint.checkpoints[0].transform.position);
@@ -103,10 +104,10 @@ public class Globals : MonoBehaviour
         {
             case Stage.MENU: break;
             case Stage.INTRO: break;
-            case Stage.STAGE_1: break;
-            case Stage.STAGE_2: break;
-            case Stage.STAGE_3: break;
-            case Stage.STAGE_4:break;
+            case Stage.STAGE_1: Reset.ResetBallsTo(Hole.LISTHOLE); break;
+            case Stage.STAGE_2: Reset.ResetBallsTo(Hole.LISTHOLE); break;
+            case Stage.STAGE_3: Reset.ResetBallsTo(Hole.TREEHOLE); Bowl.staticDnDEnable = false; break;
+            case Stage.STAGE_4: Reset.ResetBallsHeapifiedTo(Hole.TREEHOLE); break;
             case Stage.END: break;
         }
     }

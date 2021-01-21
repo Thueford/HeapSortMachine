@@ -9,7 +9,26 @@ public class Reset : MonoBehaviour
         foreach (Bowl b in Globals.bowls)
         {
             Hole h = Globals.getHoles(holeType).Find(fh => b.index == fh.value);
-            if (h) b.moveToHole(h.GetComponent<Collider2D>());
+            if (h) {
+                Bowl.isSwapping = true;
+                b.moveToHole(h.GetComponent<Collider2D>());
+                Bowl.isSwapping = false;
+            }
+        }
+        Bowl.clearMovePosition();
+    }
+
+    public static void ResetBallsHeapifiedTo(string holeType)
+    {
+        // TODO: heapified
+        foreach (Bowl b in Globals.bowls)
+        {
+            Hole h = Globals.getHoles(holeType).Find(fh => b.index == fh.value);
+            if (h) {
+                Bowl.isSwapping = true;
+                b.moveToHole(h.GetComponent<Collider2D>());
+                Bowl.isSwapping = false;
+            }
         }
         Bowl.clearMovePosition();
     }
