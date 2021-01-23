@@ -22,4 +22,12 @@ public class Hole : MonoBehaviour
     {
         content = ball;
     }
+
+    public static Hole getLastNonEmpty() {
+        int min = -1;
+        foreach (Hole h in Globals.getHoles(Hole.TREEHOLE)) {
+            min = h.content && (h.value > min) ? h.value : min;
+        }
+        return min == -1 ? null : Globals.getHoles(Hole.TREEHOLE).Find(fh => min == fh.value);
+    }
 }

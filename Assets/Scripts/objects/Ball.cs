@@ -183,6 +183,14 @@ public class Ball : MonoBehaviour
         fixPosition(to);
     }
 
+    public void moveToHole(Hole ho) {
+        Collider2D to = ho.gameObject.GetComponent<Collider2D>();
+        if (startHole != null && !isSwapping) startHole.gameObject.GetComponent<Hole>().setContent(null);
+        ho.setContent(this);
+        holeId = ho.value;
+        fixPosition(to);
+    }
+
     //Should only be used in conjunction with moveToHole(), never in isolation
     private void fixPosition(Collider2D coll) {
         startPosition = coll.transform.position;

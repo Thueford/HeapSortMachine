@@ -84,49 +84,47 @@ public class LevelTests : MonoBehaviour
         return true;
     }
 
-    public static bool Test_3()
+    public static bool Test_3() //test entire tree for heap status
     {
-        bool b = true;
         for (int n = 0; n <= 6; n++) {
-            bool t = Test_3_Heapified(n);
+            bool t = Test_Heapified(n);
             Globals.globals.heapChkBtns[n].GetComponent<Image>().sprite = t ? ButtonHandler.self.sprHeapChk : ButtonHandler.self.sprHeapUnchk;
-            b = t && b;
         }
-        return b;
-    }
-
-    public static bool Test_3_Heapified(int n)
-    {
-        Joint[] tmp = Joint.getJoints(n);
-        Debug.Log(tmp);
-        bool b = true;
-
-        //TODO
-        //implement comparison rule
-        for (int i = 0; i < 2; i++) {
-            if (tmp[i].hole1.content.value > tmp[i].hole2.content.value) {
-                tmp[i].GetComponent<SpriteRenderer>().sprite = Globals.globals.jointSprites[n>0 ? n>2 ? 4 : 2 : 0];
-                } else {
-                    b = false;
-                    tmp[i].GetComponent<SpriteRenderer>().sprite = Globals.globals.jointSprites[n>0 ? n>2 ? 5 : 3 : 1];
-                }
-            tmp[i].GetComponent<SpriteRenderer>().enabled = true;
-        }
-
-        Globals.globals.StartCoroutine(waitASecondThenResetColor());
-        return b;
+        return HeapTests.currentHeap == -1;
     }
 
     public static bool Test_4()
     {
-        bool b = true;
         for (int n = 0; n <= 6; n++) {
-            bool t = Test_3_Heapified(n);
+            bool t = Test_Heapified(n);
             Globals.globals.heapChkBtns[n].GetComponent<Image>().sprite = t ? ButtonHandler.self.sprHeapChk : ButtonHandler.self.sprHeapUnchk;
-            b = t && b;
         }
-        Ball.swapTwo(Globals.holes[0].content, Globals.holes[Globals.holes.Count-1].content);
+        return HeapTests.currentHeap == -1;
+    }
 
+    public static bool Test_Heapified(int n) //test a single heap at n
+    {
+        int[] heap = HeapTests.getHeap(n);
+        if (heap[0] == -1) return true;
+
+        Joint[] tmp = Joint.getJoints(n);
+
+        bool b = true;
+        //TODO
+        //implement comparison rule
+        foreach (int i in new int[] {0, 1}) {
+            if (heap[0] > heap[i+1] && heap[i+1] > -1) {
+                tmp[i].GetComponent<SpriteRenderer>().sprite = Globals.globals.jointSprites[n>0 ? n>2 ? 4 : 2 : 0];
+                tmp[i].GetComponent<SpriteRenderer>().enabled = true;
+            } else if (heap[i+1] > -1) {
+                b = false;
+                tmp[i].GetComponent<SpriteRenderer>().sprite = Globals.globals.jointSprites[n>0 ? n>2 ? 5 : 3 : 1];
+                tmp[i].GetComponent<SpriteRenderer>().enabled = true;
+            }
+        }
+        Globals.globals.StartCoroutine(waitASecondThenResetColor());
+        HeapTests.validHeaps[n] = b;
+        HeapTests.currentHeap = HeapTests.getLastHeap();
         return b;
     }
 

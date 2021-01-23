@@ -104,10 +104,10 @@ public class Globals : MonoBehaviour
         {
             case Stage.MENU: break;
             case Stage.INTRO: break;
-            case Stage.STAGE_1: Reset.ResetBallsTo(Hole.LISTHOLE); break;
-            case Stage.STAGE_2: Reset.ResetBallsTo(Hole.LISTHOLE); break;
-            case Stage.STAGE_3: Reset.ResetBallsTo(Hole.TREEHOLE); Ball.staticDnDEnable = false; break;
-            case Stage.STAGE_4: Reset.ResetBallsHeapifiedTo(Hole.TREEHOLE); break;
+            case Stage.STAGE_1: Reset.ResetBallsTo(Hole.LISTHOLE); ButtonHandler.buttonsActive = true; break;
+            case Stage.STAGE_2: Reset.ResetBallsTo(Hole.LISTHOLE); ButtonHandler.buttonsActive = true; break;
+            case Stage.STAGE_3: Reset.ResetBallsTo(Hole.TREEHOLE); ButtonHandler.buttonsActive = true; Ball.staticDnDEnable = false; break;
+            case Stage.STAGE_4: Reset.ResetBallsHeapifiedTo(Hole.TREEHOLE); ButtonHandler.buttonsActive = true; break;
             case Stage.END: break;
         }
     }

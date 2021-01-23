@@ -2,8 +2,12 @@
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 public class Reset : MonoBehaviour
 {
+
+    private static List<Ball> heapReset = new List<Ball>();
+
     public static void ResetBallsTo(string holeType)
     {
         foreach (Ball b in Globals.balls)
@@ -20,13 +24,12 @@ public class Reset : MonoBehaviour
 
     public static void ResetBallsHeapifiedTo(string holeType)
     {
-        // TODO: heapified
-        foreach (Ball b in Globals.balls)
-        {
-            Hole h = Globals.getHoles(holeType).Find(fh => b.index == fh.value);
+        if (heapReset.Count == 0) createHeapReset();
+        for (int i = 0; i < heapReset.Count; i++) {
+            Hole h = Globals.getHoles(holeType).Find(fh => i == fh.value);
             if (h) {
                 Ball.isSwapping = true;
-                b.moveToHole(h.GetComponent<Collider2D>());
+                heapReset[i].moveToHole(h.GetComponent<Collider2D>());
                 Ball.isSwapping = false;
             }
         }
@@ -51,6 +54,14 @@ public class Reset : MonoBehaviour
 
     public static void Reset_4()
     {
-        // TODO
+        ResetBallsHeapifiedTo(Hole.TREEHOLE);
+    }
+
+    public static void createHeapReset() {
+        heapReset.Clear();
+        for (int i = 0; i < 15; i++) {
+            Hole h = Globals.getHoles(Hole.TREEHOLE).Find(fh => i == fh.value);
+            if (h && h.content) heapReset.Add(h.content);
+        }
     }
 }

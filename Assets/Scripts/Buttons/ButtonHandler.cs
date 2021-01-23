@@ -10,6 +10,7 @@ public class ButtonHandler : MonoBehaviour
     public static ButtonHandler self;
     public Sprite sprHolderUp, sprHolderDown, sprHeapChk, sprHeapUnchk;
     public static bool autoButtonUsed = false;
+    public static bool buttonsActive = true;
 
     // Start is called before the first frame update
     void Awake()
@@ -79,6 +80,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void btnTipp_Click()
     {
+        if (!buttonsActive) return; //during auto/stage change
         Debug.Log("Tipp");
 
         Globals.player.oneShot("click");
@@ -94,6 +96,7 @@ public class ButtonHandler : MonoBehaviour
     }
     public void btnTest_Click()
     {
+        if (!buttonsActive) return; //during auto/stage change
         Debug.Log("Test");
         bool b = false;
 
@@ -115,13 +118,32 @@ public class ButtonHandler : MonoBehaviour
                 }
                 break;
             case Globals.Stage.STAGE_3: b = LevelTests.Test_3(); Dialogue.Test_3(b); break;
-            case Globals.Stage.STAGE_4: b = LevelTests.Test_4(); Dialogue.Test_4(b); break;
+            case Globals.Stage.STAGE_4: {
+                b = LevelTests.Test_4();
+                Dialogue.Test_4(b);
+                Debug.Log(b);
+                if (b) {
+                    Hole hl = Hole.getLastNonEmpty();
+
+                    //TODO: Automove
+
+                    Ball.swapTwo(Globals.getHoles(Hole.TREEHOLE).Find(fh => 0 == fh.value).content, hl.content);
+                    hl.content.moveToHole(Globals.getHoles(Hole.SORTHOLE).Find(fh => hl.value == 14-fh.value));
+
+                    //After automove
+                    LevelTests.Test_4();
+                    Reset.createHeapReset();
+                }
+                break;
+            }
         }
+        buttonsActive = !b || Globals.stage == Globals.Stage.STAGE_4;
         Globals.player.oneShot(b ? "right" : "wrong");
     }
 
     public void btnAuto_Click()
     {
+        if (!buttonsActive) return; //during auto/stage change
         Debug.Log("Auto");
         Globals.player.oneShot("click");
         DialogueManager.setMecha(DialogueManager.self.sprSceptic);
@@ -143,6 +165,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void btnReset_Click()
     {
+        if (!buttonsActive) return; //during auto/stage change
         Debug.Log("Reset");
         Globals.player.oneShot("click");
         if (Ball.moving.Count != 0) return;
@@ -162,14 +185,20 @@ public class ButtonHandler : MonoBehaviour
     public void btnHeapCheck_Click(BaseEventData ev)
     {
         if (Globals.stage != Globals.Stage.STAGE_3 && Globals.stage != Globals.Stage.STAGE_4) return;
-
         GameObject btn = ((PointerEventData)ev).pointerEnter;
+        Debug.Log(btn);
 
         Match m = Regex.Match(btn.name, "\\((\\d+)\\)$");
         int n = int.Parse(m.Groups[1].Value);
-        bool res = LevelTests.Test_3_Heapified(n);
 
+        if (n != HeapTests.currentHeap) {
+            Debug.Log("That heap is currently not active");
+            return;
+        }
+
+        bool res = LevelTests.Test_Heapified(n);
         btn.GetComponent<Image>().sprite = res ? sprHeapChk : sprHeapUnchk;
+        if (HeapTests.currentHeap == -1) {btnTest_Click(); return;}
         Globals.player.oneShot(res ? "right" : "wrong");
     }
 
