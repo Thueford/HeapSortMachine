@@ -15,6 +15,7 @@ public class Globals : MonoBehaviour
     public static int ballCount = 15;
     public static Random ran = new Random();
     public static SoundHandler player;
+    private static bool stageTransition = false;
 
     public Button[] heapChkBtns;
     public GameObject[] toMoveZ;
@@ -60,7 +61,20 @@ public class Globals : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (stageTransition && Ball.moving.Count == 0) {
+            stageTransition = false;
+            ButtonHandler.buttonsActive = true;
+            switch (stage)
+            {
+                case Stage.MENU: break;
+                case Stage.INTRO: break;
+                case Stage.STAGE_1: Reset.ResetBallsTo(Hole.LISTHOLE); break;
+                case Stage.STAGE_2: Reset.ResetBallsTo(Hole.LISTHOLE); Ball.staticDnDEnable = false; break;
+                case Stage.STAGE_3: Reset.ResetBallsTo(Hole.TREEHOLE); break;
+                case Stage.STAGE_4: Reset.ResetBallsHeapifiedTo(Hole.TREEHOLE); break;
+                case Stage.END: break;
+            }
+        }
     }
 
     public void ballSpawner()
@@ -99,16 +113,7 @@ public class Globals : MonoBehaviour
             SceneManager.LoadScene(loadScene);
             Debug.Log("SetStage " + s + " Afterload");
         }
-
-        switch (globals.rdonlyStage = stage = s)
-        {
-            case Stage.MENU: break;
-            case Stage.INTRO: break;
-            case Stage.STAGE_1: Reset.ResetBallsTo(Hole.LISTHOLE); ButtonHandler.buttonsActive = true; break;
-            case Stage.STAGE_2: Reset.ResetBallsTo(Hole.LISTHOLE); ButtonHandler.buttonsActive = true; break;
-            case Stage.STAGE_3: Reset.ResetBallsTo(Hole.TREEHOLE); ButtonHandler.buttonsActive = true; Ball.staticDnDEnable = false; break;
-            case Stage.STAGE_4: Reset.ResetBallsHeapifiedTo(Hole.TREEHOLE); ButtonHandler.buttonsActive = true; break;
-            case Stage.END: break;
-        }
+        globals.rdonlyStage = stage = s;
+        stageTransition = true;
     }
 }
