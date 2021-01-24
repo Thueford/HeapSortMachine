@@ -3,6 +3,8 @@ using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System;
 
 public class Globals : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class Globals : MonoBehaviour
     public static List<Hole> holes = new List<Hole>();
     public static List<Joint> joints = new List<Joint>();
     public static int ballCount = 15;
-    public static Random ran = new Random();
+    public static UnityEngine.Random ran = new UnityEngine.Random();
     public static SoundHandler player;
     private static bool stageTransition = false;
 
@@ -79,10 +81,26 @@ public class Globals : MonoBehaviour
 
     public void ballSpawner()
     {
-        int cnt;
+        int cnt = 0;
         List<int> values = new List<int>(Enumerable.Range(0, ballCount));
-        values.Sort((a, b) => Random.Range(-1, 1));
-        cnt = 0;
+        // values.Sort((a, b) => Random.Range(-1, 1));
+
+        //Source: https://stackoverflow.com/questions/273313/randomize-a-listt
+        //truly random order of balls
+
+        var provider = new RNGCryptoServiceProvider();
+        int n = values.Count;
+        while (n > 1)
+        {
+            var box = new byte[1];
+            do provider.GetBytes(box);
+            while (!(box[0] < n * (Byte.MaxValue / n)));
+            var k = (box[0] % n);
+            n--;
+            var value = values[k];
+            values[k] = values[n];
+            values[n] = value;
+        }
 
         foreach (Hole h in getHoles(Hole.LISTHOLE))
         {
