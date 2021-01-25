@@ -11,11 +11,14 @@ public class ButtonHandler : MonoBehaviour
     public Sprite sprHolderUp, sprHolderDown, sprHeapChk, sprHeapUnchk;
     public static bool autoButtonUsed = false;
     public static bool buttonsActive = true;
+    public static Json_Test.Dialogwrapper json;
+
 
     // Start is called before the first frame update
     void Awake()
     {
         self = this;
+        json = Json_Test.Load();
     }
 
     public void btnStart_Click()
@@ -85,7 +88,8 @@ public class ButtonHandler : MonoBehaviour
 
         Globals.player.oneShot("click");
 
-        DialogueManager.setMecha(DialogueManager.self.sprExplain);
+        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
+        DialogueManager.setMecha(json.level_hints.stage_1.emotion);
         switch (Globals.stage)
         {
             case Globals.Stage.STAGE_1: Dialogue.Hilfe_1(); break;
@@ -146,8 +150,8 @@ public class ButtonHandler : MonoBehaviour
         if (!buttonsActive) return; //during auto/stage change
         Debug.Log("Auto");
         Globals.player.oneShot("click");
-        DialogueManager.setMecha(DialogueManager.self.sprSceptic);
-
+        //DialogueManager.setMecha(DialogueManager.self.sprSceptic);
+        DialogueManager.setMecha(json.level_description.stage_4.emotion);
         switch (Globals.stage)
         {
             case Globals.Stage.STAGE_1: Dialogue.Auto_1(); break;

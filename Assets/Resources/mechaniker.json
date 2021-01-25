@@ -14,7 +14,7 @@
     },
     "stage_4": {
       "text": [ "noch füllen" ],
-      "emotion": "positiv"
+      "emotion": "sceptic"
     }
   },
   "level_complete": {
@@ -99,24 +99,24 @@
   },
   "reaction_from_3": {
     "heap_destroy": {
-      "text": [],
-      "emotion": "neutral"
+      "text": ["Destroy"],
+      "emotion": "explain"
     },
     "not_last_subtree": {
-      "text": [],
-      "emotion": "neutral"
+      "text": [ "not_last_subtree" ],
+      "emotion": "explain"
     },
     "change_little_one": {
-      "text": [],
-      "emotion": "neutral"
+      "text": [ "change_little_one" ],
+      "emotion": "explain"
     },
     "first_change": {
-      "text": [],
-      "emotion": "neutral"
+      "text": [ "first_change" ],
+      "emotion": "explain"
     },
     "reason_why_efficient": {
-      "text": [],
-      "emotion":  "neutral"
+      "text": [ "reason_why_efficient" ],
+      "emotion": "explain"
     }
   }
 }

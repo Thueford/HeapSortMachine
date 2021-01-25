@@ -88,7 +88,8 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         if (b)
         {
-            DialogueManager.setMecha(DialogueManager.self.sprHappy);
+            //DialogueManager.setMecha(DialogueManager.self.sprHappy);
+            DialogueManager.setMecha(json.random_success.emotion);
             DialogueManager.nextStage = Globals.Stage.STAGE_2;
 
             nameSetter("Richtig!");
@@ -102,7 +103,8 @@ public  class Dialogue : MonoBehaviour
         }
         else
         {
-            DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            //DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            DialogueManager.setMecha(json.random_mistake.emotion);
             nameSetter("Falsch!");
             string[] sentence_random = json.random_mistake.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
@@ -121,7 +123,8 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         if (b)
         {
-            DialogueManager.setMecha(DialogueManager.self.sprHappy);
+            //DialogueManager.setMecha(DialogueManager.self.sprHappy);
+            DialogueManager.setMecha(json.random_success.emotion);
             DialogueManager.nextStage = Globals.Stage.STAGE_3;
 
             nameSetter("Richtig!");     
@@ -135,7 +138,8 @@ public  class Dialogue : MonoBehaviour
         }
         else
         {
-            DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            //DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            DialogueManager.setMecha(json.random_mistake.emotion);
             nameSetter("Falsch!");
             string[] sentence_random = json.random_mistake.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
@@ -154,7 +158,8 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         if (b)
         {
-            DialogueManager.setMecha(DialogueManager.self.sprHappy);
+            //DialogueManager.setMecha(DialogueManager.self.sprHappy);
+            DialogueManager.setMecha(json.random_success.emotion);
             DialogueManager.nextStage = Globals.Stage.STAGE_4;
 
             nameSetter("Richtig!");
@@ -162,20 +167,22 @@ public  class Dialogue : MonoBehaviour
             string[] uebergang = json.level_complete.stage_3.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            sentence = new string[] {sent_rand, "Als nächstes behandeln wir Stage 4" };
-            // DialogueManager.self.sprHappy.gameObject.SetActive(true);
+            sentence = new string[] {sent_rand};
+            sentenceSetter(sentence);
+            addSentences(uebergang);
         }
         else
         {
-            DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            //DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            DialogueManager.setMecha(json.random_mistake.emotion);
             nameSetter("Falsch!");
             string[] sentence_random = json.random_mistake.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" }; ;
-            // DialogueManager.self.sprAngry.gameObject.SetActive(true);
+            sentenceSetter(sentence);
         }
-        sentenceSetter(sentence);
+        
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
@@ -186,26 +193,30 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         if (b)
         {
-            DialogueManager.setMecha(DialogueManager.self.sprHappy);
+            //DialogueManager.setMecha(DialogueManager.self.sprHappy);
+            DialogueManager.setMecha(json.random_success.emotion);
             nameSetter("Richtig!");
             DialogueManager.nextStage = Globals.Stage.END;
             string[] sentence_random = json.random_success.text;
+            string[] uebergang = json.level_complete.stage_4.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            sentence = new string[] { json.level_complete.stage_4.text[0], sent_rand, "Super du hast alle Stages gemeistert." };
-            // DialogueManager.self.sprHappy.gameObject.SetActive(true);
+            sentence = new string[] {sent_rand};
+            sentenceSetter(sentence);
+            addSentences(uebergang);
         }
         else
         {
-            DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            //DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            DialogueManager.setMecha(json.random_mistake.emotion);
             nameSetter("Falsch!");
             string[] sentence_random = json.random_mistake.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
-            // DialogueManager.self.sprAngry.gameObject.SetActive(true);
+            sentenceSetter(sentence);
         }
-        sentenceSetter(sentence);
+       
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
@@ -262,6 +273,54 @@ public  class Dialogue : MonoBehaviour
         // DialogueManager.self.sprSceptic.gameObject.SetActive(true);
     }
 
-    /// Übergangszone
+    /// Reactions from Stage 3////////////////////////////////////////////
+    
+    public static void heap_destroy()
+    {
+        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
+        DialogueManager.setMecha(json.reaction_from_3.heap_destroy.emotion);
+        nameSetter("Hinweis:");
+        string[] reaction = json.reaction_from_3.heap_destroy.text;
+        sentenceSetter(reaction);
+    }
+
+
+    public static void notLastSubtree()
+    {
+        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
+        DialogueManager.setMecha(json.reaction_from_3.not_last_subtree.emotion);
+        nameSetter("Hinweis:");
+        string[] reaction = json.reaction_from_3.heap_destroy.text;
+        sentenceSetter(reaction);
+    }
+
+
+    public static void changeLittleOne()
+    {
+        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
+        DialogueManager.setMecha(json.reaction_from_3.change_little_one.emotion);
+        nameSetter("Hinweis:");
+        string[] reaction = json.reaction_from_3.change_little_one.text;
+        sentenceSetter(reaction);
+    }
+
+
+    public static void firstChange()
+    {
+        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
+        DialogueManager.setMecha(json.reaction_from_3.first_change.emotion);
+        nameSetter("Hinweis:");
+        string[] reaction = json.reaction_from_3.first_change.text;
+        sentenceSetter(reaction);
+    }
+
+    public static void reasonWhyEfficient()
+    {
+        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
+        DialogueManager.setMecha(json.reaction_from_3.reason_why_efficient.emotion);
+        nameSetter("Hinweis:");
+        string[] reaction = json.reaction_from_3.reason_why_efficient.text;
+        sentenceSetter(reaction);
+    }
 
 }

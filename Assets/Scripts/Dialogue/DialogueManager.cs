@@ -27,9 +27,30 @@ public class DialogueManager : MonoBehaviour
 		sentences = new Queue<string>();
 	}
 
-	public static void setMecha(Sprite img)
+	public static void setMecha(string emo)//(Sprite img)
     {
-		mecha.sprite = img;
+		switch (emo)
+        {
+			case "explain":
+				mecha.sprite = DialogueManager.self.sprExplain;
+				break;
+			case "positiv":
+				mecha.sprite = DialogueManager.self.sprHappy;
+				break;
+			case "neutral":
+				mecha.sprite = DialogueManager.self.sprNeutral;
+				break;
+			case "sceptic":
+				mecha.sprite = DialogueManager.self.sprSceptic;
+				break;
+			case "angry":
+				mecha.sprite = DialogueManager.self.sprAngry;
+				break;
+			default:
+				Debug.Log("Falsche Emotion!");
+				break;
+		}
+		//mecha.sprite = img;
     }
 
 	public void StartDialogue()
