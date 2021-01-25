@@ -132,7 +132,8 @@ public class ButtonHandler : MonoBehaviour
                     //TODO: Automove
 
                     Ball.swapTwo(Globals.getHoles(Hole.TREEHOLE).Find(fh => 0 == fh.value).content, hl.content);
-                    hl.content.moveToHole(Globals.getHoles(Hole.SORTHOLE).Find(fh => hl.value == 14-fh.value));
+                    //hl.content.moveToHole(Globals.getHoles(Hole.SORTHOLE).Find(fh => hl.value == 14-fh.value));
+                    BallMover.moveToSortedList(hl.content, Globals.getHoles(Hole.SORTHOLE).Find(fh => hl.value == 14 - fh.value));
 
                     //After automove
                     LevelTests.Test_4();

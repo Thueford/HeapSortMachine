@@ -177,7 +177,7 @@ public class BallMover : MonoBehaviour
             {
                 foreach (Checkpoint c in currentCheckpoints)
                 {
-                    if (ball.index == c.holeID)
+                    if (ball.value == c.holeID)
                     {
                         ball.checkpoints.Add(c);
                     }
@@ -192,9 +192,24 @@ public class BallMover : MonoBehaviour
         return res;
     }
 
-    public static void moveToSortedList(Ball ball)
+    public static void moveToSortedList(Ball ball, Hole h)
     {
-        if (sortedListCheckpoint.Count == 0) return;
+        if (sortedListCheckpoint.Count == 0)
+        {
+            foreach (Hole hole in Globals.getHoles(Hole.SORTHOLE))
+            {
+                GameObject chp = Instantiate(ballMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
+                Checkpoint cp = chp.GetComponent<Checkpoint>();
+                cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
+                cp.holeID = hole.value;
+                cp.dynamicPlaced = true;
+                cp.overHole = hole;
+
+                sortedListCheckpoint.Add(cp);
+            }
+
+            sortedListCheckpoint.Sort((a, b) => a.holeID < b.holeID ? -1 : 1);
+        }
         if (ball.checkpoints.Count != 0) return;
 
         foreach (GameObject g in Globals.globals.toMoveZ)
@@ -214,7 +229,7 @@ public class BallMover : MonoBehaviour
 
         foreach (Checkpoint cp in sortedListCheckpoint)
         {
-            if (cp.holeID == ball.value)
+            if (cp.holeID == ball.value - Globals.getHoles(Hole.TREEHOLE).Count)
             {
                 ball.checkpoints.Add(cp);
             }
