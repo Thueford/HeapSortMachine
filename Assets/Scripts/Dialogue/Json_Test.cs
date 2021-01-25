@@ -22,6 +22,17 @@ public class Json_Test
         public Textwrapper random_mistake;
         public Textwrapper random_success;
         public Reactionwrapper reaction_from_3;
+        public Emotionwrapper emotion;
+    }
+
+    [System.Serializable]
+    public class Emotionwrapper
+    {
+        public string positiv;
+        public string explain;
+        public string neutral;
+        public string sceptic;
+        public string angry;
     }
 
     [System.Serializable]
