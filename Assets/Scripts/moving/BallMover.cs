@@ -142,7 +142,7 @@ public class BallMover : MonoBehaviour
             //all dynamic Checkpoints get added here (you can add more than one list to currentCheckpoints)
             case Globals.Stage.STAGE_2: currentCheckpoints = treeListCheckpoints; ballMover.treeList = true; break;
             case Globals.Stage.STAGE_4: currentCheckpoints = sortedListCheckpoint; ballMover.treeList = false; break;
-            default: res = false;
+            default: res = false; break;
         }
 
         //sort already placed checkpoints by id and add them to list
