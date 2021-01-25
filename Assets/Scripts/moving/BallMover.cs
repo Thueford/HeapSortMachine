@@ -114,6 +114,7 @@ public class BallMover : MonoBehaviour
                 cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
                 cp.holeID = hole.value;
                 cp.dynamicPlaced = true;
+                cp.overHole = hole;
 
                 //old
                 //checkpointlist.Add(cp);
@@ -184,6 +185,37 @@ public class BallMover : MonoBehaviour
             //static checkpoints are not affected cuz they are holeID = 0
             //ball.checkpoints.Sort((a, b) => a.holeID < b.holeID ? -1 : 1);
         }
+        Globals.globals.StartCoroutine(ballMover.ballStarter());
+    }
+
+    public static void moveToSortedList(Ball ball)
+    {
+        if (sortedListCheckpoint.Count == 0) return;
+        if (ball.checkpoints.Count != 0) return;
+
+        foreach (GameObject g in Globals.globals.toMoveZ)
+        {
+
+            Vector3 tempvec = g.transform.position;
+            tempvec.z -= 21;
+
+            g.transform.position = tempvec;
+        }
+
+        foreach (Checkpoint cp in Checkpoint.checkpoints[Globals.Stage.STAGE_4])
+        {
+            ball.checkpoints.Add(cp);
+        }
+        ball.checkpoints.Sort((a, b) => a.Id < b.Id ? -1 : 1);
+
+        foreach (Checkpoint cp in sortedListCheckpoint)
+        {
+            if (cp.holeID == ball.value)
+            {
+                ball.checkpoints.Add(cp);
+            }
+        }
+
         Globals.globals.StartCoroutine(ballMover.ballStarter());
     }
 
