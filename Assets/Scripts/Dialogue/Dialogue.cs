@@ -10,10 +10,12 @@ public  class Dialogue : MonoBehaviour
     public static string name;
     [TextArea(3, 10)]
     public static List<string> sentences = new List<string>();
-     
+
     public static string namenew;
 
     public static Json_Test.Dialogwrapper json = Json_Test.Load();
+
+    private static int[] hintCounter = new int[] {0, 0, 0, 0, 0};
 
     public static void nameSetter(string k)
     {
@@ -44,10 +46,10 @@ public  class Dialogue : MonoBehaviour
         sentences.AddRange(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
-        
+
         // DialogueManager.self.sprExplain.gameObject.SetActive(true);
     }
- 
+
     public static void Hilfe_2()
     {
         sentences.Clear();
@@ -127,7 +129,7 @@ public  class Dialogue : MonoBehaviour
             DialogueManager.setMecha(json.random_success.emotion);
             DialogueManager.nextStage = Globals.Stage.STAGE_3;
 
-            nameSetter("Richtig!");     
+            nameSetter("Richtig!");
             string[] sentence_random = json.random_success.text;
             string[] uebergang = json.level_complete.stage_2.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
@@ -147,7 +149,7 @@ public  class Dialogue : MonoBehaviour
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
             sentenceSetter(sentence);
         }
-        
+
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
@@ -182,16 +184,16 @@ public  class Dialogue : MonoBehaviour
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" }; ;
             sentenceSetter(sentence);
         }
-        
+
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
-    public static void Test_4(bool b)
+    public static void Test_4(bool b, int toBeSorted)
     {
         string[] sentence;
         sentences.Clear();
-        if (b)
+        if (b && toBeSorted < 1)
         {
             //DialogueManager.setMecha(DialogueManager.self.sprHappy);
             DialogueManager.setMecha(json.random_success.emotion);
@@ -205,8 +207,18 @@ public  class Dialogue : MonoBehaviour
             sentenceSetter(sentence);
             addSentences(uebergang);
         }
-        else
+        else if (b)
         {
+            if (toBeSorted < 14) {
+                DialogueManager.setMecha(json.random_success.emotion);
+                nameSetter("Richtig!");
+                string[] sentence_random = json.random_success.text;
+                int sIndex = Random.Range(0, sentence_random.Length - 1);
+                string sent_rand = sentence_random[sIndex];
+                sentence = new string[] { sent_rand };
+                sentenceSetter(sentence);
+            } else firstChange();
+        } else {
             //DialogueManager.setMecha(DialogueManager.self.sprAngry);
             DialogueManager.setMecha(json.random_mistake.emotion);
             nameSetter("Falsch!");
@@ -216,7 +228,7 @@ public  class Dialogue : MonoBehaviour
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
             sentenceSetter(sentence);
         }
-       
+
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
@@ -274,7 +286,7 @@ public  class Dialogue : MonoBehaviour
     }
 
     /// Reactions from Stage 3////////////////////////////////////////////
-    
+
     public static void heap_destroy()
     {
         //DialogueManager.setMecha(DialogueManager.self.sprExplain);
