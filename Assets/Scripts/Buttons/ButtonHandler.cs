@@ -124,10 +124,10 @@ public class ButtonHandler : MonoBehaviour
             case Globals.Stage.STAGE_3: b = LevelTests.Test_3(); Dialogue.Test_3(b); break;
             case Globals.Stage.STAGE_4: {
                 b = LevelTests.Test_4();
-                Dialogue.Test_4(b);
+                Hole hl = Hole.getLastNonEmpty();
+                Dialogue.Test_4(b, hl ? hl.value : 0);
                 Debug.Log(b);
                 if (b) {
-                    Hole hl = Hole.getLastNonEmpty();
 
                     //TODO: Automove
 
