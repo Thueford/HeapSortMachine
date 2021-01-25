@@ -183,6 +183,11 @@ public class ButtonHandler : MonoBehaviour
         autoButtonUsed = false;
     }
 
+    public void btnOutro_Click()
+    {
+        Dialogue.Outro();
+    }
+
     public void btnHeapCheck_Click(BaseEventData ev)
     {
         if (Globals.stage != Globals.Stage.STAGE_3 && Globals.stage != Globals.Stage.STAGE_4) return;
