@@ -16,7 +16,8 @@ public class Fade : MonoBehaviour
     private Image img;
     private Action<BaseEventData> cb = null;
     private float range;
-
+    private bool reEnableDnD = false;
+    private bool reEnableBtns = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +71,17 @@ public class Fade : MonoBehaviour
         doFade(fadeOut);
     }
 
+    public void enableThings() {
+        ButtonHandler.buttonsActive = reEnableBtns;
+        Ball.staticDnDEnable = reEnableDnD;
+    }
+
+    public void disableThings() {
+        reEnableBtns = ButtonHandler.buttonsActive;
+        ButtonHandler.buttonsActive = false;
+        reEnableDnD = Ball.staticDnDEnable;
+        Ball.staticDnDEnable = false;
+    }
 
     public void FadeOut(BaseEventData ev) {
         fadeFrom(((PointerEventData)ev).pointerEnter, false, fadeOffset, fadeDuration, fadeRange);

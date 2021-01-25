@@ -50,18 +50,27 @@ public class Reset : MonoBehaviour
     public static void Reset_3()
     {
          ResetBallsTo(Hole.TREEHOLE);
+         HeapTests.resetStatus();
     }
 
     public static void Reset_4()
     {
         ResetBallsHeapifiedTo(Hole.TREEHOLE);
+        HeapTests.resetStatus();
     }
 
     public static void createHeapReset() {
-        heapReset.Clear();
-        for (int i = 0; i < 15; i++) {
-            Hole h = Globals.getHoles(Hole.TREEHOLE).Find(fh => i == fh.value);
-            if (h && h.content) heapReset.Add(h.content);
+        if (!Hole.getLastNonEmpty() && heapReset.Count == 0) {
+            for (int i = 0; i < 15; i++) {
+                Hole h = Globals.getHoles(Hole.TREEHOLE).Find(fh => i == fh.value);
+                if (h) heapReset.Add(Globals.balls[i]);
+            }
+        } else {
+            heapReset.Clear();
+            for (int i = 0; i < 15; i++) {
+                Hole h = Globals.getHoles(Hole.TREEHOLE).Find(fh => i == fh.value);
+                if (h && h.content) heapReset.Add(h.content);
+            }
         }
     }
 }
