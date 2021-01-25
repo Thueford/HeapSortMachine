@@ -254,4 +254,22 @@ public  class Dialogue : MonoBehaviour
 
     // Reset-Zone/////////////////////////////////////////////////////////
 
+    public static void Outro()
+    {
+        string[] input = {  //"Herzlichen Glückwunsch! Du bist nun in der Lage auch ohne diese Maschine die Kugeln mit Hilfe von HeapSort zu sortieren. Es freut mich das du dir die Zeit genommen hast, dir dies anzueignen.", 
+                            "Du warst ein aufmerksamer und wissbegieriger Lehrling und ich wünsche dir viel Erfolg bei der Anwendung deiner erlernten Fähigkeiten." ,
+                            "Lass mich dir noch ein paar zusätzliche Informationen zu HeapSort geben die vielleicht einmal hilfreich werden könnten.",
+                            "Einer der großen Vorteile von HeapSort ist der überaus geringe Speicheraufwand, da es sich hierbei um eine in-place Sortierung handelt.",
+                            "In-place bedeutet dabei, dass der Algorithmus außer den zu bearbeitenden Daten nur eine, von der Datenmenge unabhängigen, Konstante als Speicher benötigt.",
+                            "Der zweite Vorteil ist die logarithmische Maximallaufzeit des Algorithmus von O (n * log n).",
+                            "Ein Nachteil ist allerding, dass der Algorithmus nicht auf Stabilität achtet, also die gleiche Reihenfolge von gleichwertigen Elementen bevor und nach der Sortierung nicht gewährleistet ist.",
+                            "Somit ist HeapSort immer dann eine gute Wahl, wenn man eine zeitlich zuverlässige Sortierung mit möglichst geringem Speicheraufwand haben möchte und die Reihenfolge gleichwertiger Elemente irrelevant ist.",
+
+     };
+
+        sentences.Clear();
+        sentences.AddRange(input);
+        DialogueManager.self.StartDialogue();
+        DialogueManager.self.contiButton.gameObject.SetActive(true);
+    }
 }
