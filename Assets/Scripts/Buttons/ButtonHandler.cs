@@ -151,7 +151,7 @@ public class ButtonHandler : MonoBehaviour
         Debug.Log("Auto");
         Globals.player.oneShot("click");
         //DialogueManager.setMecha(DialogueManager.self.sprSceptic);
-        DialogueManager.setMecha(json.level_description.stage_4.emotion);
+        DialogueManager.setMecha(json.emotion.sceptic);
         switch (Globals.stage)
         {
             case Globals.Stage.STAGE_1: Dialogue.Auto_1(); break;
