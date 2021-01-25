@@ -116,6 +116,7 @@ public class BallMover : MonoBehaviour
                 cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
                 cp.holeID = hole.value;
                 cp.dynamicPlaced = true;
+                cp.overHole = hole;
 
                 //old
                 //checkpointlist.Add(cp);
@@ -176,7 +177,7 @@ public class BallMover : MonoBehaviour
             {
                 foreach (Checkpoint c in currentCheckpoints)
                 {
-                    if (ball.index == c.holeID)
+                    if (ball.value == c.holeID)
                     {
                         ball.checkpoints.Add(c);
                     }
@@ -189,6 +190,52 @@ public class BallMover : MonoBehaviour
         }
         Globals.globals.StartCoroutine(ballMover.ballStarter());
         return res;
+    }
+
+    public static void moveToSortedList(Ball ball, Hole h)
+    {
+        if (sortedListCheckpoint.Count == 0)
+        {
+            foreach (Hole hole in Globals.getHoles(Hole.SORTHOLE))
+            {
+                GameObject chp = Instantiate(ballMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
+                Checkpoint cp = chp.GetComponent<Checkpoint>();
+                cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
+                cp.holeID = hole.value;
+                cp.dynamicPlaced = true;
+                cp.overHole = hole;
+
+                sortedListCheckpoint.Add(cp);
+            }
+
+            sortedListCheckpoint.Sort((a, b) => a.holeID < b.holeID ? -1 : 1);
+        }
+        if (ball.checkpoints.Count != 0) return;
+
+        foreach (GameObject g in Globals.globals.toMoveZ)
+        {
+
+            Vector3 tempvec = g.transform.position;
+            tempvec.z -= 21;
+
+            g.transform.position = tempvec;
+        }
+
+        foreach (Checkpoint cp in Checkpoint.checkpoints[Globals.Stage.STAGE_4])
+        {
+            ball.checkpoints.Add(cp);
+        }
+        ball.checkpoints.Sort((a, b) => a.Id < b.Id ? -1 : 1);
+
+        foreach (Checkpoint cp in sortedListCheckpoint)
+        {
+            if (cp.holeID == ball.value - Globals.getHoles(Hole.TREEHOLE).Count)
+            {
+                ball.checkpoints.Add(cp);
+            }
+        }
+
+        Globals.globals.StartCoroutine(ballMover.ballStarter());
     }
 
     /*

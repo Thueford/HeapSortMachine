@@ -101,7 +101,14 @@ public class Ball : MonoBehaviour
                             BallMover.AnimationComplete();
                         }
 
-                        moveToHole(swapHole);
+                        //the hole to move 2 (swaphole is only set for treehole)
+                        if(tempCheckpoint.overHole != null)
+                        {
+                            moveToHole(tempCheckpoint.overHole);
+                        } else
+                        {
+                            moveToHole(swapHole);
+                        }
                         return;
                     }
                 }

@@ -33,6 +33,9 @@ public class Checkpoint : MonoBehaviour
     //checkpoint to teleport to
     public GameObject checkpointTeleport;
 
+    //if checkpoint is over a hole then the hole get saved here
+    public Hole overHole;
+
     private void Awake()
     {
         if (!Instance)

@@ -9,7 +9,7 @@ public class Button : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Mecha Start");
+        //Debug.Log("Mecha Start");
 
         EventTrigger et = GetComponent<EventTrigger>();
         if (et == null) et = gameObject.AddComponent<EventTrigger>();

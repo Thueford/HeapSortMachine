@@ -54,7 +54,7 @@
   },
   "random_success": {
     "text": [
-      "Super das ist ja fast wie meine eigen Arbeit.",
+      "Super das ist ja fast wie meine eigene Arbeit.",
       "Das hätte ich nicht besser machen können.",
       "Wenn du so weiter machst kannst du bald an meiner Stelle stehen.",
       "Du hast das ausgezeichnet gemacht."
@@ -132,6 +132,31 @@
         "Das ist auch der Grund, weshalb Heapsort so effizient ist."
       ],
       "emotion": "explain"
+    },
+    "stage1_outro": {
+      "stage1": {
+        "text": [
+          "Hier ein paar Hinweise zur ersten Stage",
+          "Benutze deine Mause im Kugeln per Drag'n'Drop-Funktion in den Baum zu bewegen.",
+          "Arbeite dabei die Liste von oben nach unten ab.",
+          "Ziehe die Kugeln der Reihe nach immer zum höchsten Loch, welches am weitesten links steht.",
+          "Achte dabei auf die kleinen Nummern an den Löchern. Sie helfen dir dabei den Überblick zu bewaren.",
+          "Viel Spaß bei deiner ersten Stage."
+        ],
+        "emotion": "explain"
+      },
+      "outro": {
+        "text": [
+          "Du warst ein aufmerksamer und wissbegieriger Lehrling und ich wünsche dir viel Erfolg bei der Anwendung deiner erlernten Fähigkeiten.",
+          "Lass mich dir noch ein paar zusätzliche Informationen zu HeapSort geben die vielleicht einmal hilfreich werden könnten.",
+          "Einer der großen Vorteile von HeapSort ist der überaus geringe Speicheraufwand, da es sich hierbei um eine in-place Sortierung handelt.",
+          "In-place bedeutet dabei, dass der Algorithmus außer den zu bearbeitenden Daten nur eine, von der Datenmenge unabhängigen, Konstante als Speicher benötigt.",
+          "Der zweite Vorteil ist die logarithmische Maximallaufzeit des Algorithmus von O (n * log n).",
+          "Ein Nachteil ist allerding, dass der Algorithmus nicht auf Stabilität achtet, also die gleiche Reihenfolge von gleichwertigen Elementen bevor und nach der Sortierung nicht gewährleistet ist.",
+          "Somit ist HeapSort immer dann eine gute Wahl, wenn man eine zeitlich zuverlässige Sortierung mit möglichst geringem Speicheraufwand haben möchte und die Reihenfolge gleichwertiger Elemente irrelevant ist."
+        ],
+        "emotion":  "explain"
+      }
     }
   }
 }

@@ -23,7 +23,16 @@ public class Json_Test
         public Textwrapper random_success;
         public Reactionwrapper reaction_from_3;
         public Emotionwrapper emotion;
+        public Stage1OutroWrapper stage1_outro;
     }
+
+    [System.Serializable]
+    public class Stage1OutroWrapper
+    {
+        public Textwrapper stage1;
+        public Textwrapper outro;
+    }
+    
 
     [System.Serializable]
     public class Emotionwrapper
