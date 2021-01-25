@@ -87,12 +87,14 @@ public class DialogueManager : MonoBehaviour
 
 	IEnumerator TypeSentence(string sentence)
 	{
+		contiButton.gameObject.SetActive(false);
 		dialogueText.text = "";
 		foreach (char letter in sentence.ToCharArray())
 		{
 			dialogueText.text += letter;
 			yield return new WaitForSeconds(0.01f);
 		}
+		contiButton.gameObject.SetActive(true);
 	}
 	
 	void EndDialogue()
