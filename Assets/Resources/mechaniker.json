@@ -1,33 +1,42 @@
 {
-  "level_description": {
-    "stage_1": {
-      "text": [ "noch füllen" ],
-      "emotion": "positiv"
-    },
-    "stage_2": {
-      "text": [ "noch füllen" ],
-      "emotion": "positiv"
-    },
-    "stage_3": {
-      "text": [ "noch füllen" ],
-      "emotion": "positiv"
-    },
-    "stage_4": {
-      "text": [ "noch füllen" ],
-      "emotion": "positiv"
-    }
+  "emotion": {
+    "positiv": "positiv",
+    "explain": "explain",
+    "neutral": "neutral",
+    "sceptic": "sceptic",
+    "angry": "angry"
   },
   "level_complete": {
     "stage_1": {
-      "text": [ "Da hast du aber einen schönen Baum gepflanzt." ],
+      "text": [
+        "Da hast du aber einen schönen Baum gepflanzt.",
+        "Wir machen jetzt weiter in Stage 2",
+        "Die Drag'n'Drop-Funktion ist jetzt deaktiviert.",
+        "Damit die Maschine richtig arbeitet musst du jetzt oben links in die Textfelder die Regel zur Bildung des Baumes eintragen.",
+        "Mit dem \"Prüfen\" Knopf kannst du sehen, ob du richtig liegst.",
+        "Schau dir dazu einmal genauer an, wie im Baum der Index eines Elternknotens mit den Indizes seiner Kindknoten zusammenhängt."
+      ],
       "emotion": "positiv"
     },
     "stage_2": {
-      "text": [ "Da hast du aber einen schönen Baum gepflanzt." ],
+      "text": [
+        "Nun müsstest du wissen wie der Algorithmus die Liste als Baum betrachtet.",
+        "Wir erreichen jetzt Stage 3",
+        "Nun musst du zuerst den Heap herstellen, das heißt der Baum muss geordnet werden.",
+        "Klicke dazu auf eine Verbindung zwischen zwei Kugeln, um diese zu tauschen.",
+        "Angefangen wird dabei beim letzten Knoten, in dem die Ordnung noch nicht hergestellt ist.",
+        "Durch das kategorische durchlaufen spart man sich unnötiges Tauschen.",
+        "Mit dem (x)-Knopf kannst du den Heapstatus des entsprechenden Teilbaumes prüfen.",
+        "Hat der gesamte Baum den Heapstatus erreicht, kommst du in die nächste Stufe."
+      ],
       "emotion": "positiv"
     },
     "stage_3": {
-      "text": [ "Diese Pyramide steht stabil." ],
+      "text": [
+        "Weiter gehts zu Stage 4",
+        "Wenn in Stufe 4 nun der Heap im ganzen Baum hergestellt wurde, solltest du noch einmal den \"Prüfen\" Knopf drücken.",
+        "Dann wird das erste und das letzte Element im Baum getauscht und danach das letzte Element in die sortierte Liste übertragen."
+      ],
       "emotion": "positiv"
     },
     "stage_4": {
@@ -63,7 +72,7 @@
     "stage_2": {
       "text": [
         "Jede Ebene hat doppelt so viele Knote wie die vorherige.",
-        "Die Indizes werden von der Wurzele bis zu den untersten Blättern, zeilenweise und aufsteigend vergeben."
+        "Die Indizes werden von der Wurzel bis zu den untersten Blättern, zeilenweise und aufsteigend vergeben."
       ],
       "emotion": "explain"
     },
@@ -80,6 +89,47 @@
         "Tausche doch die Wurzel mit dem untersten Blatt.",
         "Das unterste Blatt ist am weitesten von der Wurzel entfernt.",
         "Wenn du dir sicher bist das alles richtig ist, dann überprüfe es doch einfach mit dem Button."
+      ],
+      "emotion": "explain"
+    }
+  },
+  "reaction_from_3": {
+    "heap_destroy": {
+      "text": [
+        "Das habe ich wohl vergessen dir zu sagen:",
+        "Nach einem Tausch gibt es keine Garantie dafür, dass Kindknoten noch Heapstatus haben.",
+        "Überprüfe diese Knoten erneut und mache dann weiter."
+      ],
+      "emotion": "explain"
+    },
+    "not_last_subtree": {
+      "text": [
+        "Hast du etwa vergessen, was ich dir gesagt habe?",
+        "Es wird immer beim letzten Knoten der noch nicht im Heap ist getauscht."
+      ],
+      "emotion": "explain"
+    },
+    "change_little_one": {
+      "text": [
+        "Sollten wir nicht lieber die schwerere Kugel hochtauschen?",
+        "Glaub mir, damit sparst du dir noch einen Haufen Arbeit!"
+      ],
+      "emotion": "explain"
+    },
+    "first_change": {
+      "text": [
+        "Jetzt musst du den Baum ja schon wieder ordnen.",
+        "Aber siehst du auch was ich sehe?",
+        "Dadurch, dass nur ein Element nicht geordnet ist, lässt sich die Ordnung sehr schnell wiederherstellen.",
+        "Probiere es mal aus!"
+      ],
+      "emotion": "explain"
+    },
+    "reason_why_efficient": {
+      "text": [
+        "Genau so wird's gemacht.",
+        "Wenn du weiterhin immer die schwerere Kugel der beiden Kindknoten hochtauschst, wirst du nie mehr als dreimal pro Heapify tauschen.",
+        "Das ist auch der Grund, weshalb Heapsort so effizient ist."
       ],
       "emotion": "explain"
     }

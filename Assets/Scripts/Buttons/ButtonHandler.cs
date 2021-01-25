@@ -11,11 +11,14 @@ public class ButtonHandler : MonoBehaviour
     public Sprite sprHolderUp, sprHolderDown, sprHeapChk, sprHeapUnchk;
     public static bool autoButtonUsed = false;
     public static bool buttonsActive = true;
+    public static Json_Test.Dialogwrapper json;
+
 
     // Start is called before the first frame update
     void Awake()
     {
         self = this;
+        json = Json_Test.Load();
     }
 
     public void btnStart_Click()
@@ -85,7 +88,8 @@ public class ButtonHandler : MonoBehaviour
 
         Globals.player.oneShot("click");
 
-        DialogueManager.setMecha(DialogueManager.self.sprExplain);
+        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
+        DialogueManager.setMecha(json.level_hints.stage_1.emotion);
         switch (Globals.stage)
         {
             case Globals.Stage.STAGE_1: Dialogue.Hilfe_1(); break;
@@ -120,10 +124,10 @@ public class ButtonHandler : MonoBehaviour
             case Globals.Stage.STAGE_3: b = LevelTests.Test_3(); Dialogue.Test_3(b); break;
             case Globals.Stage.STAGE_4: {
                 b = LevelTests.Test_4();
-                Dialogue.Test_4(b);
+                Hole hl = Hole.getLastNonEmpty();
+                Dialogue.Test_4(b, hl ? hl.value : 0);
                 Debug.Log(b);
                 if (b) {
-                    Hole hl = Hole.getLastNonEmpty();
 
                     //TODO: Automove
 
@@ -146,8 +150,8 @@ public class ButtonHandler : MonoBehaviour
         if (!buttonsActive) return; //during auto/stage change
         Debug.Log("Auto");
         Globals.player.oneShot("click");
-        DialogueManager.setMecha(DialogueManager.self.sprSceptic);
-
+        //DialogueManager.setMecha(DialogueManager.self.sprSceptic);
+        DialogueManager.setMecha(json.emotion.sceptic);
         switch (Globals.stage)
         {
             case Globals.Stage.STAGE_1: Dialogue.Auto_1(); break;
@@ -157,10 +161,7 @@ public class ButtonHandler : MonoBehaviour
         }
 
         if (!autoButtonUsed)
-        {
-            autoButtonUsed = true;
-            BallMover.autoMoveInit(() => autoButtonUsed = false);
-        }
+            autoButtonUsed = BallMover.autoMoveInit(() => autoButtonUsed = false);
     }
 
     public void btnReset_Click()
@@ -180,6 +181,11 @@ public class ButtonHandler : MonoBehaviour
 
         //activate auto button again
         autoButtonUsed = false;
+    }
+
+    public void btnOutro_Click()
+    {
+        Dialogue.Outro();
     }
 
     public void btnHeapCheck_Click(BaseEventData ev)

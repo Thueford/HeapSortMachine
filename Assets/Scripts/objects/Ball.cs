@@ -284,8 +284,8 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (!isSwapping && collider.tag == "Hole" &&
-                collider.gameObject.GetComponent<Hole>().tree) swapHole = collider;
+        if (!isSwapping && collider.tag == "Hole" && collider.gameObject.GetComponent<Hole>().tree) 
+            swapHole = collider;
     }
 
     private void OnTriggerExit2D(Collider2D collider)

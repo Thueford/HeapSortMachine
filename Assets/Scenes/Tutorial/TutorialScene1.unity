@@ -155,8 +155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.7312, y: 4.36}
-  m_SizeDelta: {x: 912.28894, y: 1037.2295}
+  m_AnchoredPosition: {x: 0.43, y: 4.36}
+  m_SizeDelta: {x: 938.2855, y: 1037.2295}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &15526975
 MonoBehaviour:
@@ -178,7 +178,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f25bd520f0a6ee54486e54ad98b8247a, type: 3}
     m_FontSize: 95
     m_FontStyle: 0
     m_BestFit: 0
@@ -190,7 +190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Dem Algorithmus wird eine Liste \xFCbergeben. Diese musst du dann in einen
+  m_Text: "Dem Algorithmus wird eine Liste \xFCbergeben. Diese musst du in einen
     Baum umwandeln. Die Kugeln kannst du mit Drag'n'Drop an die Knoten anf\xFCgen."
 --- !u!222 &15526976
 CanvasRenderer:
@@ -235,8 +235,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 122.65, y: 45.87}
-  m_SizeDelta: {x: 94.69125, y: 117.90497}
+  m_AnchoredPosition: {x: 120.05, y: 45.87}
+  m_SizeDelta: {x: 99.890625, y: 117.90497}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &227570930
 MonoBehaviour:

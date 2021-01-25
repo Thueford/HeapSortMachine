@@ -9,6 +9,7 @@ public class Joint : MonoBehaviour
     public Hole hole1;
     public Hole hole2;
     public int id;
+    private int toShowDestroy = 0;
     // Start is called before the first frame update
     void Start()
     {

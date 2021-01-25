@@ -5,30 +5,24 @@ using UnityEngine.UI;
 
 public class Fade : MonoBehaviour
 {
-    public int fadeOffset, fadeDuration;
+    public int fadeOffset, fadeDuration, darkenOffset, darkenDuration;
+    public float fadeRange, darkenRange;
     public Color fadeColor = new Color(0, 0, 0);
     public bool start, fadeIn;
 
+    private int duration, offset;
     private long tStart;
     private bool done;
     private Image img;
     private Action<BaseEventData> cb = null;
-
-    public enum FadeEvent
-    {
-        NONE, MENU_START_OUT
-    }
-
+    private float range;
+    private bool reEnableDnD = false;
+    private bool reEnableBtns = false;
     // Start is called before the first frame update
     void Start()
     {
         img = GetComponent<Image>();
-        if (start) fadeFrom(gameObject, fadeIn);
-    }
-
-    public void temp()
-    {
-        Debug.Log("Helloooo");
+        if (start) fadeFrom(gameObject, fadeIn, fadeOffset, fadeDuration, fadeRange);
     }
 
     // Update is called once per frame
@@ -36,7 +30,7 @@ public class Fade : MonoBehaviour
     {
         if (done) return;
 
-        float alpha = Mathf.Clamp((time() - tStart) / (float)fadeDuration, 0, 1);
+        float alpha = Mathf.Clamp((time() - tStart) / (float)duration, 0, 1);
 
         if (alpha >= 1)
         {
@@ -47,7 +41,7 @@ public class Fade : MonoBehaviour
         else
         {
             if (fadeIn) alpha = 1 - alpha;
-            fadeColor.a = Mathf.Pow(alpha, 3);
+            fadeColor.a = range * Mathf.Pow(alpha, 3);
             img.color = fadeColor;
         }
         Globals.player.scaleAllVolumes(1-alpha);
@@ -58,10 +52,10 @@ public class Fade : MonoBehaviour
         done = false;
         img.enabled = true;
         this.fadeIn = fadeIn;
-        tStart = time() + fadeOffset;
+        tStart = time() + offset;
     }
 
-    public void fadeFrom(GameObject obj, bool fadeOut)
+    private void fadeFrom(GameObject obj, bool fadeOut, int off, int dur, float rng)
     {
         cb = null;
         if (obj)
@@ -70,15 +64,39 @@ public class Fade : MonoBehaviour
             if (et) cb = et.OnSubmit;
         }
 
+        offset = off;
+        duration = dur;
+        range = rng;
+
         doFade(fadeOut);
     }
 
+    public void enableThings() {
+        ButtonHandler.buttonsActive = reEnableBtns;
+        Ball.staticDnDEnable = reEnableDnD;
+    }
+
+    public void disableThings() {
+        reEnableBtns = ButtonHandler.buttonsActive;
+        ButtonHandler.buttonsActive = false;
+        reEnableDnD = Ball.staticDnDEnable;
+        Ball.staticDnDEnable = false;
+    }
 
     public void FadeOut(BaseEventData ev) {
-        fadeFrom(((PointerEventData)ev).pointerEnter, false);
+        fadeFrom(((PointerEventData)ev).pointerEnter, false, fadeOffset, fadeDuration, fadeRange);
     }
     public void FadeIn(BaseEventData ev) {
-        fadeFrom(((PointerEventData)ev).pointerEnter, true);
+        fadeFrom(((PointerEventData)ev).pointerEnter, true, fadeOffset, fadeDuration, fadeRange);
+    }
+
+    public void DarkenOut(BaseEventData ev)
+    {
+        fadeFrom(((PointerEventData)ev).pointerEnter, false, darkenOffset, darkenDuration, darkenRange);
+    }
+    public void DarkenIn(BaseEventData ev)
+    {
+        fadeFrom(((PointerEventData)ev).pointerEnter, true, darkenOffset, darkenDuration, darkenRange);
     }
 
     private static int time() { return (int)(DateTime.Now.Ticks / (int)1e4); }

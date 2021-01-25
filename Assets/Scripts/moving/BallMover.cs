@@ -52,8 +52,10 @@ public class BallMover : MonoBehaviour
         cb = null;
     }
 
-    public static void autoMoveInit(AnimationCallback acb)
+    // returns boolean, true if animation was started
+    public static bool autoMoveInit(AnimationCallback acb)
     {
+        bool res = true;
         cb = acb;
 
         //testing
@@ -141,6 +143,7 @@ public class BallMover : MonoBehaviour
             //all dynamic Checkpoints get added here (you can add more than one list to currentCheckpoints)
             case Globals.Stage.STAGE_2: currentCheckpoints = treeListCheckpoints; ballMover.treeList = true; break;
             case Globals.Stage.STAGE_4: currentCheckpoints = sortedListCheckpoint; ballMover.treeList = false; break;
+            default: res = false; break;
         }
 
         //sort already placed checkpoints by id and add them to list
@@ -186,6 +189,7 @@ public class BallMover : MonoBehaviour
             //ball.checkpoints.Sort((a, b) => a.holeID < b.holeID ? -1 : 1);
         }
         Globals.globals.StartCoroutine(ballMover.ballStarter());
+        return res;
     }
 
     public static void moveToSortedList(Ball ball)

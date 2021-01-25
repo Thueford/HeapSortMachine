@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeapTests
 {
@@ -19,5 +20,13 @@ public class HeapTests
             if (!validHeaps[i]) return i;
         }
         return -1;
+    }
+
+    public static void resetStatus() {
+        for (int i = 0; i < validHeaps.Length; i++) {
+            validHeaps[i] = false;
+            Globals.globals.heapChkBtns[i].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;
+        }
+        currentHeap = 6;
     }
 }

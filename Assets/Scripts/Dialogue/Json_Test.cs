@@ -21,6 +21,18 @@ public class Json_Test
         public Stagewrapper level_hints;
         public Textwrapper random_mistake;
         public Textwrapper random_success;
+        public Reactionwrapper reaction_from_3;
+        public Emotionwrapper emotion;
+    }
+
+    [System.Serializable]
+    public class Emotionwrapper
+    {
+        public string positiv;
+        public string explain;
+        public string neutral;
+        public string sceptic;
+        public string angry;
     }
 
     [System.Serializable]
@@ -29,6 +41,16 @@ public class Json_Test
         public Textwrapper stage_2;
         public Textwrapper stage_3;
         public Textwrapper stage_4;
+    }
+
+    [System.Serializable]
+    public class Reactionwrapper
+    {
+        public Textwrapper heap_destroy;
+        public Textwrapper not_last_subtree;
+        public Textwrapper change_little_one;
+        public Textwrapper first_change;
+        public Textwrapper reason_why_efficient;
     }
 
     [System.Serializable]

@@ -90,6 +90,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeOffset: 100
   fadeDuration: 1000
+  darkenOffset: 100
+  darkenDuration: 400
+  fadeRange: 1
+  darkenRange: 0.6
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
   start: 1
   fadeIn: 0

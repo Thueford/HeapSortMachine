@@ -10,10 +10,12 @@ public  class Dialogue : MonoBehaviour
     public static string name;
     [TextArea(3, 10)]
     public static List<string> sentences = new List<string>();
-     
+
     public static string namenew;
 
     public static Json_Test.Dialogwrapper json = Json_Test.Load();
+
+    private static int[] hintCounter = new int[] {0, 0, 0, 0, 0};
 
     public static void nameSetter(string k)
     {
@@ -27,7 +29,11 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         sentences.AddRange(s);
         Debug.Log("Ich hab die Texte eingefügt");
+    }
 
+    public static void addSentences(string[] s)
+    {
+        sentences.AddRange(s);
     }
 
     // Hilfe Zone/////////////////////////////////////////////////////////
@@ -40,10 +46,10 @@ public  class Dialogue : MonoBehaviour
         sentences.AddRange(sentence);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
-        
+
         // DialogueManager.self.sprExplain.gameObject.SetActive(true);
     }
- 
+
     public static void Hilfe_2()
     {
         sentences.Clear();
@@ -84,26 +90,31 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         if (b)
         {
-            DialogueManager.setMecha(DialogueManager.self.sprHappy);
-            nameSetter("Richtig!");
+            //DialogueManager.setMecha(DialogueManager.self.sprHappy);
+            DialogueManager.setMecha(json.random_success.emotion);
             DialogueManager.nextStage = Globals.Stage.STAGE_2;
+
+            nameSetter("Richtig!");
             string[] sentence_random = json.random_success.text;
+            string[] uebergang = json.level_complete.stage_1.text;
             int sIndex = Random.Range(0, sentence_random.Length-1);
             string sent_rand = sentence_random[sIndex];
-            sentence = new string[] {json.level_complete.stage_1.text[0], sent_rand, "Als nächstes behandeln wir Stage 2" };
-            // DialogueManager.self.sprHappy.gameObject.SetActive(true);
+            sentence = new string[] {sent_rand};
+            sentenceSetter(sentence);
+            addSentences(uebergang);
         }
         else
         {
-            DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            //DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            DialogueManager.setMecha(json.random_mistake.emotion);
             nameSetter("Falsch!");
             string[] sentence_random = json.random_mistake.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
-            // DialogueManager.self.sprAngry.gameObject.SetActive(true);
+            sentenceSetter(sentence);
         }
-        sentenceSetter(sentence);
+
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
@@ -114,26 +125,31 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         if (b)
         {
-            DialogueManager.setMecha(DialogueManager.self.sprHappy);
-            nameSetter("Richtig!");
+            //DialogueManager.setMecha(DialogueManager.self.sprHappy);
+            DialogueManager.setMecha(json.random_success.emotion);
             DialogueManager.nextStage = Globals.Stage.STAGE_3;
+
+            nameSetter("Richtig!");
             string[] sentence_random = json.random_success.text;
+            string[] uebergang = json.level_complete.stage_2.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            sentence = new string[] { json.level_complete.stage_2.text[0], sent_rand, "Als nächstes behandeln wir Stage 3" };
-            // DialogueManager.self.sprHappy.gameObject.SetActive(true);
+            sentence = new string[] {sent_rand};
+            sentenceSetter(sentence);
+            addSentences(uebergang);
         }
         else
         {
-            DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            //DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            DialogueManager.setMecha(json.random_mistake.emotion);
             nameSetter("Falsch!");
             string[] sentence_random = json.random_mistake.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
-            // DialogueManager.self.sprAngry.gameObject.SetActive(true);
+            sentenceSetter(sentence);
         }
-        sentenceSetter(sentence);
+
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
@@ -144,56 +160,75 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         if (b)
         {
-            DialogueManager.setMecha(DialogueManager.self.sprHappy);
-            nameSetter("Richtig!");
+            //DialogueManager.setMecha(DialogueManager.self.sprHappy);
+            DialogueManager.setMecha(json.random_success.emotion);
             DialogueManager.nextStage = Globals.Stage.STAGE_4;
+
+            nameSetter("Richtig!");
             string[] sentence_random = json.random_success.text;
+            string[] uebergang = json.level_complete.stage_3.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            sentence = new string[] { json.level_complete.stage_3.text[0], sent_rand, "Als nächstes behandeln wir Stage 4" };
-            // DialogueManager.self.sprHappy.gameObject.SetActive(true);
+            sentence = new string[] {sent_rand};
+            sentenceSetter(sentence);
+            addSentences(uebergang);
         }
         else
         {
-            DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            //DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            DialogueManager.setMecha(json.random_mistake.emotion);
             nameSetter("Falsch!");
             string[] sentence_random = json.random_mistake.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" }; ;
-            // DialogueManager.self.sprAngry.gameObject.SetActive(true);
+            sentenceSetter(sentence);
         }
-        sentenceSetter(sentence);
+
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
-    public static void Test_4(bool b)
+    public static void Test_4(bool b, int toBeSorted)
     {
         string[] sentence;
         sentences.Clear();
-        if (b)
+        if (b && toBeSorted < 1)
         {
-            DialogueManager.setMecha(DialogueManager.self.sprHappy);
+            //DialogueManager.setMecha(DialogueManager.self.sprHappy);
+            DialogueManager.setMecha(json.random_success.emotion);
             nameSetter("Richtig!");
             DialogueManager.nextStage = Globals.Stage.END;
             string[] sentence_random = json.random_success.text;
+            string[] uebergang = json.level_complete.stage_4.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            sentence = new string[] { json.level_complete.stage_4.text[0], sent_rand, "Super du hast alle Stages gemeistert." };
-            // DialogueManager.self.sprHappy.gameObject.SetActive(true);
+            sentence = new string[] {sent_rand};
+            sentenceSetter(sentence);
+            addSentences(uebergang);
         }
-        else
+        else if (b)
         {
-            DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            if (toBeSorted < 14) {
+                DialogueManager.setMecha(json.random_success.emotion);
+                nameSetter("Richtig!");
+                string[] sentence_random = json.random_success.text;
+                int sIndex = Random.Range(0, sentence_random.Length - 1);
+                string sent_rand = sentence_random[sIndex];
+                sentence = new string[] { sent_rand };
+                sentenceSetter(sentence);
+            } else firstChange();
+        } else {
+            //DialogueManager.setMecha(DialogueManager.self.sprAngry);
+            DialogueManager.setMecha(json.random_mistake.emotion);
             nameSetter("Falsch!");
             string[] sentence_random = json.random_mistake.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
-            // DialogueManager.self.sprAngry.gameObject.SetActive(true);
+            sentenceSetter(sentence);
         }
-        sentenceSetter(sentence);
+
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
@@ -249,9 +284,73 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.contiButton.gameObject.SetActive(true);
         // DialogueManager.self.sprSceptic.gameObject.SetActive(true);
     }
-    
+
+    /// Reactions from Stage 3////////////////////////////////////////////
+
+    public static void heap_destroy()
+    {
+        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
+        DialogueManager.setMecha(json.reaction_from_3.heap_destroy.emotion);
+        nameSetter("Hinweis:");
+        string[] reaction = json.reaction_from_3.heap_destroy.text;
+        sentenceSetter(reaction);
+    }
 
 
-    // Reset-Zone/////////////////////////////////////////////////////////
+    public static void notLastSubtree()
+    {
+        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
+        DialogueManager.setMecha(json.reaction_from_3.not_last_subtree.emotion);
+        nameSetter("Hinweis:");
+        string[] reaction = json.reaction_from_3.heap_destroy.text;
+        sentenceSetter(reaction);
+    }
 
+
+    public static void changeLittleOne()
+    {
+        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
+        DialogueManager.setMecha(json.reaction_from_3.change_little_one.emotion);
+        nameSetter("Hinweis:");
+        string[] reaction = json.reaction_from_3.change_little_one.text;
+        sentenceSetter(reaction);
+    }
+
+
+    public static void firstChange()
+    {
+        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
+        DialogueManager.setMecha(json.reaction_from_3.first_change.emotion);
+        nameSetter("Hinweis:");
+        string[] reaction = json.reaction_from_3.first_change.text;
+        sentenceSetter(reaction);
+    }
+
+    public static void reasonWhyEfficient()
+    {
+        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
+        DialogueManager.setMecha(json.reaction_from_3.reason_why_efficient.emotion);
+        nameSetter("Hinweis:");
+        string[] reaction = json.reaction_from_3.reason_why_efficient.text;
+        sentenceSetter(reaction);
+    }
+
+    public static void Outro()
+    {
+        string[] input = {  //"Herzlichen Glückwunsch! Du bist nun in der Lage auch ohne diese Maschine die Kugeln mit Hilfe von HeapSort zu sortieren. Es freut mich das du dir die Zeit genommen hast, dir dies anzueignen.",
+                            "Du warst ein aufmerksamer und wissbegieriger Lehrling und ich wünsche dir viel Erfolg bei der Anwendung deiner erlernten Fähigkeiten." ,
+                            "Lass mich dir noch ein paar zusätzliche Informationen zu HeapSort geben die vielleicht einmal hilfreich werden könnten.",
+                            "Einer der großen Vorteile von HeapSort ist der überaus geringe Speicheraufwand, da es sich hierbei um eine in-place Sortierung handelt.",
+                            "In-place bedeutet dabei, dass der Algorithmus außer den zu bearbeitenden Daten nur eine, von der Datenmenge unabhängigen, Konstante als Speicher benötigt.",
+                            "Der zweite Vorteil ist die logarithmische Maximallaufzeit des Algorithmus von O (n * log n).",
+                            "Ein Nachteil ist allerding, dass der Algorithmus nicht auf Stabilität achtet, also die gleiche Reihenfolge von gleichwertigen Elementen bevor und nach der Sortierung nicht gewährleistet ist.",
+                            "Somit ist HeapSort immer dann eine gute Wahl, wenn man eine zeitlich zuverlässige Sortierung mit möglichst geringem Speicheraufwand haben möchte und die Reihenfolge gleichwertiger Elemente irrelevant ist.",
+
+     };
+
+        sentences.Clear();
+        sentences.AddRange(input);
+        DialogueManager.self.StartDialogue();
+        DialogueManager.self.contiButton.gameObject.SetActive(true);
+    }
 }
