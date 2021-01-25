@@ -199,6 +199,7 @@ public class ButtonHandler : MonoBehaviour
 
         if (n != HeapTests.currentHeap) {
             Debug.Log("That heap is currently not active");
+            Dialogue.notLastSubtree();
             return;
         }
 

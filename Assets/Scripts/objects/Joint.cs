@@ -9,7 +9,6 @@ public class Joint : MonoBehaviour
     public Hole hole1;
     public Hole hole2;
     public int id;
-    private int toShowDestroy = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +36,7 @@ public class Joint : MonoBehaviour
         }
         if (hole1.value != HeapTests.currentHeap) {
             Debug.Log("That heap is currently not active");
+            Dialogue.notLastSubtree();
             return;
         }
         int[] heap = HeapTests.getHeap(hole1.value);
@@ -45,7 +45,7 @@ public class Joint : MonoBehaviour
                 (heap[2] == this.hole2.content.value && heap[2] < heap[1])) {
             Debug.Log("One should swap only the larger ball up");
 
-            //TODO: Mechaniker Erklärung nur größeres hochswappen
+            Dialogue.changeLittleOne();
 
             return;
         }
@@ -58,7 +58,8 @@ public class Joint : MonoBehaviour
             HeapTests.validHeaps[(int)Math.Floor((double)(hole1.value-1)/2)] = false;
         }
         if (hole2.value < 7) {
-            //TODO: Mechaniker Erklärung Kindknoten neu testen
+
+            Dialogue.heap_destroy();
 
             int[] heapChild = HeapTests.getHeap(hole2.value);
             Debug.Log(heapChild);

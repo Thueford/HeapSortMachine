@@ -7,7 +7,7 @@ public class Ball : MonoBehaviour
     public static List<Ball> moving = new List<Ball>();
     public static bool staticDnDEnable = true;
     public static bool isSwapping = false;
-
+    public static bool masterSwap = false;
     //list of checkpoints to move
     public List<Checkpoint> checkpoints = new List<Checkpoint>();
     private Vector2 mouse_position, startPosition;
@@ -171,7 +171,7 @@ public class Ball : MonoBehaviour
                 !b2.startHole.gameObject.GetComponent<Hole>().tree) return;
         b1.moveToHole(b2.startHole);
         b2.moveToHole(tmp);
-        isSwapping = false;
+        isSwapping = masterSwap;
     }
 
     //Collider 'to' must be the collider of a *HOLE*
@@ -277,7 +277,7 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (!isSwapping && collider.tag == "Hole" && collider.gameObject.GetComponent<Hole>().tree) 
+        if (!isSwapping && collider.tag == "Hole" && collider.gameObject.GetComponent<Hole>().tree)
             swapHole = collider;
     }
 
