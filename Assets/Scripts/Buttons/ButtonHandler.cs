@@ -157,10 +157,7 @@ public class ButtonHandler : MonoBehaviour
         }
 
         if (!autoButtonUsed)
-        {
-            autoButtonUsed = true;
-            BallMover.autoMoveInit(() => autoButtonUsed = false);
-        }
+            autoButtonUsed = BallMover.autoMoveInit(() => autoButtonUsed = false);
     }
 
     public void btnReset_Click()
