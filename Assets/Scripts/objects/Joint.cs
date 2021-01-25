@@ -59,13 +59,13 @@ public class Joint : MonoBehaviour
         }
         if (hole2.value < 7) {
 
-            Dialogue.heap_destroy();
-
             int[] heapChild = HeapTests.getHeap(hole2.value);
             Debug.Log(heapChild);
             if (heapChild[1] != heapChild[2]) {
                 Globals.globals.heapChkBtns[hole2.value].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;
                 HeapTests.validHeaps[hole2.value] = false;
+
+                Dialogue.heap_destroy();
             }
         }
         HeapTests.currentHeap = HeapTests.getLastHeap();
