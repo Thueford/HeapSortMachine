@@ -15,6 +15,8 @@ public  class Dialogue : MonoBehaviour
 
     public static Json_Test.Dialogwrapper json = Json_Test.Load();
 
+    private static int[] hintCounter = new int[] {0, 0, 0, 0, 0};
+
     public static void nameSetter(string k)
     {
         namenew = k;
