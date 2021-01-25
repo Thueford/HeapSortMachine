@@ -19,11 +19,24 @@
   },
   "level_complete": {
     "stage_1": {
-      "text": [ "Da hast du aber einen schönen Baum gepflanzt." ],
+      "text": [
+        "Da hast du aber einen schönen Baum gepflanzt.",
+        "Wir machen jetzt weiter in Stage 2",
+        "Die Drag'n'Drop-Funktion ist jetzt deaktiviert.",
+        "Damit die Maschine richtig arbeitet musst du jetzt oben links in die Textfelder die Regel zur Bildung des Baumes eintragen.",
+        "Mit dem \"Prüfen\" Knopf kannst du sehen, ob du richtig liegst.",
+        "Schau dir dazu einmal genauer an, wie im Baum der Index eines Elternknotens mit den Indizes seiner Kindknoten zusammenhängt."
+      ],
       "emotion": "positiv"
     },
     "stage_2": {
-      "text": [ "Da hast du aber einen schönen Baum gepflanzt." ],
+      "text": [
+        "Nun müsstest du wissen wie der Algorithmus den Baum mit Hilfe einer Bildungsvorschrift erstellt.",
+        "Wir erreichen jetzt Stage 3",
+        "Nun musst du zuerst den Heap herstellen, das heißt der Baum muss geordnet werden. Klicke dazu auf eine Verbindung zwischen zwei Kugeln, um diese zu tauschen.",
+        "Angefangen wird dabei beim letzten Knoten, in dem die Ordnung noch nicht hergestellt ist. Durch das kategorische durchlaufen spart man sich unnötiges Tauschen.",
+        "Mit dem (x)-Knopf kannst du den Heapstatus des entsprechenden Teilbaumes prüfen. Hat der gesamte Baum den Heapstatus erreicht, kommst du in die nächste Stufe."
+      ],
       "emotion": "positiv"
     },
     "stage_3": {
@@ -82,6 +95,28 @@
         "Wenn du dir sicher bist das alles richtig ist, dann überprüfe es doch einfach mit dem Button."
       ],
       "emotion": "explain"
+    }
+  },
+  "reaction_from_3": {
+    "heap_destroy": {
+      "text": [],
+      "emotion": "neutral"
+    },
+    "not_last_subtree": {
+      "text": [],
+      "emotion": "neutral"
+    },
+    "change_little_one": {
+      "text": [],
+      "emotion": "neutral"
+    },
+    "first_change": {
+      "text": [],
+      "emotion": "neutral"
+    },
+    "reason_why_efficient": {
+      "text": [],
+      "emotion":  "neutral"
     }
   }
 }

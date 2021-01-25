@@ -27,7 +27,11 @@ public  class Dialogue : MonoBehaviour
         sentences.Clear();
         sentences.AddRange(s);
         Debug.Log("Ich hab die Texte eingefügt");
+    }
 
+    public static void addSentences(string[] s)
+    {
+        sentences.AddRange(s);
     }
 
     // Hilfe Zone/////////////////////////////////////////////////////////
@@ -85,13 +89,16 @@ public  class Dialogue : MonoBehaviour
         if (b)
         {
             DialogueManager.setMecha(DialogueManager.self.sprHappy);
-            nameSetter("Richtig!");
             DialogueManager.nextStage = Globals.Stage.STAGE_2;
+
+            nameSetter("Richtig!");
             string[] sentence_random = json.random_success.text;
+            string[] uebergang = json.level_complete.stage_1.text;
             int sIndex = Random.Range(0, sentence_random.Length-1);
             string sent_rand = sentence_random[sIndex];
-            sentence = new string[] {json.level_complete.stage_1.text[0], sent_rand, "Als nächstes behandeln wir Stage 2" };
-            // DialogueManager.self.sprHappy.gameObject.SetActive(true);
+            sentence = new string[] {sent_rand};
+            sentenceSetter(sentence);
+            addSentences(uebergang);
         }
         else
         {
@@ -101,9 +108,9 @@ public  class Dialogue : MonoBehaviour
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
-            // DialogueManager.self.sprAngry.gameObject.SetActive(true);
+            sentenceSetter(sentence);
         }
-        sentenceSetter(sentence);
+
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
@@ -115,13 +122,16 @@ public  class Dialogue : MonoBehaviour
         if (b)
         {
             DialogueManager.setMecha(DialogueManager.self.sprHappy);
-            nameSetter("Richtig!");
             DialogueManager.nextStage = Globals.Stage.STAGE_3;
+
+            nameSetter("Richtig!");     
             string[] sentence_random = json.random_success.text;
+            string[] uebergang = json.level_complete.stage_2.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            sentence = new string[] { json.level_complete.stage_2.text[0], sent_rand, "Als nächstes behandeln wir Stage 3" };
-            // DialogueManager.self.sprHappy.gameObject.SetActive(true);
+            sentence = new string[] {sent_rand};
+            sentenceSetter(sentence);
+            addSentences(uebergang);
         }
         else
         {
@@ -131,9 +141,9 @@ public  class Dialogue : MonoBehaviour
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
             sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
-            // DialogueManager.self.sprAngry.gameObject.SetActive(true);
+            sentenceSetter(sentence);
         }
-        sentenceSetter(sentence);
+        
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
@@ -145,12 +155,14 @@ public  class Dialogue : MonoBehaviour
         if (b)
         {
             DialogueManager.setMecha(DialogueManager.self.sprHappy);
-            nameSetter("Richtig!");
             DialogueManager.nextStage = Globals.Stage.STAGE_4;
+
+            nameSetter("Richtig!");
             string[] sentence_random = json.random_success.text;
+            string[] uebergang = json.level_complete.stage_3.text;
             int sIndex = Random.Range(0, sentence_random.Length - 1);
             string sent_rand = sentence_random[sIndex];
-            sentence = new string[] { json.level_complete.stage_3.text[0], sent_rand, "Als nächstes behandeln wir Stage 4" };
+            sentence = new string[] {sent_rand, "Als nächstes behandeln wir Stage 4" };
             // DialogueManager.self.sprHappy.gameObject.SetActive(true);
         }
         else
@@ -249,10 +261,8 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.contiButton.gameObject.SetActive(true);
         // DialogueManager.self.sprSceptic.gameObject.SetActive(true);
     }
-    
 
-
-    // Reset-Zone/////////////////////////////////////////////////////////
+    /// Übergangszone
 
     public static void Outro()
     {
