@@ -3,7 +3,7 @@
 public class Hole : MonoBehaviour
 {
     public int value;
-    public bool tree = false;
+    public bool tree { get; private set; }
     public Ball content;
     public const string LISTHOLE = "ListHolder";
     public const string TREEHOLE = "TreeHolder";
@@ -16,18 +16,26 @@ public class Hole : MonoBehaviour
 
     public void Start()
     {
+        tree = isType(TREEHOLE);
         GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[0];
     }
+
     public void setContent(Ball ball)
     {
         content = ball;
     }
 
-    public static Hole getLastNonEmpty() {
+    public static Hole getLastNonEmpty()
+    {
         int min = -1;
-        foreach (Hole h in Globals.getHoles(Hole.TREEHOLE)) {
+        foreach (Hole h in Globals.getHoles(TREEHOLE)) {
             min = h.content && (h.value > min) ? h.value : min;
         }
-        return min == -1 ? null : Globals.getHoles(Hole.TREEHOLE).Find(fh => min == fh.value);
+        return min == -1 ? null : Globals.getHoles(TREEHOLE).Find(fh => min == fh.value);
+    }
+
+    public bool isType(string type)
+    {
+        return transform.parent.name == type;
     }
 }

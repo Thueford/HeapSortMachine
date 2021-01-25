@@ -112,7 +112,7 @@ public class Globals : MonoBehaviour
 
     public static List<Hole> getHoles(string parentName)
     {
-        return holes.FindAll(h => h.transform.parent.name == parentName);
+        return holes.FindAll(h => h.isType(parentName));
     }
 
     public static void SetStage(Stage s, string loadScene = null)
