@@ -113,7 +113,7 @@ public class ButtonHandler : MonoBehaviour
                     Dialogue.Test_2(b);
                     if (b) {
                         autoButtonUsed = true;
-                        BallMover.autoMoveStart( () => autoButtonUsed = false );
+                        BallMover.autoMoveInit( () => autoButtonUsed = false );
                     }
                 }
                 break;
@@ -159,7 +159,7 @@ public class ButtonHandler : MonoBehaviour
         if (!autoButtonUsed)
         {
             autoButtonUsed = true;
-            BallMover.autoMoveStart(() => autoButtonUsed = false);
+            BallMover.autoMoveInit(() => autoButtonUsed = false);
         }
     }
 

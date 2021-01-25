@@ -116,13 +116,13 @@ public class Ball : MonoBehaviour
                     tempCheckpoint = checkpoints[0];
                     checkpoints.RemoveAt(0);
 
-                    if (tempCheckpoint.checkpoint == Checkpoint.CheckpointType.TELEPORT) nextCheckpointTeleport = true;
+                    if (tempCheckpoint.type == Checkpoint.CheckpointType.TELEPORT) nextCheckpointTeleport = true;
                     movePosition = tempCheckpoint.transform.position;
                     //moveSpeed = getScaledSpeed(transform.position, movePosition, 10);
                 }
 
                 //wird true gesetzt wenn noch zum näcshten checkpoint gemovt wird deswegen erst wenn der nicht teleport ist (es wird keine 2 teleport hintereinander geben da die sonst zusammengefasst werden können)
-                if (nextCheckpointTeleport && tempCheckpoint && tempCheckpoint.checkpoint != Checkpoint.CheckpointType.TELEPORT)
+                if (nextCheckpointTeleport && tempCheckpoint && tempCheckpoint.type != Checkpoint.CheckpointType.TELEPORT)
                 {
                     transform.position = movePosition;
                     nextCheckpointTeleport = false;
