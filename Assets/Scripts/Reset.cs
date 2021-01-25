@@ -16,7 +16,7 @@ public class Reset : MonoBehaviour
             if (h) {
                 Ball.isSwapping = true;
                 b.moveToHole(h.GetComponent<Collider2D>());
-                Ball.isSwapping = false;
+                Ball.isSwapping = Ball.masterSwap;
             }
         }
         Ball.clearMovePosition();
@@ -30,7 +30,7 @@ public class Reset : MonoBehaviour
             if (h) {
                 Ball.isSwapping = true;
                 heapReset[i].moveToHole(h.GetComponent<Collider2D>());
-                Ball.isSwapping = false;
+                Ball.isSwapping = Ball.masterSwap;
             }
         }
         Ball.clearMovePosition();

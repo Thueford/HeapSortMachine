@@ -209,7 +209,7 @@ public  class Dialogue : MonoBehaviour
         }
         else if (b)
         {
-            if (toBeSorted < 14) {
+            if (toBeSorted < 13) {
                 DialogueManager.setMecha(json.random_success.emotion);
                 nameSetter("Richtig!");
                 string[] sentence_random = json.random_success.text;
@@ -217,6 +217,8 @@ public  class Dialogue : MonoBehaviour
                 string sent_rand = sentence_random[sIndex];
                 sentence = new string[] { sent_rand };
                 sentenceSetter(sentence);
+            } else if (toBeSorted == 13) {
+                reasonWhyEfficient();
             } else firstChange();
         } else {
             //DialogueManager.setMecha(DialogueManager.self.sprAngry);
@@ -294,6 +296,8 @@ public  class Dialogue : MonoBehaviour
         nameSetter("Hinweis:");
         string[] reaction = json.reaction_from_3.heap_destroy.text;
         sentenceSetter(reaction);
+        DialogueManager.self.StartDialogue();
+        DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
 
@@ -302,8 +306,10 @@ public  class Dialogue : MonoBehaviour
         //DialogueManager.setMecha(DialogueManager.self.sprExplain);
         DialogueManager.setMecha(json.reaction_from_3.not_last_subtree.emotion);
         nameSetter("Hinweis:");
-        string[] reaction = json.reaction_from_3.heap_destroy.text;
+        string[] reaction = json.reaction_from_3.not_last_subtree.text;
         sentenceSetter(reaction);
+        DialogueManager.self.StartDialogue();
+        DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
 
@@ -314,6 +320,8 @@ public  class Dialogue : MonoBehaviour
         nameSetter("Hinweis:");
         string[] reaction = json.reaction_from_3.change_little_one.text;
         sentenceSetter(reaction);
+        DialogueManager.self.StartDialogue();
+        DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
 

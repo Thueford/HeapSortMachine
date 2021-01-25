@@ -36,6 +36,7 @@ public class Joint : MonoBehaviour
         }
         if (hole1.value != HeapTests.currentHeap) {
             Debug.Log("That heap is currently not active");
+            Dialogue.notLastSubtree();
             return;
         }
         int[] heap = HeapTests.getHeap(hole1.value);
@@ -44,7 +45,7 @@ public class Joint : MonoBehaviour
                 (heap[2] == this.hole2.content.value && heap[2] < heap[1])) {
             Debug.Log("One should swap only the larger ball up");
 
-            //TODO: Mechaniker Erklärung nur größeres hochswappen
+            Dialogue.changeLittleOne();
 
             return;
         }
@@ -57,13 +58,14 @@ public class Joint : MonoBehaviour
             HeapTests.validHeaps[(int)Math.Floor((double)(hole1.value-1)/2)] = false;
         }
         if (hole2.value < 7) {
-            //TODO: Mechaniker Erklärung Kindknoten neu testen
 
             int[] heapChild = HeapTests.getHeap(hole2.value);
             Debug.Log(heapChild);
             if (heapChild[1] != heapChild[2]) {
                 Globals.globals.heapChkBtns[hole2.value].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;
                 HeapTests.validHeaps[hole2.value] = false;
+
+                Dialogue.heap_destroy();
             }
         }
         HeapTests.currentHeap = HeapTests.getLastHeap();
