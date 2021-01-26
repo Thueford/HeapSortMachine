@@ -26,6 +26,7 @@ public class Joint : MonoBehaviour
     }
 
     public void onClick() {
+        Debug.Log("Joint clicked.");
         if (!(Globals.stage == Globals.Stage.STAGE_3 || Globals.stage == Globals.Stage.STAGE_4)) {
             Debug.Log("Wrong Stage");
             return;

@@ -136,6 +136,7 @@ public class ButtonHandler : MonoBehaviour
                     BallMover.moveToSortedList(hl.content, Globals.getHoles(Hole.SORTHOLE).Find(fh => hl.index == 14 - fh.index));
 
                     //After automove
+                    hl.content = null;
                     LevelTests.Test_4();
                     Reset.createHeapReset();
                 }
