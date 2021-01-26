@@ -5132,7 +5132,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2f0157cc87a4f2e4d871b6c6dc418f98, type: 3}
   - {fileID: 21300000, guid: 45f3d55e6dcd4934bb7bdf5678c32009, type: 3}
   - {fileID: 21300000, guid: 2ad49de7086e15d4cae4675732158486, type: 3}
-  startStage: 6
+  startStage: 3
   rdonlyStage: 0
   ballPrefab: {fileID: 7053024290954293156, guid: 1894bdf830d9f7243966c5d37b506a9f,
     type: 3}
