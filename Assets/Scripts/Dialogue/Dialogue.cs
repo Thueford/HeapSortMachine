@@ -210,13 +210,14 @@ public  class Dialogue : MonoBehaviour
         else if (b)
         {
             if (toBeSorted < 13) {
-                DialogueManager.setMecha(json.random_success.emotion);
-                nameSetter("Richtig!");
-                string[] sentence_random = json.random_success.text;
-                int sIndex = Random.Range(0, sentence_random.Length - 1);
-                string sent_rand = sentence_random[sIndex];
-                sentence = new string[] { sent_rand };
-                sentenceSetter(sentence);
+                return;
+                // DialogueManager.setMecha(json.random_success.emotion);
+                // nameSetter("Richtig!");
+                // string[] sentence_random = json.random_success.text;
+                // int sIndex = Random.Range(0, sentence_random.Length - 1);
+                // string sent_rand = sentence_random[sIndex];
+                // sentence = new string[] { sent_rand };
+                // sentenceSetter(sentence);
             } else if (toBeSorted == 13) {
                 reasonWhyEfficient();
             } else firstChange();

@@ -15,7 +15,7 @@ public class SoundHandler : MonoBehaviour
     public AudioClip[] clips;
     private Dictionary<string, AudioClip> clipDict = new Dictionary<string, AudioClip>();
     private static bool rolling = false;
-
+    private static bool lastRolling = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,10 +25,11 @@ public class SoundHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Ball.moving.Count > 0 && !oneShotPlayer.isPlaying) {
+        if (rolling && !oneShotPlayer.isPlaying) {
             oneShotPlayer.PlayOneShot(clipDict["roll"]);
             rolling = true;}
-        if (rolling && Ball.moving.Count == 0) {oneShotPlayer.Stop(); rolling = false;}
+        if (rolling && !lastRolling && Ball.moving.Count > 0) lastRolling = true;
+        if (rolling && lastRolling && Ball.moving.Count == 0) {Debug.Log("Rolling stop");oneShotPlayer.Stop(); rolling = false; lastRolling = false;}
     }
 
     void Awake() {
@@ -83,5 +84,11 @@ public class SoundHandler : MonoBehaviour
     public void oneShot(string name) {
         clipDict.TryGetValue(name, out AudioClip clip);
         if (clip != null) oneShotPlayer.PlayOneShot(clipDict[name]);
+    }
+
+    public void startRolling() {
+        // Debug.Log(Ball.moving.Count);
+        oneShotPlayer.PlayOneShot(clipDict["roll"]);
+        rolling = true;
     }
 }

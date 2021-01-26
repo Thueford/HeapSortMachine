@@ -17,7 +17,7 @@ public class Globals : MonoBehaviour
     public static int ballCount = 15;
     public static UnityEngine.Random ran = new UnityEngine.Random();
     public static SoundHandler player;
-    private static bool stageTransition = false;
+    private static bool stageTransition = true;
 
     public Button[] heapChkBtns;
     public GameObject[] toMoveZ;
@@ -80,7 +80,7 @@ public class Globals : MonoBehaviour
                 Screen.SetResolution(Screen.width, Screen.width * 9 / 16, false, 0);
             else
                 Screen.SetResolution(Screen.height * 16 / 9, Screen.height, false, 0);
-            
+
             winChanged = 0;
             startWidth = Screen.width;
             startHeight = Screen.height;
