@@ -152,7 +152,7 @@
           "Einer der großen Vorteile von HeapSort ist der überaus geringe Speicheraufwand, da es sich hierbei um eine in-place Sortierung handelt.",
           "In-place bedeutet dabei, dass der Algorithmus außer den zu bearbeitenden Daten nur eine, von der Datenmenge unabhängigen, Konstante als Speicher benötigt.",
           "Der zweite Vorteil ist die logarithmische Maximallaufzeit des Algorithmus von O (n * log n).",
-          "Ein Nachteil ist allerding, dass der Algorithmus nicht auf Stabilität achtet, also die gleiche Reihenfolge von gleichwertigen Elementen bevor und nach der Sortierung nicht gewährleistet ist.",
+          "Ein Nachteil ist allerding, dass der Algorithmus instabil sortiert, also die gleiche Reihenfolge von gleichwertigen Elementen bevor und nach der Sortierung nicht gewährleistet ist.",
           "Somit ist HeapSort immer dann eine gute Wahl, wenn man eine zeitlich zuverlässige Sortierung mit möglichst geringem Speicheraufwand haben möchte und die Reihenfolge gleichwertiger Elemente irrelevant ist."
         ],
         "emotion":  "explain"
