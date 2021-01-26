@@ -69,7 +69,7 @@ public class Reset : MonoBehaviour
             heapReset.Clear();
             for (int i = 0; i < 15; i++) {
                 Hole h = Globals.getHoles(Hole.TREEHOLE).Find(fh => i == fh.index);
-                if (h && h.content) heapReset.Add(h.content);
+                if (h && h.content) heapReset.Add(h.content);   
             }
         }
     }

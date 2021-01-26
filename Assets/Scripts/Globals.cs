@@ -93,15 +93,27 @@ public class Globals : MonoBehaviour
         if (stageTransition && Ball.moving.Count == 0) {
             stageTransition = false;
             ButtonHandler.buttonsActive = true;
+
             switch (stage)
             {
                 case Stage.MENU: break;
                 case Stage.INTRO: break;
                 case Stage.STAGE_1: Reset.ResetBallsTo(Hole.LISTHOLE); Dialogue.Stage_1(); break;
                 case Stage.STAGE_2: Reset.ResetBallsTo(Hole.LISTHOLE); Ball.staticDnDEnable = false; break;
-                case Stage.STAGE_3: Reset.ResetBallsTo(Hole.TREEHOLE); Ball.staticDnDEnable = false; Ball.masterSwap = true; break;
-                case Stage.STAGE_4: Reset.ResetBallsHeapifiedTo(Hole.TREEHOLE); Ball.staticDnDEnable = false; Ball.masterSwap = true; break;
-                case Stage.END: break;
+
+                case Stage.STAGE_3: 
+                    Reset.ResetBallsTo(Hole.TREEHOLE); 
+                    Ball.staticDnDEnable = false; 
+                    Ball.masterSwap = true; 
+                    break;
+
+                case Stage.STAGE_4: 
+                    Reset.ResetBallsHeapifiedTo(Hole.TREEHOLE);
+                    Ball.staticDnDEnable = false;
+                    Ball.masterSwap = true;
+                    break;
+
+                case Stage.END: Dialogue.Outro(); break;
             }
         }
     }
