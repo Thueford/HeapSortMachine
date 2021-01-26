@@ -75,7 +75,7 @@ public class Globals : MonoBehaviour
         else if (winChanged > 0 && Time.time - winChanged > 0.3f)
         {
             int dw = (int)Mathf.Abs(Screen.width - startWidth);
-            int dh = (int)Mathf.Abs(Screen.width - startWidth);
+            int dh = (int)Mathf.Abs(Screen.height - startHeight);
             if (dw > dh ? dw > 3 : dh > 3)
                 Screen.SetResolution(Screen.width, Screen.width * 9 / 16, false, 0);
             else
