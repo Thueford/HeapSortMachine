@@ -291,6 +291,7 @@ public  class Dialogue : MonoBehaviour
 
     public static void heap_destroy()
     {
+        if (hintCounter[0] > 0) return;
         //DialogueManager.setMecha(DialogueManager.self.sprExplain);
         DialogueManager.setMecha(json.reaction_from_3.heap_destroy.emotion);
         nameSetter("Hinweis:");
@@ -298,11 +299,13 @@ public  class Dialogue : MonoBehaviour
         sentenceSetter(reaction);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
+        hintCounter[0] += 1;
     }
 
 
     public static void notLastSubtree()
     {
+        if (hintCounter[1] > 1) return;
         //DialogueManager.setMecha(DialogueManager.self.sprExplain);
         DialogueManager.setMecha(json.reaction_from_3.not_last_subtree.emotion);
         nameSetter("Hinweis:");
@@ -310,11 +313,13 @@ public  class Dialogue : MonoBehaviour
         sentenceSetter(reaction);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
+        hintCounter[1] += 1;
     }
 
 
     public static void changeLittleOne()
     {
+        if (hintCounter[2] > 1) return;
         //DialogueManager.setMecha(DialogueManager.self.sprExplain);
         DialogueManager.setMecha(json.reaction_from_3.change_little_one.emotion);
         nameSetter("Hinweis:");
@@ -322,6 +327,7 @@ public  class Dialogue : MonoBehaviour
         sentenceSetter(reaction);
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
+        hintCounter[2] += 1;
     }
 
 
