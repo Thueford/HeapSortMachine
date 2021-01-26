@@ -33,7 +33,7 @@ public class LevelTests : MonoBehaviour
                 h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[2];
             }
 
-            else if (h.content.index == h.value)// index of ball in Hole is equal to value of Hole
+            else if (h.content.index == h.index)// index of ball in Hole is equal to value of Hole
             {
                 h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[1];
             }

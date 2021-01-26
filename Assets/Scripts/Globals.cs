@@ -52,7 +52,7 @@ public class Globals : MonoBehaviour
         //spawns balls
         ballSpawner();
         balls.Sort((a, b) => a.index < b.index ? -1 : 1);
-        holes.Sort((a, b) => a.value < b.value ? -1 : 1);
+        holes.Sort((a, b) => a.index < b.index ? -1 : 1);
         // SetStage(Stage.STAGE_1);
         SetStage(stage);
 
@@ -105,7 +105,7 @@ public class Globals : MonoBehaviour
         foreach (Hole h in getHoles(Hole.LISTHOLE))
         {
             //h.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            balls.Add(Ball.spawn(h.value, values[cnt], h.transform.position));
+            balls.Add(Ball.spawn(h.index, values[cnt], h.transform.position));
             cnt++;
         }
     }

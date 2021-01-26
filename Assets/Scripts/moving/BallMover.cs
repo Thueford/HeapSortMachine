@@ -70,7 +70,7 @@ public class BallMover : MonoBehaviour
                 GameObject chp = Instantiate(ballMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
                 Checkpoint cp = chp.GetComponent<Checkpoint>();
                 cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
-                cp.holeID = hole.value;
+                cp.holeID = hole.index;
                 cp.dynamicPlaced = true;
 
                 //old
@@ -92,7 +92,7 @@ public class BallMover : MonoBehaviour
                 GameObject chp = Instantiate(ballMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
                 Checkpoint cp = chp.GetComponent<Checkpoint>();
                 cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
-                cp.holeID = hole.value;
+                cp.holeID = hole.index;
                 cp.dynamicPlaced = true;
 
                 //old
@@ -114,7 +114,7 @@ public class BallMover : MonoBehaviour
                 GameObject chp = Instantiate(ballMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
                 Checkpoint cp = chp.GetComponent<Checkpoint>();
                 cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
-                cp.holeID = hole.value;
+                cp.holeID = hole.index;
                 cp.dynamicPlaced = true;
                 cp.overHole = hole;
 
@@ -201,7 +201,7 @@ public class BallMover : MonoBehaviour
                 GameObject chp = Instantiate(ballMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
                 Checkpoint cp = chp.GetComponent<Checkpoint>();
                 cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
-                cp.holeID = hole.value;
+                cp.holeID = hole.index;
                 cp.dynamicPlaced = true;
                 cp.overHole = hole;
 

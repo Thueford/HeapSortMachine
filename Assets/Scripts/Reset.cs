@@ -12,7 +12,7 @@ public class Reset : MonoBehaviour
     {
         foreach (Ball b in Globals.balls)
         {
-            Hole h = Globals.getHoles(holeType).Find(fh => b.index == fh.value);
+            Hole h = Globals.getHoles(holeType).Find(fh => b.index == fh.index);
             if (h) {
                 Ball.isSwapping = true;
                 b.moveToHole(h.GetComponent<Collider2D>());
@@ -26,7 +26,7 @@ public class Reset : MonoBehaviour
     {
         if (heapReset.Count == 0) createHeapReset();
         for (int i = 0; i < heapReset.Count; i++) {
-            Hole h = Globals.getHoles(holeType).Find(fh => i == fh.value);
+            Hole h = Globals.getHoles(holeType).Find(fh => i == fh.index);
             if (h) {
                 Ball.isSwapping = true;
                 heapReset[i].moveToHole(h.GetComponent<Collider2D>());
@@ -62,13 +62,13 @@ public class Reset : MonoBehaviour
     public static void createHeapReset() {
         if (!Hole.getLastNonEmpty() && heapReset.Count == 0) {
             for (int i = 0; i < 15; i++) {
-                Hole h = Globals.getHoles(Hole.TREEHOLE).Find(fh => i == fh.value);
+                Hole h = Globals.getHoles(Hole.TREEHOLE).Find(fh => i == fh.index);
                 if (h) heapReset.Add(Globals.balls[i]);
             }
         } else {
             heapReset.Clear();
             for (int i = 0; i < 15; i++) {
-                Hole h = Globals.getHoles(Hole.TREEHOLE).Find(fh => i == fh.value);
+                Hole h = Globals.getHoles(Hole.TREEHOLE).Find(fh => i == fh.index);
                 if (h && h.content) heapReset.Add(h.content);
             }
         }

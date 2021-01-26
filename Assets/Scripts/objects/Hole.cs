@@ -2,7 +2,7 @@
 
 public class Hole : MonoBehaviour
 {
-    public int value;
+    public int index;
     public bool tree { get; private set; }
     public Ball content;
     public const string LISTHOLE = "ListHolder";
@@ -29,9 +29,9 @@ public class Hole : MonoBehaviour
     {
         int min = -1;
         foreach (Hole h in Globals.getHoles(TREEHOLE)) {
-            min = h.content && (h.value > min) ? h.value : min;
+            min = h.content && (h.index > min) ? h.index : min;
         }
-        return min == -1 ? null : Globals.getHoles(TREEHOLE).Find(fh => min == fh.value);
+        return min == -1 ? null : Globals.getHoles(TREEHOLE).Find(fh => min == fh.index);
     }
 
     public bool isType(string type)

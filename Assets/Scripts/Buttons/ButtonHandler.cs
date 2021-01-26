@@ -125,15 +125,15 @@ public class ButtonHandler : MonoBehaviour
             case Globals.Stage.STAGE_4: {
                 b = LevelTests.Test_4();
                 Hole hl = Hole.getLastNonEmpty();
-                Dialogue.Test_4(b, hl ? hl.value : 0);
+                Dialogue.Test_4(b, hl ? hl.index : 0);
                 Debug.Log(b);
                 if (b) {
 
                     //TODO: Automove
 
-                    Ball.swapTwo(Globals.getHoles(Hole.TREEHOLE).Find(fh => 0 == fh.value).content, hl.content);
+                    Ball.swapTwo(Globals.getHoles(Hole.TREEHOLE).Find(fh => 0 == fh.index).content, hl.content);
                     //hl.content.moveToHole(Globals.getHoles(Hole.SORTHOLE).Find(fh => hl.value == 14-fh.value));
-                    BallMover.moveToSortedList(hl.content, Globals.getHoles(Hole.SORTHOLE).Find(fh => hl.value == 14 - fh.value));
+                    BallMover.moveToSortedList(hl.content, Globals.getHoles(Hole.SORTHOLE).Find(fh => hl.index == 14 - fh.index));
 
                     //After automove
                     LevelTests.Test_4();

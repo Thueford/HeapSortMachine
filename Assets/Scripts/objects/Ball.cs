@@ -186,7 +186,7 @@ public class Ball : MonoBehaviour
         if (to.gameObject.GetComponent<Hole>() == null) return;
         if (startHole != null && !isSwapping) startHole.gameObject.GetComponent<Hole>().setContent(null);
         to.gameObject.GetComponent<Hole>().setContent(this);
-        holeId = to.gameObject.GetComponent<Hole>().value;
+        holeId = to.gameObject.GetComponent<Hole>().index;
         fixPosition(to);
     }
 
@@ -194,7 +194,7 @@ public class Ball : MonoBehaviour
         Collider2D to = ho.gameObject.GetComponent<Collider2D>();
         if (startHole != null && !isSwapping) startHole.gameObject.GetComponent<Hole>().setContent(null);
         ho.setContent(this);
-        holeId = ho.value;
+        holeId = ho.index;
         fixPosition(to);
     }
 
