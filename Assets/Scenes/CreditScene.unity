@@ -2074,7 +2074,7 @@ PrefabInstance:
     - target: {fileID: 7442444852311445892, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
         type: 3}
       propertyPath: m_Name
-      value: 'Fader '
+      value: Fader
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46db72ffac5fff1408cd3f3ac287d4bf, type: 3}

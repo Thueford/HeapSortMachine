@@ -990,6 +990,7 @@ MonoBehaviour:
   nameText: {fileID: 1678148459}
   dialogueText: {fileID: 498598148}
   contiButton: {fileID: 170509429}
+  darkener: {fileID: 0}
   sprHappy: {fileID: 21300000, guid: 9671eeb1db599024c9425076ef5c88f3, type: 3}
   sprExplain: {fileID: 21300000, guid: a2694920b3733f745a8bdf730f9fae22, type: 3}
   sprNeutral: {fileID: 21300000, guid: ea9ebd645b282c0428dc782074ef192a, type: 3}
@@ -1191,7 +1192,7 @@ PrefabInstance:
     - target: {fileID: 7442444852311445892, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
         type: 3}
       propertyPath: m_Name
-      value: 'Fader '
+      value: Fader
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46db72ffac5fff1408cd3f3ac287d4bf, type: 3}

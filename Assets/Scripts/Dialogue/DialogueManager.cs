@@ -6,15 +6,16 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
 
-	public Text nameText;
-	public Text dialogueText;
-	public GameObject contiButton;
-	public Sprite sprHappy, sprExplain, sprNeutral, sprSceptic, sprAngry;
 	public static DialogueManager self;
-	private static Image mecha;
 	public static Globals.Stage nextStage = Globals.Stage.NONE;
 
+	public Text nameText, dialogueText;
+	public GameObject contiButton, darkener;
+	public Sprite sprHappy, sprExplain, sprNeutral, sprSceptic, sprAngry;
+
 	private Queue<string> sentences;
+	private static Image mecha;
+	private Fade darken;
 
 	void Awake()
     {
@@ -24,6 +25,7 @@ public class DialogueManager : MonoBehaviour
 	void Start()
 	{
 		mecha = GetComponent<Image>();
+		darken = darkener.GetComponent<Fade>();
 		sentences = new Queue<string>();
 	}
 
@@ -61,11 +63,10 @@ public class DialogueManager : MonoBehaviour
 		nameText.text = Dialogue.name;
 
 		sentences.Clear();
-
 		foreach (string sentence in Dialogue.sentences)
-		{
 			sentences.Enqueue(sentence);
-		}
+
+		darken.DarkenOut(null);
 
 		DisplayNextSentence();
 	}
@@ -92,7 +93,7 @@ public class DialogueManager : MonoBehaviour
 		foreach (char letter in sentence.ToCharArray())
 		{
 			dialogueText.text += letter;
-			yield return new WaitForSeconds(0.01f);
+			yield return new WaitForSeconds(0.02f);
 		}
 		contiButton.gameObject.SetActive(true);
 	}
@@ -102,8 +103,9 @@ public class DialogueManager : MonoBehaviour
 		Debug.Log("Der Dialogue ist Offiziel Leer");
 		dialogueText.text = "Ich bin immer für dich da Drück nur die Knöpfe";
 		nameText.text = "Mechaniker";
-		contiButton.gameObject.SetActive(false);
+		contiButton.SetActive(false);
 		mecha.sprite = sprNeutral;
+		darken.DarkenIn(null);
 
 		// load next Stage
 		if (nextStage != Globals.Stage.NONE) Globals.SetStage(nextStage);

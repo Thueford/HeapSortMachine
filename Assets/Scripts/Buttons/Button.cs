@@ -53,10 +53,13 @@ public class Button : MonoBehaviour
             if (lastBtnOver) return lastBtnOver;
         }
 
-        PointerEventData ped = (PointerEventData)ev;
-        if (ped.pointerPress) return ped.pointerPress;
-        if (ped.pointerEnter) return ped.pointerEnter;
-        if (ped.pointerPressRaycast.gameObject) return ped.pointerPressRaycast.gameObject;
+        if(ev != null) { 
+            PointerEventData ped = (PointerEventData)ev;
+            if (ped.pointerPress) return ped.pointerPress;
+            if (ped.pointerEnter) return ped.pointerEnter;
+            if (ped.pointerPressRaycast.gameObject) return ped.pointerPressRaycast.gameObject;
+        }
+
         return null;
     }
 

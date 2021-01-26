@@ -309,7 +309,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 62.3, y: -48.2}
+  m_AnchoredPosition: {x: 14.7, y: -48.2}
   m_SizeDelta: {x: 283.05652, y: 137.12146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &252427634
@@ -332,7 +332,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f25bd520f0a6ee54486e54ad98b8247a, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
@@ -1238,7 +1238,7 @@ PrefabInstance:
     - target: {fileID: 7442444852311445892, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
         type: 3}
       propertyPath: m_Name
-      value: 'Fader '
+      value: Fader
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46db72ffac5fff1408cd3f3ac287d4bf, type: 3}
@@ -1294,8 +1294,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -148.3, y: -48.2}
-  m_SizeDelta: {x: 250, y: 113.07202}
+  m_AnchoredPosition: {x: -157.3, y: -48.2}
+  m_SizeDelta: {x: 345.0351, y: 113.07202}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1860339867
 MonoBehaviour:
@@ -1317,7 +1317,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f25bd520f0a6ee54486e54ad98b8247a, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0

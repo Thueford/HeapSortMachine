@@ -15,7 +15,7 @@ public class Fade : MonoBehaviour
     private Image img;
     private Action<BaseEventData> cb = null;
     private float range;
-    private bool done, reEnableDnD = false, reEnableBtns = false;
+    private bool done = true, reEnableDnD = false, reEnableBtns = false;
 
     // Start is called before the first frame update
     void Start()
@@ -56,11 +56,13 @@ public class Fade : MonoBehaviour
 
     private void fadeFrom(GameObject obj, bool fadeOut, int off, int dur, float rng)
     {
-        if (!obj) return;
+        // if (!obj) return;
         cb = null;
         
-        EventTrigger et = obj.GetComponent<EventTrigger>();
-        if (et) cb = et.OnSubmit;
+        if(obj) { 
+            EventTrigger et = obj.GetComponent<EventTrigger>();
+            if (et) cb = et.OnSubmit;
+        }
 
         offset = off;
         duration = dur;
@@ -90,9 +92,11 @@ public class Fade : MonoBehaviour
     }
 
     public void DarkenOut(BaseEventData ev) {
+        disableThings();
         fadeFrom(Button.getLast(ev), false, darkenOffset, darkenDuration, darkenRange);
     }
     public void DarkenIn(BaseEventData ev) {
+        enableThings();
         fadeFrom(Button.getLast(ev), true, darkenOffset, darkenDuration, darkenRange);
     }
 
