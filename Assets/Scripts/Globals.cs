@@ -80,7 +80,7 @@ public class Globals : MonoBehaviour
                 Screen.SetResolution(Screen.width, Screen.width * 9 / 16, false, 0);
             else
                 Screen.SetResolution(Screen.height * 16 / 9, Screen.height, false, 0);
-            
+
             winChanged = 0;
             startWidth = Screen.width;
             startHeight = Screen.height;

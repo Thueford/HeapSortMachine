@@ -146,7 +146,7 @@ public  class Dialogue : MonoBehaviour
             if (toBeSorted < 13) ; // SetDialog("Richtig!", GetRandom(json.random_success.text));
             else if (toBeSorted == 13) reasonWhyEfficient();
             else firstChange();
-        } 
+        }
         else
         {
             SetDialog("Falsch!", GetRandom(json.random_mistake.text));

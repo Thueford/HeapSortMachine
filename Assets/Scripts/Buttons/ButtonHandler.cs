@@ -116,6 +116,7 @@ public class ButtonHandler : MonoBehaviour
                     if (b) {
                         autoButtonUsed = true;
                         BallMover.autoMoveInit( () => autoButtonUsed = false );
+                        Globals.player.startRolling();
                     }
                 }
                 break;
@@ -132,7 +133,7 @@ public class ButtonHandler : MonoBehaviour
                     Ball.swapTwo(Globals.getHoles(Hole.TREEHOLE).Find(fh => 0 == fh.index).content, hl.content);
                     //hl.content.moveToHole(Globals.getHoles(Hole.SORTHOLE).Find(fh => hl.value == 14-fh.value));
                     BallMover.moveToSortedList(hl.content, Globals.getHoles(Hole.SORTHOLE).Find(fh => hl.index == 14 - fh.index));
-
+                    Globals.player.startRolling();
                     //After automove
                     hl.content = null;
                     LevelTests.Test_4();
