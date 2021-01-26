@@ -8,7 +8,8 @@ public class Json_Test
     public static Dialogwrapper Load()
     {
         TextAsset json = Resources.Load<TextAsset>("mechaniker");
-        return JsonUtility.FromJson<Dialogwrapper>(json.text);
+        Dialogwrapper o = JsonUtility.FromJson<Dialogwrapper>(json.text);
+        return o;
     }
 
     [System.Serializable]
@@ -23,16 +24,9 @@ public class Json_Test
         public Textwrapper random_success;
         public Reactionwrapper reaction_from_3;
         public Emotionwrapper emotion;
-        public Stage1OutroWrapper stage1_outro;
+        public Textwrapper stage1_intro;
+        public Textwrapper stage4_outro;
     }
-
-    [System.Serializable]
-    public class Stage1OutroWrapper
-    {
-        public Textwrapper stage1;
-        public Textwrapper outro;
-    }
-    
 
     [System.Serializable]
     public class Emotionwrapper

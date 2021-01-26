@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public  class Dialogue : MonoBehaviour
 {
-    public static Random rnd = new UnityEngine.Random();
+    public static Random rnd = new Random();
     public static string name;
     [TextArea(3, 10)]
     public static List<string> sentences = new List<string>();
@@ -17,274 +17,156 @@ public  class Dialogue : MonoBehaviour
 
     private static int[] hintCounter = new int[] {0, 0, 0, 0, 0};
 
+
     public static void nameSetter(string k)
     {
         namenew = k;
         name = namenew;
-        Debug.Log(name);
     }
 
-    public static void sentenceSetter(string[] s)
+    /*public static void sentenceSetter(params string[] s)
     {
         sentences.Clear();
         sentences.AddRange(s);
-        Debug.Log("Ich hab die Texte eingefügt");
-    }
+    }*/
 
-    public static void addSentences(string[] s)
+    public static void addSentences(params string[] s)
     {
         sentences.AddRange(s);
     }
+
+    private static void SetDialog(string name, params string[] sents)
+    {
+        sentences.Clear();
+        AddDialog(name, sents);
+    }
+
+    private static void AddDialog(string name, params string[] sents)
+    {
+        nameSetter(name);
+        sentences.AddRange(sents);
+        DialogueManager.self.StartDialogue();
+        DialogueManager.self.contiButton.gameObject.SetActive(true);
+    }
+
+    private static void SetDialog(string name, Json_Test.Textwrapper tw)
+    {
+        sentences.Clear();
+        AddDialog(name, tw);
+    }
+    private static void AddDialog(string name, Json_Test.Textwrapper tw)
+    {
+        nameSetter(name);
+        sentences.AddRange(tw.text);
+        DialogueManager.setMecha(tw.emotion);
+        DialogueManager.self.StartDialogue();
+        DialogueManager.self.contiButton.gameObject.SetActive(true);
+    }
+
 
     // Hilfe Zone/////////////////////////////////////////////////////////
-    public static void Hilfe_1()
-    {
-        sentences.Clear();
-
-        nameSetter("Hilfe 1:");
-        string[] sentence = json.level_hints.stage_1.text;
-        sentences.AddRange(sentence);
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
-
-        // DialogueManager.self.sprExplain.gameObject.SetActive(true);
+    public static void Hilfe_1() {
+        SetDialog("Hilfe 1:", json.level_hints.stage_1);
     }
 
-    public static void Hilfe_2()
-    {
-        sentences.Clear();
-        nameSetter("Hilfe 2:");
-        string[] sentence = json.level_hints.stage_2.text;
-        sentences.AddRange(sentence);
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // DialogueManager.self.sprExplain.gameObject.SetActive(true);
+    public static void Hilfe_2() {
+        SetDialog("Hilfe 2:", json.level_hints.stage_2);
     }
 
-    public static void Hilfe_3()
-    {
-        sentences.Clear();
-        nameSetter("Hilfe 3:");
-        string[] sentence = json.level_hints.stage_3.text;
-        sentences.AddRange(sentence);
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // DialogueManager.self.sprExplain.gameObject.SetActive(true);
+    public static void Hilfe_3() {
+        SetDialog("Hilfe 3:", json.level_hints.stage_3);
     }
 
-    public static void Hilfe_4()
-    {
-        sentences.Clear();
-        nameSetter("Hilfe 4:");
-        string[] sentence = json.level_hints.stage_4.text;
-        sentences.AddRange(sentence);
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // DialogueManager.self.sprExplain.gameObject.SetActive(true);
+    public static void Hilfe_4() {
+        SetDialog("Hilfe 4:", json.level_hints.stage_4);
     }
 
     //Test Zone     /////////////////////////////////////////////////////////
+
+    private static string GetRandom(params string[] sentences)
+    {
+        return sentences[Random.Range(0, sentences.Length - 1)];
+    }
+
     public static void Test_1(bool b)
     {
-        string[] sentence;
-        sentences.Clear();
         if (b)
         {
-            //DialogueManager.setMecha(DialogueManager.self.sprHappy);
-            DialogueManager.setMecha(json.random_success.emotion);
+            SetDialog("Richtig!", GetRandom(json.random_success.text));
+            addSentences(json.level_complete.stage_2.text);
             DialogueManager.nextStage = Globals.Stage.STAGE_2;
-
-            nameSetter("Richtig!");
-            string[] sentence_random = json.random_success.text;
-            string[] uebergang = json.level_complete.stage_1.text;
-            int sIndex = Random.Range(0, sentence_random.Length-1);
-            string sent_rand = sentence_random[sIndex];
-            sentence = new string[] {sent_rand};
-            sentenceSetter(sentence);
-            addSentences(uebergang);
         }
         else
         {
-            //DialogueManager.setMecha(DialogueManager.self.sprAngry);
-            DialogueManager.setMecha(json.random_mistake.emotion);
-            nameSetter("Falsch!");
-            string[] sentence_random = json.random_mistake.text;
-            int sIndex = Random.Range(0, sentence_random.Length - 1);
-            string sent_rand = sentence_random[sIndex];
-            sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
-            sentenceSetter(sentence);
+            SetDialog("Falsch!", GetRandom(json.random_mistake.text));
+            addSentences("Wenn du nicht weiter weißt hilft vielleicht ein Tipp!");
         }
-
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
     public static void Test_2(bool b)
     {
-        string[] sentence;
-        sentences.Clear();
         if (b)
         {
-            //DialogueManager.setMecha(DialogueManager.self.sprHappy);
-            DialogueManager.setMecha(json.random_success.emotion);
+            SetDialog("Richtig!", GetRandom(json.random_success.text));
+            addSentences(json.level_complete.stage_2.text);
             DialogueManager.nextStage = Globals.Stage.STAGE_3;
-
-            nameSetter("Richtig!");
-            string[] sentence_random = json.random_success.text;
-            string[] uebergang = json.level_complete.stage_2.text;
-            int sIndex = Random.Range(0, sentence_random.Length - 1);
-            string sent_rand = sentence_random[sIndex];
-            sentence = new string[] {sent_rand};
-            sentenceSetter(sentence);
-            addSentences(uebergang);
         }
         else
         {
-            //DialogueManager.setMecha(DialogueManager.self.sprAngry);
-            DialogueManager.setMecha(json.random_mistake.emotion);
-            nameSetter("Falsch!");
-            string[] sentence_random = json.random_mistake.text;
-            int sIndex = Random.Range(0, sentence_random.Length - 1);
-            string sent_rand = sentence_random[sIndex];
-            sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
-            sentenceSetter(sentence);
+            SetDialog("Falsch!", GetRandom(json.random_mistake.text));
+            addSentences("Wenn du nicht weiter weißt hilft vielleicht ein Tipp!");
         }
-
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
     public static void Test_3(bool b)
     {
-        string[] sentence;
-        sentences.Clear();
         if (b)
         {
-            //DialogueManager.setMecha(DialogueManager.self.sprHappy);
-            DialogueManager.setMecha(json.random_success.emotion);
+            SetDialog("Richtig!", GetRandom(json.random_success.text));
+            addSentences(json.level_complete.stage_3.text);
             DialogueManager.nextStage = Globals.Stage.STAGE_4;
-
-            nameSetter("Richtig!");
-            string[] sentence_random = json.random_success.text;
-            string[] uebergang = json.level_complete.stage_3.text;
-            int sIndex = Random.Range(0, sentence_random.Length - 1);
-            string sent_rand = sentence_random[sIndex];
-            sentence = new string[] {sent_rand};
-            sentenceSetter(sentence);
-            addSentences(uebergang);
         }
         else
         {
-            //DialogueManager.setMecha(DialogueManager.self.sprAngry);
-            DialogueManager.setMecha(json.random_mistake.emotion);
-            nameSetter("Falsch!");
-            string[] sentence_random = json.random_mistake.text;
-            int sIndex = Random.Range(0, sentence_random.Length - 1);
-            string sent_rand = sentence_random[sIndex];
-            sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" }; ;
-            sentenceSetter(sentence);
+            SetDialog("Falsch!", GetRandom(json.random_mistake.text));
+            addSentences("Wenn du nicht weiter weißt hilft vielleicht ein Tipp!");
         }
-
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
     public static void Test_4(bool b, int toBeSorted)
     {
-        string[] sentence;
-        sentences.Clear();
         if (b && toBeSorted < 1)
         {
-            //DialogueManager.setMecha(DialogueManager.self.sprHappy);
-            DialogueManager.setMecha(json.random_success.emotion);
-            nameSetter("Richtig!");
+            SetDialog("Richtig!", GetRandom(json.random_success.text));
+            addSentences(json.level_complete.stage_4.text);
             DialogueManager.nextStage = Globals.Stage.END;
-            string[] sentence_random = json.random_success.text;
-            string[] uebergang = json.level_complete.stage_4.text;
-            int sIndex = Random.Range(0, sentence_random.Length - 1);
-            string sent_rand = sentence_random[sIndex];
-            sentence = new string[] {sent_rand};
-            sentenceSetter(sentence);
-            addSentences(uebergang);
         }
         else if (b)
         {
-            if (toBeSorted < 13) {
-                DialogueManager.setMecha(json.random_success.emotion);
-                nameSetter("Richtig!");
-                string[] sentence_random = json.random_success.text;
-                int sIndex = Random.Range(0, sentence_random.Length - 1);
-                string sent_rand = sentence_random[sIndex];
-                sentence = new string[] { sent_rand };
-                sentenceSetter(sentence);
-            } else if (toBeSorted == 13) {
-                reasonWhyEfficient();
-            } else firstChange();
-        } else {
-            //DialogueManager.setMecha(DialogueManager.self.sprAngry);
-            DialogueManager.setMecha(json.random_mistake.emotion);
-            nameSetter("Falsch!");
-            string[] sentence_random = json.random_mistake.text;
-            int sIndex = Random.Range(0, sentence_random.Length - 1);
-            string sent_rand = sentence_random[sIndex];
-            sentence = new string[] { sent_rand, "Wenn du nicht weiter weißt hilft vielleicht ein Tipp!" };
-            sentenceSetter(sentence);
+            if (toBeSorted < 13) ; // SetDialog("Richtig!", GetRandom(json.random_success.text));
+            else if (toBeSorted == 13) reasonWhyEfficient();
+            else firstChange();
+        } 
+        else
+        {
+            SetDialog("Falsch!", GetRandom(json.random_mistake.text));
+            addSentences("Wenn du nicht weiter weißt hilft vielleicht ein Tipp!");
         }
-
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
-
 
     // AutoZone vroom vroom/////////////////////////////////////////////////////////
 
-    public static void Auto_1()
-    {
-        sentences.Clear();
-        string[] input = {"Stage 1 läuft nun automatisch ab" };
-
-        name = "Auto";
-        sentences.Clear();
-        sentences.AddRange(input);
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // DialogueManager.self.sprSceptic.gameObject.SetActive(true);
+    public static void Auto_1() {
+        SetDialog("Auto", "Stage 1 läuft nun automatisch ab");
     }
-    public static void Auto_2()
-    {
-        sentences.Clear();
-        string[] input = { "Stage 2 läuft nun automatisch ab" };
-
-        name = "Auto";
-        sentences.Clear();
-        sentences.AddRange(input);
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // DialogueManager.self.sprSceptic.gameObject.SetActive(true);
+    public static void Auto_2() {
+        SetDialog("Auto", "Stage 2 läuft nun automatisch ab");
     }
-    public static void Auto_3()
-    {
-        sentences.Clear();
-        string[] input = { "Stage 3 läuft jetzt automatisch ab" };
-
-        name = "Auto";
-        sentences.Clear();
-        sentences.AddRange(input);
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // DialogueManager.self.sprSceptic.gameObject.SetActive(true);
+    public static void Auto_3() {
+        SetDialog("Auto", "Stage 3 läuft nun automatisch ab");
     }
-    public static void Auto_4()
-    {
-        sentences.Clear();
-        string[] input = { "Stage 4 läuft jetzt automatisch ab" };
-
-        name = "Auto";
-        sentences.Clear();
-        sentences.AddRange(input);
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
-        // DialogueManager.self.sprSceptic.gameObject.SetActive(true);
+    public static void Auto_4() {
+        SetDialog("Auto", "Stage 4 läuft nun automatisch ab");
     }
 
     /// Reactions from Stage 3////////////////////////////////////////////
@@ -292,79 +174,36 @@ public  class Dialogue : MonoBehaviour
     public static void heap_destroy()
     {
         if (hintCounter[0] > 0) return;
-        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
-        DialogueManager.setMecha(json.reaction_from_3.heap_destroy.emotion);
-        nameSetter("Hinweis:");
-        string[] reaction = json.reaction_from_3.heap_destroy.text;
-        sentenceSetter(reaction);
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
+        SetDialog("Hinweis:", json.reaction_from_3.heap_destroy);
         hintCounter[0] += 1;
     }
-
 
     public static void notLastSubtree()
     {
         if (hintCounter[1] > 1) return;
-        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
-        DialogueManager.setMecha(json.reaction_from_3.not_last_subtree.emotion);
-        nameSetter("Hinweis:");
-        string[] reaction = json.reaction_from_3.not_last_subtree.text;
-        sentenceSetter(reaction);
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
+        SetDialog("Hinweis:", json.reaction_from_3.not_last_subtree);
         hintCounter[1] += 1;
     }
 
-
-    public static void changeLittleOne()
-    {
+    public static void changeLittleOne() {
         if (hintCounter[2] > 1) return;
-        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
-        DialogueManager.setMecha(json.reaction_from_3.change_little_one.emotion);
-        nameSetter("Hinweis:");
-        string[] reaction = json.reaction_from_3.change_little_one.text;
-        sentenceSetter(reaction);
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
+        SetDialog("Hinweis:", json.reaction_from_3.change_little_one);
         hintCounter[2] += 1;
     }
 
-
-    public static void firstChange()
-    {
-        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
-        DialogueManager.setMecha(json.reaction_from_3.first_change.emotion);
-        nameSetter("Hinweis:");
-        string[] reaction = json.reaction_from_3.first_change.text;
-        sentenceSetter(reaction);
+    public static void firstChange() {
+        SetDialog("Hinweis:", json.reaction_from_3.first_change);
     }
 
-    public static void reasonWhyEfficient()
-    {
-        //DialogueManager.setMecha(DialogueManager.self.sprExplain);
-        DialogueManager.setMecha(json.reaction_from_3.reason_why_efficient.emotion);
-        nameSetter("Hinweis:");
-        string[] reaction = json.reaction_from_3.reason_why_efficient.text;
-        sentenceSetter(reaction);
+    public static void reasonWhyEfficient() {
+        SetDialog("Hinweis:", json.reaction_from_3.reason_why_efficient);
     }
 
-    public static void Outro()
-    {
-        string[] input = json.stage1_outro.outro.text;
-        sentenceSetter(input);
-        //DialogueManager.setMecha(json.stage1_outro.outro.emotion);
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
+    public static void Outro() {
+        SetDialog("Mechaniker:", json.stage4_outro);
     }
 
-    // muss noch in Globals o.ä.
-    public static void Stage_1()
-    {
-        string[] input = json.stage1_outro.stage1.text;
-        sentenceSetter(input);
-        DialogueManager.setMecha(json.stage1_outro.stage1.emotion);
-        DialogueManager.self.StartDialogue();
-        DialogueManager.self.contiButton.gameObject.SetActive(true);
+    public static void Stage_1() {
+        SetDialog("Mechaniker:", json.stage1_intro);
     }
 }

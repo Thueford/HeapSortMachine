@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-
 	public static DialogueManager self;
 	public static Globals.Stage nextStage = Globals.Stage.NONE;
 
@@ -73,29 +72,39 @@ public class DialogueManager : MonoBehaviour
 
 	public void DisplayNextSentence()
 	{
+		if(!skipDialog)
+		{
+			skipDialog = true;
+			return;
+		}
+
 		if (sentences.Count == 0)
 		{
 			EndDialogue();
 			Debug.Log("EndDialogue");
+			contiButton.gameObject.SetActive(false);
 			return;
 		}
-
-		Debug.Log("Funktioniert Eventuell");
+		
+		contiButton.gameObject.SetActive(true);
 		string sentence = sentences.Dequeue();
 		StopAllCoroutines();
 		StartCoroutine(TypeSentence(sentence));
 	}
 
+	private volatile bool skipDialog = true;
 	IEnumerator TypeSentence(string sentence)
 	{
-		contiButton.gameObject.SetActive(false);
+		//contiButton.gameObject.SetActive(false);
 		dialogueText.text = "";
+		skipDialog = false;
 		foreach (char letter in sentence.ToCharArray())
 		{
 			dialogueText.text += letter;
-			yield return new WaitForSeconds(0.015f);
+			if(!skipDialog) yield return new WaitForSeconds(0.015f);
 		}
-		contiButton.gameObject.SetActive(true);
+		skipDialog = true;
+		//contiButton.gameObject.SetActive(true);
 	}
 	
 	void EndDialogue()

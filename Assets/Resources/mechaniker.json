@@ -11,6 +11,7 @@
       "text": [
         "Da hast du aber einen schönen Baum gepflanzt.",
         "Wir machen jetzt weiter in Stage 2",
+        "",
         "Die Drag'n'Drop-Funktion ist jetzt deaktiviert.",
         "Damit die Maschine richtig arbeitet musst du jetzt oben links in die Textfelder die Regel zur Bildung des Baumes eintragen.",
         "Mit dem \"Prüfen\" Knopf kannst du sehen, ob du richtig liegst.",
@@ -22,6 +23,7 @@
       "text": [
         "Nun müsstest du wissen wie der Algorithmus die Liste als Baum betrachtet.",
         "Wir erreichen jetzt Stage 3",
+        "",
         "Nun musst du zuerst den Heap herstellen, das heißt der Baum muss geordnet werden.",
         "Klicke dazu auf eine Verbindung zwischen zwei Kugeln, um diese zu tauschen.",
         "Angefangen wird dabei beim letzten Knoten, in dem die Ordnung noch nicht hergestellt ist.",
@@ -34,6 +36,7 @@
     "stage_3": {
       "text": [
         "Weiter gehts zu Stage 4",
+        "",
         "Wenn in Stufe 4 nun der Heap im ganzen Baum hergestellt wurde, solltest du noch einmal den \"Prüfen\" Knopf drücken.",
         "Dann wird das erste und das letzte Element im Baum getauscht und danach das letzte Element in die sortierte Liste übertragen."
       ],
@@ -132,31 +135,29 @@
         "Das ist auch der Grund, weshalb Heapsort so effizient ist."
       ],
       "emotion": "explain"
-    },
-    "stage1_outro": {
-      "stage1": {
+    }
+  },
+    "stage1_intro": {
         "text": [
-          "Hier ein paar Hinweise zur ersten Stage",
-          "Benutze deine Mause im Kugeln per Drag'n'Drop-Funktion in den Baum zu bewegen.",
-          "Arbeite dabei die Liste von oben nach unten ab.",
-          "Ziehe die Kugeln der Reihe nach immer zum höchsten Loch, welches am weitesten links steht.",
-          "Achte dabei auf die kleinen Nummern an den Löchern. Sie helfen dir dabei den Überblick zu bewaren.",
-          "Viel Spaß bei deiner ersten Stage."
+            "Hier ein paar Hinweise zur ersten Stufe",
+            "Benutze deine Mause im Kugeln per Drag'n'Drop-Funktion in den Baum zu bewegen.",
+            "Arbeite dabei die Liste von oben nach unten ab.",
+            "Ziehe die Kugeln der Reihe nach immer zum höchsten Loch, welches am weitesten links steht.",
+            "Achte dabei auf die kleinen Nummern an den Löchern. Sie helfen dir dabei den Überblick zu bewaren.",
+            "Viel Spaß bei deiner ersten Stage."
         ],
         "emotion": "explain"
-      },
-      "outro": {
+    },
+    "stage4_outro": {
         "text": [
-          "Du warst ein aufmerksamer und wissbegieriger Lehrling und ich wünsche dir viel Erfolg bei der Anwendung deiner erlernten Fähigkeiten.",
-          "Lass mich dir noch ein paar zusätzliche Informationen zu HeapSort geben die vielleicht einmal hilfreich werden könnten.",
-          "Einer der großen Vorteile von HeapSort ist der überaus geringe Speicheraufwand, da es sich hierbei um eine in-place Sortierung handelt.",
-          "In-place bedeutet dabei, dass der Algorithmus außer den zu bearbeitenden Daten nur eine, von der Datenmenge unabhängigen, Konstante als Speicher benötigt.",
-          "Der zweite Vorteil ist die logarithmische Maximallaufzeit des Algorithmus von O (n * log n).",
-          "Ein Nachteil ist allerding, dass der Algorithmus instabil sortiert, also die gleiche Reihenfolge von gleichwertigen Elementen bevor und nach der Sortierung nicht gewährleistet ist.",
-          "Somit ist HeapSort immer dann eine gute Wahl, wenn man eine zeitlich zuverlässige Sortierung mit möglichst geringem Speicheraufwand haben möchte und die Reihenfolge gleichwertiger Elemente irrelevant ist."
+            "Du warst ein aufmerksamer und wissbegieriger Lehrling und ich wünsche dir viel Erfolg bei der Anwendung deiner erlernten Fähigkeiten.",
+            "Lass mich dir noch ein paar zusätzliche Informationen zu HeapSort geben die vielleicht einmal hilfreich werden könnten.",
+            "Einer der großen Vorteile von HeapSort ist der überaus geringe Speicheraufwand, da es sich hierbei um eine in-place Sortierung handelt.",
+            "In-place bedeutet dabei, dass der Algorithmus außer den zu bearbeitenden Daten nur eine, von der Datenmenge unabhängigen, Konstante als Speicher benötigt.",
+            "Der zweite Vorteil ist die logarithmische Maximallaufzeit des Algorithmus von O (n * log n).",
+            "Ein Nachteil ist allerding, dass der Algorithmus instabil sortiert, also die gleiche Reihenfolge von gleichwertigen Elementen bevor und nach der Sortierung nicht gewährleistet ist.",
+            "Somit ist HeapSort immer dann eine gute Wahl, wenn man eine zeitlich zuverlässige Sortierung mit möglichst geringem Speicheraufwand haben möchte und die Reihenfolge gleichwertiger Elemente irrelevant ist."
         ],
-        "emotion":  "explain"
-      }
+        "emotion": "explain"
     }
-  }
 }
