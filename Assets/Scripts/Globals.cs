@@ -32,6 +32,8 @@ public class Globals : MonoBehaviour
     public GameObject ballTextPrefab;
     public GameObject checkpointHolder;
 
+    private float lastWidth, lastHeight, startWidth, startHeight, winChanged = 0;
+
     public enum Stage
     {
         NONE, MENU, INTRO, STAGE_1, STAGE_2,
@@ -49,6 +51,9 @@ public class Globals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startWidth = Screen.width;
+        startHeight = Screen.height;
+
         //spawns balls
         ballSpawner();
         balls.Sort((a, b) => a.index < b.index ? -1 : 1);
@@ -63,6 +68,28 @@ public class Globals : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // aspect ration keeper
+        if (lastWidth != Screen.width || lastHeight != Screen.height) {
+            winChanged = Time.time;
+        }
+        else if (winChanged > 0 && Time.time - winChanged > 0.3f)
+        {
+            int dw = (int)Mathf.Abs(Screen.width - startWidth);
+            int dh = (int)Mathf.Abs(Screen.width - startWidth);
+            if (dw > dh ? dw > 3 : dh > 3)
+                Screen.SetResolution(Screen.width, Screen.width * 9 / 16, false, 0);
+            else
+                Screen.SetResolution(Screen.height * 16 / 9, Screen.height, false, 0);
+            
+            winChanged = 0;
+            startWidth = Screen.width;
+            startHeight = Screen.height;
+        }
+
+        lastWidth = Screen.width;
+        lastHeight = Screen.height;
+
+        // Scene postfade
         if (stageTransition && Ball.moving.Count == 0) {
             stageTransition = false;
             ButtonHandler.buttonsActive = true;
