@@ -229,7 +229,7 @@ public class BallMover : MonoBehaviour
 
         foreach (Checkpoint cp in sortedListCheckpoint)
         {
-            if (cp.holeID == ball.value - Globals.getHoles(Hole.TREEHOLE).Count)
+            if (cp.holeID == (ball.value+1) - Globals.getHoles(Hole.TREEHOLE).Count)
             {
                 ball.checkpoints.Add(cp);
             }
