@@ -1,11 +1,14 @@
-﻿using System;
+﻿
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Button : MonoBehaviour
 {
-    private static GameObject lastBtnDown, lastBtnOver, lastBtnHolder;
+    public static GameObject lastBtnDown { get; private set; }
+    public static GameObject lastBtnOver { get; private set; }
+    public static GameObject lastBtnHolder { get; private set; }
 
     private void Start()
     {
@@ -24,24 +27,42 @@ public class Button : MonoBehaviour
             et.triggers.Add(newEventEntry(EventTriggerType.PointerDown, OnHolderMouseDown));
             et.triggers.Add(newEventEntry(EventTriggerType.PointerUp, OnHolderMouseUp));
         }
+
+        // make sure added events are triggered before user defined
+        et.triggers.Reverse();
     }
 
-    private static EventTrigger.Entry newEventEntry(EventTriggerType id, params UnityEngine.Events.UnityAction<BaseEventData>[] events)
+    private static EventTrigger.Entry newEventEntry(EventTriggerType id, params UnityAction<BaseEventData>[] events)
     {
         EventTrigger.Entry entry = new EventTrigger.Entry();
         entry.eventID = id;
         entry.callback = new EventTrigger.TriggerEvent();
-        foreach (UnityEngine.Events.UnityAction<BaseEventData> cb in events)
+
+        foreach (UnityAction<BaseEventData> cb in events)
         {
-            UnityEngine.Events.UnityAction<BaseEventData> call = new UnityEngine.Events.UnityAction<BaseEventData>(cb);
+            UnityAction<BaseEventData> call = new UnityAction<BaseEventData>(cb);
             entry.callback.AddListener(call);
         }
         return entry;
     }
 
+    public static GameObject getLast(BaseEventData ev, bool checkBtn = true)
+    {
+        if(checkBtn) { 
+            if (lastBtnDown) return lastBtnDown;
+            if (lastBtnOver) return lastBtnOver;
+        }
+
+        PointerEventData ped = (PointerEventData)ev;
+        if (ped.pointerPress) return ped.pointerPress;
+        if (ped.pointerEnter) return ped.pointerEnter;
+        if (ped.pointerPressRaycast.gameObject) return ped.pointerPressRaycast.gameObject;
+        return null;
+    }
+
     public static void OnMouseDown(BaseEventData ev)
     {
-        lastBtnDown = ((PointerEventData)ev).pointerEnter;
+        lastBtnDown = getLast(ev, false);
         if (lastBtnDown) lastBtnDown.GetComponent<Image>().rectTransform.localScale = new Vector3(0.9f, 0.9f, 0);
     }
 
@@ -54,7 +75,7 @@ public class Button : MonoBehaviour
 
     public static void OnMouseEnter(BaseEventData ev)
     {
-        lastBtnOver = ((PointerEventData)ev).pointerEnter;
+        lastBtnOver = getLast(ev, false);
         if (lastBtnOver) lastBtnOver.GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f);
     }
 
@@ -67,7 +88,7 @@ public class Button : MonoBehaviour
 
     public void OnHolderMouseDown(BaseEventData ev)
     {
-        lastBtnHolder = ((PointerEventData)ev).pointerEnter;
+        lastBtnHolder = getLast(ev, false);
         if (lastBtnHolder) lastBtnHolder.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderDown;
     }
 

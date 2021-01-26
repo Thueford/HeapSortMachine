@@ -8,16 +8,15 @@ public class Fade : MonoBehaviour
     public int fadeOffset, fadeDuration, darkenOffset, darkenDuration;
     public float fadeRange, darkenRange;
     public Color fadeColor = new Color(0, 0, 0);
-    public bool start, fadeIn;
+    public bool start, fadeIn, fadeAudio;
 
     private int duration, offset;
     private long tStart;
-    private bool done;
     private Image img;
     private Action<BaseEventData> cb = null;
     private float range;
-    private bool reEnableDnD = false;
-    private bool reEnableBtns = false;
+    private bool done, reEnableDnD = false, reEnableBtns = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +43,7 @@ public class Fade : MonoBehaviour
             fadeColor.a = range * Mathf.Pow(alpha, 3);
             img.color = fadeColor;
         }
-        Globals.player.scaleAllVolumes(1-alpha);
+        if(fadeAudio) Globals.player.scaleAllVolumes(1-alpha);
     }
 
     private void doFade(bool fadeIn)
@@ -57,12 +56,11 @@ public class Fade : MonoBehaviour
 
     private void fadeFrom(GameObject obj, bool fadeOut, int off, int dur, float rng)
     {
+        if (!obj) return;
         cb = null;
-        if (obj)
-        {
-            EventTrigger et = obj.GetComponent<EventTrigger>();
-            if (et) cb = et.OnSubmit;
-        }
+        
+        EventTrigger et = obj.GetComponent<EventTrigger>();
+        if (et) cb = et.OnSubmit;
 
         offset = off;
         duration = dur;
@@ -83,20 +81,19 @@ public class Fade : MonoBehaviour
         Ball.staticDnDEnable = false;
     }
 
-    public void FadeOut(BaseEventData ev) {
-        fadeFrom(((PointerEventData)ev).pointerEnter, false, fadeOffset, fadeDuration, fadeRange);
+
+    public void FadeOut(BaseEventData  ev) {
+        fadeFrom(Button.getLast(ev), false, fadeOffset, fadeDuration, fadeRange);
     }
     public void FadeIn(BaseEventData ev) {
-        fadeFrom(((PointerEventData)ev).pointerEnter, true, fadeOffset, fadeDuration, fadeRange);
+        fadeFrom(Button.getLast(ev), true, fadeOffset, fadeDuration, fadeRange);
     }
 
-    public void DarkenOut(BaseEventData ev)
-    {
-        fadeFrom(((PointerEventData)ev).pointerEnter, false, darkenOffset, darkenDuration, darkenRange);
+    public void DarkenOut(BaseEventData ev) {
+        fadeFrom(Button.getLast(ev), false, darkenOffset, darkenDuration, darkenRange);
     }
-    public void DarkenIn(BaseEventData ev)
-    {
-        fadeFrom(((PointerEventData)ev).pointerEnter, true, darkenOffset, darkenDuration, darkenRange);
+    public void DarkenIn(BaseEventData ev) {
+        fadeFrom(Button.getLast(ev), true, darkenOffset, darkenDuration, darkenRange);
     }
 
     private static int time() { return (int)(DateTime.Now.Ticks / (int)1e4); }

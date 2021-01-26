@@ -93,10 +93,11 @@ MonoBehaviour:
   darkenOffset: 100
   darkenDuration: 400
   fadeRange: 1
-  darkenRange: 0.6
+  darkenRange: 0.8
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
   start: 1
   fadeIn: 0
+  fadeAudio: 0
 --- !u!114 &7442444852311445890
 MonoBehaviour:
   m_ObjectHideFlags: 0
