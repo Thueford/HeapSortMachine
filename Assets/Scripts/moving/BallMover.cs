@@ -229,10 +229,17 @@ public class BallMover : MonoBehaviour
 
         foreach (Checkpoint cp in sortedListCheckpoint)
         {
-            if (cp.holeID == (ball.value+1) - Globals.getHoles(Hole.TREEHOLE).Count)
+            //if (cp.holeID == ball.value - (Globals.getHoles(Hole.TREEHOLE).Count-1))
+            if (cp.holeID == ball.value)
             {
                 ball.checkpoints.Add(cp);
             }
+        }
+
+        if (ball.checkpoints[ball.checkpoints.Count-1].overHole == null)
+        {
+            Debug.Log(ball);
+            Debug.LogError("last checkpoint is not on hole");
         }
 
         Globals.globals.StartCoroutine(ballMover.ballStarter());
