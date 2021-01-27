@@ -25,7 +25,7 @@ public class HeapTests
     public static void resetStatus() {
         for (int i = 0; i < validHeaps.Length; i++) {
             validHeaps[i] = false;
-            Globals.globals.heapChkBtns[i].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;
+            Globals.self.heapChkBtns[i].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;
         }
         currentHeap = 6;
     }

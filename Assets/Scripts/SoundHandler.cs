@@ -6,30 +6,31 @@ using UnityEngine.SceneManagement;
 
 public class SoundHandler : MonoBehaviour
 {
-
-    private AudioSource musicPlayer;
-    private AudioSource ambiencePlayer;
-    private AudioSource oneShotPlayer;
     private static float master = 0.6f;
-    public string[] names;
-    public AudioClip[] clips;
-    private Dictionary<string, AudioClip> clipDict = new Dictionary<string, AudioClip>();
     private static bool rolling = false;
     private static bool lastRolling = false;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
+    public string[] names;
+    public AudioClip[] clips;
+
+    private AudioSource musicPlayer, ambiencePlayer, oneShotPlayer;
+    private Dictionary<string, AudioClip> clipDict = new Dictionary<string, AudioClip>();
+
 
     // Update is called once per frame
     void Update()
     {
         if (rolling && !oneShotPlayer.isPlaying) {
             oneShotPlayer.PlayOneShot(clipDict["roll"]);
-            rolling = true;}
+            rolling = true;
+        }
         if (rolling && !lastRolling && Ball.moving.Count > 0) lastRolling = true;
-        if (rolling && lastRolling && Ball.moving.Count == 0) {Debug.Log("Rolling stop");oneShotPlayer.Stop(); rolling = false; lastRolling = false;}
+        if (rolling &&  lastRolling && Ball.moving.Count == 0) {
+            Debug.Log("Rolling stop");
+            oneShotPlayer.Stop(); 
+            rolling = false; 
+            lastRolling = false;
+        }
     }
 
     void Awake() {
@@ -46,16 +47,9 @@ public class SoundHandler : MonoBehaviour
 
     private void setSources() {
         GameObject background = gameObject;
-        background.AddComponent<AudioSource>();
-        background.AddComponent<AudioSource>();
-        background.AddComponent<AudioSource>();
-        int i = 0;
-        foreach (AudioSource a in background.GetComponents<AudioSource>()) {
-            if (i == 0) musicPlayer = a;
-            else if (i == 1) ambiencePlayer = a;
-            else oneShotPlayer = a;
-            i++;
-        }
+        musicPlayer = background.AddComponent<AudioSource>();
+        ambiencePlayer = background.AddComponent<AudioSource>();
+        oneShotPlayer = background.AddComponent<AudioSource>();
     }
 
     private void setProperties(AudioSource a, bool loop, bool awake, AudioClip clip) {
@@ -87,7 +81,6 @@ public class SoundHandler : MonoBehaviour
     }
 
     public void startRolling() {
-        // Debug.Log(Ball.moving.Count);
         oneShotPlayer.PlayOneShot(clipDict["roll"]);
         rolling = true;
     }

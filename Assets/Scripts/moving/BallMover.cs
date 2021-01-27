@@ -69,7 +69,7 @@ public class BallMover : MonoBehaviour
             {
                 GameObject chp = Instantiate(ballMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
                 Checkpoint cp = chp.GetComponent<Checkpoint>();
-                cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
+                cp.transform.SetParent(Globals.self.checkpointHolder.transform);
                 cp.holeID = hole.index;
                 cp.dynamicPlaced = true;
 
@@ -91,7 +91,7 @@ public class BallMover : MonoBehaviour
             {
                 GameObject chp = Instantiate(ballMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
                 Checkpoint cp = chp.GetComponent<Checkpoint>();
-                cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
+                cp.transform.SetParent(Globals.self.checkpointHolder.transform);
                 cp.holeID = hole.index;
                 cp.dynamicPlaced = true;
 
@@ -113,7 +113,7 @@ public class BallMover : MonoBehaviour
             {
                 GameObject chp = Instantiate(ballMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
                 Checkpoint cp = chp.GetComponent<Checkpoint>();
-                cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
+                cp.transform.SetParent(Globals.self.checkpointHolder.transform);
                 cp.holeID = hole.index;
                 cp.dynamicPlaced = true;
                 cp.overHole = hole;
@@ -129,7 +129,7 @@ public class BallMover : MonoBehaviour
             sortedListCheckpoint.Sort((a, b) => a.holeID < b.holeID ? -1 : 1);
         }
 
-        foreach (GameObject g in Globals.globals.toMoveZ)
+        foreach (GameObject g in Globals.self.toMoveZ)
         {
 
             Vector3 tempvec = g.transform.position;
@@ -188,7 +188,7 @@ public class BallMover : MonoBehaviour
             //static checkpoints are not affected cuz they are holeID = 0
             //ball.checkpoints.Sort((a, b) => a.holeID < b.holeID ? -1 : 1);
         }
-        Globals.globals.StartCoroutine(ballMover.ballStarter());
+        Globals.self.StartCoroutine(ballMover.ballStarter());
         return res;
     }
 
@@ -200,7 +200,7 @@ public class BallMover : MonoBehaviour
             {
                 GameObject chp = Instantiate(ballMover.checkpointPrefab, hole.transform.position, Quaternion.identity);
                 Checkpoint cp = chp.GetComponent<Checkpoint>();
-                cp.transform.SetParent(Globals.globals.checkpointHolder.transform);
+                cp.transform.SetParent(Globals.self.checkpointHolder.transform);
                 cp.holeID = hole.index;
                 cp.dynamicPlaced = true;
                 cp.overHole = hole;
@@ -212,7 +212,7 @@ public class BallMover : MonoBehaviour
         }
         if (ball.checkpoints.Count != 0) return;
 
-        foreach (GameObject g in Globals.globals.toMoveZ)
+        foreach (GameObject g in Globals.self.toMoveZ)
         {
 
             Vector3 tempvec = g.transform.position;
@@ -242,7 +242,7 @@ public class BallMover : MonoBehaviour
             Debug.LogError("last checkpoint is not on hole");
         }
 
-        Globals.globals.StartCoroutine(ballMover.ballStarter());
+        Globals.self.StartCoroutine(ballMover.ballStarter());
     }
 
     /*

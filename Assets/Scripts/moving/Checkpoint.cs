@@ -8,7 +8,7 @@ public class Checkpoint : MonoBehaviour
     // Start is called before the first frame update
     //public static List<Checkpoint> checkpoints = new List<Checkpoint>();
     //public static Checkpoint[,] checkpoints = new Checkpoint[4, 31];
-    private static Checkpoint Instance;
+    private static Checkpoint self;
     
     //if true checkpoitns already creared
     //delete
@@ -38,17 +38,12 @@ public class Checkpoint : MonoBehaviour
 
     private void Awake()
     {
-        if (!Instance)
-        {
-            initList();
-            Instance = this;
-        }
+        if (!self) initList();
+        self = this;
     }
 
     void Start()
     {
-        if (stage == null) Debug.LogError("Ceckpoint[" + Id.ToString() + "]: Stage not set!");
-        //dynamic placed and dont have to be added
         if (stage == Globals.Stage.NONE) return;
         checkpoints[stage].Add(this);
 
@@ -66,8 +61,6 @@ public class Checkpoint : MonoBehaviour
     private static void initList()
     {
         foreach(Globals.Stage s in Enum.GetValues(typeof(Globals.Stage)))
-        {
             checkpoints.Add(s, new List<Checkpoint>());
-        }
     }
 }

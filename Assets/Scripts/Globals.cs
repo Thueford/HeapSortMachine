@@ -8,9 +8,9 @@ using System;
 
 public class Globals : MonoBehaviour
 {
-    public static Globals globals;
+    public static Globals self;
 
-    public static Stage stage { get; private set; } = Stage.MENU;
+    public static Stage stage { get;private set;} = Stage.MENU;
     public static List<Ball> balls = new List<Ball>();
     public static List<Hole> holes = new List<Hole>();
     public static List<Joint> joints = new List<Joint>();
@@ -20,17 +20,10 @@ public class Globals : MonoBehaviour
     private static bool stageTransition = true;
 
     public Button[] heapChkBtns;
+    public Stage startStage, rdonlyStage;
+    public Sprite[] ballsBlank, holeSprites, jointSprites;
     public GameObject[] toMoveZ;
-    public Sprite[] ballsBlank;
-    public Sprite[] holeSprites;
-    public Sprite[] jointSprites;
-
-    public Stage startStage;
-    public Stage rdonlyStage;
-    public GameObject ballPrefab;
-    public GameObject ballHolder;
-    public GameObject ballTextPrefab;
-    public GameObject checkpointHolder;
+    public GameObject ballPrefab, ballHolder, ballTextPrefab, checkpointHolder;
 
     private float lastWidth, lastHeight, startWidth, startHeight, winChanged = 0;
 
@@ -42,9 +35,8 @@ public class Globals : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Awake");
         stage = startStage;
-        if (!globals) globals = this;
+        if (!self) self = this;
         player = gameObject.GetComponent<SoundHandler>();
     }
 
@@ -97,14 +89,23 @@ public class Globals : MonoBehaviour
             switch (stage)
             {
                 case Stage.MENU: break;
+
                 case Stage.INTRO: break;
-                case Stage.STAGE_1: Reset.ResetBallsTo(Hole.LISTHOLE); Dialogue.Stage_1(); break;
-                case Stage.STAGE_2: Reset.ResetBallsTo(Hole.LISTHOLE); Ball.staticDnDEnable = false; break;
+
+                case Stage.STAGE_1: 
+                    Reset.ResetBallsTo(Hole.LISTHOLE);
+                    Dialogue.Stage_1();
+                    break;
+
+                case Stage.STAGE_2: 
+                    Reset.ResetBallsTo(Hole.LISTHOLE);
+                    Ball.staticDnDEnable = false;
+                    break;
 
                 case Stage.STAGE_3: 
-                    Reset.ResetBallsTo(Hole.TREEHOLE); 
-                    Ball.staticDnDEnable = false; 
-                    Ball.masterSwap = true; 
+                    Reset.ResetBallsTo(Hole.TREEHOLE);
+                    Ball.staticDnDEnable = false;
+                    Ball.masterSwap = true;
                     break;
 
                 case Stage.STAGE_4: 
@@ -113,7 +114,7 @@ public class Globals : MonoBehaviour
                     Ball.masterSwap = true;
                     break;
 
-                case Stage.END: Dialogue.Outro(); break;
+                case Stage.END: Dialogue.Outro();break;
             }
         }
     }
@@ -129,11 +130,12 @@ public class Globals : MonoBehaviour
 
         var provider = new RNGCryptoServiceProvider();
         int n = values.Count;
+
         while (n > 1)
         {
             var box = new byte[1];
             do provider.GetBytes(box);
-            while (!(box[0] < n * (Byte.MaxValue / n)));
+            while (!(box[0] < n * (byte.MaxValue / n)));
             var k = (box[0] % n);
             n--;
             var value = values[k];
@@ -170,7 +172,7 @@ public class Globals : MonoBehaviour
             SceneManager.LoadScene(loadScene);
             Debug.Log("SetStage " + s + " Afterload");
         }
-        globals.rdonlyStage = stage = s;
+        self.rdonlyStage = stage = s;
         stageTransition = true;
     }
 }

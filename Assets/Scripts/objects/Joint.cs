@@ -52,10 +52,10 @@ public class Joint : MonoBehaviour
         }
         Ball.swapTwo(hole1.content, hole2.content);
 
-        Globals.globals.heapChkBtns[hole1.index].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;
+        Globals.self.heapChkBtns[hole1.index].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;
         HeapTests.validHeaps[hole1.index] = false;
         if (Globals.stage == Globals.Stage.STAGE_3 && hole1.index > 0) {
-            Globals.globals.heapChkBtns[(int)Math.Floor((double)(hole1.index-1)/2)].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;
+            Globals.self.heapChkBtns[(int)Math.Floor((double)(hole1.index-1)/2)].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;
             HeapTests.validHeaps[(int)Math.Floor((double)(hole1.index-1)/2)] = false;
         }
         if (hole2.index < 7) {
@@ -63,7 +63,7 @@ public class Joint : MonoBehaviour
             int[] heapChild = HeapTests.getHeap(hole2.index);
             Debug.Log(heapChild);
             if (heapChild[1] != heapChild[2]) {
-                Globals.globals.heapChkBtns[hole2.index].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;
+                Globals.self.heapChkBtns[hole2.index].GetComponent<Image>().sprite = ButtonHandler.self.sprHeapUnchk;
                 HeapTests.validHeaps[hole2.index] = false;
 
                 Dialogue.heap_destroy();

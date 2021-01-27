@@ -30,24 +30,24 @@ public class LevelTests : MonoBehaviour
             if (!h.content) // no boll in hole
             {
                 allClear = false;
-                h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[2];
+                h.GetComponent<SpriteRenderer>().sprite = Globals.self.holeSprites[2];
             }
 
             else if (h.content.index == h.index)// index of ball in Hole is equal to value of Hole
             {
-                h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[1];
+                h.GetComponent<SpriteRenderer>().sprite = Globals.self.holeSprites[1];
             }
 
             else
             {
-                h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[2];
+                h.GetComponent<SpriteRenderer>().sprite = Globals.self.holeSprites[2];
                 allClear = false;
             }
 
         }
         // every ball is in the right hole
 
-        Globals.globals.StartCoroutine(waitASecondThenResetColor());
+        Globals.self.StartCoroutine(waitASecondThenResetColor());
         return allClear;
     }
 
@@ -88,7 +88,7 @@ public class LevelTests : MonoBehaviour
     {
         for (int n = 0; n <= 6; n++) {
             bool t = Test_Heapified(n);
-            Globals.globals.heapChkBtns[n].GetComponent<Image>().sprite = t ? ButtonHandler.self.sprHeapChk : ButtonHandler.self.sprHeapUnchk;
+            Globals.self.heapChkBtns[n].GetComponent<Image>().sprite = t ? ButtonHandler.self.sprHeapChk : ButtonHandler.self.sprHeapUnchk;
         }
         return HeapTests.currentHeap == -1;
     }
@@ -97,7 +97,7 @@ public class LevelTests : MonoBehaviour
     {
         for (int n = 0; n <= 6; n++) {
             bool t = Test_Heapified(n);
-            Globals.globals.heapChkBtns[n].GetComponent<Image>().sprite = t ? ButtonHandler.self.sprHeapChk : ButtonHandler.self.sprHeapUnchk;
+            Globals.self.heapChkBtns[n].GetComponent<Image>().sprite = t ? ButtonHandler.self.sprHeapChk : ButtonHandler.self.sprHeapUnchk;
         }
         return HeapTests.currentHeap == -1;
     }
@@ -114,15 +114,15 @@ public class LevelTests : MonoBehaviour
         //implement comparison rule
         foreach (int i in new int[] {0, 1}) {
             if (heap[0] > heap[i+1] && heap[i+1] > -1) {
-                tmp[i].GetComponent<SpriteRenderer>().sprite = Globals.globals.jointSprites[n>0 ? n>2 ? 4 : 2 : 0];
+                tmp[i].GetComponent<SpriteRenderer>().sprite = Globals.self.jointSprites[n>0 ? n>2 ? 4 : 2 : 0];
                 tmp[i].GetComponent<SpriteRenderer>().enabled = true;
             } else if (heap[i+1] > -1) {
                 b = false;
-                tmp[i].GetComponent<SpriteRenderer>().sprite = Globals.globals.jointSprites[n>0 ? n>2 ? 5 : 3 : 1];
+                tmp[i].GetComponent<SpriteRenderer>().sprite = Globals.self.jointSprites[n>0 ? n>2 ? 5 : 3 : 1];
                 tmp[i].GetComponent<SpriteRenderer>().enabled = true;
             }
         }
-        Globals.globals.StartCoroutine(waitASecondThenResetColor());
+        Globals.self.StartCoroutine(waitASecondThenResetColor());
         HeapTests.validHeaps[n] = b;
         HeapTests.currentHeap = HeapTests.getLastHeap();
         return b;
@@ -133,7 +133,7 @@ public class LevelTests : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         foreach (Hole h in Globals.getHoles(Hole.TREEHOLE))
-            h.GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[0];
+            h.GetComponent<SpriteRenderer>().sprite = Globals.self.holeSprites[0];
         foreach (Joint j in Globals.joints)
             j.GetComponent<SpriteRenderer>().enabled = false;
     }
