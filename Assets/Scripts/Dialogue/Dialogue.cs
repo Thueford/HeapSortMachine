@@ -13,7 +13,7 @@ public  class Dialogue : MonoBehaviour
 
     public static string namenew;
 
-    public static Json_Test.Dialogwrapper json = Json_Test.Load();
+    public static Dialogwrapper json = Dialogwrapper.Load();
 
     private static int[] hintCounter = new int[] {0, 0, 0, 0, 0};
 
@@ -49,12 +49,23 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
 
-    private static void SetDialog(string name, Json_Test.Textwrapper tw)
+    private static void SetDialog(string name, Dialogwrapper.Textwrapper tw, params string[] sents)
+    {
+        sentences.Clear();
+        nameSetter(name);
+        sentences.AddRange(sents);
+        sentences.AddRange(tw.text);
+        DialogueManager.setMecha(tw.emotion);
+        DialogueManager.self.StartDialogue();
+        DialogueManager.self.contiButton.gameObject.SetActive(true);
+    }
+
+    private static void SetDialog(string name, Dialogwrapper.Textwrapper tw)
     {
         sentences.Clear();
         AddDialog(name, tw);
     }
-    private static void AddDialog(string name, Json_Test.Textwrapper tw)
+    private static void AddDialog(string name, Dialogwrapper.Textwrapper tw)
     {
         nameSetter(name);
         sentences.AddRange(tw.text);
@@ -76,19 +87,23 @@ public  class Dialogue : MonoBehaviour
 
 
     // Hilfe Zone/////////////////////////////////////////////////////////
-    public static void Hilfe_1() {
+    public static void Hilfe_1()
+    {
         SetDialog("Hilfe 1:", json.level_hints.stage_1);
     }
 
-    public static void Hilfe_2() {
+    public static void Hilfe_2()
+    {
         SetDialog("Hilfe 2:", json.level_hints.stage_2);
     }
 
-    public static void Hilfe_3() {
+    public static void Hilfe_3()
+    {
         SetDialog("Hilfe 3:", json.level_hints.stage_3);
     }
 
-    public static void Hilfe_4() {
+    public static void Hilfe_4()
+    {
         SetDialog("Hilfe 4:", json.level_hints.stage_4);
     }
 
@@ -102,8 +117,7 @@ public  class Dialogue : MonoBehaviour
     public static void Test_1(bool b)
     {
         if (b)
-        { 
-
+        {
             SetDialog("Richtig!", json.level_complete.stage_1, GetRandom(json.random_success.text));
             DialogueManager.nextStage = Globals.Stage.STAGE_2;
         }

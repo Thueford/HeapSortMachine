@@ -17,7 +17,7 @@ public class Hole : MonoBehaviour
     public void Start()
     {
         tree = isType(TREEHOLE);
-        GetComponent<SpriteRenderer>().sprite = Globals.globals.holeSprites[0];
+        GetComponent<SpriteRenderer>().sprite = Globals.self.holeSprites[0];
     }
 
     public void setContent(Ball ball)

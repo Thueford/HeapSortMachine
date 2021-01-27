@@ -96,7 +96,7 @@ public class Ball : MonoBehaviour
                         if (moving.Count == 0)
                         {
                             //set everything to normal again
-                            foreach (GameObject g in Globals.globals.toMoveZ)
+                            foreach (GameObject g in Globals.self.toMoveZ)
                                 g.transform.position = setVecZ(g.transform.position, ZDROPPED);
                             BallMover.AnimationComplete();
                         }
@@ -220,11 +220,11 @@ public class Ball : MonoBehaviour
 
     public static Ball spawn(int index, int value, Vector3 pos)
     {
-        GameObject ball = Instantiate(Globals.globals.ballPrefab, pos, Quaternion.identity);
-        ball.transform.SetParent(Globals.globals.ballHolder.transform);
+        GameObject ball = Instantiate(Globals.self.ballPrefab, pos, Quaternion.identity);
+        ball.transform.SetParent(Globals.self.ballHolder.transform);
 
         Vector3 ball_pos = addVecZ(ball.transform.position, -0.01f);
-        GameObject txt = Instantiate(Globals.globals.ballTextPrefab, ball_pos, Quaternion.identity);
+        GameObject txt = Instantiate(Globals.self.ballTextPrefab, ball_pos, Quaternion.identity);
         txt.transform.SetParent(ball.transform);
 
         Ball b = ball.GetComponent<Ball>();
@@ -269,7 +269,7 @@ public class Ball : MonoBehaviour
 
     public void setValue(int val, bool nums = true)
     {
-        Sprite[] sprites = Globals.globals.ballsBlank; // nums ? globs.ballsNumbered : globs.ballsBlank;
+        Sprite[] sprites = Globals.self.ballsBlank; // nums ? globs.ballsNumbered : globs.ballsBlank;
         value = val % sprites.Length;
 
         GetComponent<SpriteRenderer>().sprite = sprites[value];

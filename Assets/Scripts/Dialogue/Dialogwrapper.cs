@@ -3,30 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Json_Test 
+public class Dialogwrapper
 {
+    public Emotionwrapper emotion;
+    public Stagewrapper level_description, level_complete, random_reactionn, random_comments, level_hints;
+    public Textwrapper random_mistake, random_success;
+    public Reactionwrapper reaction_from_3;
+    public Textwrapper stage1_intro, stage4_outro, falsch;
+
     public static Dialogwrapper Load()
     {
         TextAsset json = Resources.Load<TextAsset>("mechaniker");
         Dialogwrapper o = JsonUtility.FromJson<Dialogwrapper>(json.text);
         return o;
-    }
-
-    [System.Serializable]
-    public class Dialogwrapper
-    {
-        public Stagewrapper level_description;
-        public Stagewrapper level_complete;
-        public Stagewrapper random_reactionn;
-        public Stagewrapper random_comments;
-        public Stagewrapper level_hints;
-        public Textwrapper random_mistake;
-        public Textwrapper random_success;
-        public Reactionwrapper reaction_from_3;
-        public Emotionwrapper emotion;
-        public Textwrapper stage1_intro;
-        public Textwrapper stage4_outro;
-        public Textwrapper falsch;
     }
 
     [System.Serializable]
