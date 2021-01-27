@@ -32,24 +32,12 @@ public class DialogueManager : MonoBehaviour
     {
 		switch (emo)
         {
-			case "explain":
-				mecha.sprite = DialogueManager.self.sprExplain;
-				break;
-			case "positiv":
-				mecha.sprite = DialogueManager.self.sprHappy;
-				break;
-			case "neutral":
-				mecha.sprite = DialogueManager.self.sprNeutral;
-				break;
-			case "sceptic":
-				mecha.sprite = DialogueManager.self.sprSceptic;
-				break;
-			case "angry":
-				mecha.sprite = DialogueManager.self.sprAngry;
-				break;
-			default:
-				Debug.Log("Falsche Emotion!");
-				break;
+			case "explain": mecha.sprite = self.sprExplain; break;
+			case "positiv": mecha.sprite = self.sprHappy;   break;
+			case "neutral": mecha.sprite = self.sprNeutral; break;
+			case "sceptic": mecha.sprite = self.sprSceptic; break;
+			case "angry":   mecha.sprite = self.sprAngry;   break;
+			default:        Debug.Log("Falsche Emotion!");  break;
 		}
 		//mecha.sprite = img;
     }
