@@ -3603,7 +3603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 3.9440696, y: 14.030599}
+  m_AnchoredPosition: {x: 3.9440765, y: 14.0306015}
   m_SizeDelta: {x: 144.9, y: 41.6}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &389804553
@@ -5096,14 +5096,8 @@ MonoBehaviour:
   - {fileID: 781513395}
   - {fileID: 157129122}
   - {fileID: 764133980}
-  toMoveZ:
-  - {fileID: 1002058910}
-  - {fileID: 429266096}
-  - {fileID: 69080726}
-  - {fileID: 1714434654}
-  - {fileID: 595838498}
-  - {fileID: 269821749}
-  - {fileID: 1885860011}
+  startStage: 5
+  rdonlyStage: 0
   ballsBlank:
   - {fileID: -2730678496903272905, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   - {fileID: -8123278727972085277, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
@@ -5132,8 +5126,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2f0157cc87a4f2e4d871b6c6dc418f98, type: 3}
   - {fileID: 21300000, guid: 45f3d55e6dcd4934bb7bdf5678c32009, type: 3}
   - {fileID: 21300000, guid: 2ad49de7086e15d4cae4675732158486, type: 3}
-  startStage: 3
-  rdonlyStage: 0
+  toMoveZ:
+  - {fileID: 1002058910}
+  - {fileID: 429266096}
+  - {fileID: 69080726}
+  - {fileID: 1714434654}
+  - {fileID: 595838498}
+  - {fileID: 269821749}
+  - {fileID: 1885860011}
   ballPrefab: {fileID: 7053024290954293156, guid: 1894bdf830d9f7243966c5d37b506a9f,
     type: 3}
   ballHolder: {fileID: 1293688634}
@@ -14395,7 +14395,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081446043}
-  m_LocalRotation: {x: 0, y: 0, z: -0.707, w: 0.707}
+  m_LocalRotation: {x: 0, y: 0, z: -0.70710677, w: 0.70710677}
   m_LocalPosition: {x: 0.3368, y: -0.086, z: 2}
   m_LocalScale: {x: 0.7101448, y: 1.27, z: 1}
   m_Children: []

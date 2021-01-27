@@ -29,8 +29,10 @@ public class Globals : MonoBehaviour
 
     public enum Stage
     {
-        NONE, MENU, INTRO, STAGE_1, STAGE_2,
-        STAGE_3, STAGE_4, END
+        NONE,
+        MENU, INTRO, STAGE_1, STAGE_2,
+        STAGE_3, STAGE_4, END, OUTRO,
+        LAST
     }
 
     private void Awake()
@@ -114,7 +116,14 @@ public class Globals : MonoBehaviour
                     Ball.masterSwap = true;
                     break;
 
-                case Stage.END: break;
+                case Stage.END:
+                    Fade f = GameObject.Find("Fader").GetComponent<Fade>();
+                    f.FadeOut(null);
+                    f.setCallback(e => SetStage(Stage.OUTRO, "OutroScene"));
+                    break;
+
+                case Stage.OUTRO:
+                    break;
             }
         }
     }
@@ -158,7 +167,7 @@ public class Globals : MonoBehaviour
 
     public static void SetStage(Stage s, string loadScene = null)
     {
-        if(s < Stage.MENU || s > Stage.END)
+        if(s < Stage.MENU || s > Stage.LAST)
         {
             loadScene = "MainMenu";
             s = Stage.MENU;

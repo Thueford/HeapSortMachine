@@ -34,6 +34,7 @@ public class Fade : MonoBehaviour
         if (alpha >= 1)
         {
             done = true;
+            Debug.Log("Start");
             img.enabled = !fadeIn;
             if(cb != null) cb(null);
         }
@@ -69,6 +70,11 @@ public class Fade : MonoBehaviour
         range = rng;
 
         doFade(fadeOut);
+    }
+
+    public void setCallback(Action<BaseEventData> cb) 
+    {
+        this.cb = cb;
     }
 
     public void enableThings() {

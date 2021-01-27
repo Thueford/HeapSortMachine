@@ -194,6 +194,7 @@ public class ButtonHandler : MonoBehaviour
     {
         if (Globals.stage != Globals.Stage.STAGE_3 && Globals.stage != Globals.Stage.STAGE_4) return;
         GameObject btn = ((PointerEventData)ev).pointerEnter;
+        if (btn == null) btn = Button.getLast(ev);
         Debug.Log(btn);
 
         Match m = Regex.Match(btn.name, "\\((\\d+)\\)$");
