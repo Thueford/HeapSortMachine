@@ -26,6 +26,7 @@ public class Json_Test
         public Emotionwrapper emotion;
         public Textwrapper stage1_intro;
         public Textwrapper stage4_outro;
+        public Textwrapper falsch;
     }
 
     [System.Serializable]

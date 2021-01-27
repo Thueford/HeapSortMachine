@@ -62,6 +62,17 @@ public  class Dialogue : MonoBehaviour
         DialogueManager.self.StartDialogue();
         DialogueManager.self.contiButton.gameObject.SetActive(true);
     }
+    private static  void SetDialog(string name, Json_Test.Textwrapper tw, params string[] sents)
+    {
+        sentences.Clear();
+        nameSetter(name);
+        sentences.AddRange(sents);
+        sentences.AddRange(tw.text);
+        DialogueManager.setMecha(tw.emotion);
+        DialogueManager.self.StartDialogue();
+        DialogueManager.self.contiButton.gameObject.SetActive(true);
+    }
+
 
 
     // Hilfe Zone/////////////////////////////////////////////////////////
@@ -91,15 +102,14 @@ public  class Dialogue : MonoBehaviour
     public static void Test_1(bool b)
     {
         if (b)
-        {
-            SetDialog("Richtig!", GetRandom(json.random_success.text));
-            addSentences(json.level_complete.stage_2.text);
+        { 
+
+            SetDialog("Richtig!", json.level_complete.stage_1, GetRandom(json.random_success.text));
             DialogueManager.nextStage = Globals.Stage.STAGE_2;
         }
         else
         {
-            SetDialog("Falsch!", GetRandom(json.random_mistake.text));
-            addSentences("Wenn du nicht weiter weißt hilft vielleicht ein Tipp!");
+            SetDialog("Falsch!", json.falsch, GetRandom(json.random_mistake.text));
         }
     }
 
@@ -107,14 +117,12 @@ public  class Dialogue : MonoBehaviour
     {
         if (b)
         {
-            SetDialog("Richtig!", GetRandom(json.random_success.text));
-            addSentences(json.level_complete.stage_2.text);
+            SetDialog("Richtig!", json.level_complete.stage_2, GetRandom(json.random_success.text));
             DialogueManager.nextStage = Globals.Stage.STAGE_3;
         }
         else
         {
-            SetDialog("Falsch!", GetRandom(json.random_mistake.text));
-            addSentences("Wenn du nicht weiter weißt hilft vielleicht ein Tipp!");
+            SetDialog("Falsch!", json.falsch, GetRandom(json.random_mistake.text));
         }
     }
 
@@ -122,14 +130,12 @@ public  class Dialogue : MonoBehaviour
     {
         if (b)
         {
-            SetDialog("Richtig!", GetRandom(json.random_success.text));
-            addSentences(json.level_complete.stage_3.text);
+            SetDialog("Richtig!", json.level_complete.stage_3, GetRandom(json.random_success.text));
             DialogueManager.nextStage = Globals.Stage.STAGE_4;
         }
         else
         {
-            SetDialog("Falsch!", GetRandom(json.random_mistake.text));
-            addSentences("Wenn du nicht weiter weißt hilft vielleicht ein Tipp!");
+            SetDialog("Falsch!", json.falsch, GetRandom(json.random_mistake.text));
         }
     }
 
@@ -137,8 +143,7 @@ public  class Dialogue : MonoBehaviour
     {
         if (b && toBeSorted < 1)
         {
-            SetDialog("Richtig!", GetRandom(json.random_success.text));
-            addSentences(json.level_complete.stage_4.text);
+            SetDialog("Richtig!", json.level_complete.stage_4, GetRandom(json.random_success.text));
             DialogueManager.nextStage = Globals.Stage.END;
         }
         else if (b)
@@ -149,8 +154,7 @@ public  class Dialogue : MonoBehaviour
         }
         else
         {
-            SetDialog("Falsch!", GetRandom(json.random_mistake.text));
-            addSentences("Wenn du nicht weiter weißt hilft vielleicht ein Tipp!");
+            SetDialog("Falsch!", json.falsch, GetRandom(json.random_mistake.text));
         }
     }
 

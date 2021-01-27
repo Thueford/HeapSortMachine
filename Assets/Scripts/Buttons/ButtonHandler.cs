@@ -186,6 +186,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void btnOutro_Click()
     {
+        Debug.Log("Test Outro");
         Dialogue.Outro();
     }
 

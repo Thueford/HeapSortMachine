@@ -303,6 +303,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170509429}
   m_CullTransparentMesh: 0
+--- !u!1 &178891816 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7442444852311445892, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1639583510}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &486919496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -995,7 +1001,7 @@ MonoBehaviour:
   nameText: {fileID: 1678148459}
   dialogueText: {fileID: 498598148}
   contiButton: {fileID: 170509429}
-  darkener: {fileID: 0}
+  darkener: {fileID: 178891816}
   sprHappy: {fileID: 21300000, guid: 9671eeb1db599024c9425076ef5c88f3, type: 3}
   sprExplain: {fileID: 21300000, guid: a2694920b3733f745a8bdf730f9fae22, type: 3}
   sprNeutral: {fileID: 21300000, guid: ea9ebd645b282c0428dc782074ef192a, type: 3}
@@ -1368,6 +1374,125 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1639583510
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7442444852311445888, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445888, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.41960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445888, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.03137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445888, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.03137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445888, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.03137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445889, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445889, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: darkenRange
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445889, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: fadeIn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445889, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: start
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445889, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: fadeOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445889, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: darkenOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445889, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: darkenDuration
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445891, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445891, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445891, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445891, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445891, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445891, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445891, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445891, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.03865
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445891, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.038459998
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442444852311445892, guid: 46db72ffac5fff1408cd3f3ac287d4bf,
+        type: 3}
+      propertyPath: m_Name
+      value: Darkener
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 46db72ffac5fff1408cd3f3ac287d4bf, type: 3}
 --- !u!1 &1678148458
 GameObject:
   m_ObjectHideFlags: 0

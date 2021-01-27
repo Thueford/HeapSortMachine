@@ -110,7 +110,15 @@ public class DialogueManager : MonoBehaviour
 	void EndDialogue()
 	{
 		Debug.Log("Der Dialogue ist Offiziel Leer");
-		dialogueText.text = "Ich bin immer für dich da Drück nur die Knöpfe";
+
+		if(Globals.stage == Globals.Stage.END)
+        {
+			dialogueText.text = "Vielen Dank für's Spielen.";
+        } else
+        {
+			dialogueText.text = "Ich bin immer für dich da Drück nur die Knöpfe";
+        }
+		
 		nameText.text = "Mechaniker";
 		contiButton.SetActive(false);
 		mecha.sprite = sprNeutral;

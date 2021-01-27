@@ -113,7 +113,7 @@ public class Globals : MonoBehaviour
                     Ball.masterSwap = true;
                     break;
 
-                case Stage.END: Dialogue.Outro(); break;
+                case Stage.END: break;
             }
         }
     }
