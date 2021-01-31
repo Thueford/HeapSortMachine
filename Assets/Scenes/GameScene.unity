@@ -5096,7 +5096,7 @@ MonoBehaviour:
   - {fileID: 781513395}
   - {fileID: 157129122}
   - {fileID: 764133980}
-  startStage: 5
+  startStage: 3
   rdonlyStage: 0
   ballsBlank:
   - {fileID: -2730678496903272905, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
