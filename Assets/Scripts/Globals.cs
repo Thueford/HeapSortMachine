@@ -94,23 +94,25 @@ public class Globals : MonoBehaviour
 
                 case Stage.INTRO: break;
 
-                case Stage.STAGE_1: 
+                case Stage.STAGE_1:
                     Reset.ResetBallsTo(Hole.LISTHOLE);
                     Dialogue.Stage_1();
+                    Ball.masterSwap = false;
                     break;
 
-                case Stage.STAGE_2: 
+                case Stage.STAGE_2:
                     Reset.ResetBallsTo(Hole.LISTHOLE);
                     Ball.staticDnDEnable = false;
+                    Ball.masterSwap = false;
                     break;
 
-                case Stage.STAGE_3: 
+                case Stage.STAGE_3:
                     Reset.ResetBallsTo(Hole.TREEHOLE);
                     Ball.staticDnDEnable = false;
                     Ball.masterSwap = true;
                     break;
 
-                case Stage.STAGE_4: 
+                case Stage.STAGE_4:
                     Reset.ResetBallsHeapifiedTo(Hole.TREEHOLE);
                     Ball.staticDnDEnable = false;
                     Ball.masterSwap = true;

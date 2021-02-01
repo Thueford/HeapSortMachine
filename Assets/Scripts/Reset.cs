@@ -14,7 +14,7 @@ public class Reset : MonoBehaviour
         {
             Hole h = Globals.getHoles(holeType).Find(fh => b.index == fh.index);
             if (h) {
-                Ball.isSwapping = true;
+                if (h.content) Ball.isSwapping = true;
                 b.moveToHole(h.GetComponent<Collider2D>());
                 Ball.isSwapping = Ball.masterSwap;
             }
@@ -28,7 +28,7 @@ public class Reset : MonoBehaviour
         for (int i = 0; i < heapReset.Count; i++) {
             Hole h = Globals.getHoles(holeType).Find(fh => i == fh.index);
             if (h) {
-                Ball.isSwapping = true;
+                if (h.content) Ball.isSwapping = true;
                 heapReset[i].moveToHole(h.GetComponent<Collider2D>());
                 Ball.isSwapping = Ball.masterSwap;
             }
@@ -69,7 +69,7 @@ public class Reset : MonoBehaviour
             heapReset.Clear();
             for (int i = 0; i < 15; i++) {
                 Hole h = Globals.getHoles(Hole.TREEHOLE).Find(fh => i == fh.index);
-                if (h && h.content) heapReset.Add(h.content);   
+                if (h && h.content) heapReset.Add(h.content);
             }
         }
     }
