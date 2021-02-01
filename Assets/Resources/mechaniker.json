@@ -68,14 +68,17 @@
     "stage_1": {
       "text": [
         "Fülle den Baum von oben nach unten mit den Kugeln!",
-        "Orientiere dich an der vorgegebenen Liste."
+        "Orientiere dich an der vorgegebenen Liste.",
+        "Du kannst die Ziffer an dem Loch als index der Kugel in der Liste ansehen, ziehe nun die Kugeln in das Passende Loch."
       ],
       "emotion": "explain"
     },
     "stage_2": {
       "text": [
         "Jede Ebene hat doppelt so viele Knote wie die vorherige.",
-        "Die Indizes werden von der Wurzel bis zu den untersten Blättern, zeilenweise und aufsteigend vergeben."
+        "Die Indizes werden von der Wurzel bis zu den untersten Blättern, zeilenweise und aufsteigend vergeben.",
+        "Beim Nächsten Tipp Gebe ich dir die Bildungsvorschrift vor",
+        "2*n +1 2*n+2"
       ],
       "emotion": "explain"
     },
@@ -83,7 +86,10 @@
       "text": [
         "Achte darauf, dass die Kindknoten nicht größer als der Elternknoten sind.",
         "Am Ende muss das größte Element die Wurzel sein.",
-        "Prüfe ob die Herstellung eines Heaps zwischen zwei Elementen einen anderen zerstört hat."
+        "Prüfe ob die Herstellung eines Heaps zwischen zwei Elementen einen anderen zerstört hat.",
+        "Den gesamten Baum so zu ordnen das das Größte Element oben steht nennt man Maxheap im gegenzug heißt ein geordneter Baum mit dem Kleinsten   Element oben Minheap.",
+        "Benutzt den Prüfen Knopf um den Kompleten Baum zu Prüfen.",
+        "Achte darauf das alle Knöpfe ein Häckchen haben."
       ],
       "emotion": "explain"
     },
