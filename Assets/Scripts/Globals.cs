@@ -10,7 +10,7 @@ public class Globals : MonoBehaviour
 {
     public static Globals self;
 
-    public static Stage stage { get;private set;} = Stage.MENU;
+    public static Stage stage { get; private set; } = Stage.NONE;
     public static List<Ball> balls = new List<Ball>();
     public static List<Hole> holes = new List<Hole>();
     public static List<Joint> joints = new List<Joint>();
@@ -37,7 +37,7 @@ public class Globals : MonoBehaviour
 
     private void Awake()
     {
-        stage = startStage;
+        if(stage == Stage.NONE) stage = startStage;
         if (!self) self = this;
         player = gameObject.GetComponent<SoundHandler>();
     }

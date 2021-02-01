@@ -24,7 +24,7 @@ public class DialogueManager : MonoBehaviour
 	void Start()
 	{
 		mecha = GetComponent<Image>();
-		darken = darkener.GetComponent<Fade>();
+		if(darkener) darken = darkener.GetComponent<Fade>();
 		sentences = new Queue<string>();
 	}
 
@@ -53,7 +53,7 @@ public class DialogueManager : MonoBehaviour
 		foreach (string sentence in Dialogue.sentences)
 			sentences.Enqueue(sentence);
 
-		darken.DarkenOut(null);
+		if(darken) darken.DarkenOut(null);
 
 		DisplayNextSentence();
 	}
@@ -110,7 +110,7 @@ public class DialogueManager : MonoBehaviour
 		nameText.text = "Mechaniker";
 		contiButton.SetActive(false);
 		mecha.sprite = sprNeutral;
-		darken.DarkenIn(null);
+		if(darken) darken.DarkenIn(null);
 
 		// load next Stage
 		if (nextStage != Globals.Stage.NONE) Globals.SetStage(nextStage);
