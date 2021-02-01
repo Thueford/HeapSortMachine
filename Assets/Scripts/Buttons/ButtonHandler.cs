@@ -19,11 +19,30 @@ public class ButtonHandler : MonoBehaviour
         self = this;
     }
 
+
     public void btnStart_Click()
+    {
+        Debug.Log("Stages");
+        Globals.SetStage(Globals.Stage.MENU, "StageScene"); // TODO: will be intro
+        //playClickSound();
+    }
+
+    public void btnIntro_Click()
     {
         Debug.Log("Tutorial1");
         Globals.SetStage(Globals.Stage.MENU, "TutorialScene1"); // TODO: will be intro
         //playClickSound();
+    }
+
+    public void btnTree_Click()
+    {
+        Debug.Log("Tree");
+        Globals.SetStage(Globals.Stage.STAGE_1, "GameScene");
+    }
+    public void btnHeap_Click()
+    {
+        Debug.Log("Heap");
+        Globals.SetStage(Globals.Stage.STAGE_3, "GameScene");
     }
 
     public void btnNext1_Click()
