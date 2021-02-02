@@ -10,11 +10,11 @@
     "stage_1": {
       "text": [
         "Da hast du aber einen schönen Baum gepflanzt.",
-        "Wir machen jetzt weiter in Stage 2",
+        "Wir machen jetzt weiter in Stage 2.",
         "",
         "Die Drag'n'Drop-Funktion ist jetzt deaktiviert.",
         "Damit die Maschine richtig arbeitet musst du jetzt oben links in die Textfelder die Regel zur Bildung des Baumes eintragen.",
-        "Mit dem \"Prüfen\" Knopf kannst du sehen, ob du richtig liegst.",
+        "Mit dem Prüfen-Knopf kannst du sehen, ob du richtig liegst.",
         "Schau dir dazu einmal genauer an, wie im Baum der Index eines Elternknotens mit den Indizes seiner Kindknoten zusammenhängt."
       ],
       "emotion": "positiv"
@@ -24,10 +24,10 @@
         "Nun müsstest du wissen wie der Algorithmus die Liste als Baum betrachtet.",
         "Wir erreichen jetzt Stage 3",
         "",
-        "Nun musst du zuerst den Heap herstellen, das heißt der Baum muss geordnet werden.",
-        "Klicke dazu auf eine Verbindung zwischen zwei Kugeln, um diese zu tauschen.",
-        "Angefangen wird dabei beim letzten Knoten, in dem die Ordnung noch nicht hergestellt ist.",
-        "Durch das kategorische durchlaufen spart man sich unnötiges Tauschen.",
+        "Nun musst du zuerst den Heap herstellen, dass heißt der Baum muss geordnet werden.",
+        "Klicke dazu auf die Verbindung zwischen zwei Kugeln, um diese zu tauschen.",
+        "Angefangen wird dabei beim letzten Dreierkomplex, in dem die Ordnung noch nicht hergestellt ist.",
+        "Durch das kategorische Durchlaufen spart man sich unnötiges Tauschen.",
         "Mit dem (x)-Knopf kannst du den Heapstatus des entsprechenden Teilbaumes prüfen.",
         "Hat der gesamte Baum den Heapstatus erreicht, kommst du in die nächste Stufe."
       ],
@@ -75,10 +75,10 @@
     },
     "stage_2": {
       "text": [
-        "Jede Ebene hat doppelt so viele Knote wie die vorherige.",
+        "Jede Ebene hat doppelt so viele Knoten wie die Vorherige.",
         "Die Indizes werden von der Wurzel bis zu den untersten Blättern, zeilenweise und aufsteigend vergeben.",
-        "Beim Nächsten Tipp Gebe ich dir die Bildungsvorschrift vor",
-        "2*n +1 2*n+2"
+        "Beim Nächsten Tipp Gebe ich dir die Bildungsvorschrift vor.",
+        "2*n+1 2*n+2"
       ],
       "emotion": "explain"
     },
@@ -87,15 +87,14 @@
         "Achte darauf, dass die Kindknoten nicht größer als der Elternknoten sind.",
         "Am Ende muss das größte Element die Wurzel sein.",
         "Prüfe ob die Herstellung eines Heaps zwischen zwei Elementen einen anderen zerstört hat.",
-        "Den gesamten Baum so zu ordnen das das Größte Element oben steht nennt man Maxheap im gegenzug heißt ein geordneter Baum mit dem Kleinsten   Element oben Minheap.",
-        "Benutzt den Prüfen Knopf um den Kompleten Baum zu Prüfen.",
+        "Den Baum so zu ordnen das das größte Element in der Wurzel steht nennt man Maxheap. Nimmt man dabei das kleinste Element ist es Minheap.",
+        "Benutzt den Prüfen-Knopf um den kompleten Baum zu Prüfen.",
         "Achte darauf das alle Knöpfe ein Häckchen haben."
       ],
       "emotion": "explain"
     },
     "stage_4": {
       "text": [
-        "Tausche doch die Wurzel mit dem untersten Blatt.",
         "Das unterste Blatt ist am weitesten von der Wurzel entfernt.",
         "Wenn du dir sicher bist das alles richtig ist, dann überprüfe es doch einfach mit dem Button."
       ],
@@ -148,8 +147,8 @@
       "Hier ein paar Hinweise zur ersten Stufe",
       "Benutze deine Mause um Kugeln per Drag'n'Drop-Funktion in den Baum zu bewegen.",
       "Arbeite dabei die Liste von oben nach unten ab.",
-      "Ziehe die Kugeln der Reihe nach immer zum höchsten Loch, welches am weitesten links steht.",
-      "Achte dabei auf die kleinen Nummern an den Löchern. Sie helfen dir dabei den Überblick zu bewaren.",
+      "Ziehe die Kugeln der Reihe nach immer zum höchsten Loch, welches am weitesten links liegt.",
+      "Achte dabei auf die kleinen Nummern an den Löchern. Sie helfen dir dabei den Überblick zu bewahren.",
       "Viel Spaß bei der ersten Stage."
     ],
     "emotion": "explain"
@@ -159,10 +158,10 @@
       "Du warst ein aufmerksamer und wissbegieriger Lehrling und ich wünsche dir viel Erfolg bei der Anwendung deiner erlernten Fähigkeiten.",
       "Lass mich dir noch ein paar zusätzliche Informationen zu HeapSort geben die vielleicht einmal hilfreich werden könnten.",
       "Einer der großen Vorteile von HeapSort ist der überaus geringe Speicheraufwand, da es sich hierbei um eine in-place Sortierung handelt.",
-      "In-place bedeutet dabei, dass der Algorithmus außer den zu bearbeitenden Daten nur eine, von der Datenmenge unabhängigen, Konstante als Speicher benötigt.",
+      "In-place bedeutet dabei, dass der Algorithmus außer den zu bearbeitenden Daten nur eine, von der Datenmenge unabhängige, Konstante als Speicher benötigt.",
       "Der zweite Vorteil ist die logarithmische Maximallaufzeit des Algorithmus von \nO(n * log n).",
       "Ein Nachteil ist allerding, dass der Algorithmus instabil sortiert, also die gleiche Reihenfolge von gleichwertigen Elementen bevor und nach der Sortierung nicht gewährleistet ist.",
-      "Somit ist HeapSort immer dann eine gute Wahl, wenn man eine zeitlich zuverlässige Sortierung mit möglichst geringem Speicheraufwand haben möchte und die Reihenfolge gleichwertiger Elemente irrelevant ist."
+      "Somit ist HeapSort immer dann eine gute Wahl, wenn man eine zeitlich zuverlässige Sortierung haben möchte und die Reihenfolge gleichwertiger Elemente irrelevant ist. Als Bonus besitzt sie zudem einen sehr geringen Speicheraufwand."
     ],
     "emotion": "explain"
   },

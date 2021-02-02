@@ -192,7 +192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &170509430
 RectTransform:
   m_ObjectHideFlags: 0
@@ -554,9 +554,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Herzlichen Gl\xFCckwunsch! Du bist nun in der Lage auch ohne diese Maschine
-    die Kugeln mit Hilfe von Heapsort zu sortieren.\nEs freut mich das du dir die
-    Zeit genommen hast, dir dies anzueignen."
+  m_Text: "Herzlichen Gl\xFCckwunsch! Du bist nun in der Lage mit Heapsort zu sortieren.\nKlick
+    einfach auf mich wenn du gerne ein paar Zusatzinfos haben m\xF6chtest."
 --- !u!222 &498598149
 CanvasRenderer:
   m_ObjectHideFlags: 0
