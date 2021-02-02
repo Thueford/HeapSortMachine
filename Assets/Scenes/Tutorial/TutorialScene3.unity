@@ -268,9 +268,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Hast du den Baum hergestellt musst du ihn jetzt heapifizieren. Das hei\xDFt
-    das an einer Verbindung die obere Kugel das gr\xF6\xDFere ist. Du kannst Kugeln
-    mit einem Klick auf die Verbindung tauschen"
+  m_Text: "Hast du den Baum angelegt, musst du jetzt den Heap herstellen. Das hei\xDFt,
+    er soll geordnet werden. Du kannst Kugeln mit einem Klick auf die Verbindung
+    tauschen"
 --- !u!222 &16338728
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -334,7 +334,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heapChkBtns: []
-  toMoveZ: []
+  startStage: 2
+  rdonlyStage: 0
   ballsBlank:
   - {fileID: -2730678496903272905, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   - {fileID: -8123278727972085277, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
@@ -354,8 +355,7 @@ MonoBehaviour:
   - {fileID: -9121496246046211438, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   holeSprites: []
   jointSprites: []
-  startStage: 2
-  rdonlyStage: 0
+  toMoveZ: []
   ballPrefab: {fileID: 0}
   ballHolder: {fileID: 0}
   ballTextPrefab: {fileID: 0}
