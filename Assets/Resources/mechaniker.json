@@ -13,7 +13,6 @@
             "Da hast du aber einen schönen Baum gepflanzt.",
             "Wir machen jetzt weiter in Stage 2.",
             "Title: Stage 2",
-            "",
             "Die Drag'n'Drop-Funktion ist jetzt deaktiviert.",
             "Damit die Maschine richtig arbeitet musst du jetzt oben links in die Textfelder die Regel zur Bildung des Baumes eintragen.",
             "Mit dem Prüfen-Knopf kannst du sehen, ob du richtig liegst.",
@@ -27,7 +26,6 @@
             "Nun müsstest du wissen wie der Algorithmus die Liste als Baum betrachtet.",
             "Wir erreichen jetzt Stage 3",
             "Title: Stage 3",
-            "",
             "Nun musst du zuerst den Heap herstellen, dass heißt der Baum muss geordnet werden.",
             "Klicke dazu auf die Verbindung zwischen zwei Kugeln, um diese zu tauschen.",
             "Angefangen wird dabei beim letzten Dreierkomplex, in dem die Ordnung noch nicht hergestellt ist.",
@@ -42,7 +40,6 @@
             "Title: Richtig!",
             "Weiter gehts zu Stage 4",
             "Title: Stage 4",
-            "",
             "Wenn in Stufe 4 nun der Heap im ganzen Baum hergestellt wurde, solltest du noch einmal den \"Prüfen\" Knopf drücken.",
             "Dann wird das erste und das letzte Element im Baum getauscht und danach das letzte Element in die sortierte Liste übertragen."
         ],
@@ -88,26 +85,28 @@
       "text": [
         "Jede Ebene hat doppelt so viele Knoten wie die Vorherige.",
         "Die Indizes werden von der Wurzel bis zu den untersten Blättern, zeilenweise und aufsteigend vergeben.",
-        "Beim Nächsten Tipp Gebe ich dir die Bildungsvorschrift vor.",
-        "2*n+1 2*n+2"
+        "Betrachten wir zum Beispiel Knoten 3: Seine Kindknoten haben die Indizes 2*3+1 = 7 und 2*3+2 = 8. Wie könnte man das verallgemeinern?",
+        "Wenn du mehr Hilfe brauchst, kann ich dir beim nächsten Tipp gern die Bildungsvorschrift ansagen.",
+        "Die Bildungsvorschrift lautet: 2*n+1 und 2*n+2"
       ],
       "emotion": "explain"
     },
     "stage_3": {
       "text": [
         "Achte darauf, dass die Kindknoten nicht größer als der Elternknoten sind.",
-        "Am Ende muss das größte Element die Wurzel sein.",
-        "Prüfe ob die Herstellung eines Heaps zwischen zwei Elementen einen anderen zerstört hat.",
-        "Den Baum so zu ordnen das das größte Element in der Wurzel steht nennt man Maxheap. Nimmt man dabei das kleinste Element ist es Minheap.",
-        "Benutzt den Prüfen-Knopf um den kompleten Baum zu Prüfen.",
-        "Achte darauf das alle Knöpfe ein Häckchen haben."
+        "Am Ende muss das größte Element in der Wurzel sein.",
+        "Den Baum so zu ordnen, dass das größte Element in der Wurzel steht, nennt man Maxheap.",
+        "Nimmt man stattdessen das kleinste Element, sagt man Minheap.",
+        "Benutze den Prüfen-Knopf, um jede Verbindung im Baum zu Prüfen.",
+        "Ziel ist es, dass jeder Teilbaum ein Häkchen hat."
       ],
       "emotion": "explain"
     },
     "stage_4": {
       "text": [
-        "Das unterste Blatt ist am weitesten von der Wurzel entfernt.",
-        "Wenn du dir sicher bist das alles richtig ist, dann überprüfe es doch einfach mit dem Button."
+        "Der Prozess in dieser Stufe nennt sich Heapify. Dabei Stellst du die Ordnung in einem Baum wieder her,",
+        "in dem nur das obere Element nicht richtig eingeordnet ist. Bediene die Maschine dazu wie in der letzten Stufe!",
+        "Wenn du dir sicher bist, dass alles richtig ist, dann benutze noch einmal den Prüfen-Button."
       ],
       "emotion": "explain"
     }
@@ -139,7 +138,7 @@
       "text": [
         "Jetzt musst du den Baum ja schon wieder ordnen.",
         "Aber siehst du auch was ich sehe?",
-        "Dadurch, dass nur ein Element nicht geordnet ist, lässt sich die Ordnung sehr schnell wiederherstellen.",
+        "Dadurch, dass nur ein Element nicht geordnet ist, lässt sich der Heap sehr schnell wiederherstellen.",
         "Probiere es mal aus!"
       ],
       "emotion": "explain"
@@ -166,13 +165,14 @@
   },
   "stage4_outro": {
     "text": [
+      "Herzlichen Glückwunsch! Du bist nun in der Lage mit Heapsort zu sortieren.",
       "Du warst ein aufmerksamer und wissbegieriger Lehrling und ich wünsche dir viel Erfolg bei der Anwendung deiner erlernten Fähigkeiten.",
       "Lass mich dir noch ein paar zusätzliche Informationen zu HeapSort geben die vielleicht einmal hilfreich werden könnten.",
       "Einer der großen Vorteile von HeapSort ist der überaus geringe Speicheraufwand, da es sich hierbei um eine in-place Sortierung handelt.",
-      "In-place bedeutet dabei, dass der Algorithmus außer den zu bearbeitenden Daten nur eine, von der Datenmenge unabhängige, Konstante als Speicher benötigt.",
+      "In-place bedeutet dabei, dass der Algorithmus keine zusätzlichen Listen benötigt, um die Elemente zu speichern.",
       "Der zweite Vorteil ist die logarithmische Maximallaufzeit des Algorithmus von \nO(n * log n).",
-      "Ein Nachteil ist allerding, dass der Algorithmus instabil sortiert, also die gleiche Reihenfolge von gleichwertigen Elementen bevor und nach der Sortierung nicht gewährleistet ist.",
-      "Somit ist HeapSort immer dann eine gute Wahl, wenn man eine zeitlich zuverlässige Sortierung haben möchte und die Reihenfolge gleichwertiger Elemente irrelevant ist. Als Bonus besitzt sie zudem einen sehr geringen Speicheraufwand."
+      "Ein Nachteil ist aber, dass der Algorithmus instabil ist, die Reihenfolge von gleichwertigen Elementen bleibt also möglicherweise nicht bestehen.",
+      "Somit ist HeapSort eine gute Wahl, wenn eine zeitlich zuverlässige Sortierung benötigt wird und die Reihenfolge gleichwertiger Elemente irrelevant ist."
     ],
     "emotion": "explain"
   },

@@ -125,6 +125,7 @@ public class Globals : MonoBehaviour
                     break;
 
                 case Stage.OUTRO:
+                    Dialogue.Outro();
                     break;
             }
         }

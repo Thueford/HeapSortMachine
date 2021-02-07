@@ -16,7 +16,7 @@ public  class Dialogue : MonoBehaviour
     public static Dialogwrapper json = Dialogwrapper.Load();
 
     private static int[] hintCounter = new int[] {0, 0, 0, 0, 0};
-
+    private static int[] tippCounter = new int[] {0, 0, 0, 0};
 
     public static void nameSetter(string k)
     {
@@ -85,26 +85,61 @@ public  class Dialogue : MonoBehaviour
     }
 
 
-
     // Hilfe Zone/////////////////////////////////////////////////////////
     public static void Hilfe_1()
     {
-        SetDialog("Hilfe 1:", json.level_hints.stage_1);
+        int i = 0;
+        DialogueManager.setMecha("explain");
+        switch(tippCounter[i]) {
+            case 0: SetDialog("Hilfe 1:", json.level_hints.stage_1.text[0], json.level_hints.stage_1.text[1]);
+                    break;
+            case 1: SetDialog("Hilfe 1:", json.level_hints.stage_1.text[2]);
+                    break;
+        }
+        tippCounter[i] = (tippCounter[i]+1) % 2;
     }
 
     public static void Hilfe_2()
     {
-        SetDialog("Hilfe 2:", json.level_hints.stage_2);
+        int i = 1;
+        DialogueManager.setMecha("explain");
+        switch(tippCounter[i]) {
+            case 0: SetDialog("Hilfe 1:", json.level_hints.stage_2.text[0], json.level_hints.stage_2.text[1]);
+                    break;
+            case 1: SetDialog("Hilfe 1:", json.level_hints.stage_2.text[2], json.level_hints.stage_2.text[3]);
+                    break;
+            case 2: SetDialog("Hilfe 1:", json.level_hints.stage_2.text[4]);
+                    break;
+        }
+        tippCounter[i] = (tippCounter[i]+1) % 3;
     }
 
     public static void Hilfe_3()
     {
-        SetDialog("Hilfe 3:", json.level_hints.stage_3);
+        int i = 2;
+        DialogueManager.setMecha("explain");
+        switch(tippCounter[i]) {
+            case 0: SetDialog("Hilfe 1:", json.level_hints.stage_3.text[0], json.level_hints.stage_3.text[1]);
+                    break;
+            case 1: SetDialog("Hilfe 1:", json.level_hints.stage_3.text[2], json.level_hints.stage_3.text[3]);
+                    break;
+            case 2: SetDialog("Hilfe 1:", json.level_hints.stage_3.text[4], json.level_hints.stage_3.text[5]);
+                    break;
+        }
+        tippCounter[i] = (tippCounter[i]+1) % 3;
     }
 
     public static void Hilfe_4()
     {
-        SetDialog("Hilfe 4:", json.level_hints.stage_4);
+        int i = 3;
+        DialogueManager.setMecha("explain");
+        switch(tippCounter[i]) {
+            case 0: SetDialog("Hilfe 1:", json.level_hints.stage_4.text[0], json.level_hints.stage_4.text[1]);
+                    break;
+            case 1: SetDialog("Hilfe 1:", json.level_hints.stage_4.text[2]);
+                    break;
+        }
+        tippCounter[i] = (tippCounter[i]+1) % 2;
     }
 
     //Test Zone     /////////////////////////////////////////////////////////
