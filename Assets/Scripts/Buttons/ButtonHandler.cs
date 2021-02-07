@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,7 +12,14 @@ public class ButtonHandler : MonoBehaviour
     public Sprite sprHolderUp, sprHolderDown, sprHeapChk, sprHeapUnchk;
     public static bool autoButtonUsed = false;
     public static bool buttonsActive = true;
+    public Texture2D crsr1, crsr2;
+    private static Texture2D csr1, csr2;
 
+    public static void setCursor(bool onBtn)
+    {
+        Texture2D t = onBtn ? csr1 : csr2;
+        if (t) Cursor.SetCursor(t, Vector2.zero, CursorMode.Auto);
+    }
 
     // Start is called before the first frame update
     void Awake()
@@ -19,6 +27,11 @@ public class ButtonHandler : MonoBehaviour
         self = this;
     }
 
+    public void Start()
+    {
+        if (!csr1) csr1 = crsr1;
+        if (!csr2) csr2 = crsr2;
+    }
 
     public void btnStart_Click()
     {
@@ -115,6 +128,7 @@ public class ButtonHandler : MonoBehaviour
             case Globals.Stage.STAGE_4: Dialogue.Hilfe_4(); break;
         }
     }
+
     public void btnTest_Click()
     {
         if (!buttonsActive) return; //during auto/stage change

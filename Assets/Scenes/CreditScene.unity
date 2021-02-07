@@ -243,6 +243,8 @@ MonoBehaviour:
   sprHolderDown: {fileID: 0}
   sprHeapChk: {fileID: 0}
   sprHeapUnchk: {fileID: 0}
+  crsr1: {fileID: 2800000, guid: 55015440c1a86c742b09e88c4313dfef, type: 3}
+  crsr2: {fileID: 2800000, guid: c0d6e24d0ec90ed44b38e1626fff0ae6, type: 3}
 --- !u!1 &414145323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,7 +1645,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heapChkBtns: []
-  toMoveZ: []
+  startStage: 1
+  rdonlyStage: 0
   ballsBlank:
   - {fileID: -2730678496903272905, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   - {fileID: -8123278727972085277, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
@@ -1663,8 +1666,7 @@ MonoBehaviour:
   - {fileID: -9121496246046211438, guid: 8df065bf9514fce4c8298420ee4ed731, type: 3}
   holeSprites: []
   jointSprites: []
-  startStage: 1
-  rdonlyStage: 0
+  toMoveZ: []
   ballPrefab: {fileID: 0}
   ballHolder: {fileID: 0}
   ballTextPrefab: {fileID: 0}

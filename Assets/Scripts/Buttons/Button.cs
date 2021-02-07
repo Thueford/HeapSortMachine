@@ -71,20 +71,20 @@ public class Button : MonoBehaviour
 
     public static void OnMouseUp(BaseEventData ev)
     {
-        if (!lastBtnDown) return;
-        lastBtnDown.GetComponent<Image>().rectTransform.localScale = new Vector3(1, 1, 0);
+        if (lastBtnDown) lastBtnDown.GetComponent<Image>().rectTransform.localScale = new Vector3(1, 1, 0);
         lastBtnDown = null;
     }
 
     public static void OnMouseEnter(BaseEventData ev)
     {
         lastBtnOver = getLast(ev, false);
+        ButtonHandler.setCursor(true);
         if (lastBtnOver) lastBtnOver.GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f);
     }
 
     public static void OnMouseExit(BaseEventData ev)
     {
-        if (!lastBtnOver) return;
+        ButtonHandler.setCursor(false);
         if (lastBtnOver) lastBtnOver.GetComponent<Image>().color = Color.white;
         lastBtnOver = null;
     }
@@ -97,10 +97,7 @@ public class Button : MonoBehaviour
 
     public void OnHolderMouseUp(BaseEventData ev)
     {
-        if (!lastBtnHolder) return;
         if (lastBtnHolder) lastBtnHolder.GetComponent<Image>().sprite = ButtonHandler.self.sprHolderUp;
         lastBtnHolder = null;
     }
-
-    
 }

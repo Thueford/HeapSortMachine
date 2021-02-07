@@ -9011,6 +9011,8 @@ MonoBehaviour:
   sprHolderDown: {fileID: 21300000, guid: e8821f53e0b7e194bace6e8e2310b776, type: 3}
   sprHeapChk: {fileID: 21300000, guid: 1f13bba024565df40a923efed1938205, type: 3}
   sprHeapUnchk: {fileID: 21300000, guid: b588dc01765e1d24fb1bc33fe723b59a, type: 3}
+  crsr1: {fileID: 2800000, guid: 55015440c1a86c742b09e88c4313dfef, type: 3}
+  crsr2: {fileID: 2800000, guid: c0d6e24d0ec90ed44b38e1626fff0ae6, type: 3}
 --- !u!4 &1217682637 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3283823901466871899, guid: af2239c5c951a5d409369648c6d08e97,
