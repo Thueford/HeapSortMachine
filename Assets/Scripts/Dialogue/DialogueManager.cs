@@ -76,8 +76,14 @@ public class DialogueManager : MonoBehaviour
 		
 		contiButton.gameObject.SetActive(true);
 		string sentence = sentences.Dequeue();
-		StopAllCoroutines();
-		StartCoroutine(TypeSentence(sentence));
+		if(sentence.ToLower().StartsWith("title:"))
+		{
+			nameText.text = sentence.Substring(6).Trim();
+			DisplayNextSentence();
+		} else { 
+			StopAllCoroutines();
+			StartCoroutine(TypeSentence(sentence));
+		}
 	}
 
 	private volatile bool skipDialog = true;

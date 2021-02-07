@@ -8,69 +8,80 @@
   },
   "level_complete": {
     "stage_1": {
-      "text": [
-        "Da hast du aber einen schönen Baum gepflanzt.",
-        "Wir machen jetzt weiter in Stage 2.",
-        "",
-        "Die Drag'n'Drop-Funktion ist jetzt deaktiviert.",
-        "Damit die Maschine richtig arbeitet musst du jetzt oben links in die Textfelder die Regel zur Bildung des Baumes eintragen.",
-        "Mit dem Prüfen-Knopf kannst du sehen, ob du richtig liegst.",
-        "Schau dir dazu einmal genauer an, wie im Baum der Index eines Elternknotens mit den Indizes seiner Kindknoten zusammenhängt."
-      ],
+        "text": [
+            "Title: Richtig!",
+            "Da hast du aber einen schönen Baum gepflanzt.",
+            "Wir machen jetzt weiter in Stage 2.",
+            "Title: Stage 2",
+            "",
+            "Die Drag'n'Drop-Funktion ist jetzt deaktiviert.",
+            "Damit die Maschine richtig arbeitet musst du jetzt oben links in die Textfelder die Regel zur Bildung des Baumes eintragen.",
+            "Mit dem Prüfen-Knopf kannst du sehen, ob du richtig liegst.",
+            "Schau dir dazu einmal genauer an, wie im Baum der Index eines Elternknotens mit den Indizes seiner Kindknoten zusammenhängt."
+        ],
       "emotion": "positiv"
     },
     "stage_2": {
-      "text": [
-        "Nun müsstest du wissen wie der Algorithmus die Liste als Baum betrachtet.",
-        "Wir erreichen jetzt Stage 3",
-        "",
-        "Nun musst du zuerst den Heap herstellen, dass heißt der Baum muss geordnet werden.",
-        "Klicke dazu auf die Verbindung zwischen zwei Kugeln, um diese zu tauschen.",
-        "Angefangen wird dabei beim letzten Dreierkomplex, in dem die Ordnung noch nicht hergestellt ist.",
-        "Durch das kategorische Durchlaufen spart man sich unnötiges Tauschen.",
-        "Mit dem (x)-Knopf kannst du den Heapstatus des entsprechenden Teilbaumes prüfen.",
-        "Hat der gesamte Baum den Heapstatus erreicht, kommst du in die nächste Stufe."
-      ],
+        "text": [
+            "Title: Richtig!",
+            "Nun müsstest du wissen wie der Algorithmus die Liste als Baum betrachtet.",
+            "Wir erreichen jetzt Stage 3",
+            "Title: Stage 3",
+            "",
+            "Nun musst du zuerst den Heap herstellen, dass heißt der Baum muss geordnet werden.",
+            "Klicke dazu auf die Verbindung zwischen zwei Kugeln, um diese zu tauschen.",
+            "Angefangen wird dabei beim letzten Dreierkomplex, in dem die Ordnung noch nicht hergestellt ist.",
+            "Durch das kategorische Durchlaufen spart man sich unnötiges Tauschen.",
+            "Mit dem (x)-Knopf kannst du den Heapstatus des entsprechenden Teilbaumes prüfen.",
+            "Hat der gesamte Baum den Heapstatus erreicht, kommst du in die nächste Stufe."
+        ],
       "emotion": "positiv"
     },
     "stage_3": {
-      "text": [
-        "Weiter gehts zu Stage 4",
-        "",
-        "Wenn in Stufe 4 nun der Heap im ganzen Baum hergestellt wurde, solltest du noch einmal den \"Prüfen\" Knopf drücken.",
-        "Dann wird das erste und das letzte Element im Baum getauscht und danach das letzte Element in die sortierte Liste übertragen."
-      ],
+        "text": [
+            "Title: Richtig!",
+            "Weiter gehts zu Stage 4",
+            "Title: Stage 4",
+            "",
+            "Wenn in Stufe 4 nun der Heap im ganzen Baum hergestellt wurde, solltest du noch einmal den \"Prüfen\" Knopf drücken.",
+            "Dann wird das erste und das letzte Element im Baum getauscht und danach das letzte Element in die sortierte Liste übertragen."
+        ],
       "emotion": "positiv"
     },
     "stage_4": {
-      "text": [ "So langsam hast du den Sortieralgorithmus verstanden, oder?" ],
+        "text": [
+            "Title: Richtig!",
+            "So langsam hast du den Sortieralgorithmus verstanden, oder?"
+        ],
       "emotion": "positiv"
     }
   },
   "random_mistake": {
     "text": [
-      "Wenn du weiter so machst werden wir beide noch gefeuert.",
-      "Wenn du so weiter machst wirst du es nie verstehen!",
-      "Versuche es einfach noch einmal!"
+        "Title: Falsch!",
+        "Wenn du weiter so machst werden wir beide noch gefeuert.",
+        "Wenn du so weiter machst wirst du es nie verstehen!",
+        "Versuche es einfach noch einmal!"
     ],
     "emotion": "angry"
   },
   "random_success": {
     "text": [
-      "Super das ist ja fast wie meine eigene Arbeit.",
-      "Das hätte ich nicht besser machen können.",
-      "Wenn du so weiter machst kannst du bald an meiner Stelle stehen.",
-      "Du hast das ausgezeichnet gemacht."
+        "Title: Richtig!",
+        "Super das ist ja fast wie meine eigene Arbeit.",
+        "Das hätte ich nicht besser machen können.",
+        "Wenn du so weiter machst kannst du bald an meiner Stelle stehen.",
+        "Du hast das ausgezeichnet gemacht."
     ],
     "emotion": "positiv"
   },
   "level_hints": {
     "stage_1": {
-      "text": [
-        "Fülle den Baum von oben nach unten mit den Kugeln!",
-        "Orientiere dich an der vorgegebenen Liste.",
-        "Du kannst die Ziffer an dem Loch als index der Kugel in der Liste ansehen, ziehe nun die Kugeln in das Passende Loch."
-      ],
+        "text": [
+            "Fülle den Baum von oben nach unten mit den Kugeln!",
+            "Orientiere dich an der vorgegebenen Liste.",
+            "Du kannst die Ziffer an dem Loch als index der Kugel in der Liste ansehen, ziehe nun die Kugeln in das Passende Loch."
+        ],
       "emotion": "explain"
     },
     "stage_2": {
